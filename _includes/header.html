@@ -1,8 +1,7 @@
 <header class="site-header">
 
   <div class="wrapper">
-
-    <a class="site-title" href="{{ site.baseurl }}/">{{ site.title }}</a>
+          <a class="site-title" href="{{ site.baseurl }}/"><span> {{ site.data.i18n[page.language].debian_chinese_developers_team }} <!-- {{ site.title }} --></span></a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -18,6 +17,9 @@
           {% if my_page.title %}
           <a class="page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a>
           {% endif %}
+        {% endfor %}
+        {% for i18n_item in site.data.i18n %}
+          <a class="page-link" href="{{ i18n_item[1]['lang_homepage_url'] }}">{{ i18n_item[1]['language'] }}</a>
         {% endfor %}
       </div>
     </nav>
