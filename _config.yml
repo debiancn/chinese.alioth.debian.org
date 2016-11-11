@@ -1,0 +1,31 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely need to edit after that.
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: Debian Chinese Team
+email: chinese-developers@lists.alioth.debian.org
+description: > # this means to ignore newlines until "baseurl:"
+  Website for Debian Chinese Team on Debian Alioth.
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://chinese.alioth.debian.org" # the base hostname & protocol for your site
+#twitter_username: jekyllrb
+#github_username:  jekyll
+
+# Build settings
+markdown: kramdown
+
+# Multilang plugin
+#gems: ['jekyll-multiple-languages']
+# if you want to use pagination, you should add jekyll-paginate into gems
+# and make sure it is in front of jekyll-multiple-languages
+gems: ['jekyll-paginate', 'jekyll-multiple-languages']
+
+# The all languages used
+languages: ['en', 'cn']
+
+# If not config, the first item of languages will be used as the default.
+language_default: 'en'
