@@ -7,6 +7,9 @@ en:
         language: English
         lang_homepage_url: /
         rss: subscribe via RSS
+        links: Links
+        alioth_site_name: Alioth Project Homepage
+        ddpo_site_name: Team Package Overview
 
 cn:
         previous_page: 上一页
@@ -17,3 +20,6 @@ cn:
         language: 简体中文
         lang_homepage_url: /cn/
         rss: RSS 订阅
+        links: 链接
+        alioth_site_name: Alioth 项目主页
+        ddpo_site_name: 团队软件包一览

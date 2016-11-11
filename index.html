@@ -4,6 +4,7 @@ layout: default
 
 <div class="home">
 
+<!--
         <h1 class="page-heading">{{ site.data.i18n[page.language].posts }}</h1>
 
   <ul class="post-list">
@@ -19,5 +20,11 @@ layout: default
   </ul>
 
   <p class="rss-subscribe"><a href="{{ "/feed.xml" | prepend: site.baseurl }}">{{ site.data.i18n[page.language].rss }}</a></p>
+-->
 
+<h1 class="page-heading">{{ site.data.i18n[page.language].links }}</h1>
+<ul>
+        <li><a href="https://alioth.debian.org/projects/chinese/">{{ site.data.i18n[page.language].alioth_site_name }}</a></li>
+        <li><a href="https://qa.debian.org/developer.php?email=chinese-developers%40lists.alioth.debian.org">{{ site.data.i18n[page.language].ddpo_site_name }}</a></li>
+</ul>
 </div>
