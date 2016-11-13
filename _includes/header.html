@@ -1,7 +1,7 @@
 <header class="site-header">
 
   <div class="wrapper">
-          <a class="site-title" href="{{ site.baseurl }}/"><span> {{ site.data.i18n[page.language].debian_chinese_developers_team }} <!-- {{ site.title }} --></span></a>
+          <a class="site-title" href="{{ site.data.i18n[page.language].lang_homepage_url }}"><span> {{ site.data.i18n[page.language].debian_chinese_developers_team }} <!-- {{ site.title }} --></span></a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -13,13 +13,8 @@
       </a>
 
       <div class="trigger">
-        {% for my_page in site.pages %}
-          {% if my_page.title %}
-          <a class="page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a>
-          {% endif %}
-        {% endfor %}
         {% for i18n_item in site.data.i18n %}
-          <a class="page-link" href="{{ i18n_item[1]['lang_homepage_url'] }}">{{ i18n_item[1]['language'] }}</a>
+        <a class="page-link" href="{{ i18n_item[1]['lang_homepage_url'] }}">{{ i18n_item[1]['language'] }}</a> <!-- i18n_item[1]['lang_homepage_url'] -->
         {% endfor %}
       </div>
     </nav>

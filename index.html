@@ -22,9 +22,23 @@ layout: default
   <p class="rss-subscribe"><a href="{{ "/feed.xml" | prepend: site.baseurl }}">{{ site.data.i18n[page.language].rss }}</a></p>
 -->
 
+<h1 class="page-heading">{{ site.data.i18n[page.language].team_introduction_title }}</h1>
+<p>{{ site.data.i18n[page.language].team_introduction_html }}</h1>
+
 <h1 class="page-heading">{{ site.data.i18n[page.language].links }}</h1>
 <ul>
         <li><a href="https://alioth.debian.org/projects/chinese/">{{ site.data.i18n[page.language].alioth_site_name }}</a></li>
+        <li><a href="https://lists.alioth.debian.org/cgi-bin/mailman/listinfo/chinese-developers">{{ site.data.i18n[page.language].maillist_alioth }}</a></li>
         <li><a href="https://qa.debian.org/developer.php?email=chinese-developers%40lists.alioth.debian.org">{{ site.data.i18n[page.language].ddpo_site_name }}</a></li>
+        <li><a href="https://lists.debian.org/debian-chinese-gb/">{{ site.data.i18n[page.language].maillist_gb_name }}</a></li>
+
+</ul>
+<h1 class="page-heading">{{ site.data.i18n[page.language].working_directions }}</h1>
+<ul>
+        {% for my_page in site.pages_by_language[page.language] %}
+          {% if my_page.title %}
+          <li><a class="page-link" href="{{ my_page.url | prepend: site.baseurl }}">{{ my_page.title }}</a></li>
+          {% endif %}
+        {% endfor %}
 </ul>
 </div>
