@@ -11,6 +11,15 @@ Please consider helping them.
 
 This is not a comprehensive list, please consider adding new/missing projects here.
 
+### Official Debian Website
+
+One can find information about how to write/translate Debian official website
+(debian.org) at: [https://www.debian.org/devel/website/](https://www.debian.org/devel/website/).
+
+You are encouraged to find a Debian Developer as your sponsor or seek help from
+debian-www team if you wish to push your changes onto the website and you
+are not a Debian Developer.
+
 ### Debian Reference
 
 The [call of translation](https://lists.debian.org/debian-chinese-gb/2016/07/msg00012.html) can be found on debian-chinese-gb maillist.
@@ -28,7 +37,13 @@ Translation is under coordination of (DD) Emfox Zhou.
 
 ### Debian Installer and Debian Installation manual
 
-https://d-i.debian.org/
+Project Homepage: [https://d-i.debian.org/](https://d-i.debian.org/)
+
+#### Translation for Debian Installer
+
+* [Translation statistics](https://d-i.debian.org/l10n-stats/translation-status.html)
+
+#### Translation for Debian Installation manual
 
 (TODO)
 

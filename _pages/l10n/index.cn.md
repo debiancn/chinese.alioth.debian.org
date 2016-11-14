@@ -10,6 +10,14 @@ permalink: "/l10n/"
 
 这里列出的项目并不完全。如有缺漏，欢迎补充。
 
+### Debian 官方网站
+
+可以在下述网页找到撰写/翻译 Debian 官方站点内容的方式：
+[https://www.debian.org/devel/website/](https://www.debian.org/devel/website)。
+
+如果您不是 Debian 开发者（DD），建议您在开始工作前先寻找一位 Debian 开发者寻求帮助，
+或是与 debian-www 团队取得联系。
+
 ### Debian 参考手册
 
 [参考手册翻译的发起信息](https://lists.debian.org/debian-chinese-gb/2016/07/msg00012.html)可以在 debian-chinese-gb 邮件列表中找到。
@@ -27,7 +35,13 @@ permalink: "/l10n/"
 
 ### Debian 安装器和 Debian 安装手册
 
-https://d-i.debian.org/
+项目主页：[https://d-i.debian.org/](https://d-i.debian.org/)
+
+#### Debian 安装器的翻译
+
+* 翻译信息统计(https://d-i.debian.org/l10n-stats/translation-status.html)
+
+#### Debian 安装手册翻译
 
 （待补充）
 
