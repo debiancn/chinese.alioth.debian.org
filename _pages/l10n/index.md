@@ -20,6 +20,9 @@ You are encouraged to find a Debian Developer as your sponsor or seek help from
 debian-www team if you wish to push your changes onto the website and you
 are not a Debian Developer.
 
+For Chinese translation, you may find the chinese committer Anthony Wong to sponsor
+your works. [Detailed information can be found in this email](https://lists.debian.org/debian-chinese-gb/2016/11/msg00011.html).
+
 ### Debian Reference
 
 The [call of translation](https://lists.debian.org/debian-chinese-gb/2016/07/msg00012.html) can be found on debian-chinese-gb maillist.

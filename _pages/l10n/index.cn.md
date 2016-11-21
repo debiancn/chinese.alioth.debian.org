@@ -18,6 +18,8 @@ permalink: "/l10n/"
 如果您不是 Debian 开发者（DD），建议您在开始工作前先寻找一位 Debian 开发者寻求帮助，
 或是与 debian-www 团队取得联系。
 
+对于中文翻译来说，你可以找 Anthony Wong 帮助提交工作成果。[详情请见这封邮件内容](https://lists.debian.org/debian-chinese-gb/2016/11/msg00011.html)。
+
 ### Debian 参考手册
 
 [参考手册翻译的发起信息](https://lists.debian.org/debian-chinese-gb/2016/07/msg00012.html)可以在 debian-chinese-gb 邮件列表中找到。
