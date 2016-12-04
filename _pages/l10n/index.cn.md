@@ -10,6 +10,13 @@ permalink: "/l10n/"
 
 这里列出的项目并不完全。如有缺漏，欢迎补充。
 
+### 工作协调
+
+我们使用一个独立的邮件列表：[debian-l10n-chinese](https://lists.debian.org/debian-l10n-chinese/)。
+
+主题不限的 [debian-chinese-gb](https://lists.debian.org/debian-chinese-gb/)
+列表也承担了一部分协调工作。
+
 ### Debian 官方网站
 
 可以在下述网页找到撰写/翻译 Debian 官方站点内容的方式：

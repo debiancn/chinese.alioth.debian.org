@@ -11,6 +11,13 @@ Please consider helping them.
 
 This is not a comprehensive list, please consider adding new/missing projects here.
 
+### Coordination
+
+We use a dedicated maillist: [debian-l10n-chinese](https://lists.debian.org/debian-l10n-chinese/).
+
+The common-topic [debian-chinese-gb](https://lists.debian.org/debian-chinese-gb/) is also
+being used.
+
 ### Official Debian Website
 
 One can find information about how to write/translate Debian official website
