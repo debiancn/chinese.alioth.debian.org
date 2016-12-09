@@ -30,6 +30,15 @@ are not a Debian Developer.
 For Chinese translation, you may find the chinese committer Anthony Wong to sponsor
 your works. [Detailed information can be found in this email](https://lists.debian.org/debian-chinese-gb/2016/11/msg00011.html).
 
+### Debian Wiki
+
+Debian Wiki needs your help to translate it into Chinese.
+
+Anyone can get involved easily. All you need to do is to register an account on Debian Wiki,
+and then start translation for existing pages or creating new pages according to directions.
+Please visit [Chinese Instructions of Debian Wiki](https://wiki.debian.org/zh_CN/DebianWiki)
+for more information.
+
 ### Debian Reference
 
 The [call of translation](https://lists.debian.org/debian-chinese-gb/2016/07/msg00012.html) can be found on debian-chinese-gb maillist.

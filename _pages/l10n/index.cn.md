@@ -27,6 +27,15 @@ permalink: "/l10n/"
 
 对于中文翻译来说，你可以找 Anthony Wong 帮助提交工作成果。[详情请见这封邮件内容](https://lists.debian.org/debian-chinese-gb/2016/11/msg00011.html)。
 
+### Debian Wiki
+
+Debian Wiki 需要您的参与！请帮助将其页面翻译为中文。
+
+要参与其中，您只需注册一个 Debian Wiki 帐号即可开始工作。
+请帮助补充已有页面的翻译，或者按照规范创建新的翻译页面。
+请查阅[Debian Wiki 中文说明（简体中文）](https://wiki.debian.org/zh_CN/DebianWiki)
+了解详细信息。
+
 ### Debian 参考手册
 
 [参考手册翻译的发起信息](https://lists.debian.org/debian-chinese-gb/2016/07/msg00012.html)可以在 debian-chinese-gb 邮件列表中找到。
