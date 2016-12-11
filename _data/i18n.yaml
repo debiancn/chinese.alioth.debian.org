@@ -34,4 +34,4 @@ cn:
         maillist_gb_name: 简体中文邮件列表
         maillist_alioth: Alioth 团队邮件列表
         team_introduction_title: 团队简介
-        team_introduction_html: Debian 中文开发者团队致力于与中文（包括简体和翻译）相关的工作，包括维护针对中文用户开发的软件包及发行版软件本地化。
+        team_introduction_html: Debian 中文开发者团队致力于与中文（包括简体和繁体）相关的工作，包括维护针对中文用户开发的软件包及发行版软件本地化。
