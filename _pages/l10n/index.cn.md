@@ -57,7 +57,7 @@ Debian Wiki 需要您的参与！请帮助将其页面翻译为中文。
 
 #### Debian 安装器的翻译
 
-* 翻译信息统计(https://d-i.debian.org/l10n-stats/translation-status.html)
+* [翻译信息统计](https://d-i.debian.org/l10n-stats/translation-status.html)
 
 #### Debian 安装手册翻译
 
