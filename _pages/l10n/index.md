@@ -39,6 +39,18 @@ and then start translation for existing pages or creating new pages according to
 Please visit [Chinese Instructions of Debian Wiki](https://wiki.debian.org/zh_CN/DebianWiki)
 for more information.
 
+### DDTP (Debian Description Translation Project)
+
+All packages descriptions are to be translated through DDTP.
+You may find the package translation by typing `apt show [pkgname]`
+in the terminal, through package management system or via
+[https://packages.debian.org](https://packages.debian.org) website.
+
+This project is heavily in need of human power. Please visit
+[https://ddtp2.debian.net](https://ddtp2.debian.net) and help
+us with the translation. You need to register an account to start
+the translation.
+
 ### Debian Reference
 
 The [call of translation](https://lists.debian.org/debian-chinese-gb/2016/07/msg00012.html) can be found on debian-chinese-gb maillist.

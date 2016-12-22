@@ -36,6 +36,14 @@ Debian Wiki 需要您的参与！请帮助将其页面翻译为中文。
 请查阅[Debian Wiki 中文说明（简体中文）](https://wiki.debian.org/zh_CN/DebianWiki)
 了解详细信息。
 
+### DDTP（Debian 软件包描述翻译）
+所有软件包的描述都需要经由 DDTP 项目进行翻译。
+要查看软件包描述，您可以在终端内输入`apt show [软件包名称]`、
+使用软件包管理工具或者在 [https://packages.debian.org](https://packages.debian.org) 网站上进行查看。
+
+该项目急需人力。请访问 [https://ddtp2.debian.net](https://ddtp2.debian.net)
+并帮助进行翻译。您需要先注册一个帐号再展开工作。
+
 ### Debian 参考手册
 
 [参考手册翻译的发起信息](https://lists.debian.org/debian-chinese-gb/2016/07/msg00012.html)可以在 debian-chinese-gb 邮件列表中找到。
