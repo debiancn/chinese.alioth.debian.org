@@ -16,12 +16,13 @@ url: "https://chinese.alioth.debian.org" # the base hostname & protocol for your
 #github_username:  jekyll
 # subdir
 include: ['_pages']
-permalink: /:title/
+permalink: /:categories/:year/:month/:title/
 
 # Build settings
 markdown: kramdown
 
 # Multilang plugin
+# jekyll-langs.liaohuqiu.net
 #gems: ['jekyll-multiple-languages']
 # if you want to use pagination, you should add jekyll-paginate into gems
 # and make sure it is in front of jekyll-multiple-languages
