@@ -78,6 +78,12 @@ Project Homepage: [https://d-i.debian.org/](https://d-i.debian.org/)
 
 (TODO)
 
+### Debian Edu Documentation
+
+* [Weblate translation platform](https://hosted.weblate.org/projects/debian-edu-documentation/debian-edu-stretch/)
+
+Badly in need of manpower. If you are interested, don't hesitate to resume its translation.
+
 ## L10n and i18n works for external Software
 
 Those external software is not managed by Debian and will work independently.

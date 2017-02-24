@@ -71,6 +71,12 @@ Debian Wiki 需要您的参与！请帮助将其页面翻译为中文。
 
 （待补充）
 
+### Debian Edu Documentation
+
+* [Weblate 翻译平台](https://hosted.weblate.org/projects/debian-edu-documentation/debian-edu-stretch/)
+
+急需人力。如您感兴趣，请帮助我们继续翻译工作。
+
 ## 外部软件的本地化和国际化工作
 
 下列的外部软件的工作不受 Debian 管理，单独进行。请考虑加入对应的团队并在相应的社区中贡献。
