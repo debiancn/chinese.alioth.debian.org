@@ -66,6 +66,15 @@ Translation of debian-handbook is recommended when compared with debian-referenc
 
 Translation is under coordination of (DD) Emfox Zhou.
 
+### Guide for Debian Maintainers (debmake-doc)
+
+The successor of [Debian New Maintainer's Guide](https://www.debian.org/doc/manuals/maint-guide/).
+
+* [Git Repo](https://anonscm.debian.org/git/collab-maint/debmake-doc.git), use "devel" branch
+
+Sadly there's no online translation hosting for this document. Please directly commit
+into Git repo (if you have permission) or send patches to Chinese mailing lists for sponsorship.
+
 ### Debian Installer and Debian Installation manual
 
 Project Homepage: [https://d-i.debian.org/](https://d-i.debian.org/)

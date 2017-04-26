@@ -59,6 +59,15 @@ Debian Wiki 需要您的参与！请帮助将其页面翻译为中文。
 
 翻译工作由 Emfox Zhou 协调。
 
+### Debian 维护者指导（debmake-doc）
+
+[Debian 新维护者手册](https://www.debian.org/doc/manuals/maint-guide/)的继承文档。
+
+* [Git 仓库](https://anonscm.debian.org/git/collab-maint/debmake-doc.git)，请使用“devel”分支
+
+遗憾的是现在的翻译没有托管至在线翻译平台上。如果您有权限，请直接提交进入 Git 仓库。
+否则请将补丁发送到邮件列表并寻求帮助提交。
+
 ### Debian 安装器和 Debian 安装手册
 
 项目主页：[https://d-i.debian.org/](https://d-i.debian.org/)
