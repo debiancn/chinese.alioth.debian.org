@@ -81,6 +81,7 @@ Project Homepage: [https://d-i.debian.org/](https://d-i.debian.org/)
 
 #### Translation for Debian Installer
 
+* [Online translation platform](https://hosted.weblate.org/projects/debian-installer/)
 * [Translation statistics](https://d-i.debian.org/l10n-stats/translation-status.html)
 
 #### Translation for Debian Installation manual
