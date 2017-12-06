@@ -13,6 +13,7 @@ en:
         ddpo_site_name: Team Package Overview
         l10n_title: Translation and Localization
         maillist_gb_name: Simplified Chinese Maillist
+        maillist_big5_name: Traditional Chinese Maillist
         maillist_alioth: Alioth Team Maillist
         team_introduction_title: Team Introduction
         team_introduction_html: The Debian Chinese Team intends to work on Chinese (both simplified and traditional) related things, including the maintenance of Chinese oriented packages and localization works.
@@ -32,6 +33,7 @@ cn:
         ddpo_site_name: 团队软件包一览
         l10n_title: 翻译与本地化
         maillist_gb_name: 简体中文邮件列表
+        maillist_big5_name: 正体中文邮件列表
         maillist_alioth: Alioth 团队邮件列表
         team_introduction_title: 团队简介
         team_introduction_html: Debian 中文开发者团队致力于与中文（包括简体和繁体）相关的工作，包括维护针对中文用户开发的软件包及发行版软件本地化。
