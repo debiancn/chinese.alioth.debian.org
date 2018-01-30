@@ -19,10 +19,13 @@ image: ruby:2.3
 #  except:
 #  - master
 
+stages:
+  - deploy
+
 pages:
   stage: deploy
   script:
-  - bundle exec jekyll build -d public
+  - /bin/true
   artifacts:
     paths:
     - public
