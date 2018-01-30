@@ -3,25 +3,6 @@
 # Docs: https://docs.gitlab.com/ce/pages/
 image: ruby:2.3
 
-#variables:
-#  JEKYLL_ENV: production
-
-#before_script:
-#- bundle install
-
-#test:
-#  stage: test
-#  script:
-#  - bundle exec jekyll build -d test
-#  artifacts:
-#    paths:
-#    - test
-#  except:
-#  - master
-
-stages:
-  - deploy
-
 pages:
   stage: deploy
   script:
@@ -30,7 +11,6 @@ pages:
     paths:
     - public
   only:
-  - master
-
-tags:
-  - pages
+    - master
+  tags:
+    - pages
