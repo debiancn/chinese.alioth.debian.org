@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+
+  <title>团队打包流程与规范</title>
+  <meta name="description" content="Website for Debian Chinese Team on Debian Alioth.
+"/>
+
+  <link rel="stylesheet" href="/css/main.css"/>
+  <link rel="canonical" href="https://chinese.alioth.debian.org/cn/packaging/"/>
+  <link rel="alternate" type="application/rss+xml" title="Debian Chinese Team" href="https://chinese.alioth.debian.org/feed.xml"/>
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+          <a class="site-title" href="/cn/"><span> Debian 中文开发者团队 <!-- Debian Chinese Team --></span></a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        
+        <a class="page-link" href="/">English</a> <!-- i18n_item[1]['lang_homepage_url'] -->
+        
+        <a class="page-link" href="/cn/">简体中文</a> <!-- i18n_item[1]['lang_homepage_url'] -->
+        
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">团队打包流程与规范</h1>
+  </header>
+
+  <div class="post-content">
+    <h2 id="团队打包指南">团队打包指南</h2>
+
+<h3 id="添加一个软件包">添加一个软件包</h3>
+
+<p>如果你想要将 Debian 中已有的一个软件包置于中文开发者团队旗下进行维护，
+请向<a href="mailto:chinese-developers@lists.alioth.debian.org">团队 Alioth 邮件列表</a>
+发送邮件并解释原因。</p>
+
+<p>如果你找到了一个尚未打包的有趣软件，而且你想将其置于中文开发者团队下进行维护，
+请先按照标准的 ITP 流程进行工作。同时，请向我们的邮件列表发送一封邮件阐述你的打算。</p>
+
+<h4 id="接受标准">接受标准</h4>
+
+<p>团队一般会接受与中文、中文使用者、大中华地区相关的软件包。
+如果你不确定某个软件包是否满足情况，请与我们取得联系。</p>
+
+<h3 id="维护软件包">维护软件包</h3>
+
+<h4 id="工作流">工作流</h4>
+
+<p>我们使用 Git 管理团队软件包。建议按照 <a href="http://dep.debian.net/deps/dep14/">DEP-14</a>
+的流程要求管理并统一 Git 仓库结构。</p>
+
+<ul>
+  <li><a href="https://anonscm.debian.org/git/chinese/">团队 Git 仓库一览</a></li>
+</ul>
+
+<h4 id="规则与提醒">规则与提醒</h4>
+
+<ul>
+  <li>如需建立新的 Git 仓库，请考虑使用 Alioth 主机上的对应脚本来自动生成；</li>
+  <li>Git 标签必须使用<strong>annotated tags</strong>。这个要求由 Git 钩子所强制检查。</li>
+  <li>无法使用 Git 命令移除远程标签，所以操作请小心。如果有差错，只能远程登录 Alioth 主机进行操作。</li>
+  <li>所有新提交会触发向 <a href="mailto:chinese-commits@lists.alioth.debian.org">chinese-commits</a> 发送邮件。这个要求由 Git 钩子所实现。</li>
+  <li>请多多与团队成员进行交流沟通。如果需要对他人维护的团队软件包进行修改，最好在邮件列表中预先知会对方。</li>
+</ul>
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+          <!-- <h2 class="footer-heading">Debian Chinese Team</h2> -->
+
+    <div class="footer-col-wrapper">
+      <div class="footer-col footer-col-1">
+        <ul class="contact-list">
+          <li>Debian Chinese Team</li>
+          <li><a href="mailto:chinese-developers@lists.alioth.debian.org">chinese-developers@lists.alioth.debian.org</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-2">
+        <ul class="social-media-list">
+          
+
+          
+        </ul>
+      </div>
+
+      <div class="footer-col footer-col-3">
+        <p>Website for Debian Chinese Team on Debian Alioth.
+</p>
+      </div>
+    </div>
+
+
+  </div>
+
+  <div id="footer-debian-logo" style="margin:0px;padding:0px;position:fixed;top:-5em;z-index:-1;">
+    <img src="/img/openlogo-nd-light.svg" alt="" style="width:20em;"></img>
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

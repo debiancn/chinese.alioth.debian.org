@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Debian Chinese Team</title>
+    <description>Website for Debian Chinese Team on Debian Alioth.
+</description>
+    <link>https://chinese.alioth.debian.org/</link>
+    <atom:link href="https://chinese.alioth.debian.org/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 30 Jan 2018 16:27:11 +0800</pubDate>
+    <lastBuildDate>Tue, 30 Jan 2018 16:27:11 +0800</lastBuildDate>
+    <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Simple usage of DDTP2 website</title>
+        <description>&lt;h1 id=&quot;using-ddtp2ddtss-to-translate-debian-package-description&quot;&gt;Using DDTP2/DDTSS to translate Debian package description&lt;/h1&gt;
+
+&lt;p&gt;This is just a test.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 03 Jan 2017 00:00:00 +0800</pubDate>
+        <link>https://chinese.alioth.debian.org/2017/01/ddtp2-simple-usage/</link>
+        <guid isPermaLink="true">https://chinese.alioth.debian.org/2017/01/ddtp2-simple-usage/</guid>
+        
+        
+      </item>
+    
+  </channel>
+</rss>
