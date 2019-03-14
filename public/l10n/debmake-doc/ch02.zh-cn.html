@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>第 2 章 预备知识</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.zh-cn.html" title="Debian 维护者指南"/>
+    <link rel="up" href="index.zh-cn.html" title="Debian 维护者指南"/>
+    <link rel="prev" href="ch01.zh-cn.html" title="第 1 章 概览"/>
+    <link rel="next" href="ch03.zh-cn.html" title="第 3 章 工具的配置"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">第 2 章 预备知识</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="ch01.zh-cn.html"><img src="images/prev.png" alt="上一页"/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="ch03.zh-cn.html"><img src="images/next.png" alt="下一页"/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="chapter">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="start"/>第 2 章 预备知识</h1>
+          </div>
+        </div>
+      </div>
+      <div class="toc">
+        <p>
+          <strong>目录</strong>
+        </p>
+        <dl class="toc">
+          <dt>
+            <span class="section">
+              <a href="ch02.zh-cn.html#people">2.1. Debian 社区的工作者</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.zh-cn.html#contribute">2.2. 如何做出贡献</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.zh-cn.html#social">2.3. Debian 的社会驱动力</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.zh-cn.html#reminders">2.4. 技术提醒</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.zh-cn.html#debian-doc">2.5. Debian 文档</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.zh-cn.html#help">2.6. 帮助资源</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.zh-cn.html#situation">2.7. 仓库状况</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.zh-cn.html#approaches">2.8. 贡献流程</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.zh-cn.html#novice">2.9. 新手贡献者和维护者</a>
+            </span>
+          </dt>
+        </dl>
+      </div>
+      <p>这里给出您在投入 Debian 相关工作之前应当理解掌握的一些必备的预备知识。</p>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="people"/>2.1. Debian 社区的工作者</h2>
+            </div>
+          </div>
+        </div>
+        <p>在 Debian 社区中有这几类常见的角色：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem"><span class="strong"><strong>上游作者（upstream author）</strong></span>：程序的原始作者。</li>
+            <li class="listitem"><span class="strong"><strong>上游维护者（upstream maintainer）</strong></span>：目前在上游维护程序代码的人。</li>
+            <li class="listitem"><span class="strong"><strong>软件包维护者（maintainer）</strong></span>：制作并维护该程序 Debian 软件包的人。</li>
+            <li class="listitem"><span class="strong"><strong>赞助者（sponsor）</strong></span>：帮助维护者上传软件包到 Debian 官方仓库的人（在通过内容检查之后）。</li>
+            <li class="listitem"><span class="strong"><strong>导师（mentor）</strong></span>：帮助新手维护者熟悉和深入打包的人。</li>
+            <li class="listitem"><span class="strong"><strong>Debian 开发者</strong></span>（DD, Debian Developer）：Debian 社区的官方成员。DD 拥有向 Debian 官方仓库上传的全部权限。</li>
+            <li class="listitem"><span class="strong"><strong>Debian 维护者</strong></span>（Debian Maintainer, DM）：拥有对 Debian 官方仓库部分上传权限的人。</li>
+          </ul>
+        </div>
+        <p>注意，您不可能在一夜之间成为 <span class="strong"><strong>Debian 开发者</strong></span>（DD），因为成为 DD 所需要的远不只是技术技巧。不过别因此而气馁，如果您的软件包对其他人有用，您可以当这个软件的<span class="strong"><strong>软件包维护者</strong></span>，然后通过一位<span class="strong"><strong>赞助者</strong></span>来上传这份软件，或者您可以申请成为 <span class="strong"><strong>Debian 维护者</strong></span>。</p>
+        <p>还有，要成为 Debian 开发者不一定要创建新软件包。对已有软件做出贡献也是成为 Debian 开发者的理想途径。眼下正有很多软件包等着好的维护者来接手（参见 <a class="xref" href="ch02.zh-cn.html#approaches" title="2.8. 贡献流程">第 2.8 节 “贡献流程”</a>）。</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="contribute"/>2.2. 如何做出贡献</h2>
+            </div>
+          </div>
+        </div>
+        <p>请参考下列文档来了解应当如何为 Debian 作出贡献：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem"><a class="ulink" href="https://www.debian.org/intro/help">您如何协助 Debian？</a>（官方）</li>
+            <li class="listitem"><a class="ulink" href="https://www.debian.org/doc/FAQ/ch-contributing">The Debian GNU/Linux FAQ, 第 12 章 - “为 Debian 项目捐赠”</a>（半官方）</li>
+            <li class="listitem"><a class="ulink" href="https://wiki.debian.org/HelpDebian">Debian Wiki, HelpDebian</a>（补充内容）</li>
+            <li class="listitem"><a class="ulink" href="https://nm.debian.org/">Debian 新成员站点</a>（官方）</li>
+            <li class="listitem"><a class="ulink" href="https://wiki.debian.org/DebianMentorsFaq">Debian Mentors FAQ</a>（补充内容）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="social"/>2.3. Debian 的社会驱动力</h2>
+            </div>
+          </div>
+        </div>
+        <p>为做好准备和 Debian 进行交互，请理解 Debian 的社会动力学：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">我们都是志愿者。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">任何人都不能把事情强加给他人。</li>
+                  <li class="listitem">您应该主动地做自己想做的事情。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">友好的合作是我们前行的动力。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">您的贡献不应致使他人增加负担。</li>
+                  <li class="listitem">只有当别人欣赏和感激您的贡献时，它才有真正的价值。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">Debian 并不是一所学校，在这里没有所谓的老师会自动地注意到您。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">您需要有自学大量知识和技能的能力。</li>
+                  <li class="listitem">其他志愿者的关注是非常稀缺的资源。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">Debian 一直在不断进步。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">Debian 期望您制作出高质量的软件包。</li>
+                  <li class="listitem">您应该随时调整自己来适应变化。</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>在这篇指南之后的部分中，我们只关注打包的技术方面。因此，请参考下面的文档来理解 Debian 的社会动力学：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem"><a class="ulink" href="http://upsilon.cc/~zack/talks/2011/20110321-taipei.pdf">Debian: 17 年的自由软件、“实干主义”、和民主</a>（前任 DPL 制作的介绍性幻灯片）</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="reminders"/>2.4. 技术提醒</h2>
+            </div>
+          </div>
+        </div>
+        <p>这里给出一些技术上的建议，参考行事可以让您与其他维护者共同维护软件包时变得更加轻松有效，从而让 Debian 项目的输出成果最大化。</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">让您的软件包容易除错（debug）。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">保持您的软件包简单易懂。</li>
+                  <li class="listitem">不要对软件包过度设计。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">让您的软件包拥有良好的文档记录。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">使用可读的代码风格。</li>
+                  <li class="listitem">在代码中写注释。</li>
+                  <li class="listitem">格式化代码使其风格一致。</li>
+                  <li class="listitem">维护软件包的 git 仓库 <a href="#ftn.idm347" class="footnote" id="idm347"><sup class="footnote">[4]</sup></a>。</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[注意]" src="images/note.png"/>
+              </td>
+              <th align="left">注意</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>对软件进行除错（debug）通常会比编写初始可用的软件花费更多的时间。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="debian-doc"/>2.5. Debian 文档</h2>
+            </div>
+          </div>
+        </div>
+        <p>请在阅读本指南的同时按需阅览下面这些 Debian 官方文档中的相关部分；这些文档提供的信息有助于创建质量优良的 Debian 软件包：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">“Debian 政策手册”</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">“必须遵循”的规则（<a class="ulink" href="https://www.debian.org/doc/devel-manuals#policy">https://www.debian.org/doc/devel-manuals#policy</a>）</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">“Debian 开发者参考”</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">“最佳实践”文档（<a class="ulink" href="https://www.debian.org/doc/devel-manuals#devref">https://www.debian.org/doc/devel-manuals#devref</a>）</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>如果本指南文档的内容与官方的 Debian 文档有所冲突，那么官方的那些总是对的。请使用 <span class="strong"><strong>reportbug</strong></span> 工具向 <span class="strong"><strong>debmake-doc</strong></span> 软件包报告问题。</p>
+        <p>这里有一些替代性的教程文档，您可以与本指南一起阅读进行参考：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">“Debian 新维护者手册”（较旧）</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+<a class="ulink" href="https://www.debian.org/doc/devel-manuals#maint-guide">https://www.debian.org/doc/devel-manuals#maint-guide</a>
+</li>
+                  <li class="listitem">
+<a class="ulink" href="https://packages.qa.debian.org/m/maint-guide.html">https://packages.qa.debian.org/m/maint-guide.html</a>
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">“Debian 打包教程”</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+<a class="ulink" href="https://www.debian.org/doc/devel-manuals#packaging-tutorial">https://www.debian.org/doc/devel-manuals#packaging-tutorial</a>
+</li>
+                  <li class="listitem">
+<a class="ulink" href="https://packages.qa.debian.org/p/packaging-tutorial.html">https://packages.qa.debian.org/p/packaging-tutorial.html</a>
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">“Ubuntu 打包指南”（Ubuntu 基于 Debian。）</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+<a class="ulink" href="http://packaging.ubuntu.com/html/">http://packaging.ubuntu.com/html/</a>
+</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>阅读这些教程时，您应当考虑使用 <span class="strong"><strong>debmake</strong></span> 命令替代 <span class="strong"><strong>dh_make</strong></span> 命令以获得更好的模板文件。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="help"/>2.6. 帮助资源</h2>
+            </div>
+          </div>
+        </div>
+        <p>在您决定在某些公共场合问出您的问题之前，请先做好自己能做到的事情，例如，阅读能找到的文档：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">软件包的信息可以使用 <span class="strong"><strong>aptitude</strong></span>、<span class="strong"><strong>apt-cache</strong></span> 以及 <span class="strong"><strong>dpkg</strong></span> 命令进行查看。</li>
+            <li class="listitem">所有相关软件包在 <span class="strong"><strong>/usr/share/doc/</strong></span><span class="emphasis"><em>软件包名</em></span> 目录下的文件。</li>
+            <li class="listitem">所有相关命令在 <span class="strong"><strong>man</strong></span> <span class="emphasis"><em>命令</em></span> 下输出的内容。</li>
+            <li class="listitem">所有相关命令在 <span class="strong"><strong>info</strong></span> <span class="emphasis"><em>命令</em></span> 下输出的内容。</li>
+            <li class="listitem"><a class="ulink" href="https://lists.debian.org/debian-mentors/">debian-mentors@lists.debian.org 邮件列表存档</a> 的内容。</li>
+            <li class="listitem"><a class="ulink" href="https://lists.debian.org/debian-devel/">debian-devel@lists.debian.org 邮件列表存档</a> 的内容。</li>
+          </ul>
+        </div>
+        <p>要获取您所需要的信息，一种有效的方法是在网页搜索引擎中构建类似“关键字 <span class="strong"><strong>site:lists.debian.org</strong></span>”这样具有限制条件的搜索字符串来限定搜索的域名。</p>
+        <p>制作一个小型测试用软件包也是了解打包细节的一个好办法。对当前已有的维护良好的软件包进行检查则是了解其他人如何制作软件包的最好方法。</p>
+        <p>如果您对打包仍然存在疑问，您可以使用以下方式与他人进行沟通：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem"><a class="ulink" href="mailto:debian-mentors@lists.debian.org">debian-mentors@lists.debian.org</a> 邮件列表。（这个邮件列表为专为新手答疑解惑。）</li>
+            <li class="listitem"><a class="ulink" href="mailto:debian-devel@lists.debian.org">debian-devel@lists.debian.org</a> 邮件列表。（这个邮件列表针对熟练用户和高级开发者。）</li>
+            <li class="listitem"><a class="ulink" href="https://www.debian.org/support#irc">IRC（互联网中继聊天）</a> 例如 #debian-mentors。</li>
+            <li class="listitem">专注某个特定软件包集合的团队。（完整列表请见 <a class="ulink" href="https://wiki.debian.org/Teams">https://wiki.debian.org/Teams</a>）</li>
+            <li class="listitem">
+              <p class="simpara">特定语言的邮件列表。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+<a class="ulink" href="https://lists.debian.org/devel.html">debian-devel-{french,italian,portuguese,spanish}@lists.debian.org</a>
+</li>
+                  <li class="listitem">
+<a class="ulink" href="http://www.debian.or.jp/community/ml/openml.html#develML">debian-devel@debian.or.jp</a>
+</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>如果您在做好功课后能在这些场合中合适地提出您的疑问的话，那些更有经验的 Debian 开发者会很愿意帮助您。</p>
+        <div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Caution">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[小心]" src="images/caution.png"/>
+              </td>
+              <th align="left">小心</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Debian 的开发是一个不断变动的目标。您在网上找到的某些信息可能是过时的、不正确的或者不适用的，使用时请留意。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="situation"/>2.7. 仓库状况</h2>
+            </div>
+          </div>
+        </div>
+        <p>请了解 Debian 仓库的当前状况。</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">Debian 已经包含了绝大多数种类程序的软件包。</li>
+            <li class="listitem">Debian 仓库内软件包的数量是活跃维护者的数十倍。</li>
+            <li class="listitem">遗憾的是，某些软件包缺乏维护者的足够关注。</li>
+          </ul>
+        </div>
+        <p>因此，对已经存在于仓库内的软件包做出贡献是十分欢迎的（这也更有可能得到其他维护者的支持和协助上传）。</p>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>来自 <span class="strong"><strong>devscripts</strong></span> 软件包的 <span class="strong"><strong>wnpp-alert</strong></span> 命令可以检查已安装软件中需要接手或已被丢弃的软件包。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="approaches"/>2.8. 贡献流程</h2>
+            </div>
+          </div>
+        </div>
+        <p>这里使用类 Python 伪代码，给出了向 Debian 贡献名为 <span class="strong"><strong>program</strong></span> 的软件所走的贡献流程：</p>
+        <pre class="screen">if exist_in_debian(program):
+  if is_team_maintained(program):
+    join_team(program)
+  if is_orphaned(program) # maintainer: Debian QA Group
+    adopt_it(program)
+  elif is_RFA(program) # Request for Adoption
+    adopt_it(program)
+  else:
+    if need_help(program):
+      contact_maintainer(program)
+      triaging_bugs(program)
+      preparing_QA_or_NMU_uploads(program)
+    else:
+      leave_it(program)
+else: # new packages
+  if not is_good_program(program):
+    give_up_packaging(program)
+  elif not is_distributable(program):
+    give_up_packaging(program)
+  else: # worth packaging
+    if is_ITPed_by_others(program):
+      if need_help(program):
+        contact_ITPer_for_collaboration(program)
+      else:
+        leave_it_to_ITPer(program)
+    else: # really new
+      if is_applicable_team(program):
+        join_team(program)
+      if is_DFSG(program) and is_DFSG(dependency(program)):
+        file_ITP(program, area="main") # This is Debian
+      elif is_DFSG(program):
+        file_ITP(program, area="contrib") # This is not Debian
+      else: # non-DFSG
+        file_ITP(program, area="non-free") # This is not Debian
+      package_it_and_close_ITP(program)</pre>
+        <p>其中：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">对 exist_in_debian() 和 is_team_maintained()，需检查：</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem"><span class="strong"><strong>aptitude</strong></span> 命令</li>
+                  <li class="listitem"><a class="ulink" href="https://www.debian.org/distrib/packages">Debian 软件包</a> 网页</li>
+                  <li class="listitem">
+<a class="ulink" href="https://wiki.debian.org/Teams">团队</a>
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">对 is_orphaned()、is_RFA() 和 is_ITPed_by_others()，需检查：</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem"><span class="strong"><strong>wnpp-alert</strong></span> 命令的输出。</li>
+                  <li class="listitem">
+<a class="ulink" href="https://www.debian.org/devel/wnpp/">需要投入精力和未来的软件包（WNPP）</a>
+</li>
+                  <li class="listitem">
+<a class="ulink" href="https://bugs.debian.org/cgi-bin/pkgreport.cgi?pkg=wnpp;dist=unstable">Debian 缺陷报告记录：在 unstable 版本中 wnpp 伪软件包的缺陷记录</a>
+</li>
+                  <li class="listitem">
+<a class="ulink" href="https://wnpp.debian.net/">需要“关爱”的 Debian 软件包</a>
+</li>
+                  <li class="listitem">
+<a class="ulink" href="https://wnpp-by-tags.debian.net/">基于 debtags 浏览 wnpp 缺陷记录</a>
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">对于 is_good_program()，请检查：</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">这个程序应当有用。</li>
+                  <li class="listitem">这个程序不应当向 Debian 系统引入安全和维护上的问题。</li>
+                  <li class="listitem">这个程序应当有良好的文档，其源代码需要可被理解（即，未经混淆）。</li>
+                  <li class="listitem">这个程序的作者同意软件被打包，且对 Debian 态度友好。<a href="#ftn.idm522" class="footnote" id="idm522"><sup class="footnote">[5]</sup></a></li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">对 is_it_DFSG()，及 is_its_dependency_DFSG()，请检查：</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem"><a class="ulink" href="https://www.debian.org/social_contract#guidelines">Debian 自由软件指导方针</a>（DFSG）。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">对 is_it_distributable()，请检查：</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">该软件必须有一个许可证，其中应当允许软件被发行。</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>您或是需要填写并提交一份 <span class="storng">ITP</span>，或是需要“收养”一个软件包并开始为其工作。请见“Debian 开发者参考（Debian Developer's Reference）”文档：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem"><a class="ulink" href="https://www.debian.org/doc/manuals/developers-reference/pkgs.html#newpackage">5.1. 新软件包</a>。</li>
+            <li class="listitem"><a class="ulink" href="https://www.debian.org/doc/manuals/developers-reference/pkgs.html#archive-manip">5.9. 移动、删除、重命名、丢弃、接手和重新引入软件包</a>。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="novice"/>2.9. 新手贡献者和维护者</h2>
+            </div>
+          </div>
+        </div>
+        <p>新手贡献者和维护者可能想知道在开始向 Debian 进行贡献之前需要事先学习哪些知识。根据您个人的侧重点不同，下面有我的一些建议供您参考：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">打包</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem"><span class="strong"><strong>POSIX shell</strong></span> 和 <span class="strong"><strong>make</strong></span> 的基本知识。</li>
+                  <li class="listitem">一些 <span class="strong"><strong>Perl</strong></span> 和 <span class="strong"><strong>Python</strong></span> 的入门知识。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">翻译</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">基于 PO 的翻译系统的工作原理和基本知识。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">文档</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">文本标记语言的基础知识（XML、ReST、Wiki 等）。</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>新手贡献者和维护者可能想知道从哪里开始向 Debian 进行贡献。根据您掌握的技能，下面有我的一些建议供您参考：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>POSIX shell</strong></span>、<span class="strong"><strong>Perl</strong></span> 和 <span class="strong"><strong>Python</strong></span> 的技巧：</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">向 Debian 安装器提交补丁。</li>
+                  <li class="listitem">向 Debian 打包帮助脚本（如本文档中体提及的 <span class="strong"><strong>devscripts</strong></span>、<span class="strong"><strong>pbuilder</strong></span> 等项目）提交补丁。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>C</strong></span> 和 <span class="strong"><strong>C++</strong></span> 技能：</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">向具有 <span class="strong"><strong>required</strong></span> 和 <span class="strong"><strong>important</strong></span> 优先级的软件包提交补丁。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">英语之外的技能：</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">向 Debian 安装器项目提交补丁。</li>
+                  <li class="listitem">为具有 <span class="strong"><strong>required</strong></span> 和 <span class="strong"><strong>important</strong></span> 优先级的软件包中的 PO 文件提交补丁。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">文档技能：</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">更新 <a class="ulink" href="https://wiki.debian.org/">Debian 维基（Wiki）</a> 中的内容。</li>
+                  <li class="listitem">向已有的 <a class="ulink" href="https://www.debian.org/doc/">Debian 文档</a> 提交补丁。</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>这些活动应当能让您在各位 Debian 社区成员之间得到存在感，从而建立您的信誉与名气。</p>
+        <p>新手维护者应当避免打包具有潜在高度安全隐患的程序：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem"><span class="strong"><strong>setuid</strong></span> 或 <span class="strong"><strong>setgid</strong></span> 程序</li>
+            <li class="listitem"><span class="strong"><strong>守护进程（daemon）</strong></span>程序</li>
+            <li class="listitem">安装至 <span class="strong"><strong>/sbin/</strong></span> 或 <span class="strong"><strong>/usr/sbin/</strong></span> 目录的程序</li>
+          </ul>
+        </div>
+        <p>在积累足够的打包经验后，您可以再尝试打包这样的程序。</p>
+      </div>
+      <div class="footnotes">
+        <br/>
+        <hr/>
+        <div id="ftn.idm347" class="footnote">
+          <p><a href="#idm347" class="simpara"><sup class="simpara">[4] </sup></a>绝大多数 Debian 维护者使用 <span class="strong"><strong>git</strong></span> 而非其它版本控制系统，如 <span class="strong"><strong>hg</strong></span>、<span class="strong"><strong>bzr</strong></span> 等等。</p>
+        </div>
+        <div id="ftn.idm522" class="footnote">
+          <p><a href="#idm522" class="simpara"><sup class="simpara">[5] </sup></a>这一条不是绝对的要求，但请注意：遇上不友好的上游可能需要大家为此投入大量精力，而一个友好的上游则能协助解决程序的各类问题。</p>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="ch01.zh-cn.html"><img src="images/prev.png" alt="上一页"/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="ch03.zh-cn.html"><img src="images/next.png" alt="下一页"/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">第 1 章 概览 </td>
+          <td align="center">
+            <a accesskey="h" href="index.zh-cn.html">
+              <img src="images/home.png" alt="起始页"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> 第 3 章 工具的配置</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

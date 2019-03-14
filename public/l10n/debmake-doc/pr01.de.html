@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Vorwort</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.de.html" title="Leitfaden für Debian-Betreuer"/>
+    <link rel="up" href="index.de.html" title="Leitfaden für Debian-Betreuer"/>
+    <link rel="prev" href="index.de.html" title="Leitfaden für Debian-Betreuer"/>
+    <link rel="next" href="ch01.de.html" title="Kapitel 1. Überblick"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Vorwort</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="index.de.html"><img src="images/prev.png" alt="Zurück"/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="ch01.de.html"><img src="images/next.png" alt="Weiter"/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="preface">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="preface"/>Vorwort</h1>
+          </div>
+        </div>
+      </div>
+      <p>Falls Sie ein etwas erfahrener Debian-Benutzer <a href="#ftn.idm58" class="footnote" id="idm58"><sup class="footnote">[1]</sup></a> sind, könnten Ihnen die folgende Situationen bekannt vorkommen:</p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist">
+          <li class="listitem">Sie möchten ein bestimmtes, noch nicht im Debian-Archiv verfügbares Softwarepaket installieren.</li>
+          <li class="listitem">Sie möchten ein Debian-Paket mit einer neueren Version der Originalautoren aktualisieren.</li>
+          <li class="listitem">Sie möchten Fehler in einem Debian-Paket mit Patches korrigieren.</li>
+        </ul>
+      </div>
+      <p>Falls Sie ein Debian-Paket erstellen möchten, um diese Wünsche zu erfüllen und Ihre Arbeit der Debian-Gemeinschaft zur Verfügung stellen wollen, dann sind Sie die Zielgruppe dieser Anleitung als angehender Debian-Betreuer. <a href="#ftn.idm69" class="footnote" id="idm69"><sup class="footnote">[2]</sup></a> Willkommen in der Debian-Gemeinschaft.</p>
+      <p>Debian muss vielen sozialen und technischen Regeln und Konventionen folgen, da es eine große Organisation Freiwilliger mit einer Geschichte ist. Debian hat auch eine große Anzahl an Paketierungswerkzeugen und Archivverwaltungswerkzeugen entwickelt, um eine konsistente Menge an Binärpaketen zu bauen, die viele technische Ziele adressieren:</p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist">
+          <li class="listitem">Paketbau unter vielen Architekturen (<a class="xref" href="ch05.de.html#variablesrules" title="5.4.4. Variablen für debian/rules">Abschnitt 5.4.4, „Variablen für debian/rules“</a>)</li>
+          <li class="listitem">reproduzierbarer Bau (<a class="xref" href="ch05.de.html#reproducible" title="5.4.5. Reproduzierbares Bauen">Abschnitt 5.4.5, „Reproduzierbares Bauen“</a>)</li>
+          <li class="listitem">sauberer Bau unter klar festgelegten Paketabhängigkeiten und -Patches(<a class="xref" href="ch05.de.html#control" title="5.5. debian/control">Abschnitt 5.5, „debian/control“</a>, <a class="xref" href="ch05.de.html#patches" title="5.8. debian/patches/*">Abschnitt 5.8, „debian/patches/*“</a>, <a class="xref" href="ch07.de.html#chroot" title="7.10. chroot">Abschnitt 7.10, „chroot“</a>)</li>
+          <li class="listitem">optimale Trennung in mehrere Binärpakete (<a class="xref" href="ch05.de.html#split" title="5.5.1. Aufteilung eines Debian-Binärpakets">Abschnitt 5.5.1, „Aufteilung eines Debian-Binärpakets“</a>)</li>
+          <li class="listitem">reibungslose Bibliotheksübergänge (<a class="xref" href="ch05.de.html#lib-trans" title="5.18.2. Bibliotheksübergänge">Abschnitt 5.18.2, „Bibliotheksübergänge“</a>)</li>
+          <li class="listitem">interaktive Anpassung der Installation (<a class="xref" href="ch05.de.html#debconf" title="5.19. Debconf">Abschnitt 5.19, „Debconf“</a>)</li>
+          <li class="listitem">Multiarch-Unterstützung (<a class="xref" href="ch05.de.html#multiarch" title="5.20. Multiarch">Abschnitt 5.20, „Multiarch“</a>)</li>
+          <li class="listitem">Sicherheitserweiterung mittels bestimmter Compiler-Schalter (<a class="xref" href="ch05.de.html#harden" title="5.21. Compiler hardening">Abschnitt 5.21, „Compiler hardening“</a>)</li>
+          <li class="listitem">kontinuierliche Integration (<a class="xref" href="ch05.de.html#ci" title="5.22. Continuous integration">Abschnitt 5.22, „Continuous integration“</a>)</li>
+          <li class="listitem">
+boot strapping (<a class="xref" href="ch05.de.html#bootstrap" title="5.23. Bootstrapping">Abschnitt 5.23, „Bootstrapping“</a>)
+</li>
+          <li class="listitem">…</li>
+        </ul>
+      </div>
+      <p>Dies ist für viele angehende Debian-Entwickler beim Einstieg in Debian etwas überwältigend. Diese Anleitung versucht, für ihren Start Einstiegspunkte bereitzustellen. Sie beschreibt folgendes:</p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist">
+          <li class="listitem">Was Sie wissen sollten, bevor Sie als angehender Betreuer bei Debian mitmachen.</li>
+          <li class="listitem">Wie es ausschaut, ein einfaches Debian-Paket zu erstellen.</li>
+          <li class="listitem">Welche Art von Regeln für das Erstellen des Debian-Pakets existieren.</li>
+          <li class="listitem">Tipps zur Erstellung des Debian-Pakets.</li>
+          <li class="listitem">Beispiele für das Erstellen von Debian-Paketen für mehrere typische Szenarien.</li>
+        </ul>
+      </div>
+      <p>Der Autor bemerkte Einschränkungen beim Aktualisieren des ursprünglichen »New Maintainers' Guide« mit dem Paket <span class="strong"><strong>dh-make</strong></span> und entschied sich, ein alternatives Werkzeug und die dazugehörige Dokumentation zu erstellen, um moderne Anforderungen zu adressieren. Das Ergebnis ist das Paket <span class="strong"><strong>debmake</strong></span> (version: 4.3.1) und dieser aktualisierte »Guide for Debian Maintainers« in dem Paket <span class="strong"><strong>debmake-doc</strong></span> (Version: 1.14-1).</p>
+      <p>Viele Aufgaben und Tipps sind im Befehl <span class="strong"><strong>debmake</strong></span> integriert. Daher ist die Anleitung einfach. Diese Anleitung bietet auch viele Paketierbeispiele.</p>
+      <div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Caution">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[Achtung]" src="images/caution.png"/>
+            </td>
+            <th align="left">Achtung</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>Es bedarf vieler Stunden, um Debian-Pakete zu erstellen und zu betreuen. Der Debian-Betreuer muss <span class="strong"><strong>sowohl technisch kompentent als auch sorgfältig</strong></span> sein, um diese Herausforderung zu meistern.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <p>Einige wichtige Themen sind im Detail erklärt. Einige mögen Ihnen unwichtig erscheinen. Seien Sie geduldig. Einige Sonderfälle werden nur durch Referenzen auf externe Dokumente berücksichtigt. Dies passiert absichtlich, um diese Anleitung einfach und wartbar zu halten.</p>
+      <div class="footnotes">
+        <br/>
+        <hr/>
+        <div id="ftn.idm58" class="footnote">
+          <p><a href="#idm58" class="simpara"><sup class="simpara">[1] </sup></a>Sie müssen ein bisschen über Unix-Programmierung wissen, aber Sie müssen definitiv kein Meister sein. Über den grundlegenden Umgang mit einem Debian-System können Sie in <a class="ulink" href="https://www.debian.org/doc/user-manuals#quick-reference">Debian-Referenz</a> mehr erfahren. Es enthält auch einige Hinweise zum Lernen der Unix-Programmierung.</p>
+        </div>
+        <div id="ftn.idm69" class="footnote">
+          <p><a href="#idm69" class="simpara"><sup class="simpara">[2] </sup></a>Falls Sie nicht daran interessiert sind, das Debian-Paket anderen zugänglich zu machen, können Sie natürlich Ihre lokale Situation auch dadurch beheben, dass Sie die korrigierten Quellen der Originalautoren übersetzen und in <span class="strong"><strong>/usr/local/</strong></span> installieren.</p>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="index.de.html"><img src="images/prev.png" alt="Zurück"/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="ch01.de.html"><img src="images/next.png" alt="Weiter"/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">Leitfaden für Debian-Betreuer </td>
+          <td align="center">
+            <a accesskey="h" href="index.de.html">
+              <img src="images/home.png" alt="Zum Anfang"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> Kapitel 1. Überblick</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

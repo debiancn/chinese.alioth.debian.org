@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>附录 A. debmake(1) 手册页</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.zh-cn.html" title="Debian 维护者指南"/>
+    <link rel="up" href="index.zh-cn.html" title="Debian 维护者指南"/>
+    <link rel="prev" href="ch08.zh-cn.html" title="第 8 章 更多示例"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">附录 A. <span class="strong"><strong>debmake</strong></span>(1) 手册页</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="ch08.zh-cn.html"><img src="images/prev.png" alt="上一页"/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> </td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="appendix">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="manpage"/>附录 A. <span class="strong"><strong>debmake</strong></span>(1) 手册页</h1>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_name"/>A.1. 名称</h2>
+            </div>
+          </div>
+        </div>
+        <p>debmake，用来制作 Debian 源码包的程序</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_synopsis"/>A.2. 概述</h2>
+            </div>
+          </div>
+        </div>
+        <p><span class="strong"><strong>debmake</strong></span> [<span class="strong"><strong>-h</strong></span>] [<span class="strong"><strong>-c</strong></span> | <span class="strong"><strong>-k</strong></span>] [<span class="strong"><strong>-n</strong></span> | <span class="strong"><strong>-a</strong></span> <span class="emphasis"><em>软件包名-版本号</em></span><span class="strong"><strong>.orig.tar.gz</strong></span> | <span class="strong"><strong>-d</strong></span> | <span class="strong"><strong>-t</strong></span> ] [<span class="strong"><strong>-p</strong></span> <span class="emphasis"><em>package</em></span>] [<span class="strong"><strong>-u</strong></span> <span class="emphasis"><em>version</em></span>] [<span class="strong"><strong>-r</strong></span> <span class="emphasis"><em>修订号</em></span>] [<span class="strong"><strong>-z</strong></span> <span class="emphasis"><em>扩展</em></span>] [<span class="strong"><strong>-b</strong></span> "<span class="emphasis"><em>binarypackage</em></span><span class="emphasis"><em><span class=":__type__">, …</span></em></span>]" [<span class="strong"><strong>-e</strong></span> <span class="emphasis"><em>foo@example.org</em></span>] [<span class="strong"><strong>-f</strong></span> "<span class="emphasis"><em>名称 姓氏</em></span>"] [<span class="strong"><strong>-i</strong></span> "<span class="emphasis"><em>构建工具</em></span>" | <span class="strong"><strong>-j</strong></span>] [<span class="strong"><strong>-l</strong></span> <span class="emphasis"><em>license_file</em></span>] [<span class="strong"><strong>-m</strong></span>] [<span class="strong"><strong>-o</strong></span> <span class="emphasis"><em>file</em></span>] [<span class="strong"><strong>-q</strong></span>] [<span class="strong"><strong>-s</strong></span>] [<span class="strong"><strong>-v</strong></span>] [<span class="strong"><strong>-w</strong></span> "<span class="emphasis"><em>addon, …</em></span>"] [<span class="strong"><strong>-x</strong></span> [01234]] [<span class="strong"><strong>-y</strong></span>] [<span class="strong"><strong>-L</strong></span>] [<span class="strong"><strong>-P</strong></span>] [<span class="strong"><strong>-T</strong></span>]</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_description"/>A.3. 描述</h2>
+            </div>
+          </div>
+        </div>
+        <p><span class="strong"><strong>debmake</strong></span> 协助从上游源代码构建一个 Debian 软件包，通常做法如下：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">下载上游源码压缩包（tarball）并命名为 <span class="emphasis"><em>package-version</em></span><span class="strong"><strong>.tar.gz</strong></span> 文件。</li>
+            <li class="listitem">对其进行解压缩并将所有文件放置于 <span class="emphasis"><em>package-version/</em></span> 目录之下。</li>
+            <li class="listitem">在 <span class="emphasis"><em>package-version/</em></span> 目录中调用 debmake，并按需带上参数。</li>
+            <li class="listitem">手工调整 <span class="emphasis"><em>package-version</em></span><span class="strong"><strong>/debian/</strong></span> 目录下的文件。</li>
+            <li class="listitem">在 <span class="emphasis"><em>package-version/</em></span> 目录下调用 <span class="strong"><strong>dpkg-buildpackage</strong></span>（通常使用其高层封装工具，例如 <span class="strong"><strong>debuild</strong></span> 或者 <span class="strong"><strong>pdebuild</strong></span>）以构建 Debian 软件包。</li>
+          </ul>
+        </div>
+        <p>请确保将 <span class="strong"><strong>-b</strong></span>、<span class="strong"><strong>-f</strong></span>、<span class="strong"><strong>-l</strong></span> 和 <span class="strong"><strong>-w</strong></span> 选项的参数使用引号合适地保护起来，以避免 shell 环境的干扰。</p>
+        <div class="section">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a id="_optional_arguments"/>A.3.1. 可选参数：</h3>
+              </div>
+            </div>
+          </div>
+          <div class="variablelist">
+            <dl class="variablelist">
+              <dt>
+                <span class="term"><span class="strong"><strong>-h</strong></span>, <span class="strong"><strong>--help</strong></span></span>
+              </dt>
+              <dd>显示本帮助信息并退出。</dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-c</strong></span>, <span class="strong"><strong>--copyright</strong></span></span>
+              </dt>
+              <dd>
+                <p class="simpara">为授权+许可证文本而扫描源码，然后退出。</p>
+                <div class="itemizedlist">
+                  <ul class="itemizedlist">
+                    <li class="listitem"><span class="strong"><strong>-c</strong></span>：简单输出风格</li>
+                    <li class="listitem"><span class="strong"><strong>-cc</strong></span>：正常输出风格（类似 <span class="strong"><strong>debian/copyright</strong></span> 文件）</li>
+                    <li class="listitem"><span class="strong"><strong>-ccc</strong></span>：调试输出风格</li>
+                  </ul>
+                </div>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-k</strong></span>, <span class="strong"><strong>--kludge</strong></span></span>
+              </dt>
+              <dd>
+                <p class="simpara">对 <span class="strong"><strong>debian/copyright</strong></span> 文件和源代码进行比较并退出。</p>
+                <p class="simpara"><span class="strong"><strong>debian/copyright</strong></span> 必须将通用的文件匹配模式放在前部并将个别文件的例外放在后部。</p>
+                <div class="itemizedlist">
+                  <ul class="itemizedlist">
+                    <li class="listitem"><span class="strong"><strong>-k</strong></span>：基本输出风格</li>
+                    <li class="listitem"><span class="strong"><strong>-kk</strong></span>：冗长输出风格</li>
+                  </ul>
+                </div>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-n</strong></span>, <span class="strong"><strong>--native</strong></span></span>
+              </dt>
+              <dd>
+                <p class="simpara">制作一个本土 Debian 源码包，即不涉及 <span class="strong"><strong>.orig.tar.gz</strong></span>。这样将制作一个“<span class="strong"><strong>3.0 (native)</strong></span>”格式的包。</p>
+                <p class="simpara">如果您正打算打包一个含 <span class="strong"><strong>debian/</strong></span>* 目录的 Debian 特有的源码树成为一个 Debian 本土软件包的话，还请三思。您可以使用“<span class="strong"><strong>debmake -d -i debuild</strong></span>”或者“<span class="strong"><strong>debmake -t -i debuild</strong></span>”命令来创建一个“<span class="strong"><strong>3.0 (quilt)</strong></span>”格式的非本土 Debian 软件包。唯一的区别是 <span class="strong"><strong>debian/changelog</strong></span> 文件必须使用非本土软件包对应的命名规范：<span class="emphasis"><em>版本号-修订号</em></span>。非本土的软件包对下游发行版更友好。</p>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-a</strong></span> <span class="emphasis"><em>package-version</em></span><span class="strong"><strong>.tar.gz</strong></span>, <span class="strong"><strong>--archive</strong></span> <span class="emphasis"><em>package-version</em></span><span class="strong"><strong>.tar.gz</strong></span></span>
+              </dt>
+              <dd>
+                <p class="simpara">直接使用上游源码压缩包。（<span class="strong"><strong>-p</strong></span>, <span class="strong"><strong>-u</strong></span>, <span class="strong"><strong>-z</strong></span>：被覆盖）</p>
+                <p class="simpara">上游源码压缩包可以命名为 <span class="emphasis"><em>package_version</em></span><span class="strong"><strong>.orig.tar.gz</strong></span> 或者 <span class="strong"><strong>tar.gz</strong></span>。在某些情况下，也可使用 <span class="strong"><strong>tar.bz2</strong></span> 或 <span class="strong"><strong>tar.xz</strong></span>。</p>
+                <p class="simpara">如果所指定的源码压缩包文件名中包含大写字母，Debian 打包时生成的名称会将其转化为小写字母。</p>
+                <p class="simpara">如果所指定的参数是一个指向上游源码压缩包的 URL（http://、https:// 或 ftp://），程序将会使用 <span class="strong"><strong>wget</strong></span> 或 <span class="strong"><strong>curl</strong></span> 下载这个压缩包。</p>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-d</strong></span>, <span class="strong"><strong>--dist</strong></span></span>
+              </dt>
+              <dd>
+                <p class="simpara">先运行“make dist”命令或其等效命令以生成上游源码压缩包并在打包过程中使用。</p>
+                <p class="simpara">“<span class="strong"><strong>debmake -d</strong></span>”命令设计用于在 <span class="emphasis"><em>软件包名/</em></span> 目录下使用了上游版本控制系统的场景，且其构建系统支持“<span class="strong"><strong>make dist</strong></span>”或其等效命令。（如 automake/autoconf、Python distutils 等等）</p>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-t</strong></span>, <span class="strong"><strong>--tar</strong></span></span>
+              </dt>
+              <dd>
+                <p class="simpara">运行“<span class="strong"><strong>tar</strong></span>”命令以生成上游源码压缩包并在打包过程中使用。</p>
+                <p class="simpara">“<span class="strong"><strong>debmake -t</strong></span>”命令设计用于在 <span class="emphasis"><em>软件包名/</em></span> 目录下使用了上游版本控制系统的场景。除非您使用了 <span class="strong"><strong>-u</strong></span> 选项或者使用 <span class="strong"><strong>debian/changelog</strong></span> 文件提供了上游版本号，默认情况下程序将运用协调世界时日期和时间按照 <span class="strong"><strong>0~%y%m%d%H%M</strong></span> 的格式作为快照的上游版本号，例如 <span class="emphasis"><em>0~1403012359</em></span>。所生成的压缩包将排除上游版本控制系统中的 <span class="strong"><strong>debian/</strong></span> 目录。（它也会排除常见的版本控制系统目录：<span class="strong"><strong>.git/ .hg/ .svn/ .CVS/</strong></span>。）</p>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-p</strong></span> <span class="emphasis"><em>软件包名</em></span>, <span class="strong"><strong>--package</strong></span> <span class="emphasis"><em>软件包名</em></span></span>
+              </dt>
+              <dd>设置 Debian 软件包名称。</dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-u</strong></span> <span class="emphasis"><em>上游版本号</em></span>, <span class="strong"><strong>--upstreamversion</strong></span> <span class="emphasis"><em>版本号</em></span></span>
+              </dt>
+              <dd>设置上游软件包版本。</dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-r</strong></span> <span class="emphasis"><em>修订号</em></span>, <span class="strong"><strong>--revision</strong></span> <span class="emphasis"><em>修订号</em></span></span>
+              </dt>
+              <dd>设置 Debian 软件包修订号。</dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-z</strong></span> <span class="emphasis"><em>扩展名</em></span>, <span class="strong"><strong>--targz</strong></span> <span class="emphasis"><em>扩展名</em></span></span>
+              </dt>
+              <dd>设置源码压缩包类型，<span class="emphasis"><em>扩展名</em></span>=(<span class="strong"><strong>tar.gz</strong></span>|<span class="strong"><strong>tar.bz2</strong></span>|<span class="strong"><strong>tar.xz</strong></span>)。（别名：<span class="strong"><strong>z</strong></span>, <span class="strong"><strong>b</strong></span>, <span class="strong"><strong>x</strong></span>）</dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-b</strong></span> "<span class="emphasis"><em>二进制软件包名[:type],…</em></span>", <span class="strong"><strong>--binaryspec</strong></span> "<span class="emphasis"><em>二进制软件包名[:type],…</em></span>"</span>
+              </dt>
+              <dd>
+                <p class="simpara">设置二进制软件包的指定类型内容，使用一个用逗号分隔的<span class="emphasis"><em>二进制软件包名:类型</em></span>成对列表；例如，使用完整形式“<span class="strong"><strong>foo:bin,foo-doc:doc,libfoo1:lib,libfoo-dev:dev</strong></span>”或者使用短形式，“<span class="strong"><strong>-doc,libfoo1,libfoo-dev</strong></span>”。</p>
+                <p class="simpara">这里，<span class="emphasis"><em>二进制软件包</em></span>是二进制软件包名称，可选的<span class="emphasis"><em>类型</em></span>应当从下面的<span class="emphasis"><em>类型</em></span>值中进行选取：</p>
+                <div class="itemizedlist">
+                  <ul class="itemizedlist">
+                    <li class="listitem"><span class="strong"><strong>bin</strong></span>：C/C++ 预编译 ELF 二进制代码软件包（any，foreign）（默认，别名：<span class="strong"><strong>""</strong></span>，即，<span class="emphasis"><em>空字符串</em></span>）</li>
+                    <li class="listitem"><span class="strong"><strong>data</strong></span>：数据（字体、图像、……）软件包（all，foreign）（别名：<span class="strong"><strong>da</strong></span>）</li>
+                    <li class="listitem"><span class="strong"><strong>dev</strong></span>：库开发软件包（any，same）（别名：<span class="strong"><strong>de</strong></span>）</li>
+                    <li class="listitem"><span class="strong"><strong>doc</strong></span>：文档软件包（all，foreign）（别名：<span class="strong"><strong>do</strong></span>）</li>
+                    <li class="listitem"><span class="strong"><strong>lib</strong></span>：库软件包（any，same）（别名：<span class="strong"><strong>l</strong></span>）</li>
+                    <li class="listitem"><span class="strong"><strong>perl</strong></span>：Perl 脚本软件包（all，foreign）（别名：<span class="strong"><strong>pl</strong></span>）</li>
+                    <li class="listitem"><span class="strong"><strong>python</strong></span>：Python 脚本软件包（all，foreign）（别名：<span class="strong"><strong>py</strong></span>）</li>
+                    <li class="listitem"><span class="strong"><strong>python3</strong></span>：Python3 脚本软件包（all，foreign）（别名：<span class="strong"><strong>py3</strong></span>）</li>
+                    <li class="listitem"><span class="strong"><strong>ruby</strong></span>：Ruby 脚本软件包（all，foreign）（别名：<span class="strong"><strong>rb</strong></span>）</li>
+                    <li class="listitem"><span class="strong"><strong>script</strong></span>：Shell 脚本软件包（all，foreign）（别名：<span class="strong"><strong>sh</strong></span>）</li>
+                  </ul>
+                </div>
+                <p class="simpara">括号内成对的值，例如（any，foreign），是软件包的<span class="strong"><strong>架构</strong></span>和<span class="strong"><strong>多架构（Multi-Arch）</strong></span>特性的值，它们将设置在 <span class="strong"><strong>debian/control</strong></span> 文件中。</p>
+                <p class="simpara">大多数情况下，<span class="strong"><strong>debmake</strong></span> 命令可以有效地从<span class="emphasis"><em>二进制软件包</em></span>的名称猜测出正确的<span class="emphasis"><em>类型</em></span>。如果<span class="emphasis"><em>类型</em></span>的值并不明显，程序将回退到将<span class="emphasis"><em>类型</em></span>设置为<span class="strong"><strong>bin</strong></span>。例如，<span class="strong"><strong>libfoo</strong></span> 设置<span class="emphasis"><em>类型</em></span>为 <span class="strong"><strong>lib</strong></span>，而 <span class="strong"><strong>font-bar</strong></span> 会令程序设置<span class="emphasis"><em>类型</em></span>为 <span class="strong"><strong>data</strong></span>，……</p>
+                <p class="simpara">如果源码树的内容和<span class="emphasis"><em>类型</em></span>的设置不一致，<span class="strong"><strong>debmake</strong></span> 命令会发出警告。</p>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-e</strong></span> <span class="emphasis"><em>foo@example.org</em></span>, <span class="strong"><strong>--email</strong></span> <span class="emphasis"><em>foo@example.org</em></span></span>
+              </dt>
+              <dd>
+                <p class="simpara">设置电子邮件地址。</p>
+                <p class="simpara">默认值为环境变量 <span class="strong"><strong>$DEBEMAIL</strong></span> 的值。</p>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-f</strong></span> "<span class="emphasis"><em>名称 姓氏</em></span>", <span class="strong"><strong>--fullname</strong></span> "<span class="emphasis"><em>名称 姓氏</em></span>"</span>
+              </dt>
+              <dd>
+                <p class="simpara">设置全名。</p>
+                <p class="simpara">默认值为环境变量 <span class="strong"><strong>$DEBFULLNAME</strong></span> 的值。</p>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-i</strong></span> "<span class="emphasis"><em>构建工具</em></span>", <span class="strong"><strong>--invoke</strong></span> "<span class="emphasis"><em>构建工具</em></span>"</span>
+              </dt>
+              <dd>
+                <p class="simpara">在执行结束时调用“构建工具”。<span class="emphasis"><em>构建工具</em></span>可以是“<span class="strong"><strong>dpkg-buildpackage</strong></span>”、“<span class="strong"><strong>debuild</strong></span>”、“<span class="strong"><strong>pdebuild</strong></span>”、<span class="strong"><strong>pdebuild --pbuilder cowbuilder</strong></span>”等等。</p>
+                <p class="simpara">默认情况是不执行任何程序。</p>
+                <p class="simpara">设置该选项也会自动设置 <span class="strong"><strong>--local</strong></span> 选项。</p>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-j</strong></span>, <span class="strong"><strong>--judge</strong></span></span>
+              </dt>
+              <dd>
+                <p class="simpara">运行 <span class="strong"><strong>dpkg-depcheck</strong></span> 以检查构建依赖和文件路径。检查日志将存储在父目录下。</p>
+                <div class="itemizedlist">
+                  <ul class="itemizedlist">
+                    <li class="listitem"><span class="emphasis"><em>软件包名</em></span><span class="strong"><strong>.build-dep.log</strong></span>：<span class="strong"><strong>dpkg-depcheck</strong></span> 的日志文件。</li>
+                    <li class="listitem"><span class="emphasis"><em>软件包名</em></span><span class="strong"><strong>.install.log</strong></span>：记录 <span class="strong"><strong>debian/tmp</strong></span> 目录下所安装文件的日志。</li>
+                  </ul>
+                </div>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-l</strong></span> "<span class="emphasis"><em>许可证文件,…</em></span>", <span class="strong"><strong>--license</strong></span> "<span class="emphasis"><em>许可证文件,…</em></span>"</span>
+              </dt>
+              <dd>
+                <p class="simpara">在存放许可证扫描结果的 <span class="strong"><strong>debian/copyright</strong></span> 文件末尾添加格式化后的许可证文本。</p>
+                <p class="simpara">默认值是添加 <span class="strong"><strong>COPYING</strong></span> 和 <span class="strong"><strong>LICENSE</strong></span> 文件，您只需要在<span class="emphasis"><em>许可证文件</em></span>部分添加额外的文件名即可，并使用“<span class="strong"><strong>,</strong></span>”分隔各个文件名。</p>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-m</strong></span>, <span class="strong"><strong>--monoarch</strong></span></span>
+              </dt>
+              <dd>强制软件包不使用多架构特性。</dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-o</strong></span> <span class="emphasis"><em>文件</em></span>, <span class="strong"><strong>--option</strong></span> <span class="emphasis"><em>文件</em></span></span>
+              </dt>
+              <dd>
+                <p class="simpara">从指定<span class="emphasis"><em>file</em></span>读取可选参数。（这个选项不适合日常使用。）</p>
+                <p class="simpara">所指定文件 <span class="emphasis"><em>file</em></span> 的内容将作为 Python3 代码在 <span class="strong"><strong>para.py</strong></span> 的末尾进行解析。例如，您可以使用下述文件指定软件包描述信息。</p>
+                <pre class="screen">para['desc'] = 'program short description'
+para['desc_long'] = '''\
+ program long description which you wish to include.
+ .
+ Empty line is space + .
+ You keep going on ...
+'''</pre>
+              </dd>
+            </dl>
+          </div>
+          <div class="variablelist">
+            <dl class="variablelist">
+              <dt>
+                <span class="term"><span class="strong"><strong>-q</strong></span>, <span class="strong"><strong>--quitearly</strong></span></span>
+              </dt>
+              <dd>在创建 <span class="strong"><strong>debian/</strong></span> 目录下的文件之前即提前退出程序。</dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-s</strong></span>, <span class="strong"><strong>--spec</strong></span></span>
+              </dt>
+              <dd>使用上游配置文件（例如 Python 里的 setup.py 等）信息来初始化软件包描述内容。</dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-v</strong></span>, <span class="strong"><strong>--version</strong></span></span>
+              </dt>
+              <dd>显示版本信息。</dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-w</strong></span> "<span class="emphasis"><em>addon,…</em></span>", <span class="strong"><strong>--with</strong></span> "<span class="emphasis"><em>addon,…</em></span>"</span>
+              </dt>
+              <dd>
+                <p class="simpara">在 <span class="strong"><strong>debian/rules</strong></span> 文件中向 <span class="strong"><strong>dh</strong></span>(1) 命令的参数中添加额外的 <span class="strong"><strong>dh</strong></span>(1) 参数以指定所使用的附加组件（<span class="emphasis"><em>addon</em></span>）。</p>
+                <p class="simpara">The <span class="emphasis"><em>addon</em></span> values are listed all separated by “<span class="strong"><strong>,</strong></span>”, e.g., “<span class="strong"><strong>-w "python2,autoreconf"”</strong></span>.</p>
+                <p class="simpara">For  Autotools based packages, setting <span class="strong"><strong>autoreconf</strong></span> as <span class="emphasis"><em>addon</em></span> forces running “<span class="strong"><strong>autoreconf -i -v -f</strong></span>” for every package building.  Otherwise, <span class="strong"><strong>autotools-dev</strong></span> as <span class="emphasis"><em>addon</em></span> is used as the default.</p>
+                <p class="simpara">对基于 Autotools 的软件包，如果它们最终要安装 Python 程序，您需要显式指定 <span class="strong"><strong>python2</strong></span> 作为 <span class="emphasis"><em>addon</em></span> 并指定“<span class="strong"><strong>compat &lt; 9</strong></span>”以明确指出您正在处理 Python 软件包。但对基于 <span class="strong"><strong>setup.py</strong></span> 的软件包来说，并不需要显式指定 <span class="strong"><strong>python2</strong></span> 作为 <span class="emphasis"><em>addon</em></span>，因为这种依赖关系显而易见，<span class="strong"><strong>debmake</strong></span> 会在需要且合适的时候自动为 <span class="strong"><strong>dh</strong></span>(1) 命令设置这样的参数。</p>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-x</strong></span> <span class="emphasis"><em>n</em></span>, <span class="strong"><strong>--extra</strong></span> <span class="emphasis"><em>n</em></span></span>
+              </dt>
+              <dd>
+                <p class="simpara">以模板文件的形式创建配置文件（请注意 <span class="strong"><strong>debian/changelog</strong></span>、<span class="strong"><strong>debian/control</strong></span>、<span class="strong"><strong>debian/copyright</strong></span> 和 <span class="strong"><strong>debian/rules</strong></span> 文件是构建 Debian 二进制软件包所需的最小文件集合。）</p>
+                <p class="simpara"><span class="emphasis"><em>n</em></span> 的数字大小决定了生成哪些配置模板文件。</p>
+                <div class="itemizedlist">
+                  <ul class="itemizedlist">
+                    <li class="listitem"><span class="strong"><strong>-x0</strong></span>：最少的配置文件（这是存在任何已有配置文件时的默认选项）</li>
+                    <li class="listitem"><span class="strong"><strong>-x1</strong></span>：所有 <span class="strong"><strong>-x0</strong></span> 提供的文件以及用于生成单个二进制软件包可能需要的配置文件。（这是只生成单个二进制软件包，且不存在其它已有配置文件时的默认选项）</li>
+                    <li class="listitem"><span class="strong"><strong>-x2</strong></span>：所有 <span class="strong"><strong>-x2</strong></span> 提供的文件以及用于生成多个二进制软件包可能需要的配置文件。（这是生成多个二进制软件包，且不存在其它已有配置文件时的默认选项）</li>
+                    <li class="listitem"><span class="strong"><strong>-x3</strong></span>：所有 <span class="strong"><strong>-x2</strong></span> 提供的文件以及不常使用的配置模板文件。不常使用的配置模板文件在生成时会带上 <span class="strong"><strong>.ex</strong></span> 后缀名以方便对其删除。如需使用这些配置文件，请重命名这些文件并去除 <span class="strong"><strong>.ex</strong></span> 的后缀。</li>
+                    <li class="listitem"><span class="strong"><strong>-x4</strong></span> 选项：全部配置 <span class="strong"><strong>-x3</strong></span> 文件加版权声明文件示例。</li>
+                  </ul>
+                </div>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-y</strong></span>, <span class="strong"><strong>--yes</strong></span></span>
+              </dt>
+              <dd>对所有提示“强制选择是”（不提示选项“询问 [是/否]”；重复选项两次则为“强制选择否”）</dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-L</strong></span>, <span class="strong"><strong>--local</strong></span></span>
+              </dt>
+              <dd>为本地软件包生成配置文件以绕过 <span class="strong"><strong>lintian</strong></span>(1) 的检查。</dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-P</strong></span>, <span class="strong"><strong>--pedantic</strong></span></span>
+              </dt>
+              <dd>对自动生成的文件进行严格（甚至古板到迂腐程度）的检查。</dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-T</strong></span>, <span class="strong"><strong>--tutorial</strong></span></span>
+              </dt>
+              <dd>在模板文件中输出教程注释行。</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_examples"/>A.4. 示例</h2>
+            </div>
+          </div>
+        </div>
+        <p>对比较正常的源码来说，您可以使用一行命令简单地构建一个自用的 Debian 二进制软件包。测试安装这样生成的软件包通常比传统的“<span class="strong"><strong>make install</strong></span>”命令安装至 <span class="strong"><strong>/usr/local</strong></span> 目录更好，因为 Debian 软件包可以使用“<span class="strong"><strong>dpkg -P</strong></span> <span class="emphasis"><em>…”</em></span>”命令更干净地卸载掉。这里提供构建这类测试软件包的一些例子（这些例子应该在大多数情况下足够使用。如果 <span class="strong"><strong>-d</strong></span> 选项无法工作，请尝试使用 <span class="strong"><strong>-t</strong></span> 选项。）</p>
+        <p>对典型的使用 autoconf/automake 的 C 程序源码树：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <span class="strong">
+                <strong>debmake -d -i debuild</strong>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <p>对于典型的 Python 模块源码树：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <span class="strong">
+                <strong>debmake -s -d -b":python" -i debuild</strong>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <p>对于 <span class="emphasis"><em>package-version</em></span><span class="strong"><strong>.tar.gz</strong></span> 存档里的一个典型 Python 模块：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <span class="strong">
+                <strong>debmake -s -a <span class="emphasis"><em>package-version</em></span>.tar.gz -b":python" -i debuild</strong>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <p>对于典型的以 <span class="emphasis"><em>package-version</em></span><span class="strong"><strong>.tar.gz</strong></span> 归档提供的 Perl 模块：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <span class="strong">
+                <strong>debmake -a <span class="emphasis"><em>package-version</em></span>.tar.gz -b":perl" -i debuild</strong>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_helper_packages"/>A.5. 帮助软件包</h2>
+            </div>
+          </div>
+        </div>
+        <p>打包工作也许需要额外安装一些专用的帮助软件包。</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">Python3 程序可能需要 <span class="strong"><strong>dh-python</strong></span> 软件包。</li>
+            <li class="listitem">Autotools (Autoconf + Automake) 构建系统可能需要 <span class="strong"><strong>autotools-dev</strong></span> 或 <span class="strong"><strong>dh-autoreconf</strong></span> 软件包。</li>
+            <li class="listitem">Ruby 程序可能需要 <span class="strong"><strong>gem2deb</strong></span> 软件包。</li>
+            <li class="listitem">Java 程序可能需要 <span class="strong"><strong>javahelper</strong></span> 软件包。</li>
+            <li class="listitem">Gnome 程序可能需要  <span class="strong"><strong>gobject-introspection</strong></span> 软件包。</li>
+            <li class="listitem">等等。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_caveat"/>A.6. 注意事项</h2>
+            </div>
+          </div>
+        </div>
+        <p><span class="strong"><strong>debmake</strong></span> 的目的是为软件包维护者提供开始工作的模板文件。注释行以 <span class="strong"><strong>#</strong></span> 开始，其中包含一些教程性文字。您在将软件包上传至 Debian 仓库之前必须删除或者修改这样的注释行。</p>
+        <p>许可证信息的提取和赋值过程应用了大量启发式操作，因此在某些情况下可能不会正常工作。强烈建议您搭配使用其它工具，例如来自 <span class="strong"><strong>devscripts</strong></span> 软件包的 <span class="strong"><strong>licensecheck</strong></span> 工具，以配合 <span class="strong"><strong>debmake</strong></span> 的使用。</p>
+        <p>组成 Debian 软件包名称的字符选取存在一定的限制。最明显的限制应当是软件包名称中禁止出现大写字母。这里给出正则表达式形式的规则总结：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">上游软件包名称（<span class="strong"><strong>-p</strong></span>）：[-+.a-z0-9]{2,}</li>
+            <li class="listitem">二进制软件包名称（<span class="strong"><strong>-b</strong></span>）：[-+.a-z0-9]{2,}</li>
+            <li class="listitem">上游版本号（<span class="strong"><strong>-u</strong></span>）：[0-9][-+.:~a-z0-9A-Z]*</li>
+            <li class="listitem">Debian 修订版本（<span class="strong"><strong>-r</strong></span>）： [0-9][+.~a-z0-9A-Z]*</li>
+          </ul>
+        </div>
+        <p>请在“Debian 政策手册”的 <a class="ulink" href="https://www.debian.org/doc/debian-policy/#document-ch-controlfields">第 5 章 - Control 文件及其字段</a> 一节中查看其精确定义。</p>
+        <p><span class="strong"><strong>debmake</strong></span> 所假设的打包情景是相对简单的。因此，所有与解释器相关的程序都会默认为“<span class="strong"><strong>Architecture: all</strong></span>”的情况。当然，这个假设并非总是成立。</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_debug"/>A.7. 除错</h2>
+            </div>
+          </div>
+        </div>
+        <p>请使用 <span class="strong"><strong>reportbug</strong></span> 命令报告 <span class="strong"><strong>debmake</strong></span> 软件包的问题与错误。</p>
+        <p>环境变量 <span class="strong"><strong>$DEBUG</strong></span> 中设置的字符用来确定日志输出等级。</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem"><span class="strong"><strong>i</strong></span>：打印信息</li>
+            <li class="listitem"><span class="strong"><strong>p</strong></span>：列出全部全局参数</li>
+            <li class="listitem"><span class="strong"><strong>d</strong></span>：列出所有二进制软件包解析得到的参数</li>
+            <li class="listitem"><span class="strong"><strong>f</strong></span>：用于扫描授权信息的输入文件名</li>
+            <li class="listitem"><span class="strong"><strong>y</strong></span>：授权信息栏的年份/名称切分信息</li>
+            <li class="listitem"><span class="strong"><strong>s</strong></span>：format_state 的行扫描器</li>
+            <li class="listitem"><span class="strong"><strong>b</strong></span>：content_state 扫描循环：循环开始</li>
+            <li class="listitem"><span class="strong"><strong>m</strong></span>: content_state 扫描循环：正则匹配之后</li>
+            <li class="listitem"><span class="strong"><strong>e</strong></span>: content_state 扫描循环：循环结束</li>
+            <li class="listitem"><span class="strong"><strong>c</strong></span>：打印授权区段文本</li>
+            <li class="listitem"><span class="strong"><strong>l</strong></span>：打印许可证区段文本</li>
+            <li class="listitem"><span class="strong"><strong>a</strong></span>：打印作者/翻译者区段文本</li>
+            <li class="listitem"><span class="strong"><strong>k</strong></span>：debian/copyright 各节的排序关键字</li>
+            <li class="listitem"><span class="strong"><strong>n</strong></span>：debian/copyright 的扫描结果（“<span class="strong"><strong>debmake -k</strong></span>”）</li>
+          </ul>
+        </div>
+        <p>用法如下：</p>
+        <pre class="screen"> $ DEBUG=pdfbmeclak debmake ...</pre>
+        <p>查看源码中的 README.developer 文件以了解更多信息。</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_author"/>A.8. 作者</h2>
+            </div>
+          </div>
+        </div>
+        <p>版权所有 © 2014-2017 Osamu Aoki &lt;<a class="ulink" href="mailto:osamu@debian.org">osamu@debian.org</a>&gt;</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_license"/>A.9. 许可证</h2>
+            </div>
+          </div>
+        </div>
+        <p>Expat 许可证</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_see_also"/>A.10. 参见</h2>
+            </div>
+          </div>
+        </div>
+        <p><span class="strong"><strong>debmake-doc</strong></span> 软件包提供了“Debian 维护者指南”手册，以纯文本、HTML 和 PDF 三种格式存放在 <span class="strong"><strong>/usr/share/doc/debmake-doc/</strong></span> 目录下。</p>
+        <p>另见 <span class="strong"><strong>dpkg-source</strong></span>(1), <span class="strong"><strong>deb-control</strong></span>(5), <span class="strong"><strong>debhelper</strong></span>(7), <span class="strong"><strong>dh</strong></span>(1), <span class="strong"><strong>dpkg-buildpackage</strong></span>(1), <span class="strong"><strong>debuild</strong></span>(1), <span class="strong"><strong>quilt</strong></span>(1), <span class="strong"><strong>dpkg-depcheck</strong></span>(1), <span class="strong"><strong>pdebuild</strong></span>(1), <span class="strong"><strong>pbuilder</strong></span>(8), <span class="strong"><strong>cowbuilder</strong></span>(8), <span class="strong"><strong>gbp-buildpackage</strong></span>(1), <span class="strong"><strong>gbp-pq</strong></span>(1) 和 <span class="strong"><strong>git-pbuilder</strong></span>(1) 的手册页。</p>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="ch08.zh-cn.html"><img src="images/prev.png" alt="上一页"/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> </td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">第 8 章 更多示例 </td>
+          <td align="center">
+            <a accesskey="h" href="index.zh-cn.html">
+              <img src="images/home.png" alt="起始页"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

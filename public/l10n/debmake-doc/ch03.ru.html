@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Глава 3. Настройка инструментов</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.ru.html" title="Руководство для сопровождающих Debian"/>
+    <link rel="up" href="index.ru.html" title="Руководство для сопровождающих Debian"/>
+    <link rel="prev" href="ch02.ru.html" title="Глава 2. Необходимые предварительные требования"/>
+    <link rel="next" href="ch04.ru.html" title="Глава 4. Простой пример"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Глава 3. Настройка инструментов</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="ch02.ru.html"><img src="images/prev.png" alt="Пред."/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="ch04.ru.html"><img src="images/next.png" alt="След."/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="chapter">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="setup"/>Глава 3. Настройка инструментов</h1>
+          </div>
+        </div>
+      </div>
+      <div class="toc">
+        <p>
+          <strong>Содержание</strong>
+        </p>
+        <dl class="toc">
+          <dt>
+            <span class="section">
+              <a href="ch03.ru.html#email-setup">3.1. Адрес электронной почты</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ru.html#mc-setup">3.2. mc</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ru.html#git-setup">3.3. git</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ru.html#quilt-setup">3.4. quilt</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ru.html#devscripts-setup">3.5. devscripts</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ru.html#pbuilder-setup">3.6. pbuilder</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ru.html#gbp-setup">3.7. git-buildpackage</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ru.html#proxy">3.8. HTTP-прокси</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ru.html#repropro">3.9. Частный репозиторий Debian</a>
+            </span>
+          </dt>
+        </dl>
+      </div>
+      <p>В сборочном окружении должен быть установлен пакет <span class="strong"><strong>build-essential</strong></span>.</p>
+      <p>В окружении сопровождающего должен быть установлен пакет <span class="strong"><strong>devscripts</strong></span>.</p>
+      <p>В окружении сопровождающего, хотя это и не абсолютно необходимое требование, полезно установить и настроить популярный набор пакетов, упоминаемых в данной главе. Это позволит нам иметь общую базовую рабочую среду.</p>
+      <p>Также, при необходимости, установите инструменты, указанные в разделе <a class="ulink" href="https://www.debian.org/doc/manuals/developers-reference/tools.html">Обзор инструментов Debian для сопровождающего</a> из «Справочника разработчика Debian».</p>
+      <div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Caution">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[Внимание]" src="images/caution.png"/>
+            </td>
+            <th align="left">Внимание</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>Настройки инструментов, представленные ниже, являются лишь примером и могут быть неактуальны при использовании самых свежих пакетов. Разработка Debian является движущейся целью. Обязательно прочтите соответствующую документацию и при необходимости обновите настройки.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="email-setup"/>3.1. Адрес электронной почты</h2>
+            </div>
+          </div>
+        </div>
+        <p>Различные инструменты сопровождения Debian назначают ваш адрес электронной почты и ваше имя из переменных окружения <span class="strong"><strong>$DEBEMAIL</strong></span> и <span class="strong"><strong>$DEBFULLNAME</strong></span>.</p>
+        <p>Настроим эти пакеты, добавив в <span class="strong"><strong>~/.bashrc</strong></span> <a href="#ftn.idm636" class="footnote" id="idm636"><sup class="footnote">[6]</sup></a> приведённые ниже строки.</p>
+        <p><strong>Добавьте в файл <span class="strong"><strong>~/.bashrc</strong></span>. </strong>
+</p>
+        <pre class="screen">DEBEMAIL="your.email.address@example.org"
+DEBFULLNAME="Firstname Lastname"
+export DEBEMAIL DEBFULLNAME</pre>
+        <p>
+</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="mc-setup"/>3.2. mc</h2>
+            </div>
+          </div>
+        </div>
+        <p>Команда <span class="strong"><strong>mc</strong></span> предлагает вам простой способ работы с файлами. Она может открывать двоичные <span class="strong"><strong>deb</strong></span>-файлы для проверки их содержимого по простому нажатию клавиши «Ввод» при выборе соответствующего двоичного <span class="strong"><strong>deb</strong></span>-файла. В качестве движка эта программа использует команду <span class="strong"><strong>dpkg-deb</strong></span>. Настроим её на поддержку простой функции <span class="strong"><strong>chdir</strong></span> следующим образом.</p>
+        <p><strong>Добавьте в файл <span class="strong"><strong>~/.bashrc</strong></span>. </strong>
+</p>
+        <pre class="screen"># mc related
+export HISTCONTROL=ignoreboth
+. /usr/lib/mc/mc.sh</pre>
+        <p>
+</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="git-setup"/>3.3. git</h2>
+            </div>
+          </div>
+        </div>
+        <p>На сегодняшний день команда <span class="strong"><strong>git</strong></span> является необходимым инструментом для работы с деревом исходного кода с историей.</p>
+        <p>Глобальные пользовательские настройки для команды <span class="strong"><strong>git</strong></span>, такие как ваши имя и адрес электронной почты, можно установить в файле <span class="strong"><strong>~/.gitconfig</strong></span> следующим образом.</p>
+        <pre class="screen">$ git config --global user.name "Name Surname"
+$ git config --global user.email yourname@example.com</pre>
+        <p>Если вы привыкли использовать команды CVS или Subversion, то можете установить несколько указанных ниже псевдонимов команд.</p>
+        <pre class="screen">$ git config --global alias.ci "commit -a"
+$ git config --global alias.co checkout</pre>
+        <p>Проверить ваши глобальные настройки можно следующим образом.</p>
+        <pre class="screen">$ git config --global --list</pre>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Для эффективной работы с историей git-репозитория необходимо использовать какой-нибудь инструмент с графическим интерфейсом пользователя, например, <span class="strong"><strong>gitk</strong></span> или <span class="strong"><strong>gitg</strong></span>.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="quilt-setup"/>3.4. quilt</h2>
+            </div>
+          </div>
+        </div>
+        <p>Команда <span class="strong"><strong>quilt</strong></span> предлагает простой метод записи изменений. Для работы с пакетами Debian следует выполнить настройку так, чтобы изменения записывались в каталог <span class="strong"><strong>debian/patches/</strong></span> вместо каталога <span class="strong"><strong>patches/</strong></span> по умолчанию.</p>
+        <p>Чтобы не менять поведение самой команды <span class="strong"><strong>quilt</strong></span>, создадим псевдоним <span class="strong"><strong>dquilt</strong></span> для работы с пакетами Debian, добавив следующие строки в файл <span class="strong"><strong>~/.bashrc</strong></span>. Вторая строка предоставляет команде <span class="strong"><strong>dquilt</strong></span> ту же функциональность автодополнения, что и у команды <span class="strong"><strong>quilt</strong></span>.</p>
+        <p><strong>Добавьте в файл <span class="strong"><strong>~/.bashrc</strong></span>. </strong>
+</p>
+        <pre class="screen">alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+complete -F _quilt_completion $_quilt_complete_opt dquilt</pre>
+        <p>
+</p>
+        <p>Теперь создадим файл <span class="strong"><strong>~/.quiltrc-dpkg</strong></span> со следующим содержимым.</p>
+        <pre class="screen">d=.
+while [ ! -d $d/debian -a `readlink -e $d` != / ];
+    do d=$d/..; done
+if [ -d $d/debian ] &amp;&amp; [ -z $QUILT_PATCHES ]; then
+    # if in Debian packaging tree with unset $QUILT_PATCHES
+    QUILT_PATCHES="debian/patches"
+    QUILT_PATCH_OPTS="--reject-format=unified"
+    QUILT_DIFF_ARGS="-p ab --no-timestamps --no-index --color=auto"
+    QUILT_REFRESH_ARGS="-p ab --no-timestamps --no-index"
+    QUILT_COLORS="diff_hdr=1;32:diff_add=1;34:" + \
+            "diff_rem=1;31:diff_hunk=1;33:diff_ctx=35:diff_cctx=33"
+    if ! [ -d $d/debian/patches ]; then mkdir $d/debian/patches; fi
+fi</pre>
+        <p>О том, как использовать команду <span class="strong"><strong>quilt</strong></span> см. в <span class="strong"><strong>quilt</strong></span>(1) и <a class="ulink" href="file:///usr/share/doc/quilt/quilt.html">Как выжить, имея много заплат, или Введение в Quilt</a>.</p>
+        <p>Для примеров использования см. <a class="xref" href="ch04.ru.html#alt-patch" title="4.8. Шаг 3 (альтернативный): изменение исходного кода основной ветки разработки">Раздел 4.8, «Шаг 3 (альтернативный): изменение исходного кода основной ветки разработки»</a>.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="devscripts-setup"/>3.5. devscripts</h2>
+            </div>
+          </div>
+        </div>
+        <p>Для подписывания пакета Debian вашим закрытым GPG-ключом используется команда <span class="strong"><strong>debsign</strong></span>, входящая в состав пакета <span class="strong"><strong>devscripts</strong></span>.</p>
+        <p>Команда <span class="strong"><strong>debuild</strong></span>, входящая в состав пакета <span class="strong"><strong>devscripts</strong></span>, собирает двоичный пакет и проверяет его с помощью команды <span class="strong"><strong>lintian</strong></span>. Полезно иметь более подробный вывод команды <span class="strong"><strong>lintian</strong></span>.</p>
+        <p>Вы можете настроить эти команды в файле <span class="strong"><strong>~/.devscripts</strong></span> следующим образом.</p>
+        <pre class="screen">DEBUILD_DPKG_BUILDPACKAGE_OPTS="-i -I -us -uc"
+DEBUILD_LINTIAN_OPTS="-i -I --show-overrides"
+DEBSIGN_KEYID="Your_GPG_keyID"</pre>
+        <p>Опции <span class="strong"><strong>-i</strong></span> и <span class="strong"><strong>-I</strong></span> в <span class="strong"><strong>DEBUILD_DPKG_BUILDPACKAGE_OPTS</strong></span> для команды <span class="strong"><strong>dpkg-source</strong></span> помогают повторно собирать пакеты Debian без какого-либо постороннего содержимого (см. <a class="xref" href="ch05.ru.html#build-noextra" title="5.15. Сборка пакета без постороннего содержимого">Раздел 5.15, «Сборка пакета без постороннего содержимого»</a>).</p>
+        <p>В настоящее время хорошо иметь RSA-ключ длины 4096 бит, см. <a class="ulink" href="https://keyring.debian.org/creating-key.html">Создание нового GPG-ключа</a>.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="pbuilder-setup"/>3.6. pbuilder</h2>
+            </div>
+          </div>
+        </div>
+        <p>Пакет <span class="strong"><strong>pbuilder</strong></span> предоставляет чистое сборочное окружение (<span class="strong"><strong>chroot</strong></span>). <a href="#ftn.idm725" class="footnote" id="idm725"><sup class="footnote">[7]</sup></a></p>
+        <p>Настроим эту команду с помощью нескольких вспомогательных пакетов.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">Пакет <span class="strong"><strong>cowbuilder</strong></span> увеличивает скорость создания chroot.</li>
+            <li class="listitem">Пакет <span class="strong"><strong>lintian</strong></span> предназначен для обнаружения ошибок в пакете.</li>
+            <li class="listitem">Пакеты <span class="strong"><strong>bash</strong></span>, <span class="strong"><strong>mc</strong></span> и <span class="strong"><strong>vim</strong></span> используются в случае, если сборка не удалась.</li>
+            <li class="listitem">Пакет <span class="strong"><strong>ccache</strong></span> предназначен для увеличения скорости работы <span class="strong"><strong>gcc</strong></span> (необязательно).</li>
+            <li class="listitem">Пакет <span class="strong"><strong>libeatmydata1</strong></span> предназначен для увеличения скорости работы <span class="strong"><strong>dpkg</strong></span> (необязательно).</li>
+            <li class="listitem">Параллельный запуск <span class="strong"><strong>make</strong></span> позволяет увеличить скорость сборки (необязательно).</li>
+          </ul>
+        </div>
+        <div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Warning">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Предупреждение]" src="images/warning.png"/>
+              </td>
+              <th align="left">Предупреждение</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Необязательные настройки могут вызывать отрицательные последствия. Отключите их в случае сомнения.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p>Создадим файл <span class="strong"><strong>~/.pbuilderrc</strong></span> со следующим содержимым (все необязательные возможности отключены).</p>
+        <pre class="screen">AUTO_DEBSIGN="${AUTO_DEBSIGN:-no}"
+PDEBUILD_PBUILDER=cowbuilder
+HOOKDIR="/var/cache/pbuilder/hooks"
+MIRRORSITE="http://deb.debian.org/debian/"
+#APTCACHE=/var/cache/pbuilder/aptcache
+APTCACHE=/var/cache/apt/archives
+#BUILDRESULT=/var/cache/pbuilder/result/
+BUILDRESULT=../
+EXTRAPACKAGES="ccache lintian libeatmydata1"
+
+# enable to use libeatmydata1 for pbuilder
+#export LD_PRELOAD=${LD_PRELOAD+$LD_PRELOAD:}libeatmydata.so
+
+# enable ccache for pbuilder
+#export PATH="/usr/lib/ccache${PATH+:$PATH}"
+#export CCACHE_DIR="/var/cache/pbuilder/ccache"
+#BINDMOUNTS="${CCACHE_DIR}"
+
+# parallel make
+#DEBBUILDOPTS=-j8</pre>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Примечание]" src="images/note.png"/>
+              </td>
+              <th align="left">Примечание</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Символьная ссылка из <span class="strong"><strong>/root/.pbuilderrc</strong></span> в <span class="strong"><strong>/home/&lt;пользователь&gt;/.pbuilderrc</strong></span> поможет получить одинаковое поведение в разных ситуациях.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Примечание]" src="images/note.png"/>
+              </td>
+              <th align="left">Примечание</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Из-за <a class="ulink" href="https://bugs.debian.org/606542">ошибки #606542</a> вам может потребоваться вручную установить пакеты, указанные в <span class="strong"><strong>EXTRAPACKAGES</strong></span>, в chroot-окружение. См. <a class="xref" href="ch07.ru.html#chroot" title="7.10. chroot">Раздел 7.10, «chroot»</a>.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Примечание]" src="images/note.png"/>
+              </td>
+              <th align="left">Примечание</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Установите <span class="strong"><strong>libeatmydata1</strong></span> (&gt;=82-2) и в chroot-окружение, и вне его, либо отключите использование <span class="strong"><strong>libeatmydata1</strong></span>. Это может вызывать состояние гонки на некоторых сборочных системах.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Примечание]" src="images/note.png"/>
+              </td>
+              <th align="left">Примечание</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Параллельный запуск <span class="strong"><strong>make</strong></span> может быть неудачным для некоторых уже имеющихся пакетов и может сделать журнал сборки сложным для прочтения.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p>Создадим программные ловушки со следующим содержимым.</p>
+        <p>
+          <span class="strong">
+            <strong>/var/cache/pbuilder/hooks/A10ccache</strong>
+          </span>
+        </p>
+        <pre class="screen">#!/bin/sh
+set -e
+# increase the ccache caching size
+ccache -M 4G
+# output the current statistics
+ccache -s</pre>
+        <p>
+          <span class="strong">
+            <strong>/var/cache/pbuilder/hooks/B90lintian</strong>
+          </span>
+        </p>
+        <pre class="screen">#!/bin/sh
+set -e
+apt-get -y --allow-downgrades install lintian
+echo "+++ lintian output +++"
+su -c "lintian -i -I --show-overrides /tmp/buildd/*.changes; :" -l pbuilder
+echo "+++ end of lintian output +++"</pre>
+        <p>
+          <span class="strong">
+            <strong>/var/cache/pbuilder/hooks/C10shell</strong>
+          </span>
+        </p>
+        <pre class="screen">#!/bin/sh
+set -e
+apt-get -y --allow-downgrades install vim bash mc
+# invoke shell if build fails
+cd /tmp/buildd/*/debian/..
+/bin/bash &lt; /dev/tty &gt; /dev/tty 2&gt; /dev/tty</pre>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Примечание]" src="images/note.png"/>
+              </td>
+              <th align="left">Примечание</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Все эти сценарии должны быть доступны для исполнения всем пользователям: «<span class="strong"><strong>-rwxr-xr-x 1 root root</strong></span>».</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Примечание]" src="images/note.png"/>
+              </td>
+              <th align="left">Примечание</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Каталог с кэшем <span class="strong"><strong>ccache</strong></span>, <span class="strong"><strong>/var/cache/pbuilder/ccache</strong></span>, должен быть открыт для записи команды <span class="strong"><strong>pbuilder</strong></span> всем пользователям: «<span class="strong"><strong>-rwxrwxrwx 1 root root</strong></span>». Вам необходимо осознавать связанные с этим проблемы безопасности.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="gbp-setup"/>3.7. git-buildpackage</h2>
+            </div>
+          </div>
+        </div>
+        <p>Вам может потребоваться установить некоторые глобальные настройки в файле <span class="strong"><strong>~/.gbp.conf</strong></span></p>
+        <pre class="screen"># Configuration file for "gbp &lt;command&gt;"
+
+[DEFAULT]
+# the default build command:
+builder = git-pbuilder -i -I -us -uc
+# use pristine-tar:
+pristine-tar = True
+# Use color when on a terminal, alternatives: on/true, off/false or auto
+color = auto</pre>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Команда <span class="strong"><strong>gbp</strong></span> является псевдонимом команды <span class="strong"><strong>git-buildpackage</strong></span>.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="proxy"/>3.8. HTTP-прокси</h2>
+            </div>
+          </div>
+        </div>
+        <p>Чтобы сохранить пропускную способность при обращении к репозиторию пакетов Debian вам следует настроить локальный кэширующий HTTP-прокси. Имеется несколько вариантов:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">Простой кэширующий HTTP-прокси, используя пакет <span class="strong"><strong>squid</strong></span>.</li>
+            <li class="listitem">Специализированный кэширующий HTTP-прокси, использующий пакет <span class="strong"><strong>apt-cacher-ng</strong></span>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="repropro"/>3.9. Частный репозиторий Debian</h2>
+            </div>
+          </div>
+        </div>
+        <p>Вы можете настроить собственный репозиторий пакетов Debian с помощью пакета <span class="strong"><strong>reprepro</strong></span>.</p>
+      </div>
+      <div class="footnotes">
+        <br/>
+        <hr/>
+        <div id="ftn.idm636" class="footnote">
+          <p><a href="#idm636" class="simpara"><sup class="simpara">[6] </sup></a>Предполагается, что в качестве интерактивной командной оболочки с регистрацией вы используете Bash. Если вы используете какую-то другую командную оболочку, например, Zsh, то вместо <span class="strong"><strong>~/.bashrc</strong></span> необходимо изменить соответствующие файлы настройки.</p>
+        </div>
+        <div id="ftn.idm725" class="footnote">
+          <p><a href="#idm725" class="simpara"><sup class="simpara">[7] </sup></a>Пакет <span class="strong"><strong>sbuild</strong></span> предоставляет альтернативную chroot-платформу.</p>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="ch02.ru.html"><img src="images/prev.png" alt="Пред."/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="ch04.ru.html"><img src="images/next.png" alt="След."/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">Глава 2. Необходимые предварительные требования </td>
+          <td align="center">
+            <a accesskey="h" href="index.ru.html">
+              <img src="images/home.png" alt="Начало"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> Глава 4. Простой пример</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

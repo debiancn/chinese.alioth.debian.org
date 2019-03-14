@@ -1,0 +1,3231 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Chapter 8. More Examples</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.en.html" title="Guide for Debian Maintainers"/>
+    <link rel="up" href="index.en.html" title="Guide for Debian Maintainers"/>
+    <link rel="prev" href="ch07.en.html" title="Chapter 7. Tips"/>
+    <link rel="next" href="apa.en.html" title="Appendix A. debmake(1) manpage"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Chapter 8. More Examples</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="ch07.en.html"><img src="images/prev.png" alt="Prev"/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="apa.en.html"><img src="images/next.png" alt="Next"/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="chapter">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="more"/>Chapter 8. More Examples</h1>
+          </div>
+        </div>
+      </div>
+      <div class="toc">
+        <p>
+          <strong>Table of Contents</strong>
+        </p>
+        <dl class="toc">
+          <dt>
+            <span class="section">
+              <a href="ch08.en.html#emptypkg">8.1. Cherry-pick templates</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch08.en.html#nomakefile">8.2. No Makefile (shell, CLI)</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch08.en.html#makefile-sh">8.3. Makefile (shell, CLI)</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch08.en.html#setup-py">8.4. setup.py (Python3, CLI)</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch08.en.html#makefile-sh-gui">8.5. Makefile (shell, GUI)</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch08.en.html#setup-py-gui">8.6. setup.py (Python3, GUI)</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch08.en.html#makefile-single">8.7. Makefile (single-binary package)</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch08.en.html#configure-single">8.8. Makefile.in + configure (single-binary package)</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch08.en.html#autotools-single">8.9. Autotools (single-binary package)</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch08.en.html#cmake-single">8.10. CMake (single-binary package)</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch08.en.html#autotools-multi">8.11. Autotools (multi-binary package)</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch08.en.html#cmake-multi">8.12. CMake (multi-binary package)</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch08.en.html#i18n-example">8.13. Internationalization</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch08.en.html#details">8.14. Details</a>
+            </span>
+          </dt>
+        </dl>
+      </div>
+      <p>There is an old Latin saying: “<span class="strong"><strong>fabricando fit faber</strong></span>” (“practice makes perfect”).</p>
+      <p>It is highly recommended to practice and experiment with all the steps of Debian packaging with simple packages.  This chapter provides you with many upstream cases for your practice.</p>
+      <p>This should also serve as introductory examples for many programing topics.</p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist">
+          <li class="listitem">
+Programing in the POSIX shell, Python3, and C.
+</li>
+          <li class="listitem">
+Method to create a desktop GUI program launcher with icon graphics.
+</li>
+          <li class="listitem">
+Conversion of a command from <a class="ulink" href="https://en.wikipedia.org/wiki/Command-line_interface">CLI</a> to <a class="ulink" href="https://en.wikipedia.org/wiki/Graphical_user_interface">GUI</a>.
+</li>
+          <li class="listitem">
+Conversion of a program to use <span class="strong"><strong>gettext</strong></span> for <a class="ulink" href="http://en.wikipedia.org/wiki/Internationalization_and_localization">internationalization and localization</a>: POSIX shell, Python3, and C sources.
+</li>
+          <li class="listitem">
+Overview of many build systems: Makefile, Python distutils, Autotools, and CMake.
+</li>
+        </ul>
+      </div>
+      <p>Please note that Debian takes a few things seriously:</p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist">
+          <li class="listitem">
+Free software (a.k.a. Libre software)
+</li>
+          <li class="listitem">
+Stability and security of OS
+</li>
+          <li class="listitem">
+            <p class="simpara">
+Universal OS realized via:
+</p>
+            <div class="itemizedlist">
+              <ul class="itemizedlist">
+                <li class="listitem">
+free choice for upstream sources,
+</li>
+                <li class="listitem">
+free choice of CPU architectures, and
+</li>
+                <li class="listitem">
+free choice of UI languages.
+</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <p>The typical packaging example presented in <a class="xref" href="ch04.en.html" title="Chapter 4. Simple Example">Chapter 4, <em>Simple Example</em></a> is the prerequisite for this chapter.</p>
+      <p>Some details are intentionally left vague in the following sections.  Please try to read the pertinent documentation and practice yourself to find them out.</p>
+      <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Tip">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[Tip]" src="images/tip.png"/>
+            </td>
+            <th align="left">Tip</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>The best source of a packaging example is the current Debian archive itself.  Please use the “<a class="ulink" href="https://codesearch.debian.net/">Debian Code Search</a>” service to find pertinent examples.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="emptypkg"/>8.1. Cherry-pick templates</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here is an example of creating a simple Debian package from a zero content source on an empty directory.</p>
+        <p>This is a good platform to get all the template files without making a mess in the upstream source tree you are working on.</p>
+        <p>Let’s assume this empty directory to be <span class="strong"><strong>debhello-0.1</strong></span>.</p>
+        <pre class="screen"> $ mkdir debhello-0.1
+ $ tree
+.
+└── debhello-0.1
+
+1 directory, 0 files</pre>
+        <p>Let’s generate the maximum amount of template files by specifying the <span class="strong"><strong>-x4</strong></span> option.</p>
+        <p>Let’s also use the “<span class="strong"><strong>-p</strong></span> <span class="emphasis"><em>debhello</em></span> <span class="strong"><strong>-t -u</strong></span> <span class="emphasis"><em>0.1</em></span> <span class="strong"><strong>-r</strong></span> <span class="emphasis"><em>1”</em></span> options to make the missing upstream tarball.</p>
+        <pre class="screen"> $ debmake -t -p debhello -u 0.1 -r 1 -x4
+I: set parameters
+ ...
+I: debmake -x "4" ...
+I: creating =&gt; debian/control
+I: creating =&gt; debian/copyright
+I: substituting =&gt; /usr/share/debmake/extra0/rules
+ ...
+I: creating =&gt; debian/license-examples/LGPL-3.0+
+I: substituting =&gt; /usr/share/debmake/extra4/Artistic-1.0
+I: creating =&gt; debian/license-examples/Artistic-1.0
+I: substituting =&gt; /usr/share/debmake/extra4/GPL-3.0+
+I: creating =&gt; debian/license-examples/GPL-3.0+
+I: $ wrap-and-sort</pre>
+        <p>Let’s inspect generated template files.</p>
+        <pre class="screen"> $ cd ..
+ $ tree
+.
+├── debhello-0.1
+│   └── debian
+│       ├── README.Debian
+│       ├── changelog
+│       ├── clean
+│       ├── compat
+│       ├── control
+│       ├── copyright
+│       ├── debhello.bug-control.ex
+│       ├── debhello.bug-presubj.ex
+│       ├── debhello.bug-script.ex
+│       ├── debhello.conffiles.ex
+ ...
+│       └── watch
+├── debhello-0.1.tar.gz
+└── debhello_0.1.orig.tar.gz -&gt; debhello-0.1.tar.gz
+
+5 directories, 51 files</pre>
+        <p>Now you can copy any of these generated template files in the <span class="emphasis"><em>debhello-0.1/</em></span><span class="strong"><strong>debian/</strong></span> directory to your package as needed while renaming them as needed.</p>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Tip]" src="images/tip.png"/>
+              </td>
+              <th align="left">Tip</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>The generated template files can be made more verbose by invoking the <span class="strong"><strong>debmake</strong></span> command with the <span class="strong"><strong>-T</strong></span> option (tutorial mode).</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="nomakefile"/>8.2. No Makefile (shell, CLI)</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here is an example of creating a simple Debian package from a POSIX shell CLI program without its build system.</p>
+        <p>Let’s assume this upstream tarball to be <span class="strong"><strong>debhello-0.2.tar.gz</strong></span>.</p>
+        <p>This type of source has no automated means and files must be installed manually.</p>
+        <pre class="screen"> $ tar -xzmf debhello-0.2.tar.gz
+ $ cd debhello-0.2
+ $ sudo cp scripts/hello /bin/hello
+ ...</pre>
+        <p>Let’s get the source and make the Debian package.</p>
+        <p><strong>Download <span class="strong"><strong>debhello-0.2.tar.gz</strong></span>. </strong>
+</p>
+        <pre class="screen"> $ wget http://www.example.org/download/debhello-0.2.tar.gz
+ ...
+ $ tar -xzmf debhello-0.2.tar.gz
+ $ tree
+.
+├── debhello-0.2
+│   ├── LICENSE
+│   ├── data
+│   │   ├── hello.desktop
+│   │   └── hello.png
+│   ├── man
+│   │   └── hello.1
+│   └── scripts
+│       └── hello
+└── debhello-0.2.tar.gz
+
+4 directories, 6 files</pre>
+        <p>
+</p>
+        <p>Here, the POSIX shell script <span class="strong"><strong>hello</strong></span> is a very simple one.</p>
+        <p><strong><span class="strong"><strong>hello</strong></span> (v=0.2). </strong>
+</p>
+        <pre class="screen"> $ cat debhello-0.2/scripts/hello
+#!/bin/sh -e
+echo "Hello from the shell!"
+echo ""
+echo -n "Type Enter to exit this program: "
+read X</pre>
+        <p>
+</p>
+        <p>Here, <span class="strong"><strong>hello.desktop</strong></span> supports the <a class="ulink" href="https://www.freedesktop.org/wiki/Specifications/desktop-entry-spec/">Desktop Entry Specification</a>.</p>
+        <p><strong><span class="strong"><strong>hello.desktop</strong></span> (v=0.2). </strong>
+</p>
+        <pre class="screen"> $ cat debhello-0.2/data/hello.desktop
+[Desktop Entry]
+Name=Hello
+Name[fr]=Bonjour
+Comment=Greetings
+Comment[fr]=Salutations
+Type=Application
+Keywords=hello
+Exec=hello
+Terminal=true
+Icon=hello.png
+Categories=Utility;</pre>
+        <p>
+</p>
+        <p>Here, <span class="strong"><strong>hello.png</strong></span> is the icon graphics file.</p>
+        <p>Let’s package this with the <span class="strong"><strong>debmake</strong></span> command.  Here, the <span class="strong"><strong>-b':sh'</strong></span> option is used to specify that the generated binary package is a shell script.</p>
+        <pre class="screen"> $ cd debhello-0.2
+ $ debmake -b':sh'
+I: set parameters
+I: sanity check of parameters
+I: pkg="debhello", ver="0.2", rev="1"
+I: *** start packaging in "debhello-0.2". ***
+I: provide debhello_0.2.orig.tar.gz for non-native Debian package
+I: pwd = "/path/to"
+I: $ ln -sf debhello-0.2.tar.gz debhello_0.2.orig.tar.gz
+I: pwd = "/path/to/debhello-0.2"
+I: parse binary package settings: :sh
+I: binary package=debhello Type=script / Arch=all M-A=foreign
+...</pre>
+        <p>Let’s inspect notable template files generated.</p>
+        <p><strong>The source tree after the basic <span class="strong"><strong>debmake</strong></span> execution. (v=0.2). </strong>
+</p>
+        <pre class="screen"> $ cd ..
+ $ tree
+.
+├── debhello-0.2
+│   ├── LICENSE
+│   ├── data
+│   │   ├── hello.desktop
+│   │   └── hello.png
+│   ├── debian
+│   │   ├── README.Debian
+│   │   ├── changelog
+│   │   ├── compat
+│   │   ├── control
+│   │   ├── copyright
+│   │   ├── patches
+│   │   │   └── series
+│   │   ├── rules
+│   │   ├── source
+│   │   │   ├── format
+│   │   │   └── local-options
+│   │   └── watch
+│   ├── man
+│   │   └── hello.1
+│   └── scripts
+│       └── hello
+├── debhello-0.2.tar.gz
+└── debhello_0.2.orig.tar.gz -&gt; debhello-0.2.tar.gz
+
+7 directories, 17 files</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (template file, v=0.2): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-0.2/debian/rules
+#!/usr/bin/make -f
+# You must remove unused comment lines for the released package.
+#export DH_VERBOSE = 1
+
+%:
+        dh $@</pre>
+        <p>
+</p>
+        <p>This is essentially the standard <span class="strong"><strong>debian/rules</strong></span> file with the <span class="strong"><strong>dh</strong></span> command. Since this is the script package, this template <span class="strong"><strong>debian/rules</strong></span> file has no build flag related contents.</p>
+        <p><strong><span class="strong"><strong>debian/control</strong></span> (template file, v=0.2): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-0.2/debian/control
+Source: debhello
+Section: unknown
+Priority: optional
+Maintainer: "Firstname Lastname" &lt;email.address@example.org&gt;
+Build-Depends: debhelper (&gt;=11~)
+Standards-Version: 4.1.4
+Homepage: &lt;insert the upstream URL, if relevant&gt;
+
+Package: debhello
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: auto-generated package by debmake
+ This Debian binary package was auto-generated by the
+ debmake(1) command provided by the debmake package.</pre>
+        <p>
+</p>
+        <p>Since this is the shell script package, the <span class="strong"><strong>debmake</strong></span> command sets “<span class="strong"><strong>Architecture: all</strong></span>” and “<span class="strong"><strong>Multi-Arch: foreign</strong></span>”.  Also, it sets required <span class="strong"><strong>substvar</strong></span> parameters as “<span class="strong"><strong>Depends: ${misc:Depends}</strong></span>”.  These are explained in <a class="xref" href="ch05.en.html" title="Chapter 5. Basics">Chapter 5, <em>Basics</em></a>.</p>
+        <p>Since this upstream source lacks the upstream <span class="strong"><strong>Makefile</strong></span>, that functionality needs to be provided by the maintainer.  This upstream source contains only a script file and data files and no C source files; the <span class="strong"><strong>build</strong></span> process can be skipped but the <span class="strong"><strong>install</strong></span> process needs to be implemented.  For this case, this is achieved cleanly by adding the <span class="strong"><strong>debian/install</strong></span> and <span class="strong"><strong>debian/manpages</strong></span> files without complicating the <span class="strong"><strong>debian/rules</strong></span> file.</p>
+        <p>Let’s make this Debian package better as the maintainer.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (maintainer version, v=0.2): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-0.2/debian/rules
+ ... hack, hack, hack, ...
+ $ cat debhello-0.2/debian/rules
+#!/usr/bin/make -f
+export DH_VERBOSE = 1
+
+%:
+        dh $@</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>debian/control</strong></span> (maintainer version, v=0.2): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-0.2/debian/control
+ ... hack, hack, hack, ...
+ $ cat debhello-0.2/debian/control
+Source: debhello
+Section: devel
+Priority: optional
+Maintainer: Osamu Aoki &lt;osamu@debian.org&gt;
+Build-Depends: debhelper (&gt;=11~)
+Standards-Version: 4.3.0
+Homepage: https://salsa.debian.org/debian/debmake-doc
+
+Package: debhello
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: example package in the debmake-doc package
+ This is an example package to demonstrate Debian packaging using
+ the debmake command.
+ .
+ The generated Debian package uses the dh command offered by the
+ debhelper package and the dpkg source format `3.0 (quilt)'.</pre>
+        <p>
+</p>
+        <div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Warning">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Warning]" src="images/warning.png"/>
+              </td>
+              <th align="left">Warning</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>If you leave “<span class="strong"><strong>Section: unknown</strong></span>” in the template <span class="strong"><strong>debian/control</strong></span> file unchanged, the <span class="strong"><strong>lintian</strong></span> error may cause a build failure.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p><strong><span class="strong"><strong>debian/install</strong></span> (maintainer version, v=0.2): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-0.2/debian/install
+ ... hack, hack, hack, ...
+ $ cat debhello-0.2/debian/install
+data/hello.desktop usr/share/applications
+data/hello.png usr/share/pixmaps
+scripts/hello usr/bin</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>debian/manpages</strong></span> (maintainer version, v=0.2): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-0.2/debian/manpages
+ ... hack, hack, hack, ...
+ $ cat debhello-0.2/debian/manpages
+man/hello.1</pre>
+        <p>
+</p>
+        <p>There are several other template files under the <span class="strong"><strong>debian/</strong></span> directory.  These also need to be updated.</p>
+        <p><strong>Template files under <span class="strong"><strong>debian/</strong></span>. (v=0.2): </strong>
+</p>
+        <pre class="screen"> $ tree debhello-0.2/debian
+debhello-0.2/debian
+├── README.Debian
+├── changelog
+├── compat
+├── control
+├── copyright
+├── install
+├── manpages
+├── patches
+│   └── series
+├── rules
+├── source
+│   ├── format
+│   └── local-options
+└── watch
+
+2 directories, 12 files</pre>
+        <p>
+</p>
+        <p>You can create a non-native Debian package using the <span class="strong"><strong>debuild</strong></span> command (or its equivalents) in this source tree.  The command output is very verbose and explains what it does as follows.</p>
+        <pre class="screen"> $ cd debhello-0.2
+ $ debuild
+ dpkg-buildpackage -us -uc -ui -i
+ ...
+ fakeroot debian/rules clean
+dh clean
+ ...
+ debian/rules build
+dh build
+   dh_update_autotools_config
+   dh_autoreconf
+   create-stamp debian/debhelper-build-stamp
+ fakeroot debian/rules binary
+dh binary
+   dh_testroot
+   dh_prep
+        rm -f -- debian/debhello.substvars
+        rm -fr -- debian/.debhelper/generated/debhello/ debian/debhello/ debi...
+ ...
+ fakeroot debian/rules binary
+dh binary
+ ...</pre>
+        <p>Let’s inspect the result.</p>
+        <p><strong>The generated files of <span class="strong"><strong>debhello</strong></span> version <span class="strong"><strong>0.2</strong></span> by the <span class="strong"><strong>debuild</strong></span> command: </strong>
+</p>
+        <pre class="screen"> $ cd ..
+ $ tree -FL 1
+.
+├── debhello-0.2/
+├── debhello-0.2.tar.gz
+├── debhello_0.2-1.debian.tar.xz
+├── debhello_0.2-1.dsc
+├── debhello_0.2-1_all.deb
+├── debhello_0.2-1_amd64.build
+├── debhello_0.2-1_amd64.buildinfo
+├── debhello_0.2-1_amd64.changes
+└── debhello_0.2.orig.tar.gz -&gt; debhello-0.2.tar.gz
+
+1 directory, 8 files</pre>
+        <p>
+</p>
+        <p>You see all the generated files.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+The <span class="strong"><strong>debhello_0.2.orig.tar.gz</strong></span> file is a symlink to the upstream tarball.
+</li>
+            <li class="listitem">
+The <span class="strong"><strong>debhello_0.2-1.debian.tar.xz</strong></span> file contains the maintainer generated contents.
+</li>
+            <li class="listitem">
+The <span class="strong"><strong>debhello_0.2-1.dsc</strong></span> file is the meta data file for the Debian source package.
+</li>
+            <li class="listitem">
+The <span class="strong"><strong>debhello_0.2-1_all.deb</strong></span> file is the Debian binary package.
+</li>
+            <li class="listitem">
+The <span class="strong"><strong>debhello_0.2-1_amd64.build</strong></span> file is the build log file.
+</li>
+            <li class="listitem">
+The <span class="strong"><strong>debhello_0.2-1_amd64.buildinfo</strong></span> file is the meta data file generated by <span class="strong"><strong>dpkg-genbuildinfo</strong></span>(1).
+</li>
+            <li class="listitem">
+The <span class="strong"><strong>debhello_0.2-1_amd64.changes</strong></span> file is the meta data file for the Debian binary package.
+</li>
+          </ul>
+        </div>
+        <p>The <span class="strong"><strong>debhello_0.2-1.debian.tar.xz</strong></span> file contains the Debian changes to the upstream source as follows.</p>
+        <p><strong>The compressed archive contents of <span class="strong"><strong>debhello_0.2-1.debian.tar.xz</strong></span>: </strong>
+</p>
+        <pre class="screen"> $ tar -tzf debhello-0.2.tar.gz
+debhello-0.2/
+debhello-0.2/scripts/
+debhello-0.2/scripts/hello
+debhello-0.2/data/
+debhello-0.2/data/hello.desktop
+debhello-0.2/data/hello.png
+debhello-0.2/LICENSE
+debhello-0.2/man/
+debhello-0.2/man/hello.1
+ $ tar --xz -tf debhello_0.2-1.debian.tar.xz
+debian/
+debian/README.Debian
+debian/changelog
+debian/compat
+debian/control
+debian/copyright
+debian/install
+debian/manpages
+debian/patches/
+debian/patches/series
+debian/rules
+debian/source/
+debian/source/format
+debian/watch</pre>
+        <p>
+</p>
+        <p>The <span class="strong"><strong>debhello_0.2-1_amd64.deb</strong></span> file contains the files to be installed as follows.</p>
+        <p><strong>The binary package contents of <span class="strong"><strong>debhello_0.2-1_all.deb</strong></span>: </strong>
+</p>
+        <pre class="screen"> $ dpkg -c debhello_0.2-1_all.deb
+drwxr-xr-x root/root ...  ./
+drwxr-xr-x root/root ...  ./usr/
+drwxr-xr-x root/root ...  ./usr/bin/
+-rwxr-xr-x root/root ...  ./usr/bin/hello
+drwxr-xr-x root/root ...  ./usr/share/
+drwxr-xr-x root/root ...  ./usr/share/applications/
+-rw-r--r-- root/root ...  ./usr/share/applications/hello.desktop
+drwxr-xr-x root/root ...  ./usr/share/doc/
+drwxr-xr-x root/root ...  ./usr/share/doc/debhello/
+-rw-r--r-- root/root ...  ./usr/share/doc/debhello/README.Debian
+-rw-r--r-- root/root ...  ./usr/share/doc/debhello/changelog.Debian.gz
+-rw-r--r-- root/root ...  ./usr/share/doc/debhello/copyright
+drwxr-xr-x root/root ...  ./usr/share/man/
+drwxr-xr-x root/root ...  ./usr/share/man/man1/
+-rw-r--r-- root/root ...  ./usr/share/man/man1/hello.1.gz
+drwxr-xr-x root/root ...  ./usr/share/pixmaps/
+-rw-r--r-- root/root ...  ./usr/share/pixmaps/hello.png</pre>
+        <p>
+</p>
+        <p>Here is the generated dependency list of <span class="strong"><strong>debhello_0.2-1_all.deb</strong></span>.</p>
+        <p><strong>The generated dependency list of <span class="strong"><strong>debhello_0.2-1_all.deb</strong></span>: </strong>
+</p>
+        <pre class="screen"> $ dpkg -f debhello_0.2-1_all.deb pre-depends depends recommends conflicts br...</pre>
+        <p>
+</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="makefile-sh"/>8.3. Makefile (shell, CLI)</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here is an example of creating a simple Debian package from a POSIX shell CLI program using the <span class="strong"><strong>Makefile</strong></span> as its build system.</p>
+        <p>Let’s assume its upstream tarball to be <span class="strong"><strong>debhello-1.0.tar.gz</strong></span>.</p>
+        <p>This type of source is meant to be installed as a non-system file as:</p>
+        <pre class="screen"> $ tar -xzmf debhello-1.0.tar.gz
+ $ cd debhello-1.0
+ $ make install</pre>
+        <p>Debian packaging requires changing this “<span class="strong"><strong>make install</strong></span>” process to install files to the target system image location instead of the normal location under <span class="strong"><strong>/usr/local</strong></span>.</p>
+        <p>Let’s get the source and make the Debian package.</p>
+        <p><strong>Download <span class="strong"><strong>debhello-1.0.tar.gz</strong></span>. </strong>
+</p>
+        <pre class="screen"> $ wget http://www.example.org/download/debhello-1.0.tar.gz
+ ...
+ $ tar -xzmf debhello-1.0.tar.gz
+ $ tree
+.
+├── debhello-1.0
+│   ├── LICENSE
+│   ├── Makefile
+│   ├── data
+│   │   ├── hello.desktop
+│   │   └── hello.png
+│   ├── man
+│   │   └── hello.1
+│   └── scripts
+│       └── hello
+└── debhello-1.0.tar.gz
+
+4 directories, 7 files</pre>
+        <p>
+</p>
+        <p>Here, the <span class="strong"><strong>Makefile</strong></span> uses <span class="strong"><strong>$(DESTDIR)</strong></span> and <span class="strong"><strong>$(prefix)</strong></span> properly.  All other files are the same as in <a class="xref" href="ch08.en.html#nomakefile" title="8.2. No Makefile (shell, CLI)">Section 8.2, “No Makefile (shell, CLI)”</a> and most of the packaging activities are the same.</p>
+        <p><strong><span class="strong"><strong>Makefile</strong></span> (v=1.0). </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.0/Makefile
+prefix = /usr/local
+
+all:
+        : # do nothing
+
+install:
+        install -D scripts/hello \
+                $(DESTDIR)$(prefix)/bin/hello
+        install -m 644 -D data/hello.desktop \
+                $(DESTDIR)$(prefix)/share/applications/hello.desktop
+        install -m 644 -D data/hello.png \
+                $(DESTDIR)$(prefix)/share/pixmaps/hello.png
+        install -m 644 -D man/hello.1 \
+                $(DESTDIR)$(prefix)/share/man/man1/hello.1
+
+clean:
+        : # do nothing
+
+distclean: clean
+
+uninstall:
+        -rm -f $(DESTDIR)$(prefix)/bin/hello
+        -rm -f $(DESTDIR)$(prefix)/share/applications/hello.desktop
+        -rm -f $(DESTDIR)$(prefix)/share/pixmaps/hello.png
+        -rm -f $(DESTDIR)$(prefix)/share/man/man1/hello.1
+
+.PHONY: all install clean distclean uninstall</pre>
+        <p>
+</p>
+        <p>Let’s package this with the <span class="strong"><strong>debmake</strong></span> command.  Here, the <span class="strong"><strong>-b':sh'</strong></span> option is used to specify that the generated binary package is a shell script.</p>
+        <pre class="screen"> $ cd debhello-1.0
+ $ debmake -b':sh'
+I: set parameters
+I: sanity check of parameters
+I: pkg="debhello", ver="1.0", rev="1"
+I: *** start packaging in "debhello-1.0". ***
+I: provide debhello_1.0.orig.tar.gz for non-native Debian package
+I: pwd = "/path/to"
+I: $ ln -sf debhello-1.0.tar.gz debhello_1.0.orig.tar.gz
+I: pwd = "/path/to/debhello-1.0"
+I: parse binary package settings: :sh
+I: binary package=debhello Type=script / Arch=all M-A=foreign
+...</pre>
+        <p>Let’s inspect the notable template files generated.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (template file, v=1.0): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.0/debian/rules
+#!/usr/bin/make -f
+# You must remove unused comment lines for the released package.
+#export DH_VERBOSE = 1
+
+%:
+        dh $@
+
+#override_dh_auto_install:
+#       dh_auto_install -- prefix=/usr
+
+#override_dh_install:
+#       dh_install --list-missing -X.pyc -X.pyo</pre>
+        <p>
+</p>
+        <p>Let’s make this Debian package better as the maintainer.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (maintainer version, v=1.0): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-1.0/debian/rules
+ ... hack, hack, hack, ...
+ $ cat debhello-1.0/debian/rules
+#!/usr/bin/make -f
+export DH_VERBOSE = 1
+
+%:
+        dh $@
+
+override_dh_auto_install:
+        dh_auto_install -- prefix=/usr</pre>
+        <p>
+</p>
+        <p>Since this upstream source has the proper upstream <span class="strong"><strong>Makefile</strong></span>, there is no need to create <span class="strong"><strong>debian/install</strong></span> and <span class="strong"><strong>debian/manpages</strong></span> files.</p>
+        <p>The <span class="strong"><strong>debian/control</strong></span> file is exactly the same as the one in <a class="xref" href="ch08.en.html#nomakefile" title="8.2. No Makefile (shell, CLI)">Section 8.2, “No Makefile (shell, CLI)”</a>.</p>
+        <p>There are several other template files under the <span class="strong"><strong>debian/</strong></span> directory.  These also need to be updated.</p>
+        <p><strong>Template files under <span class="strong"><strong>debian/</strong></span>. (v=1.0): </strong>
+</p>
+        <pre class="screen"> $ tree debhello-1.0/debian
+debhello-1.0/debian
+├── README.Debian
+├── changelog
+├── compat
+├── control
+├── copyright
+├── patches
+│   └── series
+├── rules
+├── source
+│   ├── format
+│   └── local-options
+└── watch
+
+2 directories, 10 files</pre>
+        <p>
+</p>
+        <p>The rest of the packaging activities are practically the same as the ones in <a class="xref" href="ch08.en.html#nomakefile" title="8.2. No Makefile (shell, CLI)">Section 8.2, “No Makefile (shell, CLI)”</a>.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="setup-py"/>8.4. setup.py (Python3, CLI)</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here is an example of creating a simple Debian package from a Python3 CLI program using <span class="strong"><strong>setup.py</strong></span> as its build system.</p>
+        <p>Let’s assume its upstream tarball to be <span class="strong"><strong>debhello-1.1.tar.gz</strong></span>.</p>
+        <p>This type of source is meant to be installed as a non-system file as:</p>
+        <pre class="screen"> $ tar -xzmf debhello-1.1.tar.gz
+ $ cd debhello-1.1
+ $ python3 setup.py install</pre>
+        <p>Debian packaging requires changing the last line to “<span class="strong"><strong>python3 setup.py install --install-layout=deb</strong></span>” to install files into the target system image location.  This issue is automatically addressed when using the <span class="strong"><strong>dh</strong></span> command for Debian packaging.</p>
+        <p>Let’s get the source and make the Debian package.</p>
+        <p><strong>Download <span class="strong"><strong>debhello-1.1.tar.gz</strong></span>. </strong>
+</p>
+        <pre class="screen"> $ wget http://www.example.org/download/debhello-1.1.tar.gz
+ ...
+ $ tar -xzmf debhello-1.1.tar.gz
+ $ tree
+.
+├── debhello-1.1
+│   ├── LICENSE
+│   ├── MANIFEST.in
+│   ├── PKG-INFO
+│   ├── hello_py
+│   │   └── __init__.py
+│   ├── scripts
+│   │   └── hello
+│   └── setup.py
+└── debhello-1.1.tar.gz
+
+3 directories, 7 files</pre>
+        <p>
+</p>
+        <p>Here, the <span class="strong"><strong>hello</strong></span> script and its associated <span class="strong"><strong>hello_py</strong></span> module are as follows.</p>
+        <p><strong><span class="strong"><strong>hello</strong></span> (v=1.1). </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.1/scripts/hello
+#!/usr/bin/python3
+import hello_py
+
+if __name__ == '__main__':
+    hello_py.main()</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>hello_py/__init__.py</strong></span> (v=1.1). </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.1/hello_py/__init__.py
+#!/usr/bin/python3
+def main():
+    print('Hello Python3!')
+    input("Press Enter to continue...")
+    return
+
+if __name__ == '__main__':
+    main()</pre>
+        <p>
+</p>
+        <p>These are packaged using the Python <a class="ulink" href="https://docs.python.org/3.4/library/distutils.html#module-distutils">distutils</a> with the <span class="strong"><strong>setup.py</strong></span> and <span class="strong"><strong>MANIFEST.in</strong></span> files.</p>
+        <p><strong><span class="strong"><strong>setup.py</strong></span> (v=1.1). </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.1/setup.py
+#!/usr/bin/python3
+# vi:se ts=4 sts=4 et ai:
+from distutils.core import setup
+
+setup(name='debhello',
+    version='4.0',
+    description='Hello Python',
+    long_description='Hello Python program.',
+    author='Osamu Aoki',
+    author_email='osamu@debian.org',
+    url='http://people.debian.org/~osamu/',
+    packages=['hello_py'],
+    package_dir={'hello_py': 'hello_py'},
+    scripts=['scripts/hello'],
+    classifiers = ['Development Status :: 3 - Alpha',
+        'Environment :: Console',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Natural Language :: English',
+        'Operating System :: POSIX :: Linux',
+        'Programming Language :: Python :: 3',
+        'Topic :: Utilities',
+    ],
+    platforms   = 'POSIX',
+    license     = 'MIT License'
+)</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>MANIFEST.in</strong></span> (v=1.1). </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.1/MANIFEST.in
+include MANIFEST.in
+include LICENSE</pre>
+        <p>
+</p>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Tip]" src="images/tip.png"/>
+              </td>
+              <th align="left">Tip</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Many modern Python packages are distributed using <a class="ulink" href="https://setuptools.pypa.io/en/latest/setuptools.html">setuptools</a>.  Since setuptools is an enhanced alternative to distutils, this example is useful for them.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p>Let’s package this with the <span class="strong"><strong>debmake</strong></span> command.  Here, the <span class="strong"><strong>-b':py3'</strong></span> option is used to specify the generated binary package containing Python3 script and module files.</p>
+        <pre class="screen"> $ cd debhello-1.1
+ $ debmake -b':py3'
+I: set parameters
+I: sanity check of parameters
+I: pkg="debhello", ver="1.1", rev="1"
+I: *** start packaging in "debhello-1.1". ***
+I: provide debhello_1.1.orig.tar.gz for non-native Debian package
+I: pwd = "/path/to"
+I: $ ln -sf debhello-1.1.tar.gz debhello_1.1.orig.tar.gz
+I: pwd = "/path/to/debhello-1.1"
+I: parse binary package settings: :py3
+I: binary package=debhello Type=python3 / Arch=all M-A=foreign
+...</pre>
+        <p>Let’s inspect the notable template files generated.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (template file, v=1.1): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.1/debian/rules
+#!/usr/bin/make -f
+# You must remove unused comment lines for the released package.
+#export DH_VERBOSE = 1
+
+%:
+        dh $@ --with python3 --buildsystem=pybuild</pre>
+        <p>
+</p>
+        <p>This is essentially the standard <span class="strong"><strong>debian/rules</strong></span> file with the <span class="strong"><strong>dh</strong></span> command.</p>
+        <p>The use of the “<span class="strong"><strong>--with python3</strong></span>” option invokes <span class="strong"><strong>dh_python3</strong></span> to calculate Python dependencies, add maintainer scripts to byte compiled files, etc. See <span class="strong"><strong>dh_python3</strong></span>(1).</p>
+        <p>The use of the “<span class="strong"><strong>--buildsystem=pybuild</strong></span>” option invokes various build systems for requested Python versions in order to build modules and extensions.  See <span class="strong"><strong>pybuild</strong></span>(1).</p>
+        <p><strong><span class="strong"><strong>debian/control</strong></span> (template file, v=1.1): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.1/debian/control
+Source: debhello
+Section: unknown
+Priority: optional
+Maintainer: "Firstname Lastname" &lt;email.address@example.org&gt;
+Build-Depends: debhelper (&gt;=11~), dh-python, python3-all
+Standards-Version: 4.1.4
+Homepage: &lt;insert the upstream URL, if relevant&gt;
+X-Python3-Version: &gt;= 3.2
+
+Package: debhello
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${python3:Depends}
+Description: auto-generated package by debmake
+ This Debian binary package was auto-generated by the
+ debmake(1) command provided by the debmake package.</pre>
+        <p>
+</p>
+        <p>Since this is the Python3 package, the <span class="strong"><strong>debmake</strong></span> command sets “<span class="strong"><strong>Architecture: all</strong></span>” and “<span class="strong"><strong>Multi-Arch: foreign</strong></span>”.  Also, it sets required <span class="strong"><strong>substvar</strong></span> parameters as “<span class="strong"><strong>Depends: ${python3:Depends}, ${misc:Depends}</strong></span>”.  These are explained in <a class="xref" href="ch05.en.html" title="Chapter 5. Basics">Chapter 5, <em>Basics</em></a>.</p>
+        <p>Let’s make this Debian package better as the maintainer.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (maintainer version, v=1.1): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-1.1/debian/rules
+ ... hack, hack, hack, ...
+ $ cat debhello-1.1/debian/rules
+#!/usr/bin/make -f
+export DH_VERBOSE = 1
+
+%:
+        dh $@ --with python3 --buildsystem=pybuild</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>debian/control</strong></span> (maintainer version, v=1.1): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-1.1/debian/control
+ ... hack, hack, hack, ...
+ $ cat debhello-1.1/debian/control
+Source: debhello
+Section: devel
+Priority: optional
+Maintainer: Osamu Aoki &lt;osamu@debian.org&gt;
+Build-Depends: debhelper (&gt;= 12~), dh-python, python3-all
+Standards-Version: 4.3.0
+Homepage: https://salsa.debian.org/debian/debmake-doc
+X-Python3-Version: &gt;= 3.2
+
+Package: debhello
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${python3:Depends}
+Description: example package in the debmake-doc package
+ This is an example package to demonstrate Debian packaging using
+ the debmake command.
+ .
+ The generated Debian package uses the dh command offered by the
+ debhelper package and the dpkg source format `3.0 (quilt)'.</pre>
+        <p>
+</p>
+        <p>The <span class="strong"><strong>hello</strong></span> command does not come with the upstream-provided manpage; let’s add it as the maintainer.</p>
+        <p><strong><span class="strong"><strong>debian/manpages</strong></span> etc. (maintainer version, v=1.1): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-1.1/debian/hello.1
+ ... hack, hack, hack, ...
+ $ vim debhello-1.1/debian/manpages
+ ... hack, hack, hack, ...
+ $ cat debhello-1.1/debian/manpages
+debian/hello.1</pre>
+        <p>
+</p>
+        <p>There are several other template files under the <span class="strong"><strong>debian/</strong></span> directory.  These also need to be updated.</p>
+        <p>The rest of the packaging activities are practically the same as the ones in <a class="xref" href="ch08.en.html#makefile-sh" title="8.3. Makefile (shell, CLI)">Section 8.3, “Makefile (shell, CLI)”</a>.</p>
+        <p><strong>Template files under <span class="strong"><strong>debian/</strong></span>. (v=1.1): </strong>
+</p>
+        <pre class="screen"> $ tree debhello-1.1/debian
+debhello-1.1/debian
+├── README.Debian
+├── changelog
+├── compat
+├── control
+├── copyright
+├── hello.1
+├── manpages
+├── patches
+│   └── series
+├── rules
+├── source
+│   ├── format
+│   └── local-options
+└── watch
+
+2 directories, 12 files</pre>
+        <p>
+</p>
+        <p>Here is the generated dependency list of <span class="strong"><strong>debhello_1.1-1_all.deb</strong></span>.</p>
+        <p><strong>The generated dependency list of <span class="strong"><strong>debhello_1.1-1_all.deb</strong></span>: </strong>
+</p>
+        <pre class="screen"> $ dpkg -f debhello_1.1-1_all.deb pre-depends depends recommends conflicts br...
+Depends: python3:any (&gt;= 3.2~)</pre>
+        <p>
+</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="makefile-sh-gui"/>8.5. Makefile (shell, GUI)</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here is an example of creating a simple Debian package from a POSIX shell GUI program using the <span class="strong"><strong>Makefile</strong></span> as its build system.</p>
+        <p>This upstream is based on <a class="xref" href="ch08.en.html#makefile-sh" title="8.3. Makefile (shell, CLI)">Section 8.3, “Makefile (shell, CLI)”</a> with enhanced GUI support.</p>
+        <p>Let’s assume its upstream tarball to be <span class="strong"><strong>debhello-1.2.tar.gz</strong></span>.</p>
+        <p>Let’s get the source and make the Debian package.</p>
+        <p><strong>Download <span class="strong"><strong>debhello-1.2.tar.gz</strong></span>. </strong>
+</p>
+        <pre class="screen"> $ wget http://www.example.org/download/debhello-1.2.tar.gz
+ ...
+ $ tar -xzmf debhello-1.2.tar.gz
+ $ tree
+.
+├── debhello-1.2
+│   ├── LICENSE
+│   ├── Makefile
+│   ├── data
+│   │   ├── hello.desktop
+│   │   └── hello.png
+│   ├── man
+│   │   └── hello.1
+│   └── scripts
+│       └── hello
+└── debhello-1.2.tar.gz
+
+4 directories, 7 files</pre>
+        <p>
+</p>
+        <p>Here, the <span class="strong"><strong>hello</strong></span> has been re-written to use the <span class="strong"><strong>zenity</strong></span> command to make this a GTK+ GUI program.</p>
+        <p><strong><span class="strong"><strong>hello</strong></span> (v=1.2). </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.2/scripts/hello
+#!/bin/sh -e
+zenity --info --title "hello" --text "Hello from the shell!"</pre>
+        <p>
+</p>
+        <p>Here, the desktop file is updated to be <span class="strong"><strong>Terminal=false</strong></span> as a GUI program.</p>
+        <p><strong><span class="strong"><strong>hello.desktop</strong></span> (v=1.2). </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.2/data/hello.desktop
+[Desktop Entry]
+Name=Hello
+Name[fr]=Bonjour
+Comment=Greetings
+Comment[fr]=Salutations
+Type=Application
+Keywords=hello
+Exec=hello
+Terminal=false
+Icon=hello.png
+Categories=Utility;</pre>
+        <p>
+</p>
+        <p>All other files are the same as in <a class="xref" href="ch08.en.html#makefile-sh" title="8.3. Makefile (shell, CLI)">Section 8.3, “Makefile (shell, CLI)”</a>.</p>
+        <p>Let’s package this with the <span class="strong"><strong>debmake</strong></span> command.  Here, the <span class="strong"><strong>-b':sh'</strong></span> option is used to specify that the generated binary package is a shell script.</p>
+        <pre class="screen"> $ cd debhello-1.2
+ $ debmake -b':sh'
+I: set parameters
+I: sanity check of parameters
+I: pkg="debhello", ver="1.2", rev="1"
+I: *** start packaging in "debhello-1.2". ***
+I: provide debhello_1.2.orig.tar.gz for non-native Debian package
+I: pwd = "/path/to"
+I: $ ln -sf debhello-1.2.tar.gz debhello_1.2.orig.tar.gz
+I: pwd = "/path/to/debhello-1.2"
+I: parse binary package settings: :sh
+I: binary package=debhello Type=script / Arch=all M-A=foreign
+...</pre>
+        <p>Let’s inspect the notable template files generated.</p>
+        <p><strong><span class="strong"><strong>debian/control</strong></span> (template file, v=1.2): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.2/debian/control
+Source: debhello
+Section: unknown
+Priority: optional
+Maintainer: "Firstname Lastname" &lt;email.address@example.org&gt;
+Build-Depends: debhelper (&gt;=11~)
+Standards-Version: 4.1.4
+Homepage: &lt;insert the upstream URL, if relevant&gt;
+
+Package: debhello
+Architecture: all
+Multi-Arch: foreign
+Depends: ${misc:Depends}
+Description: auto-generated package by debmake
+ This Debian binary package was auto-generated by the
+ debmake(1) command provided by the debmake package.</pre>
+        <p>
+</p>
+        <p>Let’s make this Debian package better as the maintainer.</p>
+        <p><strong><span class="strong"><strong>debian/control</strong></span> (maintainer version, v=1.2): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-1.2/debian/control
+ ... hack, hack, hack, ...
+ $ cat debhello-1.2/debian/control
+Source: debhello
+Section: devel
+Priority: optional
+Maintainer: Osamu Aoki &lt;osamu@debian.org&gt;
+Build-Depends: debhelper (&gt;=11~)
+Standards-Version: 4.3.0
+Homepage: https://salsa.debian.org/debian/debmake-doc
+
+Package: debhello
+Architecture: all
+Multi-Arch: foreign
+Depends: zenity, ${misc:Depends}
+Description: example package in the debmake-doc package
+ This is an example package to demonstrate Debian packaging using
+ the debmake command.
+ .
+ The generated Debian package uses the dh command offered by the
+ debhelper package and the dpkg source format `3.0 (quilt)'.</pre>
+        <p>
+</p>
+        <p>Please note the manually added <span class="strong"><strong>zenity</strong></span> dependency.</p>
+        <p>The <span class="strong"><strong>debian/rules</strong></span> file is exactly the same as the one in <a class="xref" href="ch08.en.html#makefile-sh" title="8.3. Makefile (shell, CLI)">Section 8.3, “Makefile (shell, CLI)”</a>.</p>
+        <p>There are several other template files under the <span class="strong"><strong>debian/</strong></span> directory.  These also need to be updated.</p>
+        <p><strong>Template files under <span class="strong"><strong>debian/</strong></span>. (v=1.2): </strong>
+</p>
+        <pre class="screen"> $ tree debhello-1.2/debian
+debhello-1.2/debian
+├── README.Debian
+├── changelog
+├── compat
+├── control
+├── copyright
+├── patches
+│   └── series
+├── rules
+├── source
+│   ├── format
+│   └── local-options
+└── watch
+
+2 directories, 10 files</pre>
+        <p>
+</p>
+        <p>The rest of the packaging activities are practically the same as in <a class="xref" href="ch08.en.html#makefile-sh" title="8.3. Makefile (shell, CLI)">Section 8.3, “Makefile (shell, CLI)”</a>.</p>
+        <p>Here is the generated dependency list of <span class="strong"><strong>debhello_1.2-1_all.deb</strong></span>.</p>
+        <p><strong>The generated dependency list of <span class="strong"><strong>debhello_1.2-1_all.deb</strong></span>: </strong>
+</p>
+        <pre class="screen"> $ dpkg -f debhello_1.2-1_all.deb pre-depends depends recommends conflicts br...
+Depends: zenity</pre>
+        <p>
+</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="setup-py-gui"/>8.6. setup.py (Python3, GUI)</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here is an example of creating a simple Debian package from a Python3 GUI program using the <span class="strong"><strong>setup.py</strong></span> as its build system.</p>
+        <p>This upstream is based on <a class="xref" href="ch08.en.html#setup-py" title="8.4. setup.py (Python3, CLI)">Section 8.4, “setup.py (Python3, CLI)”</a> with enhanced GUI, desktop icon, and manpage support.</p>
+        <p>Let’s assume this upstream tarball to be <span class="strong"><strong>debhello-1.3.tar.gz</strong></span>.</p>
+        <p>Let’s get the source and make the Debian package.</p>
+        <p><strong>Download <span class="strong"><strong>debhello-1.3.tar.gz</strong></span>. </strong>
+</p>
+        <pre class="screen"> $ wget http://www.example.org/download/debhello-1.3.tar.gz
+ ...
+ $ tar -xzmf debhello-1.3.tar.gz
+ $ tree
+.
+├── debhello-1.3
+│   ├── LICENSE
+│   ├── MANIFEST.in
+│   ├── PKG-INFO
+│   ├── data
+│   │   ├── hello.desktop
+│   │   └── hello.png
+│   ├── hello_py
+│   │   └── __init__.py
+│   ├── man
+│   │   └── hello.1
+│   ├── scripts
+│   │   └── hello
+│   └── setup.py
+└── debhello-1.3.tar.gz
+
+5 directories, 10 files</pre>
+        <p>
+</p>
+        <p>Here are the upstream sources.</p>
+        <p><strong><span class="strong"><strong>hello</strong></span> (v=1.3). </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.3/scripts/hello
+#!/usr/bin/python3
+import hello_py
+
+if __name__ == '__main__':
+    hello_py.main()</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>hello_py/__init__.py</strong></span> (v=1.3). </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.3/hello_py/__init__.py
+#!/usr/bin/python3
+from gi.repository import Gtk
+
+class TopWindow(Gtk.Window):
+
+    def __init__(self):
+        Gtk.Window.__init__(self)
+        self.title = "Hello World!"
+        self.counter = 0
+        self.border_width = 10
+        self.set_default_size(400, 100)
+        self.set_position(Gtk.WindowPosition.CENTER)
+        self.button = Gtk.Button(label="Click me!")
+        self.button.connect("clicked", self.on_button_clicked)
+        self.add(self.button)
+        self.connect("delete-event", self.on_window_destroy)
+
+    def on_window_destroy(self, *args):
+        Gtk.main_quit(*args)
+
+    def on_button_clicked(self, widget):
+        self.counter += 1
+        widget.set_label("Hello, World!\nClick count = %i" % self.counter)
+
+def main():
+    window = TopWindow()
+    window.show_all()
+    Gtk.main()
+
+if __name__ == '__main__':
+    main()</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>setup.py</strong></span> (v=1.3). </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.3/setup.py
+#!/usr/bin/python3
+# vi:se ts=4 sts=4 et ai:
+from distutils.core import setup
+
+setup(name='debhello',
+    version='4.1',
+    description='Hello Python',
+    long_description='Hello Python program.',
+    author='Osamu Aoki',
+    author_email='osamu@debian.org',
+    url='http://people.debian.org/~osamu/',
+    packages=['hello_py'],
+    package_dir={'hello_py': 'hello_py'},
+    scripts=['scripts/hello'],
+    data_files=[
+        ('share/applications', ['data/hello.desktop']),
+        ('share/pixmaps', ['data/hello.png']),
+        ('share/man/man1', ['man/hello.1']),
+    ],
+    classifiers = ['Development Status :: 3 - Alpha',
+        'Environment :: Console',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: MIT License',
+        'Natural Language :: English',
+        'Operating System :: POSIX :: Linux',
+        'Programming Language :: Python :: 3',
+        'Topic :: Utilities',
+    ],
+    platforms   = 'POSIX',
+    license     = 'MIT License'
+)</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>MANIFEST.in</strong></span> (v=1.3). </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.3/MANIFEST.in
+include MANIFEST.in
+include LICENSE
+include data/hello.deskto
+include data/hello.png
+include man/hello.1</pre>
+        <p>
+</p>
+        <p>Let’s package this with the <span class="strong"><strong>debmake</strong></span> command.  Here, the <span class="strong"><strong>-b':py3'</strong></span> option is used to specify that the generated binary package contains Python3 script and module files.</p>
+        <pre class="screen"> $ cd debhello-1.3
+ $ debmake -b':py3'
+I: set parameters
+I: sanity check of parameters
+I: pkg="debhello", ver="1.3", rev="1"
+I: *** start packaging in "debhello-1.3". ***
+I: provide debhello_1.3.orig.tar.gz for non-native Debian package
+I: pwd = "/path/to"
+I: $ ln -sf debhello-1.3.tar.gz debhello_1.3.orig.tar.gz
+I: pwd = "/path/to/debhello-1.3"
+I: parse binary package settings: :py3
+I: binary package=debhello Type=python3 / Arch=all M-A=foreign
+...</pre>
+        <p>The result is practically the same as in <a class="xref" href="ch08.en.html#setup-py" title="8.4. setup.py (Python3, CLI)">Section 8.4, “setup.py (Python3, CLI)”</a>.</p>
+        <p>Let’s make this Debian package better as the maintainer.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (maintainer version, v=1.3): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-1.3/debian/rules
+ ... hack, hack, hack, ...
+ $ cat debhello-1.3/debian/rules
+#!/usr/bin/make -f
+export DH_VERBOSE = 1
+
+%:
+        dh $@ --with python3 --buildsystem=pybuild</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>debian/control</strong></span> (maintainer version, v=1.3): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-1.3/debian/control
+ ... hack, hack, hack, ...
+ $ cat debhello-1.3/debian/control
+Source: debhello
+Section: devel
+Priority: optional
+Maintainer: Osamu Aoki &lt;osamu@debian.org&gt;
+Build-Depends: debhelper (&gt;=11~), dh-python, python3-all
+Standards-Version: 4.3.0
+Homepage: https://salsa.debian.org/debian/debmake-doc
+X-Python3-Version: &gt;= 3.2
+
+Package: debhello
+Architecture: all
+Multi-Arch: foreign
+Depends: gir1.2-gtk-3.0, python3-gi, ${misc:Depends}, ${python3:Depends}
+Description: example package in the debmake-doc package
+ This is an example package to demonstrate Debian packaging using
+ the debmake command.
+ .
+ The generated Debian package uses the dh command offered by the
+ debhelper package and the dpkg source format `3.0 (quilt)'.</pre>
+        <p>
+</p>
+        <p>Please note the manually added <span class="strong"><strong>python3-gi</strong></span> and <span class="strong"><strong>gir1.2-gtk-3.0</strong></span> dependencies.</p>
+        <p>Since this upstream source has a manpage and other files with matching entries in the <span class="strong"><strong>setup.py</strong></span> file, there is no need to create them and add the <span class="strong"><strong>debian/install</strong></span> and <span class="strong"><strong>debian/manpages</strong></span> files that were required in <a class="xref" href="ch08.en.html#setup-py" title="8.4. setup.py (Python3, CLI)">Section 8.4, “setup.py (Python3, CLI)”</a>.</p>
+        <p>The rest of the packaging activities are practically the same as in <a class="xref" href="ch08.en.html#setup-py" title="8.4. setup.py (Python3, CLI)">Section 8.4, “setup.py (Python3, CLI)”</a>.</p>
+        <p>Here is the generated dependency list of <span class="strong"><strong>debhello_1.3-1_all.deb</strong></span>.</p>
+        <p><strong>The generated dependency list of <span class="strong"><strong>debhello_1.3-1_all.deb</strong></span>: </strong>
+</p>
+        <pre class="screen"> $ dpkg -f debhello_1.3-1_all.deb pre-depends depends recommends conflicts br...
+Depends: gir1.2-gtk-3.0, python3-gi, python3:any (&gt;= 3.2~)</pre>
+        <p>
+</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="makefile-single"/>8.7. Makefile (single-binary package)</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here is an example of creating a simple Debian package from a simple C source program using the <span class="strong"><strong>Makefile</strong></span> as its build system.</p>
+        <p>This is an enhanced upstream source example for <a class="xref" href="ch04.en.html" title="Chapter 4. Simple Example">Chapter 4, <em>Simple Example</em></a>.  This comes with the manpage, the desktop file, and the desktop icon.  This also links to an external library <span class="strong"><strong>libm</strong></span> to be a more practical example.</p>
+        <p>Let’s assume this upstream tarball to be <span class="strong"><strong>debhello-1.4.tar.gz</strong></span>.</p>
+        <p>This type of source is meant to be installed as a non-system file as:</p>
+        <pre class="screen"> $ tar -xzmf debhello-1.4.tar.gz
+ $ cd debhello-1.4
+ $ make
+ $ make install</pre>
+        <p>Debian packaging requires changing this “<span class="strong"><strong>make install</strong></span>” process to install files into the target system image location instead of the normal location under <span class="strong"><strong>/usr/local</strong></span>.</p>
+        <p>Let’s get the source and make the Debian package.</p>
+        <p><strong>Download <span class="strong"><strong>debhello-1.4.tar.gz</strong></span>. </strong>
+</p>
+        <pre class="screen"> $ wget http://www.example.org/download/debhello-1.4.tar.gz
+ ...
+ $ tar -xzmf debhello-1.4.tar.gz
+ $ tree
+.
+├── debhello-1.4
+│   ├── LICENSE
+│   ├── Makefile
+│   ├── data
+│   │   ├── hello.desktop
+│   │   └── hello.png
+│   ├── man
+│   │   └── hello.1
+│   └── src
+│       ├── config.h
+│       └── hello.c
+└── debhello-1.4.tar.gz
+
+4 directories, 8 files</pre>
+        <p>
+</p>
+        <p>Here, the contents of this source are as follows.</p>
+        <p><strong><span class="strong"><strong>src/hello.c</strong></span> (v=1.4): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.4/src/hello.c
+#include "config.h"
+#include &lt;math.h&gt;
+#include &lt;stdio.h&gt;
+int
+main()
+{
+        printf("Hello, I am " PACKAGE_AUTHOR "!\n");
+        printf("4.0 * atan(1.0) = %10f8\n", 4.0*atan(1.0));
+        return 0;
+}</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>src/config.h</strong></span> (v=1.4): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.4/src/config.h
+#define PACKAGE_AUTHOR "Osamu Aoki"</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>Makefile</strong></span> (v=1.4): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.4/Makefile
+prefix = /usr/local
+
+all: src/hello
+
+src/hello: src/hello.c
+        $(CC) $(CPPFLAGS) $(CFLAGS) $(LDFLAGS) -o $@ $^ -lm
+
+install: src/hello
+        install -D src/hello \
+                $(DESTDIR)$(prefix)/bin/hello
+        install -m 644 -D data/hello.desktop \
+                $(DESTDIR)$(prefix)/share/applications/hello.desktop
+        install -m 644 -D data/hello.png \
+                $(DESTDIR)$(prefix)/share/pixmaps/hello.png
+        install -m 644 -D man/hello.1 \
+                $(DESTDIR)$(prefix)/share/man/man1/hello.1
+
+clean:
+        -rm -f src/hello
+
+distclean: clean
+
+uninstall:
+        -rm -f $(DESTDIR)$(prefix)/bin/hello
+        -rm -f $(DESTDIR)$(prefix)/share/applications/hello.desktop
+        -rm -f $(DESTDIR)$(prefix)/share/pixmaps/hello.png
+        -rm -f $(DESTDIR)$(prefix)/share/man/man1/hello.1
+
+.PHONY: all install clean distclean uninstall</pre>
+        <p>
+</p>
+        <p>Please note that this <span class="strong"><strong>Makefile</strong></span> has the proper <span class="strong"><strong>install</strong></span> target for the manpage, the desktop file, and the desktop icon.</p>
+        <p>Let’s package this with the <span class="strong"><strong>debmake</strong></span> command.</p>
+        <pre class="screen"> $ cd debhello-1.4
+ $ debmake
+I: set parameters
+I: sanity check of parameters
+I: pkg="debhello", ver="1.4", rev="1"
+I: *** start packaging in "debhello-1.4". ***
+I: provide debhello_1.4.orig.tar.gz for non-native Debian package
+I: pwd = "/path/to"
+I: $ ln -sf debhello-1.4.tar.gz debhello_1.4.orig.tar.gz
+I: pwd = "/path/to/debhello-1.4"
+I: parse binary package settings:
+I: binary package=debhello Type=bin / Arch=any M-A=foreign
+...</pre>
+        <p>The result is practically the same as in <a class="xref" href="ch04.en.html#step-debmake" title="4.5. Step 2: Generate template files with debmake">Section 4.5, “Step 2: Generate template files with debmake”</a>.</p>
+        <p>Let’s make this Debian package, which is practically the same as in <a class="xref" href="ch04.en.html#step-maintainer" title="4.6. Step 3: Modification to the template files">Section 4.6, “Step 3: Modification to the template files”</a>, better as the maintainer.</p>
+        <p>If the <span class="strong"><strong>DEB_BUILD_MAINT_OPTIONS</strong></span> environment variable is not exported in <span class="strong"><strong>debian/rules</strong></span>, lintian warns "W: debhello: hardening-no-relro usr/bin/hello" for the linking of <span class="strong"><strong>libm</strong></span>.</p>
+        <p>The <span class="strong"><strong>debian/control</strong></span> file makes it exactly the same as the one in <a class="xref" href="ch04.en.html#step-maintainer" title="4.6. Step 3: Modification to the template files">Section 4.6, “Step 3: Modification to the template files”</a>, since the <span class="strong"><strong>libm</strong></span> library is always available as a part of <span class="strong"><strong>libc6</strong></span> (Priority: required).</p>
+        <p>There are several other template files under the <span class="strong"><strong>debian/</strong></span> directory.  These also need to be updated.</p>
+        <p><strong>Template files under <span class="strong"><strong>debian/</strong></span>. (v=1.4): </strong>
+</p>
+        <pre class="screen"> $ tree debhello-1.4/debian
+debhello-1.4/debian
+├── README.Debian
+├── changelog
+├── compat
+├── control
+├── copyright
+├── patches
+│   └── series
+├── rules
+├── source
+│   ├── format
+│   └── local-options
+└── watch
+
+2 directories, 10 files</pre>
+        <p>
+</p>
+        <p>The rest of the packaging activities are practically the same as the one in <a class="xref" href="ch04.en.html#step-debuild" title="4.7. Step 4: Building package with debuild">Section 4.7, “Step 4: Building package with debuild”</a>.</p>
+        <p>Here is the generated dependency list of all binary packages.</p>
+        <p><strong>The generated dependency list of all binary packages (v=1.4): </strong>
+</p>
+        <pre class="screen"> $ dpkg -f debhello-dbgsym_1.4-1_amd64.deb pre-depends depends recommends con...
+Depends: debhello (= 1.4-1)
+ $ dpkg -f debhello_1.4-1_amd64.deb pre-depends depends recommends conflicts ...
+Depends: libc6 (&gt;= 2.3.4)</pre>
+        <p>
+</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="configure-single"/>8.8. Makefile.in + configure (single-binary package)</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here is an example of creating a simple Debian package from a simple C source program using <span class="strong"><strong>Makefile.in</strong></span> and <span class="strong"><strong>configure</strong></span> as its build system.</p>
+        <p>This is an enhanced upstream source example for <a class="xref" href="ch08.en.html#makefile-single" title="8.7. Makefile (single-binary package)">Section 8.7, “Makefile (single-binary package)”</a>.  This also links to an external library, <span class="strong"><strong>libm</strong></span>, and this source is configurable using arguments to the <span class="strong"><strong>configure</strong></span> script, which generates the <span class="strong"><strong>Makefile</strong></span> and <span class="strong"><strong>src/config.h</strong></span> files.</p>
+        <p>Let’s assume this upstream tarball to be <span class="strong"><strong>debhello-1.5.tar.gz</strong></span>.</p>
+        <p>This type of source is meant to be installed as a non-system file, for example, as:</p>
+        <pre class="screen"> $ tar -xzmf debhello-1.5.tar.gz
+ $ cd debhello-1.5
+ $ ./configure --with-math
+ $ make
+ $ make install</pre>
+        <p>Let’s get the source and make the Debian package.</p>
+        <p><strong>Download <span class="strong"><strong>debhello-1.5.tar.gz</strong></span>. </strong>
+</p>
+        <pre class="screen"> $ wget http://www.example.org/download/debhello-1.5.tar.gz
+ ...
+ $ tar -xzmf debhello-1.5.tar.gz
+ $ tree
+.
+├── debhello-1.5
+│   ├── LICENSE
+│   ├── Makefile.in
+│   ├── configure
+│   ├── data
+│   │   ├── hello.desktop
+│   │   └── hello.png
+│   ├── man
+│   │   └── hello.1
+│   └── src
+│       └── hello.c
+└── debhello-1.5.tar.gz
+
+4 directories, 8 files</pre>
+        <p>
+</p>
+        <p>Here, the contents of this source are as follows.</p>
+        <p><strong><span class="strong"><strong>src/hello.c</strong></span> (v=1.5): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.5/src/hello.c
+#include "config.h"
+#ifdef WITH_MATH
+#  include &lt;math.h&gt;
+#endif
+#include &lt;stdio.h&gt;
+int
+main()
+{
+        printf("Hello, I am " PACKAGE_AUTHOR "!\n");
+#ifdef WITH_MATH
+        printf("4.0 * atan(1.0) = %10f8\n", 4.0*atan(1.0));
+#else
+        printf("I can't do MATH!\n");
+#endif
+        return 0;
+}</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>Makefile.in</strong></span> (v=1.5): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.5/Makefile.in
+prefix = @prefix@
+
+all: src/hello
+
+src/hello: src/hello.c
+        $(CC) @VERBOSE@ \
+                $(CPPFLAGS) \
+                $(CFLAGS) \
+                $(LDFLAGS) \
+                -o $@ $^ \
+                @LINKLIB@
+
+install: src/hello
+        install -D src/hello \
+                $(DESTDIR)$(prefix)/bin/hello
+        install -m 644 -D data/hello.desktop \
+                $(DESTDIR)$(prefix)/share/applications/hello.desktop
+        install -m 644 -D data/hello.png \
+                $(DESTDIR)$(prefix)/share/pixmaps/hello.png
+        install -m 644 -D man/hello.1 \
+                $(DESTDIR)$(prefix)/share/man/man1/hello.1
+
+clean:
+        -rm -f src/hello
+
+distclean: clean
+
+uninstall:
+        -rm -f $(DESTDIR)$(prefix)/bin/hello
+        -rm -f $(DESTDIR)$(prefix)/share/applications/hello.desktop
+        -rm -f $(DESTDIR)$(prefix)/share/pixmaps/hello.png
+        -rm -f $(DESTDIR)$(prefix)/share/man/man1/hello.1
+
+.PHONY: all install clean distclean uninstall</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>configure</strong></span> (v=1.5): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.5/configure
+#!/bin/sh -e
+# default values
+PREFIX="/usr/local"
+VERBOSE=""
+WITH_MATH="0"
+LINKLIB=""
+PACKAGE_AUTHOR="John Doe"
+
+# parse arguments
+while [ "${1}" != "" ]; do
+  VAR="${1%=*}" # Drop suffix =*
+  VAL="${1#*=}" # Drop prefix *=
+  case "${VAR}" in
+  --prefix)
+    PREFIX="${VAL}"
+    ;;
+  --verbose|-v)
+    VERBOSE="-v"
+    ;;
+  --with-math)
+    WITH_MATH="1"
+    LINKLIB="-lm"
+    ;;
+  --author)
+    PACKAGE_AUTHOR="${VAL}"
+    ;;
+  *)
+    echo "W: Unknown argument: ${1}"
+  esac
+  shift
+done
+
+# setup configured Makefile and src/config.h
+sed -e "s,@prefix@,${PREFIX}," \
+    -e "s,@VERBOSE@,${VERBOSE}," \
+    -e "s,@LINKLIB@,${LINKLIB}," \
+    &lt;Makefile.in &gt;Makefile
+if [ "${WITH_MATH}" = 1 ]; then
+echo "#define WITH_MATH" &gt;src/config.h
+else
+echo "/* not defined: WITH_MATH */" &gt;src/config.h
+fi
+echo "#define PACKAGE_AUTHOR \"${PACKAGE_AUTHOR}\"" &gt;&gt;src/config.h</pre>
+        <p>
+</p>
+        <p>Please note that the <span class="strong"><strong>configure</strong></span> command replaces strings with <span class="strong"><strong>@…@</strong></span> in <span class="strong"><strong>Makefile.in</strong></span> to produce <span class="strong"><strong>Makefile</strong></span> and creates <span class="strong"><strong>src/config.h</strong></span>.</p>
+        <p>Let’s package this with the <span class="strong"><strong>debmake</strong></span> command.</p>
+        <pre class="screen"> $ cd debhello-1.5
+ $ debmake
+I: set parameters
+I: sanity check of parameters
+I: pkg="debhello", ver="1.5", rev="1"
+I: *** start packaging in "debhello-1.5". ***
+I: provide debhello_1.5.orig.tar.gz for non-native Debian package
+I: pwd = "/path/to"
+I: $ ln -sf debhello-1.5.tar.gz debhello_1.5.orig.tar.gz
+I: pwd = "/path/to/debhello-1.5"
+I: parse binary package settings:
+I: binary package=debhello Type=bin / Arch=any M-A=foreign
+...</pre>
+        <p>The result is similar to <a class="xref" href="ch04.en.html#step-debmake" title="4.5. Step 2: Generate template files with debmake">Section 4.5, “Step 2: Generate template files with debmake”</a> but not exactly the same.</p>
+        <p>Let’s inspect the notable template files generated.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (template file, v=1.5): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.5/debian/rules
+#!/usr/bin/make -f
+# You must remove unused comment lines for the released package.
+#export DH_VERBOSE = 1
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+%:
+        dh $@</pre>
+        <p>
+</p>
+        <p>Let’s make this Debian package better as the maintainer.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (maintainer version, v=1.5): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-1.5/debian/rules
+ ... hack, hack, hack, ...
+ $ cat debhello-1.5/debian/rules
+#!/usr/bin/make -f
+export DH_VERBOSE = 1
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+%:
+        dh $@
+
+override_dh_auto_configure:
+        dh_auto_configure -- \
+                --with-math \
+                --author="Osamu Aoki"</pre>
+        <p>
+</p>
+        <p>There are several other template files under the <span class="strong"><strong>debian/</strong></span> directory.  These also need to be updated.</p>
+        <p>The rest of the packaging activities are practically the same as the one in <a class="xref" href="ch04.en.html#step-debuild" title="4.7. Step 4: Building package with debuild">Section 4.7, “Step 4: Building package with debuild”</a>.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="autotools-single"/>8.9. Autotools (single-binary package)</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here is an example of creating a simple Debian package from a simple C source program using Autotools = Autoconf and Automake (<span class="strong"><strong>Makefile.am</strong></span> and <span class="strong"><strong>configure.ac</strong></span>) as its build system. See <a class="xref" href="ch05.en.html#autotools" title="5.16.1. Autotools">Section 5.16.1, “Autotools”</a>.</p>
+        <p>This source usually comes with the upstream auto-generated <span class="strong"><strong>Makefile.in</strong></span> and <span class="strong"><strong>configure</strong></span> files, too.  This source can be packaged using these files as in <a class="xref" href="ch08.en.html#configure-single" title="8.8. Makefile.in + configure (single-binary package)">Section 8.8, “Makefile.in + configure (single-binary package)”</a> with the help of the <span class="strong"><strong>autotools-dev</strong></span> package.</p>
+        <p>The better alternative is to regenerate these files using the latest Autoconf and Automake packages if the upstream provided <span class="strong"><strong>Makefile.am</strong></span> and <span class="strong"><strong>configure.ac</strong></span> are compatible with the latest version.  This is advantageous for porting to new CPU architectures, etc.  This can be automated by using the “<span class="strong"><strong>--with autoreconf</strong></span>” option for the <span class="strong"><strong>dh</strong></span> command.</p>
+        <p>Let’s assume this upstream tarball to be <span class="strong"><strong>debhello-1.6.tar.gz</strong></span>.</p>
+        <p>This type of source is meant to be installed as a non-system file, for example, as:</p>
+        <pre class="screen"> $ tar -xzmf debhello-1.6.tar.gz
+ $ cd debhello-1.6
+ $ autoreconf -ivf # optional
+ $ ./configure --with-math
+ $ make
+ $ make install</pre>
+        <p>Let’s get the source and make the Debian package.</p>
+        <p><strong>Download <span class="strong"><strong>debhello-1.6.tar.gz</strong></span>. </strong>
+</p>
+        <pre class="screen"> $ wget http://www.example.org/download/debhello-1.6.tar.gz
+ ...
+ $ tar -xzmf debhello-1.6.tar.gz
+ $ tree
+.
+├── debhello-1.6
+│   ├── Makefile.am
+│   ├── configure.ac
+│   ├── data
+│   │   ├── hello.desktop
+│   │   └── hello.png
+│   ├── man
+│   │   ├── Makefile.am
+│   │   └── hello.1
+│   └── src
+│       ├── Makefile.am
+│       └── hello.c
+└── debhello-1.6.tar.gz
+
+4 directories, 9 files</pre>
+        <p>
+</p>
+        <p>Here, the contents of this source are as follows.</p>
+        <p><strong><span class="strong"><strong>src/hello.c</strong></span> (v=1.6): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.6/src/hello.c
+#include "config.h"
+#ifdef WITH_MATH
+#  include &lt;math.h&gt;
+#endif
+#include &lt;stdio.h&gt;
+int
+main()
+{
+        printf("Hello, I am " PACKAGE_AUTHOR "!\n");
+#ifdef WITH_MATH
+        printf("4.0 * atan(1.0) = %10f8\n", 4.0*atan(1.0));
+#else
+        printf("I can't do MATH!\n");
+#endif
+        return 0;
+}</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>Makefile.am</strong></span> (v=1.6): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.6/Makefile.am
+SUBDIRS = src man
+ $ cat debhello-1.6/man/Makefile.am
+dist_man_MANS = hello.1
+ $ cat debhello-1.6/src/Makefile.am
+bin_PROGRAMS = hello
+hello_SOURCES = hello.c</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>configure.ac</strong></span> (v=1.6): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.6/configure.ac
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+AC_PREREQ([2.69])
+AC_INIT([debhello],[2.1],[foo@example.org])
+AC_CONFIG_SRCDIR([src/hello.c])
+AC_CONFIG_HEADERS([config.h])
+echo "Standard customization chores"
+AC_CONFIG_AUX_DIR([build-aux])
+AM_INIT_AUTOMAKE([foreign])
+# Add #define PACKAGE_AUTHOR ... in config.h with a comment
+AC_DEFINE(PACKAGE_AUTHOR, ["Osamu Aoki"], [Define PACKAGE_AUTHOR])
+echo "Add --with-math option functionality to ./configure"
+AC_ARG_WITH([math],
+  [AS_HELP_STRING([--with-math],
+    [compile with math library  @&lt;:@default=yes@:&gt;@])],
+  [],
+  [with_math="yes"]
+  )
+echo "==== withval   := \"$withval\""
+echo "==== with_math := \"$with_math\""
+# m4sh if-else construct
+AS_IF([test "x$with_math" != "xno"],[
+  echo "==== Check include: math.h"
+  AC_CHECK_HEADER(math.h,[],[
+    AC_MSG_ERROR([Couldn't find math.h.] )
+  ])
+  echo "==== Check library: libm"
+  AC_SEARCH_LIBS(atan, [m])
+  #AC_CHECK_LIB(m, atan)
+  echo "==== Build with LIBS := \"$LIBS\""
+  AC_DEFINE(WITH_MATH, [1], [Build with the math library])
+],[
+  echo "==== Skip building with math.h."
+  AH_TEMPLATE(WITH_MATH, [Build without the math library])
+])
+# Checks for programs.
+AC_PROG_CC
+AC_CONFIG_FILES([Makefile
+                 man/Makefile
+                 src/Makefile])
+AC_OUTPUT</pre>
+        <p>
+</p>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Tip]" src="images/tip.png"/>
+              </td>
+              <th align="left">Tip</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Without “<span class="strong"><strong>foreign</strong></span>” strictness level specified in <span class="strong"><strong>AM_INIT_AUTOMAKE()</strong></span> as above, <span class="strong"><strong>automake</strong></span> defaults to “<span class="strong"><strong>gnu</strong></span>” strictness level requiring several files in the top-level directory.  See “3.2 Strictness” in the <span class="strong"><strong>automake</strong></span> document.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p>Let’s package this with the <span class="strong"><strong>debmake</strong></span> command.</p>
+        <pre class="screen"> $ cd debhello-1.6
+ $ debmake
+I: set parameters
+I: sanity check of parameters
+I: pkg="debhello", ver="1.6", rev="1"
+I: *** start packaging in "debhello-1.6". ***
+I: provide debhello_1.6.orig.tar.gz for non-native Debian package
+I: pwd = "/path/to"
+I: $ ln -sf debhello-1.6.tar.gz debhello_1.6.orig.tar.gz
+I: pwd = "/path/to/debhello-1.6"
+I: parse binary package settings:
+I: binary package=debhello Type=bin / Arch=any M-A=foreign
+...</pre>
+        <p>The result is similar to <a class="xref" href="ch08.en.html#configure-single" title="8.8. Makefile.in + configure (single-binary package)">Section 8.8, “Makefile.in + configure (single-binary package)”</a> but not exactly the same.</p>
+        <p>Let’s inspect the notable template files generated.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (template file, v=1.6): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.6/debian/rules
+#!/usr/bin/make -f
+# You must remove unused comment lines for the released package.
+#export DH_VERBOSE = 1
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+%:
+        dh $@ --with autoreconf
+
+#override_dh_install:
+#       dh_install --list-missing -X.la -X.pyc -X.pyo</pre>
+        <p>
+</p>
+        <p>Let’s make this Debian package better as the maintainer.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (maintainer version, v=1.6): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-1.6/debian/rules
+ ... hack, hack, hack, ...
+ $ cat debhello-1.6/debian/rules
+#!/usr/bin/make -f
+export DH_VERBOSE = 1
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+%:
+        dh $@ --with autoreconf
+
+override_dh_auto_configure:
+        dh_auto_configure -- \
+                --with-math</pre>
+        <p>
+</p>
+        <p>There are several other template files under the <span class="strong"><strong>debian/</strong></span> directory.  These also need to be updated.</p>
+        <p>The rest of the packaging activities are practically the same as the one in <a class="xref" href="ch04.en.html#step-debuild" title="4.7. Step 4: Building package with debuild">Section 4.7, “Step 4: Building package with debuild”</a>.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="cmake-single"/>8.10. CMake (single-binary package)</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here is an example of creating a simple Debian package from a simple C source program using CMake (<span class="strong"><strong>CMakeLists.txt</strong></span> and some files such as <span class="strong"><strong>config.h.in</strong></span>) as its build system. See <a class="xref" href="ch05.en.html#cmake" title="5.16.2. CMake">Section 5.16.2, “CMake”</a>.</p>
+        <p>The <span class="strong"><strong>cmake</strong></span> command generates the <span class="strong"><strong>Makefile</strong></span> file based on the <span class="strong"><strong>CMakeLists.txt</strong></span> file and its <span class="strong"><strong>-D</strong></span> option.  It also configures the file as specified in its <span class="strong"><strong>configure_file(…)</strong></span> by replacing strings with <span class="strong"><strong>@…@</strong></span> and changing the <span class="strong"><strong>#cmakedefine …</strong></span> line.</p>
+        <p>Let’s assume this upstream tarball to be <span class="strong"><strong>debhello-1.7.tar.gz</strong></span>.</p>
+        <p>This type of source is meant to be installed as a non-system file, for example, as:</p>
+        <pre class="screen"> $ tar -xzmf debhello-1.7.tar.gz
+ $ cd debhello-1.7
+ $ mkdir obj-x86_64-linux-gnu # for out-of-tree build
+ $ cd obj-x86_64-linux-gnu
+ $ cmake ..
+ $ make
+ $ make install</pre>
+        <p>Let’s get the source and make the Debian package.</p>
+        <p><strong>Download <span class="strong"><strong>debhello-1.7.tar.gz</strong></span>. </strong>
+</p>
+        <pre class="screen"> $ wget http://www.example.org/download/debhello-1.7.tar.gz
+ ...
+ $ tar -xzmf debhello-1.7.tar.gz
+ $ tree
+.
+├── debhello-1.7
+│   ├── CMakeLists.txt
+│   ├── data
+│   │   ├── hello.desktop
+│   │   └── hello.png
+│   ├── man
+│   │   ├── CMakeLists.txt
+│   │   └── hello.1
+│   └── src
+│       ├── CMakeLists.txt
+│       ├── config.h.in
+│       └── hello.c
+└── debhello-1.7.tar.gz
+
+4 directories, 9 files</pre>
+        <p>
+</p>
+        <p>Here, the contents of this source are as follows.</p>
+        <p><strong><span class="strong"><strong>src/hello.c</strong></span> (v=1.7): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.7/src/hello.c
+#include "config.h"
+#ifdef WITH_MATH
+#  include &lt;math.h&gt;
+#endif
+#include &lt;stdio.h&gt;
+int
+main()
+{
+        printf("Hello, I am " PACKAGE_AUTHOR "!\n");
+#ifdef WITH_MATH
+        printf("4.0 * atan(1.0) = %10f8\n", 4.0*atan(1.0));
+#else
+        printf("I can't do MATH!\n");
+#endif
+        return 0;
+}</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>src/config.h.in</strong></span> (v=1.7): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.7/src/config.h.in
+/* name of the package author */
+#define PACKAGE_AUTHOR "@PACKAGE_AUTHOR@"
+/* math library support */
+#cmakedefine WITH_MATH</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>CMakeLists.txt</strong></span> (v=1.7): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.7/CMakeLists.txt
+cmake_minimum_required(VERSION 2.8)
+project(debhello)
+set(PACKAGE_AUTHOR "Osamu Aoki")
+add_subdirectory(src)
+add_subdirectory(man)
+ $ cat debhello-1.7/man/CMakeLists.txt
+install(
+  FILES ${CMAKE_CURRENT_SOURCE_DIR}/hello.1
+  DESTINATION share/man/man1
+)
+ $ cat debhello-1.7/src/CMakeLists.txt
+# Always define HAVE_CONFIG_H
+add_definitions(-DHAVE_CONFIG_H)
+# Interactively define WITH_MATH
+option(WITH_MATH "Build with math support" OFF)
+#variable_watch(WITH_MATH)
+# Generate config.h from config.h.in
+configure_file(
+  "${CMAKE_CURRENT_SOURCE_DIR}/config.h.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/config.h"
+)
+include_directories("${CMAKE_CURRENT_BINARY_DIR}")
+add_executable(hello hello.c)
+install(TARGETS hello
+  RUNTIME DESTINATION bin
+)</pre>
+        <p>
+</p>
+        <p>Let’s package this with the <span class="strong"><strong>debmake</strong></span> command.</p>
+        <pre class="screen"> $ cd debhello-1.7
+ $ debmake
+I: set parameters
+I: sanity check of parameters
+I: pkg="debhello", ver="1.7", rev="1"
+I: *** start packaging in "debhello-1.7". ***
+I: provide debhello_1.7.orig.tar.gz for non-native Debian package
+I: pwd = "/path/to"
+I: $ ln -sf debhello-1.7.tar.gz debhello_1.7.orig.tar.gz
+I: pwd = "/path/to/debhello-1.7"
+I: parse binary package settings:
+I: binary package=debhello Type=bin / Arch=any M-A=foreign
+...</pre>
+        <p>The result is similar to <a class="xref" href="ch08.en.html#configure-single" title="8.8. Makefile.in + configure (single-binary package)">Section 8.8, “Makefile.in + configure (single-binary package)”</a> but not exactly the same.</p>
+        <p>Let’s inspect the notable template files generated.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (template file, v=1.7): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.7/debian/rules
+#!/usr/bin/make -f
+# You must remove unused comment lines for the released package.
+#export DH_VERBOSE = 1
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+%:
+        dh $@
+
+#override_dh_auto_configure:
+#       dh_auto_configure -- \
+#             -DCMAKE_LIBRARY_ARCHITECTURE="$(DEB_TARGET_MULTIARCH)"</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>debian/control</strong></span> (template file, v=1.7): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-1.7/debian/control
+Source: debhello
+Section: unknown
+Priority: optional
+Maintainer: "Firstname Lastname" &lt;email.address@example.org&gt;
+Build-Depends: cmake, debhelper (&gt;=11~)
+Standards-Version: 4.1.4
+Homepage: &lt;insert the upstream URL, if relevant&gt;
+
+Package: debhello
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: auto-generated package by debmake
+ This Debian binary package was auto-generated by the
+ debmake(1) command provided by the debmake package.</pre>
+        <p>
+</p>
+        <p>Let’s make this Debian package better as the maintainer.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (maintainer version, v=1.7): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-1.7/debian/rules
+ ... hack, hack, hack, ...
+ $ cat debhello-1.7/debian/rules
+#!/usr/bin/make -f
+export DH_VERBOSE = 1
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+%:
+        dh $@
+
+override_dh_auto_configure:
+        dh_auto_configure -- -DWITH-MATH=1</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>debian/control</strong></span> (maintainer version, v=1.7): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-1.7/debian/control
+ ... hack, hack, hack, ...
+ $ cat debhello-1.7/debian/control
+Source: debhello
+Section: devel
+Priority: optional
+Maintainer: Osamu Aoki &lt;osamu@debian.org&gt;
+Build-Depends: cmake, debhelper (&gt;=11~)
+Standards-Version: 4.3.0
+Homepage: https://salsa.debian.org/debian/debmake-doc
+
+Package: debhello
+Architecture: any
+Multi-Arch: foreign
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: example package in the debmake-doc package
+ This is an example package to demonstrate Debian packaging using
+ the debmake command.
+ .
+ The generated Debian package uses the dh command offered by the
+ debhelper package and the dpkg source format `3.0 (quilt)'.</pre>
+        <p>
+</p>
+        <p>There are several other template files under the <span class="strong"><strong>debian/</strong></span> directory.  These also need to be updated.</p>
+        <p>The rest of the packaging activities are practically the same as the one in <a class="xref" href="ch08.en.html#configure-single" title="8.8. Makefile.in + configure (single-binary package)">Section 8.8, “Makefile.in + configure (single-binary package)”</a>.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="autotools-multi"/>8.11. Autotools (multi-binary package)</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here is an example of creating a set of Debian binary packages including the executable package, the shared library package, the development file package, and the debug symbol package from a simple C source program using Autotools = Autoconf and Automake (which use <span class="strong"><strong>Makefile.am</strong></span> and <span class="strong"><strong>configure.ac</strong></span> as their input files) as its build system.  See <a class="xref" href="ch05.en.html#autotools" title="5.16.1. Autotools">Section 5.16.1, “Autotools”</a>.</p>
+        <p>Let’s package this in the same way as in <a class="xref" href="ch08.en.html#autotools-single" title="8.9. Autotools (single-binary package)">Section 8.9, “Autotools (single-binary package)”</a>.</p>
+        <p>Let’s assume this upstream tarball to be <span class="strong"><strong>debhello-2.0.tar.gz</strong></span>.</p>
+        <p>This type of source is meant to be installed as a non-system file, for example, as:</p>
+        <pre class="screen"> $ tar -xzmf debhello-2.0.tar.gz
+ $ cd debhello-2.0
+ $ autoreconf -ivf # optional
+ $ ./configure --with-math
+ $ make
+ $ make install</pre>
+        <p>Let’s get the source and make the Debian package.</p>
+        <p><strong>Download <span class="strong"><strong>debhello-2.0.tar.gz</strong></span>. </strong>
+</p>
+        <pre class="screen"> $ wget http://www.example.org/download/debhello-2.0.tar.gz
+ ...
+ $ tar -xzmf debhello-2.0.tar.gz
+ $ tree
+.
+├── debhello-2.0
+│   ├── Makefile.am
+│   ├── configure.ac
+│   ├── data
+│   │   ├── hello.desktop
+│   │   └── hello.png
+│   ├── lib
+│   │   ├── Makefile.am
+│   │   ├── sharedlib.c
+│   │   └── sharedlib.h
+│   ├── man
+│   │   ├── Makefile.am
+│   │   └── hello.1
+│   └── src
+│       ├── Makefile.am
+│       └── hello.c
+└── debhello-2.0.tar.gz
+
+5 directories, 12 files</pre>
+        <p>
+</p>
+        <p>Here, the contents of this source are as follows.</p>
+        <p><strong><span class="strong"><strong>src/hello.c</strong></span> (v=2.0): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-2.0/src/hello.c
+#include "config.h"
+#include &lt;stdio.h&gt;
+#include &lt;sharedlib.h&gt;
+int
+main()
+{
+        printf("Hello, I am " PACKAGE_AUTHOR "!\n");
+        sharedlib();
+        return 0;
+}</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>lib/sharedlib.h</strong></span> and <span class="strong"><strong>lib/sharedlib.c</strong></span> (v=1.6): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-2.0/lib/sharedlib.h
+int sharedlib();
+ $ cat debhello-2.0/lib/sharedlib.c
+#include &lt;stdio.h&gt;
+int
+sharedlib()
+{
+        printf("This is a shared library!\n");
+        return 0;
+}</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>Makefile.am</strong></span> (v=2.0): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-2.0/Makefile.am
+# recursively process `Makefile.am` in SUBDIRS
+SUBDIRS = lib src man
+ $ cat debhello-2.0/man/Makefile.am
+# manpages (distributed in the source package)
+dist_man_MANS = hello.1
+ $ cat debhello-2.0/lib/Makefile.am
+# libtool librares to be produced
+lib_LTLIBRARIES = libsharedlib.la
+
+# source files used for lib_LTLIBRARIES
+libsharedlib_la_SOURCES = sharedlib.c
+
+# C pre-processor flags used for lib_LTLIBRARIES
+#libsharedlib_la_CPPFLAGS =
+
+# Headers files to be installed in &lt;prefix&gt;/include
+include_HEADERS = sharedlib.h
+
+# Versioning Libtool Libraries with version triplets
+libsharedlib_la_LDFLAGS = -version-info 1:0:0
+ $ cat debhello-2.0/src/Makefile.am
+# program executables to be produced
+bin_PROGRAMS = hello
+
+# source files used for bin_PROGRAMS
+hello_SOURCES = hello.c
+
+# C pre-processor flags used for bin_PROGRAMS
+AM_CPPFLAGS = -I$(srcdir) -I$(top_srcdir)/lib
+
+# Extra options for the linker for hello
+# hello_LDFLAGS =
+
+# Libraries the `hello` binary to be linked
+hello_LDADD = $(top_srcdir)/lib/libsharedlib.la</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>configure.ac</strong></span> (v=2.0): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-2.0/configure.ac
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+AC_PREREQ([2.69])
+AC_INIT([debhello],[2.2],[foo@example.org])
+AC_CONFIG_SRCDIR([src/hello.c])
+AC_CONFIG_HEADERS([config.h])
+echo "Standard customization chores"
+AC_CONFIG_AUX_DIR([build-aux])
+
+AM_INIT_AUTOMAKE([foreign])
+
+# Set default to --enable-shared --disable-static
+LT_INIT([shared disable-static])
+
+# find the libltdl sources in the libltdl sub-directory
+LT_CONFIG_LTDL_DIR([libltdl])
+
+# choose one
+LTDL_INIT([recursive])
+#LTDL_INIT([subproject])
+#LTDL_INIT([nonrecursive])
+
+# Add #define PACKAGE_AUTHOR ... in config.h with a comment
+AC_DEFINE(PACKAGE_AUTHOR, ["Osamu Aoki"], [Define PACKAGE_AUTHOR])
+# Checks for programs.
+AC_PROG_CC
+
+# only for the recursive case
+AC_CONFIG_FILES([Makefile
+                 lib/Makefile
+                 man/Makefile
+                 src/Makefile])
+AC_OUTPUT</pre>
+        <p>
+</p>
+        <p>Let’s package this with the <span class="strong"><strong>debmake</strong></span> command into multiple packages:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+<span class="strong"><strong>debhello</strong></span>: type = <span class="strong"><strong>bin</strong></span>
+</li>
+            <li class="listitem">
+<span class="strong"><strong>libsharedlib1</strong></span>: type = <span class="strong"><strong>lib</strong></span>
+</li>
+            <li class="listitem">
+<span class="strong"><strong>libsharedlib-dev</strong></span>: type = <span class="strong"><strong>dev</strong></span>
+</li>
+          </ul>
+        </div>
+        <p>Here, the <span class="strong"><strong>-b',libsharedlib1,libsharedlib-dev'</strong></span> option is used to specify the generated binary packages.</p>
+        <pre class="screen"> $ cd debhello-2.0
+ $ debmake -b',libsharedlib1,libsharedlib-dev'
+I: set parameters
+I: sanity check of parameters
+I: pkg="debhello", ver="2.0", rev="1"
+I: *** start packaging in "debhello-2.0". ***
+I: provide debhello_2.0.orig.tar.gz for non-native Debian package
+I: pwd = "/path/to"
+I: $ ln -sf debhello-2.0.tar.gz debhello_2.0.orig.tar.gz
+I: pwd = "/path/to/debhello-2.0"
+I: parse binary package settings: ,libsharedlib1,libsharedlib-dev
+I: binary package=debhello Type=bin / Arch=any M-A=foreign
+I: binary package=libsharedlib1 Type=lib / Arch=any M-A=same
+I: binary package=libsharedlib-dev Type=dev / Arch=any M-A=same
+I: analyze the source tree
+I: build_type = Autotools with autoreconf
+...</pre>
+        <p>The result is similar to <a class="xref" href="ch08.en.html#configure-single" title="8.8. Makefile.in + configure (single-binary package)">Section 8.8, “Makefile.in + configure (single-binary package)”</a> but with more template files.</p>
+        <p>Let’s inspect the notable template files generated.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (template file, v=2.0): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-2.0/debian/rules
+#!/usr/bin/make -f
+# You must remove unused comment lines for the released package.
+#export DH_VERBOSE = 1
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+%:
+        dh $@ --with autoreconf
+
+#override_dh_install:
+#       dh_install --list-missing -X.la -X.pyc -X.pyo</pre>
+        <p>
+</p>
+        <p>Let’s make this Debian package better as the maintainer.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (maintainer version, v=2.0): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-2.0/debian/rules
+ ... hack, hack, hack, ...
+ $ cat debhello-2.0/debian/rules
+#!/usr/bin/make -f
+export DH_VERBOSE = 1
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+%:
+        dh $@ --with autoreconf
+
+override_dh_install:
+        dh_install --list-missing -X.la</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>debian/control</strong></span> (maintainer version, v=2.0): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-2.0/debian/control
+ ... hack, hack, hack, ...
+ $ cat debhello-2.0/debian/control
+Source: debhello
+Section: devel
+Priority: optional
+Maintainer: Osamu Aoki &lt;osamu@debian.org&gt;
+Build-Depends: debhelper (&gt;=11~), dh-autoreconf
+Standards-Version: 4.3.0
+Homepage: https://salsa.debian.org/debian/debmake-doc
+
+Package: debhello
+Architecture: any
+Multi-Arch: foreign
+Depends: libsharedlib1 (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: example executable package
+ This is an example package to demonstrate Debian packaging using
+ the debmake command.
+ .
+ The generated Debian package uses the dh command offered by the
+ debhelper package and the dpkg source format `3.0 (quilt)'.
+ .
+ This package provides the executable program.
+
+Package: libsharedlib1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: example shared library package
+ This is an example package to demonstrate Debian packaging using
+ the debmake command.
+ .
+ The generated Debian package uses the dh command offered by the
+ debhelper package and the dpkg source format `3.0 (quilt)'.
+ .
+ This package contains the shared library.
+
+Package: libsharedlib-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: libsharedlib1 (= ${binary:Version}), ${misc:Depends}
+Description: example development package
+ This is an example package to demonstrate Debian packaging using
+ the debmake command.
+ .
+ The generated Debian package uses the dh command offered by the
+ debhelper package and the dpkg source format `3.0 (quilt)'.
+ .
+ This package contains the development files.</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>debian/*.install</strong></span> (maintainer version, v=2.0): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-2.0/debian/debhello.install
+ ... hack, hack, hack, ...
+ $ cat debhello-2.0/debian/debhello.install
+usr/bin/*
+usr/share/man/*
+ $ vim debhello-2.0/debian/libsharedlib1.install
+ ... hack, hack, hack, ...
+ $ cat debhello-2.0/debian/libsharedlib1.install
+usr/lib/*/*.so.*
+ $ vim debhello-2.0/debian/libsharedlib-dev.install
+ ... hack, hack, hack, ...
+ $ cat debhello-2.0/debian/libsharedlib-dev.install
+###usr/lib/*/pkgconfig/*.pc
+usr/include
+usr/lib/*/*.so</pre>
+        <p>
+</p>
+        <p>Since this upstream source creates the proper auto-generated <span class="strong"><strong>Makefile</strong></span>, there is no need to create <span class="strong"><strong>debian/install</strong></span> and <span class="strong"><strong>debian/manpages</strong></span> files.</p>
+        <p>There are several other template files under the <span class="strong"><strong>debian/</strong></span> directory.  These also need to be updated.</p>
+        <p><strong>Template files under <span class="strong"><strong>debian/</strong></span>. (v=2.0): </strong>
+</p>
+        <pre class="screen"> $ tree debhello-2.0/debian
+debhello-2.0/debian
+├── README.Debian
+├── changelog
+├── compat
+├── control
+├── copyright
+├── debhello.install
+├── libsharedlib-dev.install
+├── libsharedlib1.install
+├── libsharedlib1.symbols
+├── patches
+│   └── series
+├── rules
+├── source
+│   ├── format
+│   └── local-options
+└── watch
+
+2 directories, 14 files</pre>
+        <p>
+</p>
+        <p>The rest of the packaging activities are practically the same as the one in <a class="xref" href="ch08.en.html#configure-single" title="8.8. Makefile.in + configure (single-binary package)">Section 8.8, “Makefile.in + configure (single-binary package)”</a>.</p>
+        <p>Here are the generated dependency list of all binary packages.</p>
+        <p><strong>The generated dependency list of all binary packages (v=2.0): </strong>
+</p>
+        <pre class="screen"> $ dpkg -f debhello-dbgsym_2.0-1_amd64.deb pre-depends depends recommends con...
+Depends: debhello (= 2.0-1)
+ $ dpkg -f debhello_2.0-1_amd64.deb pre-depends depends recommends conflicts ...
+Depends: libsharedlib1 (= 2.0-1), libc6 (&gt;= 2.2.5)
+ $ dpkg -f libsharedlib-dev_2.0-1_amd64.deb pre-depends depends recommends co...
+Depends: libsharedlib1 (= 2.0-1)
+ $ dpkg -f libsharedlib1-dbgsym_2.0-1_amd64.deb pre-depends depends recommend...
+Depends: libsharedlib1 (= 2.0-1)
+ $ dpkg -f libsharedlib1_2.0-1_amd64.deb pre-depends depends recommends confl...
+Depends: libc6 (&gt;= 2.2.5)</pre>
+        <p>
+</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="cmake-multi"/>8.12. CMake (multi-binary package)</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here is an example of creating a set of Debian binary packages including the executable package, the shared library package, the development file package, and the debug symbol package from a simple C source program using CMake (<span class="strong"><strong>CMakeLists.txt</strong></span> and some files such as <span class="strong"><strong>config.h.in</strong></span>) as its build system. See <a class="xref" href="ch05.en.html#cmake" title="5.16.2. CMake">Section 5.16.2, “CMake”</a>.</p>
+        <p>Let’s assume this upstream tarball to be <span class="strong"><strong>debhello-2.1.tar.gz</strong></span>.</p>
+        <p>This type of source is meant to be installed as a non-system file, for example, as:</p>
+        <pre class="screen"> $ tar -xzmf debhello-2.1.tar.gz
+ $ cd debhello-2.1
+ $ mkdir obj-x86_64-linux-gnu
+ $ cd obj-x86_64-linux-gnu
+ $ cmake ..
+ $ make
+ $ make install</pre>
+        <p>Let’s get the source and make the Debian package.</p>
+        <p><strong>Download <span class="strong"><strong>debhello-2.1.tar.gz</strong></span>. </strong>
+</p>
+        <pre class="screen"> $ wget http://www.example.org/download/debhello-2.1.tar.gz
+ ...
+ $ tar -xzmf debhello-2.1.tar.gz
+ $ tree
+.
+├── debhello-2.1
+│   ├── CMakeLists.txt
+│   ├── data
+│   │   ├── hello.desktop
+│   │   └── hello.png
+│   ├── lib
+│   │   ├── CMakeLists.txt
+│   │   ├── sharedlib.c
+│   │   └── sharedlib.h
+│   ├── man
+│   │   ├── CMakeLists.txt
+│   │   └── hello.1
+│   └── src
+│       ├── CMakeLists.txt
+│       ├── config.h.in
+│       └── hello.c
+└── debhello-2.1.tar.gz
+
+5 directories, 12 files</pre>
+        <p>
+</p>
+        <p>Here, the contents of this source are as follows.</p>
+        <p><strong><span class="strong"><strong>src/hello.c</strong></span> (v=2.1): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-2.1/src/hello.c
+#include "config.h"
+#include &lt;stdio.h&gt;
+#include &lt;sharedlib.h&gt;
+int
+main()
+{
+        printf("Hello, I am " PACKAGE_AUTHOR "!\n");
+        sharedlib();
+        return 0;
+}</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>src/config.h.in</strong></span> (v=2.1): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-2.1/src/config.h.in
+/* name of the package author */
+#define PACKAGE_AUTHOR "@PACKAGE_AUTHOR@"</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>lib/sharedlib.c</strong></span> and <span class="strong"><strong>lib/sharedlib.h</strong></span> (v=2.1): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-2.1/lib/sharedlib.h
+int sharedlib();
+ $ cat debhello-2.1/lib/sharedlib.c
+#include &lt;stdio.h&gt;
+int
+sharedlib()
+{
+        printf("This is a shared library!\n");
+        return 0;
+}</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>CMakeLists.txt</strong></span> (v=2.1): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-2.1/CMakeLists.txt
+cmake_minimum_required(VERSION 2.8)
+project(debhello)
+set(PACKAGE_AUTHOR "Osamu Aoki")
+add_subdirectory(lib)
+add_subdirectory(src)
+add_subdirectory(man)
+ $ cat debhello-2.1/man/CMakeLists.txt
+install(
+  FILES ${CMAKE_CURRENT_SOURCE_DIR}/hello.1
+  DESTINATION share/man/man1
+)
+ $ cat debhello-2.1/src/CMakeLists.txt
+# Always define HAVE_CONFIG_H
+add_definitions(-DHAVE_CONFIG_H)
+# Generate config.h from config.h.in
+configure_file(
+  "${CMAKE_CURRENT_SOURCE_DIR}/config.h.in"
+  "${CMAKE_CURRENT_BINARY_DIR}/config.h"
+  )
+include_directories("${CMAKE_CURRENT_BINARY_DIR}")
+include_directories("${CMAKE_SOURCE_DIR}/lib")
+
+add_executable(hello hello.c)
+target_link_libraries(hello sharedlib)
+install(TARGETS hello
+  RUNTIME DESTINATION bin
+)</pre>
+        <p>
+</p>
+        <p>Let’s package this with the <span class="strong"><strong>debmake</strong></span> command.</p>
+        <pre class="screen"> $ cd debhello-2.1
+ $ debmake -b',libsharedlib1,libsharedlib-dev'
+I: set parameters
+I: sanity check of parameters
+I: pkg="debhello", ver="2.1", rev="1"
+I: *** start packaging in "debhello-2.1". ***
+I: provide debhello_2.1.orig.tar.gz for non-native Debian package
+I: pwd = "/path/to"
+I: $ ln -sf debhello-2.1.tar.gz debhello_2.1.orig.tar.gz
+I: pwd = "/path/to/debhello-2.1"
+I: parse binary package settings: ,libsharedlib1,libsharedlib-dev
+I: binary package=debhello Type=bin / Arch=any M-A=foreign
+...</pre>
+        <p>The result is similar to <a class="xref" href="ch08.en.html#configure-single" title="8.8. Makefile.in + configure (single-binary package)">Section 8.8, “Makefile.in + configure (single-binary package)”</a> but not exactly the same.</p>
+        <p>Let’s inspect the notable template files generated.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (template file, v=2.1): </strong>
+</p>
+        <pre class="screen"> $ cat debhello-2.1/debian/rules
+#!/usr/bin/make -f
+# You must remove unused comment lines for the released package.
+#export DH_VERBOSE = 1
+#export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+#export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+#export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+
+%:
+        dh $@
+
+#override_dh_auto_configure:
+#       dh_auto_configure -- \
+#             -DCMAKE_LIBRARY_ARCHITECTURE="$(DEB_TARGET_MULTIARCH)"</pre>
+        <p>
+</p>
+        <p>Let’s make this Debian package better as the maintainer.</p>
+        <p><strong><span class="strong"><strong>debian/rules</strong></span> (maintainer version, v=2.1): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-2.1/debian/rules
+ ... hack, hack, hack, ...
+ $ cat debhello-2.1/debian/rules
+#!/usr/bin/make -f
+export DH_VERBOSE = 1
+export DEB_BUILD_MAINT_OPTIONS = hardening=+all
+export DEB_CFLAGS_MAINT_APPEND  = -Wall -pedantic
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
+DEB_HOST_MULTIARCH ?= $(shell dpkg-architecture -qDEB_HOST_MULTIARCH)
+
+%:
+        dh $@
+
+override_dh_auto_configure:
+        dh_auto_configure -- \
+              -DCMAKE_LIBRARY_ARCHITECTURE="$(DEB_HOST_MULTIARCH)"
+
+override_dh_install:
+        dh_install --list-missing</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>debian/control</strong></span> (maintainer version, v=2.1): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-2.1/debian/control
+ ... hack, hack, hack, ...
+ $ cat debhello-2.1/debian/control
+Source: debhello
+Section: devel
+Priority: optional
+Maintainer: Osamu Aoki &lt;osamu@debian.org&gt;
+Build-Depends: cmake, debhelper (&gt;=11~)
+Standards-Version: 4.3.0
+Homepage: https://salsa.debian.org/debian/debmake-doc
+
+Package: debhello
+Architecture: any
+Multi-Arch: foreign
+Depends: libsharedlib1 (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: example executable package
+ This is an example package to demonstrate Debian packaging using
+ the debmake command.
+ .
+ The generated Debian package uses the dh command offered by the
+ debhelper package and the dpkg source format `3.0 (quilt)'.
+ .
+ This package provides the executable program.
+
+Package: libsharedlib1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}, ${shlibs:Depends}
+Description: example shared library package
+ This is an example package to demonstrate Debian packaging using
+ the debmake command.
+ .
+ The generated Debian package uses the dh command offered by the
+ debhelper package and the dpkg source format `3.0 (quilt)'.
+ .
+ This package contains the shared library.
+
+Package: libsharedlib-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: libsharedlib1 (= ${binary:Version}), ${misc:Depends}
+Description: example development package
+ This is an example package to demonstrate Debian packaging using
+ the debmake command.
+ .
+ The generated Debian package uses the dh command offered by the
+ debhelper package and the dpkg source format `3.0 (quilt)'.
+ .
+ This package contains the development files.</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>debian/*.install</strong></span> (maintainer version, v=2.1): </strong>
+</p>
+        <pre class="screen"> $ vim debhello-2.1/debian/debhello.install
+ ... hack, hack, hack, ...
+ $ cat debhello-2.1/debian/debhello.install
+usr/bin/*
+usr/share/man/*
+ $ vim debhello-2.1/debian/libsharedlib1.install
+ ... hack, hack, hack, ...
+ $ cat debhello-2.1/debian/libsharedlib1.install
+usr/lib/*/*.so.*
+ $ vim debhello-2.1/debian/libsharedlib-dev.install
+ ... hack, hack, hack, ...
+ $ cat debhello-2.1/debian/libsharedlib-dev.install
+###usr/lib/*/pkgconfig/*.pc
+usr/include
+usr/lib/*/*.so</pre>
+        <p>
+</p>
+        <p>This upstream CMakeList.txt needs to be patched to cope with the multiarch path.</p>
+        <p><strong><span class="strong"><strong>debian/patches/</strong></span>* (maintainer version, v=2.1): </strong>
+</p>
+        <pre class="screen"> ... hack, hack, hack, ...
+ $ cat debhello-2.1/debian/libsharedlib1.symbols
+libsharedlib.so.1 libsharedlib1 #MINVER#
+ sharedlib@Base 2.1</pre>
+        <p>
+</p>
+        <p>Since this upstream source creates the proper auto-generated <span class="strong"><strong>Makefile</strong></span>, there is no need to create <span class="strong"><strong>debian/install</strong></span> and <span class="strong"><strong>debian/manpages</strong></span> files.</p>
+        <p>There are several other template files under the <span class="strong"><strong>debian/</strong></span> directory.  These also need to be updated.</p>
+        <p><strong>Template files under <span class="strong"><strong>debian/</strong></span>. (v=2.1): </strong>
+</p>
+        <pre class="screen"> $ tree debhello-2.1/debian
+debhello-2.1/debian
+├── README.Debian
+├── changelog
+├── compat
+├── control
+├── copyright
+├── debhello.install
+├── libsharedlib-dev.install
+├── libsharedlib1.install
+├── libsharedlib1.symbols
+├── patches
+│   ├── 000-cmake-multiarch.patch
+│   └── series
+├── rules
+├── source
+│   ├── format
+│   └── local-options
+└── watch
+
+2 directories, 15 files</pre>
+        <p>
+</p>
+        <p>The rest of the packaging activities are practically the same as the one in <a class="xref" href="ch08.en.html#configure-single" title="8.8. Makefile.in + configure (single-binary package)">Section 8.8, “Makefile.in + configure (single-binary package)”</a>.</p>
+        <p>Here are the generated dependency list of all binary packages.</p>
+        <p><strong>The generated dependency list of all binary packages (v=2.1): </strong>
+</p>
+        <pre class="screen"> $ dpkg -f debhello-dbgsym_2.1-1_amd64.deb pre-depends depends recommends con...
+Depends: debhello (= 2.1-1)
+ $ dpkg -f debhello_2.1-1_amd64.deb pre-depends depends recommends conflicts ...
+Depends: libsharedlib1 (= 2.1-1), libc6 (&gt;= 2.2.5)
+ $ dpkg -f libsharedlib-dev_2.1-1_amd64.deb pre-depends depends recommends co...
+Depends: libsharedlib1 (= 2.1-1)
+ $ dpkg -f libsharedlib1-dbgsym_2.1-1_amd64.deb pre-depends depends recommend...
+Depends: libsharedlib1 (= 2.1-1)
+ $ dpkg -f libsharedlib1_2.1-1_amd64.deb pre-depends depends recommends confl...
+Depends: libc6 (&gt;= 2.2.5)</pre>
+        <p>
+</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="i18n-example"/>8.13. Internationalization</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here is an example of updating the simple upstream C source <span class="strong"><strong>debhello-2.0.tar.gz</strong></span> presented in <a class="xref" href="ch08.en.html#autotools-multi" title="8.11. Autotools (multi-binary package)">Section 8.11, “Autotools (multi-binary package)”</a> for internationalization (i18n) and creating the updated upstream C source <span class="strong"><strong>debhello-2.0.tar.gz</strong></span>.</p>
+        <p>In the real situation, the package should already be internationalized.  So this example is educational for you to understand how this internationalization is implemented.</p>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Tip]" src="images/tip.png"/>
+              </td>
+              <th align="left">Tip</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>The routine maintainer activity for the i18n is simply to add translation po files reported to you via the Bug Tracking System (BTS) to the <span class="strong"><strong>po/</strong></span> directory and to update the language list in the <span class="strong"><strong>po/LINGUAS</strong></span> file.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p>Let’s get the source and make the Debian package.</p>
+        <p><strong>Download <span class="strong"><strong>debhello-2.0.tar.gz</strong></span> (i18n). </strong>
+</p>
+        <pre class="screen"> $ wget http://www.example.org/download/debhello-2.0.tar.gz
+ ...
+ $ tar -xzmf debhello-2.0.tar.gz
+ $ tree
+.
+├── debhello-2.0
+│   ├── Makefile.am
+│   ├── configure.ac
+│   ├── data
+│   │   ├── hello.desktop
+│   │   └── hello.png
+│   ├── lib
+│   │   ├── Makefile.am
+│   │   ├── sharedlib.c
+│   │   └── sharedlib.h
+│   ├── man
+│   │   ├── Makefile.am
+│   │   └── hello.1
+│   └── src
+│       ├── Makefile.am
+│       └── hello.c
+└── debhello-2.0.tar.gz
+
+5 directories, 12 files</pre>
+        <p>
+</p>
+        <p>Internationalize this source tree with the <span class="strong"><strong>gettextize</strong></span> command and remove files auto-generated by Autotools.</p>
+        <p><strong>run <span class="strong"><strong>gettextize</strong></span> (i18n): </strong>
+</p>
+        <pre class="screen"> $ cd debhello-2.0
+ $ gettextize
+Creating po/ subdirectory
+Creating build-aux/ subdirectory
+Copying file ABOUT-NLS
+Copying file build-aux/config.rpath
+Not copying intl/ directory.
+Copying file po/Makefile.in.in
+Copying file po/Makevars.template
+Copying file po/Rules-quot
+Copying file po/boldquot.sed
+Copying file po/en@boldquot.header
+Copying file po/en@quot.header
+Copying file po/insert-header.sin
+Copying file po/quot.sed
+Copying file po/remove-potcdate.sin
+Creating initial po/POTFILES.in
+Creating po/ChangeLog
+Creating directory m4
+Copying file m4/gettext.m4
+Copying file m4/iconv.m4
+Copying file m4/lib-ld.m4
+Copying file m4/lib-link.m4
+Copying file m4/lib-prefix.m4
+Copying file m4/nls.m4
+Copying file m4/po.m4
+Copying file m4/progtest.m4
+Creating m4/ChangeLog
+Updating Makefile.am (backup is in Makefile.am~)
+Updating configure.ac (backup is in configure.ac~)
+Creating ChangeLog
+
+Please use AM_GNU_GETTEXT([external]) in order to cause autoconfiguration
+to look for an external libintl.
+
+Please create po/Makevars from the template in po/Makevars.template.
+You can then remove po/Makevars.template.
+
+Please fill po/POTFILES.in as described in the documentation.
+
+Please run 'aclocal' to regenerate the aclocal.m4 file.
+You need aclocal from GNU automake 1.9 (or newer) to do this.
+Then run 'autoconf' to regenerate the configure file.
+
+You will also need config.guess and config.sub, which you can get from the CV...
+of the 'config' project at http://savannah.gnu.org/. The commands to fetch th...
+are
+$ wget 'http://savannah.gnu.org/cgi-bin/viewcvs/*checkout*/config/config/conf...
+$ wget 'http://savannah.gnu.org/cgi-bin/viewcvs/*checkout*/config/config/conf...
+
+You might also want to copy the convenience header file gettext.h
+from the /usr/share/gettext directory into your package.
+It is a wrapper around &lt;libintl.h&gt; that implements the configure --disable-nl...
+option.
+
+Press Return to acknowledge the previous 6 paragraphs.
+ $ rm -rf m4 build-aux *~</pre>
+        <p>
+</p>
+        <p>Let’s check generated files under the <span class="strong"><strong>po/</strong></span> directory.</p>
+        <p><strong>files in <span class="strong"><strong>po</strong></span> (i18n): </strong>
+</p>
+        <pre class="screen"> $ ls -l po
+/build/debmake-doc-UII19c/debmake-doc-1.14/debhello-2.0-pkg2/step151.cmd: 2: ...
+total 60
+-rw-rw-r-- 1 hosiet hosiet   494 Sep  7 19:23 ChangeLog
+-rw-r--r-- 1 hosiet hosiet 17577 Sep  7 19:23 Makefile.in.in
+-rw-r--r-- 1 hosiet hosiet  3376 Sep  7 19:23 Makevars.template
+-rw-rw-r-- 1 hosiet hosiet    59 Sep  7 19:23 POTFILES.in
+-rw-r--r-- 1 hosiet hosiet  2203 Sep  7 19:23 Rules-quot
+-rw-r--r-- 1 hosiet hosiet   217 Sep  7 19:23 boldquot.sed
+-rw-r--r-- 1 hosiet hosiet  1337 Sep  7 19:23 en@boldquot.header
+-rw-r--r-- 1 hosiet hosiet  1203 Sep  7 19:23 en@quot.header
+-rw-r--r-- 1 hosiet hosiet   672 Sep  7 19:23 insert-header.sin
+-rw-r--r-- 1 hosiet hosiet   153 Sep  7 19:23 quot.sed
+-rw-r--r-- 1 hosiet hosiet   432 Sep  7 19:23 remove-potcdate.sin</pre>
+        <p>
+</p>
+        <p>Let’s update the <span class="strong"><strong>configure.ac</strong></span> by adding “<span class="strong"><strong>AM_GNU_GETTEXT([external])</strong></span>”, etc..</p>
+        <p><strong><span class="strong"><strong>configure.ac</strong></span> (i18n): </strong>
+</p>
+        <pre class="screen"> $ vim configure.ac
+ ... hack, hack, hack, ...
+ $ cat configure.ac
+#                                               -*- Autoconf -*-
+# Process this file with autoconf to produce a configure script.
+AC_PREREQ([2.69])
+AC_INIT([debhello],[2.2],[foo@example.org])
+AC_CONFIG_SRCDIR([src/hello.c])
+AC_CONFIG_HEADERS([config.h])
+echo "Standard customization chores"
+AC_CONFIG_AUX_DIR([build-aux])
+
+AM_INIT_AUTOMAKE([foreign])
+
+# Set default to --enable-shared --disable-static
+LT_INIT([shared disable-static])
+
+# find the libltdl sources in the libltdl sub-directory
+LT_CONFIG_LTDL_DIR([libltdl])
+
+# choose one
+LTDL_INIT([recursive])
+#LTDL_INIT([subproject])
+#LTDL_INIT([nonrecursive])
+
+# Add #define PACKAGE_AUTHOR ... in config.h with a comment
+AC_DEFINE(PACKAGE_AUTHOR, ["Osamu Aoki"], [Define PACKAGE_AUTHOR])
+# Checks for programs.
+AC_PROG_CC
+
+# desktop file support required
+AM_GNU_GETTEXT_VERSION([0.19.3])
+AM_GNU_GETTEXT([external])
+
+# only for the recursive case
+AC_CONFIG_FILES([Makefile
+                 po/Makefile.in
+                 lib/Makefile
+                 man/Makefile
+                 src/Makefile])
+AC_OUTPUT</pre>
+        <p>
+</p>
+        <p>Let’s create the <span class="strong"><strong>po/Makevars</strong></span> file from the <span class="strong"><strong>po/Makevars.template</strong></span> file.</p>
+        <p><strong><span class="strong"><strong>po/Makevars</strong></span> (i18n): </strong>
+</p>
+        <pre class="screen"> ... hack, hack, hack, ...
+ $ diff -u po/Makevars.template po/Makevars
+--- po/Makevars.template        2019-03-14 19:18:03.970235562 +0000
++++ po/Makevars 2019-03-14 19:18:06.522250356 +0000
+@@ -18,14 +18,14 @@
+ # or entity, or to disclaim their copyright.  The empty string stands for
+ # the public domain; in this case the translators are expected to disclaim
+ # their copyright.
+-COPYRIGHT_HOLDER = Free Software Foundation, Inc.
++COPYRIGHT_HOLDER = Osamu Aoki &lt;osamu@debian.org&gt;
+
+ # This tells whether or not to prepend "GNU " prefix to the package
+ # name that gets inserted into the header of the $(DOMAIN).pot file.
+ # Possible values are "yes", "no", or empty.  If it is empty, try to
+ # detect it automatically by scanning the files in $(top_srcdir) for
+ # "GNU packagename" string.
+-PACKAGE_GNU =
++PACKAGE_GNU = no
+
+ # This is the email address or URL to which the translators shall report
+ # bugs in the untranslated strings:
+ $ rm po/Makevars.template</pre>
+        <p>
+</p>
+        <p>Let’s update C sources for the i18n version by wrapping strings with <span class="strong"><strong>_(…)</strong></span>.</p>
+        <p><strong><span class="strong"><strong>src/hello.c</strong></span> (i18n): </strong>
+</p>
+        <pre class="screen"> ... hack, hack, hack, ...
+ $ cat src/hello.c
+#include "config.h"
+#include &lt;stdio.h&gt;
+#include &lt;sharedlib.h&gt;
+#define _(string) gettext (string)
+int
+main()
+{
+        printf(_("Hello, I am " PACKAGE_AUTHOR "!\n"));
+        sharedlib();
+        return 0;
+}</pre>
+        <p>
+</p>
+        <p><strong><span class="strong"><strong>lib/sharedlib.c</strong></span> (i18n): </strong>
+</p>
+        <pre class="screen"> ... hack, hack, hack, ...
+ $ cat lib/sharedlib.c
+#include &lt;stdio.h&gt;
+#define _(string) gettext (string)
+int
+sharedlib()
+{
+        printf(_("This is a shared library!\n"));
+        return 0;
+}</pre>
+        <p>
+</p>
+        <p>The new <span class="strong"><strong>gettext</strong></span> (v=0.19) can handle the i18n version of the desktop file directly.</p>
+        <p><strong><span class="strong"><strong>data/hello.desktop.in</strong></span> (i18n): </strong>
+</p>
+        <pre class="screen"> $ fgrep -v '[ja]=' data/hello.desktop &gt; data/hello.desktop.in
+ $ rm data/hello.desktop
+ $ cat data/hello.desktop.in
+[Desktop Entry]
+Name=Hello
+Comment=Greetings
+Type=Application
+Keywords=hello
+Exec=hello
+Terminal=true
+Icon=hello.png
+Categories=Utility;</pre>
+        <p>
+</p>
+        <p>Let’s list the input files to extract translatable strings in <span class="strong"><strong>po/POTFILES.in</strong></span>.</p>
+        <p><strong><span class="strong"><strong>po/POTFILES.in</strong></span> (i18n): </strong>
+</p>
+        <pre class="screen"> ... hack, hack, hack, ...
+ $ cat po/POTFILES.in
+src/hello.c
+lib/sharedlib.c
+data/hello.desktop.in</pre>
+        <p>
+</p>
+        <p>Here is the updated root <span class="strong"><strong>Makefile.am</strong></span> with <span class="strong"><strong>po</strong></span> added to the <span class="strong"><strong>SUBDIRS</strong></span> environment variable.</p>
+        <p><strong><span class="strong"><strong>Makefile.am</strong></span> (i18n): </strong>
+</p>
+        <pre class="screen"> $ cat Makefile.am
+# recursively process `Makefile.am` in SUBDIRS
+SUBDIRS = po lib src man
+
+ACLOCAL_AMFLAGS = -I m4
+
+EXTRA_DIST = build-aux/config.rpath m4/ChangeLog</pre>
+        <p>
+</p>
+        <p>Let’s make a translation template file, <span class="strong"><strong>debhello.pot</strong></span>.</p>
+        <p><strong><span class="strong"><strong>po/debhello.pot</strong></span> (i18n): </strong>
+</p>
+        <pre class="screen"> $ xgettext -f po/POTFILES.in -d debhello -o po/debhello.pot -k_
+ $ cat po/debhello.pot
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR &lt;EMAIL@ADDRESS&gt;, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-03-14 19:18+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME &lt;EMAIL@ADDRESS&gt;\n"
+"Language-Team: LANGUAGE &lt;LL@li.org&gt;\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/hello.c:8
+#, c-format
+msgid "Hello, I am "
+msgstr ""
+
+#: lib/sharedlib.c:6
+#, c-format
+msgid "This is a shared library!\n"
+msgstr ""
+
+#: data/hello.desktop.in:3
+msgid "Hello"
+msgstr ""
+
+#: data/hello.desktop.in:4
+msgid "Greetings"
+msgstr ""
+
+#: data/hello.desktop.in:6
+msgid "hello"
+msgstr ""
+
+#: data/hello.desktop.in:9
+msgid "hello.png"
+msgstr ""</pre>
+        <p>
+</p>
+        <p>Let’s add a translation for French.</p>
+        <p><strong><span class="strong"><strong>po/LINGUAS</strong></span> and <span class="strong"><strong>po/fr.po</strong></span> (i18n): </strong>
+</p>
+        <pre class="screen"> $ echo 'fr' &gt; po/LINGUAS
+ $ cp po/debhello.pot po/fr.po
+ $ vim po/fr.po
+ ... hack, hack, hack, ...
+ $ cat po/fr.po
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR &lt;EMAIL@ADDRESS&gt;, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: debhello 2.2\n"
+"Report-Msgid-Bugs-To: foo@example.org\n"
+"POT-Creation-Date: 2015-03-01 20:22+0900\n"
+"PO-Revision-Date: 2015-02-21 23:18+0900\n"
+"Last-Translator: Osamu Aoki &lt;osamu@debian.org&gt;\n"
+"Language-Team: French &lt;LL@li.org&gt;\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/hello.c:34
+#, c-format
+msgid "Hello, my name is %s!\n"
+msgstr "Bonjour, je m'appelle %s!\n"
+
+#: lib/sharedlib.c:29
+#, c-format
+msgid "This is a shared library!\n"
+msgstr "Ceci est une bibliothèque partagée!\n"
+
+#: data/hello.desktop.in:3
+msgid "Hello"
+msgstr ""
+
+#: data/hello.desktop.in:4
+msgid "Greetings"
+msgstr "Salutations"
+
+#: data/hello.desktop.in:6
+msgid "hello"
+msgstr ""
+
+#: data/hello.desktop.in:9
+msgid "hello.png"
+msgstr ""</pre>
+        <p>
+</p>
+        <p>The packaging activities are practically the same as the one in <a class="xref" href="ch08.en.html#autotools-multi" title="8.11. Autotools (multi-binary package)">Section 8.11, “Autotools (multi-binary package)”</a>.</p>
+        <p>You can find more i18n examples in <a class="xref" href="ch08.en.html#details" title="8.14. Details">Section 8.14, “Details”</a> for</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+the POSIX shell script with Makefile (v=3.0),
+</li>
+            <li class="listitem">
+the Python3 script with distutils (v=3.1),
+</li>
+            <li class="listitem">
+the C source with Makefile.in + configure (v=3.2),
+</li>
+            <li class="listitem">
+the C source with Autotools (v=3.3), and
+</li>
+            <li class="listitem">
+the C source with CMake (v=3.4).
+</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="details"/>8.14. Details</h2>
+            </div>
+          </div>
+        </div>
+        <p>Actual details of the examples presented and their variants can be obtained by the following.</p>
+        <p><strong>How to get details. </strong>
+</p>
+        <pre class="screen"> $ apt-get source debmake-doc
+ $ sudo apt-get install devscripts build-essentials
+ $ cd debmake-doc*
+ $ sudo apt-get build-dep ./
+ $ make</pre>
+        <p>
+</p>
+        <p>Each directory with the <span class="strong"><strong>-pkg[0-9]</strong></span> suffix contains the Debian packaging example.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+emulated console command line activity log: the <span class="strong"><strong>.log</strong></span> file
+</li>
+            <li class="listitem">
+emulated console command line activity log (short): the <span class="strong"><strong>.slog</strong></span> file
+</li>
+            <li class="listitem">
+snapshot source tree image after the <span class="strong"><strong>debmake</strong></span> command: the <span class="strong"><strong>debmake</strong></span> directory
+</li>
+            <li class="listitem">
+snapshot source tree image after proper packaging: the <span class="strong"><strong>packge</strong></span> directory
+</li>
+            <li class="listitem">
+snapshot source tree image after the <span class="strong"><strong>debuild</strong></span> command: the <span class="strong"><strong>test</strong></span> directory
+</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="ch07.en.html"><img src="images/prev.png" alt="Prev"/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="apa.en.html"><img src="images/next.png" alt="Next"/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">Chapter 7. Tips </td>
+          <td align="center">
+            <a accesskey="h" href="index.en.html">
+              <img src="images/home.png" alt="Home"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> Appendix A. <span class="strong"><strong>debmake</strong></span>(1) manpage</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

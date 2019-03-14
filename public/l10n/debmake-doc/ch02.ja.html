@@ -1,0 +1,800 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>第2章 Prerequisites</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.ja.html" title="Debian メンテナー用ガイド"/>
+    <link rel="up" href="index.ja.html" title="Debian メンテナー用ガイド"/>
+    <link rel="prev" href="ch01.ja.html" title="第1章 Overview"/>
+    <link rel="next" href="ch03.ja.html" title="第3章 Tool Setups"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">第2章 Prerequisites</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="ch01.ja.html"><img src="images/prev.png" alt="戻る"/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="ch03.ja.html"><img src="images/next.png" alt="次へ"/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="chapter">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="start"/>第2章 Prerequisites</h1>
+          </div>
+        </div>
+      </div>
+      <div class="toc">
+        <p>
+          <strong>目次</strong>
+        </p>
+        <dl class="toc">
+          <dt>
+            <span class="section">
+              <a href="ch02.ja.html#people">2.1. People around Debian</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.ja.html#contribute">2.2. How to contribute</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.ja.html#social">2.3. Debianにおける社会ダイナミクス</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.ja.html#reminders">2.4. Technical reminders</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.ja.html#debian-doc">2.5. Debian documentation</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.ja.html#help">2.6. Help resources</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.ja.html#situation">2.7. Archive situation</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.ja.html#approaches">2.8. Contribution approaches</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch02.ja.html#novice">2.9. Novice contributor and maintainer</a>
+            </span>
+          </dt>
+        </dl>
+      </div>
+      <p>Here are the prerequisites which you need to understand before you to get involved with Debian.</p>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="people"/>2.1. People around Debian</h2>
+            </div>
+          </div>
+        </div>
+        <p>Debian 界隈では異なる役割で色々なタイプの人が交流しています:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem"><span class="strong"><strong>upstream author (アップストリームの作者)</strong></span>: 元のプログラムを作った人です。</li>
+            <li class="listitem"><span class="strong"><strong>upstream maintainer (アップストリームのメンテナー)</strong></span>: 現在プログラムをメンテナンスしている人です。</li>
+            <li class="listitem"><span class="strong"><strong>maintainer (メンテナー)</strong></span>: プログラムの Debian パッケージを作成している人です。</li>
+            <li class="listitem"><span class="strong"><strong>sponsor (スポンサー)</strong></span>: メンテナーのパッケージを、(内容をチェックした後で)公式 Debian パッケージアーカイブにアップロードするのを手伝う人です。</li>
+            <li class="listitem"><span class="strong"><strong>mentor (指導役)</strong></span>: 新米メンテナーをパッケージを作成等で手助けする人です。</li>
+            <li class="listitem"><span class="strong"><strong>Debian Developer (Debian デベロッパー)</strong></span> (DD): 公式 Debian パッケージアーカイブへの全面的アップロード権限を持っているDebian プロジェクトのメンバーです。</li>
+            <li class="listitem"><span class="strong"><strong>Debian Maintainer (Debian メンテナー)</strong></span> (DM): 公式 Debian パッケージアーカイブへの限定的アップロード権限持っている人です。</li>
+          </ul>
+        </div>
+        <p>Please note that you can’t become an official <span class="strong"><strong>Debian Developer</strong></span> (DD) overnight, because it takes more than technical skill. Please do not be discouraged by this. If it is useful to others, you can still upload your package either as a <span class="strong"><strong>maintainer</strong></span> through a <span class="strong"><strong>sponsor</strong></span> or as a <span class="strong"><strong>Debian Maintainer</strong></span>.</p>
+        <p>Please note that you do not need to create any new packages to become an official Debian Developer. Contributing to the existing packages can provide a path to becoming an official Debian Developer too. There are many packages waiting for good maintainers (see <a class="xref" href="ch02.ja.html#approaches" title="2.8. Contribution approaches">「Contribution approaches」</a>).</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="contribute"/>2.2. How to contribute</h2>
+            </div>
+          </div>
+        </div>
+        <p>Please refer to the following to learn how to contribute to Debian:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+<a class="ulink" href="https://www.debian.org/intro/help">How can you help Debian?</a> (official)
+</li>
+            <li class="listitem">
+<a class="ulink" href="https://www.debian.org/doc/FAQ/ch-contributing">The Debian GNU/Linux FAQ, Chapter 13 - "Contributing to the Debian Project"</a> (semi-official)
+</li>
+            <li class="listitem">
+<a class="ulink" href="https://wiki.debian.org/HelpDebian">Debian Wiki, HelpDebian</a> (supplemental)
+</li>
+            <li class="listitem">
+<a class="ulink" href="https://nm.debian.org/">Debian New Member site</a> (official)
+</li>
+            <li class="listitem">
+<a class="ulink" href="https://wiki.debian.org/DebianMentorsFaq">Debian Mentors FAQ</a> (supplemental)
+</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="social"/>2.3. Debianにおける社会ダイナミクス</h2>
+            </div>
+          </div>
+        </div>
+        <p>Please understand Debian’s social dynamics to prepare yourself for interactions with Debian:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">我々全員はボランティアです。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+You can’t impose on others what to do.
+</li>
+                  <li class="listitem">自分自身で行う意欲を持つべきです。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">友好的な協力が推進力です。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+Your contribution should not over-strain others.
+</li>
+                  <li class="listitem">あなたの寄与は他人に評価されて初めて価値があります。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">Debian は教師の注意が自動的にあなたに注がれるあなたの学校とは違います。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">多様な案件の独学能力を持つべきです。</li>
+                  <li class="listitem">他ボランティアに注意を払ってもらうことは貴重なリソースです。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">Debian は常に改良されています。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">あなたには高品質パッケージを作成することが期待されています。</li>
+                  <li class="listitem">
+You should adapt yourself to change.
+</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>Since we focus only on the technical aspects of the packaging in the rest of this guide, please refer to the following to understand the social dynamics of Debian:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+<a class="ulink" href="http://upsilon.cc/~zack/talks/2011/20110321-taipei.pdf">Debian: 17 years of Free Software, “do-ocracy”, and democracy</a> (Introductory slides by the ex-DPL)
+</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="reminders"/>2.4. Technical reminders</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here are some technical reminders to accommodate other maintainers to work on your package easily and effectively to maximize the output of Debian as a whole.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">
+Make your package easy to debug.
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+Keep your package simple.
+</li>
+                  <li class="listitem">
+Don’t over-engineer your package.
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+Keep your package well-documented.
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+Use readable code style.
+</li>
+                  <li class="listitem">
+Make comments in code.
+</li>
+                  <li class="listitem">
+Format code consistently.
+</li>
+                  <li class="listitem">
+Maintain the git repository <a href="#ftn.idm333" class="footnote" id="idm333"><sup class="footnote">[4]</sup></a> of the package.
+</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[注記]" src="images/note.png"/>
+              </td>
+              <th align="left">注記</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Debugging of software tends to consume more time than writing the initial working software.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="debian-doc"/>2.5. Debian documentation</h2>
+            </div>
+          </div>
+        </div>
+        <p>Please make yourself ready to read the pertinent part of the official Debian documentation together with this guide as needed to generate perfect Debian packages:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">
+“Debian Policy Manual”
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+“must follow” rules (<a class="ulink" href="https://www.debian.org/doc/devel-manuals#policy">https://www.debian.org/doc/devel-manuals#policy</a>)
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+“Debian Developer’s Reference”
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+“best practice” document (<a class="ulink" href="https://www.debian.org/doc/devel-manuals#devref">https://www.debian.org/doc/devel-manuals#devref</a>)
+</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>If this guide contradicts the official Debian documentation, the official Debian documentation is correct. Please file a bug report on the <span class="strong"><strong>debmake-doc</strong></span> package using the <span class="strong"><strong>reportbug</strong></span> command.</p>
+        <p>Here are alternative tutorial documents, which you may read along with this guide:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">「Debian 新メンテナーガイド」(旧版)</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+<a class="ulink" href="https://www.debian.org/doc/devel-manuals#maint-guide">https://www.debian.org/doc/devel-manuals#maint-guide</a>
+</li>
+                  <li class="listitem">
+<a class="ulink" href="https://packages.qa.debian.org/m/maint-guide.html">https://packages.qa.debian.org/m/maint-guide.html</a>
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+“Debian Packaging Tutorial”
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+<a class="ulink" href="https://www.debian.org/doc/devel-manuals#packaging-tutorial">https://www.debian.org/doc/devel-manuals#packaging-tutorial</a>
+</li>
+                  <li class="listitem">
+<a class="ulink" href="https://packages.qa.debian.org/p/packaging-tutorial.html">https://packages.qa.debian.org/p/packaging-tutorial.html</a>
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+“Ubuntu Packaging Guide” (Ubuntu is Debian based.)
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+<a class="ulink" href="http://packaging.ubuntu.com/html/">http://packaging.ubuntu.com/html/</a>
+</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[ヒント]" src="images/tip.png"/>
+              </td>
+              <th align="left">ヒント</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>When reading these tutorials, you should consider using the <span class="strong"><strong>debmake</strong></span> command in place of the <span class="strong"><strong>dh_make</strong></span> command for better template files.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="help"/>2.6. Help resources</h2>
+            </div>
+          </div>
+        </div>
+        <p>Before you decide to ask your question in some public place, please do your part of the effort, i.e., read the fine documentation:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+package information available through the <span class="strong"><strong>aptitude</strong></span>, <span class="strong"><strong>apt-cache</strong></span>, and <span class="strong"><strong>dpkg</strong></span> commands.
+</li>
+            <li class="listitem">
+files in <span class="strong"><strong>/usr/share/doc/</strong></span><span class="emphasis"><em>package</em></span> for all pertinent packages.
+</li>
+            <li class="listitem">
+contents of <span class="strong"><strong>man</strong></span> <span class="emphasis"><em>command</em></span> for all pertinent commands.
+</li>
+            <li class="listitem">
+contents of <span class="strong"><strong>info</strong></span> <span class="emphasis"><em>command</em></span> for all pertinent commands.
+</li>
+            <li class="listitem">
+contents of <a class="ulink" href="https://lists.debian.org/debian-mentors/">debian-mentors@lists.debian.org mailing list archive</a>.
+</li>
+            <li class="listitem">
+contents of <a class="ulink" href="https://lists.debian.org/debian-devel/">debian-devel@lists.debian.org mailing list archive</a>.
+</li>
+          </ul>
+        </div>
+        <p>Your desired information can be found effectively by using a well-formed search string such as “keyword <span class="strong"><strong>site:lists.debian.org</strong></span>” to limit the search domain of the web search engine.</p>
+        <p>Making a small test package is a good way to learn details of the packaging. Inspecting existing well maintained packages is the best way to learn how other people make packages.</p>
+        <p>If you still have questions about the packaging, you can ask them interactively:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+<a class="ulink" href="mailto:debian-mentors@lists.debian.org">debian-mentors@lists.debian.org</a> mailing list. (This mailing list is for the novice.)
+</li>
+            <li class="listitem">
+<a class="ulink" href="mailto:debian-devel@lists.debian.org">debian-devel@lists.debian.org</a> mailing list. (This mailing list is for the expert.)
+</li>
+            <li class="listitem">
+<a class="ulink" href="https://www.debian.org/support#irc">IRC</a> such as #debian-mentors.
+</li>
+            <li class="listitem">
+Teams focusing on a specific set of packages. (Full list at <a class="ulink" href="https://wiki.debian.org/Teams">https://wiki.debian.org/Teams</a>)
+</li>
+            <li class="listitem">
+              <p class="simpara">
+Language-specific mailing lists.
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+<a class="ulink" href="https://lists.debian.org/devel.html">debian-devel-{french,italian,portuguese,spanish}@lists.debian.org</a>
+</li>
+                  <li class="listitem">
+<a class="ulink" href="http://www.debian.or.jp/community/ml/openml.html#develML">debian-devel@debian.or.jp</a>
+</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>あなたがするべき努力をした後に適切に質問すれば、より経験を持った Debian デベロッパーは喜んで助けてくれるでしょう。</p>
+        <div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Caution">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[注意]" src="images/caution.png"/>
+              </td>
+              <th align="left">注意</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Debian development is a moving target.  Some information found on the web may be outdated, incorrect, and non-applicable.  Please use it carefully.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="situation"/>2.7. Archive situation</h2>
+            </div>
+          </div>
+        </div>
+        <p>Please realize the situation of the Debian archive.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+Debian already has packages for most kinds of programs.
+</li>
+            <li class="listitem">
+The number of packages already in the Debian archive is several tens of times greater than that of active maintainers.
+</li>
+            <li class="listitem">
+Unfortunately, some packages lack an appropriate level of attention by the maintainer.
+</li>
+          </ul>
+        </div>
+        <p>Thus, contributions to packages already in the archive are far more appreciated (and more likely to receive sponsorship for uploading) by other maintainers.</p>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[ヒント]" src="images/tip.png"/>
+              </td>
+              <th align="left">ヒント</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>The <span class="strong"><strong>wnpp-alert</strong></span> command from the <span class="strong"><strong>devscripts</strong></span> package can check for installed packages up for adoption or orphaned.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="approaches"/>2.8. Contribution approaches</h2>
+            </div>
+          </div>
+        </div>
+        <p>Here is pseudo-Python code for your contribution approaches to Debian with a <span class="strong"><strong>program</strong></span>:</p>
+        <pre class="screen">if exist_in_debian(program):
+  if is_team_maintained(program):
+    join_team(program)
+  if is_orphaned(program) # maintainer: Debian QA Group
+    adopt_it(program)
+  elif is_RFA(program) # Request for Adoption
+    adopt_it(program)
+  else:
+    if need_help(program):
+      contact_maintainer(program)
+      triaging_bugs(program)
+      preparing_QA_or_NMU_uploads(program)
+    else:
+      leave_it(program)
+else: # new packages
+  if not is_good_program(program):
+    give_up_packaging(program)
+  elif not is_distributable(program):
+    give_up_packaging(program)
+  else: # worth packaging
+    if is_ITPed_by_others(program):
+      if need_help(program):
+        contact_ITPer_for_collaboration(program)
+      else:
+        leave_it_to_ITPer(program)
+    else: # really new
+      if is_applicable_team(program):
+        join_team(program)
+      if is_DFSG(program) and is_DFSG(dependency(program)):
+        file_ITP(program, area="main") # This is Debian
+      elif is_DFSG(program):
+        file_ITP(program, area="contrib") # This is not Debian
+      else: # non-DFSG
+        file_ITP(program, area="non-free") # This is not Debian
+      package_it_and_close_ITP(program)</pre>
+        <p>Here:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">
+For exist_in_debian(), and is_team_maintained(); check:
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+the <span class="strong"><strong>aptitude</strong></span> command
+</li>
+                  <li class="listitem">
+<a class="ulink" href="https://www.debian.org/distrib/packages">Debian packages</a> web page
+</li>
+                  <li class="listitem">
+<a class="ulink" href="https://wiki.debian.org/Teams">Teams</a>
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+For is_orphaned(), is_RFA(), and is_ITPed_by_others(); check:
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+The output of the <span class="strong"><strong>wnpp-alert</strong></span> command.
+</li>
+                  <li class="listitem">
+<a class="ulink" href="https://www.debian.org/devel/wnpp/">Work-Needing and Prospective Packages</a>
+</li>
+                  <li class="listitem">
+<a class="ulink" href="https://bugs.debian.org/cgi-bin/pkgreport.cgi?pkg=wnpp;dist=unstable">Debian Bug report logs: Bugs in pseudo-package wnpp in unstable</a>
+</li>
+                  <li class="listitem">
+<a class="ulink" href="https://wnpp.debian.net/">Debian Packages that Need Lovin'</a>
+</li>
+                  <li class="listitem">
+<a class="ulink" href="https://wnpp-by-tags.debian.net/">Browse wnpp bugs based on debtags</a>
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+For is_good_program(), check:
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+The program should be useful.
+</li>
+                  <li class="listitem">
+The program should not introduce security and maintenance concerns to the Debian system.
+</li>
+                  <li class="listitem">
+The program should be well documented and its code needs to be understandable (i.e. not obfuscated).
+</li>
+                  <li class="listitem">
+The program’s authors agree with the packaging and are amicable to Debian. <a href="#ftn.idm508" class="footnote" id="idm508"><sup class="footnote">[5]</sup></a>
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+For is_it_DFSG(), and is_its_dependency_DFSG(); check:
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+<a class="ulink" href="https://www.debian.org/social_contract#guidelines">Debian Free Software Guidelines</a> (DFSG).
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+For is_it_distributable(), check:
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+The software must have a license and it should allow its distribution.
+</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>You either need to file an <span class="strong"><strong>ITP</strong></span> or adopt a package to start working on it.  See the “Debian Developer’s Reference”:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+<a class="ulink" href="https://www.debian.org/doc/manuals/developers-reference/pkgs.html#newpackage">5.1. New packages</a>.
+</li>
+            <li class="listitem">
+<a class="ulink" href="https://www.debian.org/doc/manuals/developers-reference/pkgs.html#archive-manip">5.9. Moving, removing, renaming, orphaning, adopting, and reintroducing packages</a>.
+</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="novice"/>2.9. Novice contributor and maintainer</h2>
+            </div>
+          </div>
+        </div>
+        <p>The novice contributor and maintainer may wonder what to learn to start your contribution to Debian.  Here are my suggestions depending on your focus:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">
+Packaging
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+Basics of the <span class="strong"><strong>POSIX shell</strong></span> and <span class="strong"><strong>make</strong></span>.
+</li>
+                  <li class="listitem">
+Some rudimentary knowledge of <span class="strong"><strong>Perl</strong></span> and <span class="strong"><strong>Python</strong></span>.
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+Translation
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+Basics of how the PO based translation system works.
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+Documentation
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+Basics of text markups (XML, ReST, Wiki, …).
+</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>The novice contributor and maintainer may wonder where to start your contribution to Debian.  Here are my suggestions depending on your skills:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">
+<span class="strong"><strong>POSIX shell</strong></span>, <span class="strong"><strong>Perl</strong></span>, and <span class="strong"><strong>Python</strong></span> skills:
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+Send patches to the Debian Installer.
+</li>
+                  <li class="listitem">
+Send patches to the Debian packaging helper scripts such as <span class="strong"><strong>devscripts</strong></span>, <span class="strong"><strong>pbuilder</strong></span>, etc. mentioned in this document.
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+<span class="strong"><strong>C</strong></span> and <span class="strong"><strong>C++</strong></span> skills:
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+Send patches to the packages with the <span class="strong"><strong>required</strong></span> and <span class="strong"><strong>important</strong></span> priorities.
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+Non-English skills:
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+Send patches to the PO file of the Debian Installer.
+</li>
+                  <li class="listitem">
+Send patches to the PO file of the packages with the <span class="strong"><strong>required</strong></span> and <span class="strong"><strong>important</strong></span> priorities.
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+Documentation skills:
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+Update contents on <a class="ulink" href="https://wiki.debian.org/">Debian Wiki</a>.
+</li>
+                  <li class="listitem">
+Send patches to the existing <a class="ulink" href="https://www.debian.org/doc/">Debian Documentation</a>.
+</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>These activities should give you good exposure to the other Debian people to establish your credibility.</p>
+        <p>The novice maintainer should avoid packaging programs with the high security exposure:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+<span class="strong"><strong>setuid</strong></span> or <span class="strong"><strong>setgid</strong></span> program
+</li>
+            <li class="listitem">
+<span class="strong"><strong>daemon</strong></span> program
+</li>
+            <li class="listitem">
+program installed in the <span class="strong"><strong>/sbin/</strong></span> or <span class="strong"><strong>/usr/sbin/</strong></span> directories
+</li>
+          </ul>
+        </div>
+        <p>When you gain more experience in packaging, you’ll be able to package such programs.</p>
+      </div>
+      <div class="footnotes">
+        <br/>
+        <hr/>
+        <div id="ftn.idm333" class="footnote">
+          <p><a href="#idm333" class="simpara"><sup class="simpara">[4] </sup></a>The overwhelming number of Debian maintainers use <span class="strong"><strong>git</strong></span> over other VCS systems such as <span class="strong"><strong>hg</strong></span>, <span class="strong"><strong>bzr</strong></span>, etc.</p>
+        </div>
+        <div id="ftn.idm508" class="footnote">
+          <p><a href="#idm508" class="simpara"><sup class="simpara">[5] </sup></a>This is not the absolute requirement.  The hostile upstream may become a major resource drain for us all.  The friendly upstream can be consulted to solve any problems with the program.</p>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="ch01.ja.html"><img src="images/prev.png" alt="戻る"/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="ch03.ja.html"><img src="images/next.png" alt="次へ"/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">第1章 Overview </td>
+          <td align="center">
+            <a accesskey="h" href="index.ja.html">
+              <img src="images/home.png" alt="ホーム"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> 第3章 Tool Setups</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

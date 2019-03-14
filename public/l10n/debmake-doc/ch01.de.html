@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Kapitel 1. Überblick</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.de.html" title="Leitfaden für Debian-Betreuer"/>
+    <link rel="up" href="index.de.html" title="Leitfaden für Debian-Betreuer"/>
+    <link rel="prev" href="pr01.de.html" title="Vorwort"/>
+    <link rel="next" href="ch02.de.html" title="Kapitel 2. Voraussetzungen"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Kapitel 1. Überblick</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="pr01.de.html"><img src="images/prev.png" alt="Zurück"/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="ch02.de.html"><img src="images/next.png" alt="Weiter"/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="chapter">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="overview"/>Kapitel 1. Überblick</h1>
+          </div>
+        </div>
+      </div>
+      <p>Das Debian-Paket für <span class="emphasis"><em>package-1.0</em></span><span class="strong"><strong>.tar.gz</strong></span>, das eine einzige, einfache C-Quelle enthält, die <a class="ulink" href="https://www.gnu.org/prep/standards/">GNU-Programmier-Standard</a> and <a class="ulink" href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">FHS</a> folgt, kann mit dem Befehl <span class="strong"><strong>debmake</strong></span> wie folgt erstellt werden:</p>
+      <pre class="screen"> $ tar -xvzf package-1.0.tar.gz
+ $ cd package-1.0
+ $ debmake
+   ... Make manual adjustments of generated configuration files
+ $ debuild</pre>
+      <p>Falls die manuellen Anpassungen der erstellten Konfigurationsdateien übersprungen werden, fehlt dem erstellten Binärpaket eine sinnvolle Paketbeschreibung. Es funktioniert aber dennoch unter dem Befehl <span class="strong"><strong>dpkg</strong></span> gut für Ihren lokalen Einsatz.</p>
+      <div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Caution">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[Achtung]" src="images/caution.png"/>
+            </td>
+            <th align="left">Achtung</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>Der Befehl <span class="strong"><strong>debmake</strong></span> stellt nur gute Vorlagendateien bereit. Diese Vorlagendateien müssen durch manuelle Anpassungen perfektioniert werden, um den strengen Qualitätsanforderungen des Debian-Archivs zu genügen, falls das Paket für die allgemeine Verwendung gedacht ist.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <p>Falls Sie beim Debian-Paketieren neu sind, machen Sie sich keine Kopf über die Details und erkennen Sie nur das große Ganze.</p>
+      <p>Falls Sie schon Berührungen mit der Debian-Paketierung hatten, sieht dies dem Befehl <span class="strong"><strong>dh_make</strong></span> sehr ähnlich. Dies kommt daher, dass der Befehl <span class="strong"><strong>debmake</strong></span> dazu gedacht ist, die historisch von dem Befehl <span class="strong"><strong>dh_make</strong></span> angebotenen Funktionen zu ersetzen. <a href="#ftn.idm149" class="footnote" id="idm149"><sup class="footnote">[3]</sup></a></p>
+      <p>Der Befehl <span class="strong"><strong>debmake</strong></span> wurde mit den folgenden Funktionalitäten gestaltet:</p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist">
+          <li class="listitem">
+            <p class="simpara">moderner Paketierstil</p>
+            <div class="itemizedlist">
+              <ul class="itemizedlist">
+                <li class="listitem"><span class="strong"><strong>debian/copyright</strong></span>: <span class="strong"><strong>DEP-5</strong></span>-konform</li>
+                <li class="listitem"><span class="strong"><strong>debian/control</strong></span>: <span class="strong"><strong>substvar</strong></span>-Unterstützung, <span class="strong"><strong>multiarch</strong></span>-Unterstützung, mehrere Binärpakete, …</li>
+                <li class="listitem"><span class="strong"><strong>debian/rules</strong></span>: <span class="strong"><strong>dh</strong></span>-Syntax, Compiler-Härtungsoptionen, …</li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p class="simpara">Flexibilität</p>
+            <div class="itemizedlist">
+              <ul class="itemizedlist">
+                <li class="listitem">viele Optionen (<a class="xref" href="ch05.de.html#boption" title="5.5.1.1. debmake -b">Abschnitt 5.5.1.1, „debmake -b“</a>, <a class="xref" href="ch06.de.html" title="Kapitel 6. Debmake-Optionen">Kapitel 6, <em>Debmake-Optionen</em></a>, <a class="xref" href="apa.de.html" title="Anhang A. debmake(1) manpage">Anhang A, <em><span class="strong"><strong>debmake</strong></span>(1) manpage</em></a>)</li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p class="simpara">vernünftige Standardaktionen</p>
+            <div class="itemizedlist">
+              <ul class="itemizedlist">
+                <li class="listitem">Ausführung ohne Unterbrechung mit sauberen Ergebnissen</li>
+                <li class="listitem">Erstellung des Multiarch-Pakets, außer die Option <span class="strong"><strong>-m</strong></span> wird explizit angegeben</li>
+                <li class="listitem">Erstellung des nicht-nativen Debian-Pakets im Format »<span class="strong"><strong>3.0 (quilt)</strong></span>«, außer die Option <span class="strong"><strong>-n</strong></span> wird explizit angegeben</li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p class="simpara">zusätzliche Nützlichkeiten</p>
+            <div class="itemizedlist">
+              <ul class="itemizedlist">
+                <li class="listitem">Überprüfung der Datei <span class="strong"><strong>debian/copyright</strong></span> mit den aktuellen Quellen (<a class="xref" href="ch06.de.html#koption" title="6.4. debmake -k">Abschnitt 6.4, „debmake -k“</a>)</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <p>Der Befehl <span class="strong"><strong>debmake</strong></span> delegiert den größten Teil der eigentlichen Arbeit an seine Backend-Pakete: <span class="strong"><strong>debhelper</strong></span>, <span class="strong"><strong>dpkg-dev</strong></span>, <span class="strong"><strong>devscripts</strong></span>, <span class="strong"><strong>pbuilder</strong></span> usw.</p>
+      <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Tip">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[Tipp]" src="images/tip.png"/>
+            </td>
+            <th align="left">Tipp</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>Stellen Sie sicher, dass die Argumente <span class="strong"><strong>-b</strong></span>, <span class="strong"><strong>-f</strong></span>, <span class="strong"><strong>-l</strong></span> und <span class="strong"><strong>-w</strong></span> durch Maskieren vor dem Einfluss der Shell geschützt sind.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Tip">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[Tipp]" src="images/tip.png"/>
+            </td>
+            <th align="left">Tipp</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>Das nicht-native Debian-Paket ist das normale Debian-Paket.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Tip">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[Tipp]" src="images/tip.png"/>
+            </td>
+            <th align="left">Tipp</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>Das detaillierte Protokoll aller Paketbaubeispiele in diesem Dokument kann durch Folgen der Anweisungen in <a class="xref" href="ch08.de.html#details" title="8.14. Details">Abschnitt 8.14, „Details“</a> erhalten werden.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[Anmerkung]" src="images/note.png"/>
+            </td>
+            <th align="left">Anmerkung</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>Die Erstellung der Datei <span class="strong"><strong>debian/copyright</strong></span> und die Ausgabe der Optionen <span class="strong"><strong>-c</strong></span> (<a class="xref" href="ch06.de.html#coption" title="6.3. debmake -cc">Abschnitt 6.3, „debmake -cc“</a>) und <span class="strong"><strong>-k</strong></span> (<a class="xref" href="ch06.de.html#koption" title="6.4. debmake -k">Abschnitt 6.4, „debmake -k“</a>) beinhalten heuristische Aktionen bezüglich der Copyright- und Lizenzinformationen. Sie können fehlerhafte Ausgaben erstellen.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="footnotes">
+        <br/>
+        <hr/>
+        <div id="ftn.idm149" class="footnote">
+          <p><a href="#idm149" class="simpara"><sup class="simpara">[3] </sup></a>Der Befehl <span class="strong"><strong>deb-make</strong></span> war vor dem Befehl <span class="strong"><strong>dh_make</strong></span> beliebt. Das aktuelle Paket <span class="strong"><strong>debmake</strong></span> beginnt seine Version bei <span class="strong"><strong>4.0</strong></span>, um Überlappungen mit dem veralteten Paket <span class="strong"><strong>debmake</strong></span>, das den Befehl <span class="strong"><strong>deb-make</strong></span> bereitstellte, zu vermeiden.</p>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="pr01.de.html"><img src="images/prev.png" alt="Zurück"/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="ch02.de.html"><img src="images/next.png" alt="Weiter"/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">Vorwort </td>
+          <td align="center">
+            <a accesskey="h" href="index.de.html">
+              <img src="images/home.png" alt="Zum Anfang"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> Kapitel 2. Voraussetzungen</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

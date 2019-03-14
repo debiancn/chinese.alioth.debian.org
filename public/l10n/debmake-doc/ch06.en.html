@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Chapter 6. debmake options</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.en.html" title="Guide for Debian Maintainers"/>
+    <link rel="up" href="index.en.html" title="Guide for Debian Maintainers"/>
+    <link rel="prev" href="ch05.en.html" title="Chapter 5. Basics"/>
+    <link rel="next" href="ch07.en.html" title="Chapter 7. Tips"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Chapter 6. debmake options</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="ch05.en.html"><img src="images/prev.png" alt="Prev"/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="ch07.en.html"><img src="images/next.png" alt="Next"/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="chapter">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="options"/>Chapter 6. debmake options</h1>
+          </div>
+        </div>
+      </div>
+      <div class="toc">
+        <p>
+          <strong>Table of Contents</strong>
+        </p>
+        <dl class="toc">
+          <dt>
+            <span class="section">
+              <a href="ch06.en.html#ai-option">6.1. Shortcut options (-a, -i)</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch06.en.html#pythonmod">6.1.1. Python module</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="section">
+              <a href="ch06.en.html#dt-option">6.2. Upstream snapshot (-d, -t)</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch06.en.html#coption">6.3. debmake -cc</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch06.en.html#koption">6.4. debmake -k</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch06.en.html#joption">6.5. debmake -j</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch06.en.html#xoption">6.6. debmake -x</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch06.en.html#poption">6.7. debmake -P</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch06.en.html#toption">6.8. debmake -T</a>
+            </span>
+          </dt>
+        </dl>
+      </div>
+      <p>Here are some notable options for the <span class="strong"><strong>debmake</strong></span> command.</p>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="ai-option"/>6.1. Shortcut options (-a, -i)</h2>
+            </div>
+          </div>
+        </div>
+        <p>The <span class="strong"><strong>debmake</strong></span> command offers 2 shortcut options.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+<span class="strong"><strong>-a</strong></span> : open the upstream tarball
+</li>
+            <li class="listitem">
+<span class="strong"><strong>-i</strong></span> : execute script to build the binary package
+</li>
+          </ul>
+        </div>
+        <p>The example in the above <a class="xref" href="ch04.en.html" title="Chapter 4. Simple Example">Chapter 4, <em>Simple Example</em></a> can be done simply as follows.</p>
+        <pre class="screen"> $ debmake -a package-1.0.tar.gz -i debuild</pre>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Tip]" src="images/tip.png"/>
+              </td>
+              <th align="left">Tip</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>A URL such as “<span class="strong"><strong>https://www.example.org/DL/package-1.0.tar.gz</strong></span>” may be used for the <span class="strong"><strong>-a</strong></span> option.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Tip]" src="images/tip.png"/>
+              </td>
+              <th align="left">Tip</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>A URL such as “<span class="strong"><strong>https://arm.koji.fedoraproject.org/packages/ibus/1.5.7/3.fc21/src/ibus-1.5.7-3.fc21.src.rpm</strong></span>” may be used for the <span class="strong"><strong>-a</strong></span> option, too.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="section">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a id="pythonmod"/>6.1.1. Python module</h3>
+              </div>
+            </div>
+          </div>
+          <p>You can generate a functioning single binary Debian package with a reasonable package description directly from the Python module package offered as a tarball, <span class="emphasis"><em>pythonmodule-1.0</em></span><span class="strong"><strong>.tar.gz</strong></span>.  The <span class="strong"><strong>-b</strong></span> option specifying the package type <span class="strong"><strong>python</strong></span> and the <span class="strong"><strong>-s</strong></span> option to copy the package description from the upstream package need to be specified.</p>
+          <pre class="screen"> $ debmake -s -b':python' -a pythonmodule-1.0.tar.gz -i debuild</pre>
+          <p>For other interpreted languages that support the <span class="strong"><strong>-b</strong></span> option, specify the pertinent <span class="emphasis"><em>type</em></span> for the <span class="strong"><strong>-b</strong></span> option.</p>
+          <p>For interpreted languages without the <span class="strong"><strong>-b</strong></span> option support, specify the <span class="strong"><strong>script</strong></span> type instead and add the interpreter package as a dependency of the resulting binary package by adjusting the <span class="strong"><strong>debian/control</strong></span> file.</p>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="dt-option"/>6.2. Upstream snapshot (-d, -t)</h2>
+            </div>
+          </div>
+        </div>
+        <p>The upstream snapshot from the upstream source tree in the VCS can be made with the <span class="strong"><strong>-d</strong></span> option if the upstream package supports the “<span class="strong"><strong>make dist</strong></span>” equivalence.</p>
+        <pre class="screen"> $ cd /path/to/upstream-vcs
+ $ debmake -d -i debuild</pre>
+        <p>Alternatively, the same can be made with the <span class="strong"><strong>-t</strong></span> option if the upstream tarball can be made with the <span class="strong"><strong>tar</strong></span> command.</p>
+        <pre class="screen"> $ cd /path/to/upstream-vcs
+ $ debmake -p package -t -i debuild</pre>
+        <p>Unless you provide the upstream version with the <span class="strong"><strong>-u</strong></span> option or with the <span class="strong"><strong>debian/changelog</strong></span> file, a snapshot upstream version is generated in the <span class="strong"><strong>0~%y%m%d%H%M</strong></span> format, e.g., <span class="emphasis"><em>0~1403012359</em></span>, from the UTC date and time.</p>
+        <p>If the upstream VCS is hosted in the <span class="emphasis"><em>package/</em></span> directory instead of the <span class="emphasis"><em>upstream-vcs/</em></span> directory, the “<span class="strong"><strong>-p</strong></span> <span class="emphasis"><em>package”</em></span> can be skipped.</p>
+        <p>If the upstream source tree in the VCS contains the <span class="strong"><strong>debian/</strong></span>* files, the <span class="strong"><strong>debmake</strong></span> command with either the <span class="strong"><strong>-d</strong></span> option or the <span class="strong"><strong>-t</strong></span> option combined with the <span class="strong"><strong>-i</strong></span> option automates the making of a non-native Debian package from the VCS snapshot while using these <span class="strong"><strong>debian/</strong></span>* files.</p>
+        <pre class="screen"> $ cp -r /path/to/package-0~1403012359/debian/. /path/to/upstream-vcs/debian
+ $ dch
+   ... update debian/changelog
+ $ git add -A .; git commit -m "vcs with debian/*"
+ $ debmake -t -p package -i debuild</pre>
+        <p>This <span class="strong"><strong>non-native</strong></span> Debian binary package building scheme using the “<span class="strong"><strong>debmake -t -i debuild</strong></span>” command may be considered as the <span class="strong"><strong>quasi-native</strong></span> Debian package scheme since the packaging situation resembles the <span class="strong"><strong>native</strong></span> Debian binary package building case using the <span class="strong"><strong>debuild</strong></span> command without the upstream tarball.</p>
+        <p>Use of a <span class="strong"><strong>non-native</strong></span> Debian package helps to ease communication with the downstream distros such as Ubuntu for bug fixes etc.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="coption"/>6.3. debmake -cc</h2>
+            </div>
+          </div>
+        </div>
+        <p>The <span class="strong"><strong>debmake</strong></span> command with the <span class="strong"><strong>-cc</strong></span> option can make a summary of the copyright and license for the entire source tree to standard output.</p>
+        <pre class="screen"> $ tar -xvzf package-1.0.tar.gz
+ $ cd package-1.0
+ $ debmake -cc | less</pre>
+        <p>With the <span class="strong"><strong>-c</strong></span> option, this provides shorter report.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="koption"/>6.4. debmake -k</h2>
+            </div>
+          </div>
+        </div>
+        <p>When updating a package for the new upstream release, the <span class="strong"><strong>debmake</strong></span> command can verify the content of the existing <span class="strong"><strong>debian/copyright</strong></span> file against the copyright and license situation of the entire updated source tree.</p>
+        <pre class="screen"> $ cd package-vcs
+ $ gbp import-orig --uscan --pristine-tar
+ ... update source with the new upstream release
+ $ debmake -k | less</pre>
+        <p>The “<span class="strong"><strong>debmake -k</strong></span>” command parses the <span class="strong"><strong>debian/copyright</strong></span> file from the top to the bottom and compares the license of all the non-binary files in the current package with the license described in the last matching file pattern entry of the <span class="strong"><strong>debian/copyright</strong></span> file.</p>
+        <p>When editing the auto-generated <span class="strong"><strong>debian/copyright</strong></span> file, please make sure to keep the generic file patterns at the top of the list.</p>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Tip]" src="images/tip.png"/>
+              </td>
+              <th align="left">Tip</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>For all new upstream releases, run the “<span class="strong"><strong>debmake -k</strong></span>” command to ensure that the <span class="strong"><strong>debian/copyright</strong></span> file is current.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="joption"/>6.5. debmake -j</h2>
+            </div>
+          </div>
+        </div>
+        <p>The generation of a functioning multi-binary package always requires more manual work than that of a functioning single binary package.  The test build of the source package is the essential part of it.</p>
+        <p>For example, let’s package the same <span class="emphasis"><em>package-1.0</em></span><span class="strong"><strong>.tar.gz</strong></span> (see <a class="xref" href="ch04.en.html" title="Chapter 4. Simple Example">Chapter 4, <em>Simple Example</em></a>) into a multi binary package.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">
+Invoke the <span class="strong"><strong>debmake</strong></span> command with the <span class="strong"><strong>-j</strong></span> option for the test building and the report generation.
+</p>
+              <pre class="screen"> $ debmake -j -a package-1.0.tar.gz</pre>
+            </li>
+            <li class="listitem">
+Check the last lines of the <span class="emphasis"><em>package</em></span><span class="strong"><strong>.build-dep.log</strong></span> file to judge build dependencies for <span class="strong"><strong>Build-Depends</strong></span>. (You do not need to list packages used by <span class="strong"><strong>debhelper</strong></span>, <span class="strong"><strong>perl</strong></span>, or <span class="strong"><strong>fakeroot</strong></span> explicitly in <span class="strong"><strong>Build-Depends</strong></span>.  This technique is useful for the generation of a single binary package, too.)
+</li>
+            <li class="listitem">
+Check the contents of the <span class="emphasis"><em>package</em></span><span class="strong"><strong>.install.log</strong></span> file to identify the install paths for files to decide how you split them into multiple packages.
+</li>
+            <li class="listitem">
+              <p class="simpara">
+Start packaging with the <span class="strong"><strong>debmake</strong></span> command.
+</p>
+              <pre class="screen"> $ rm -rf package-1.0
+ $ tar -xvzf package-1.0.tar.gz
+ $ cd package-1.0
+ $ debmake -b"package1:type1, ..."</pre>
+            </li>
+            <li class="listitem">
+Update <span class="strong"><strong>debian/control</strong></span> and <span class="strong"><strong>debian/</strong></span><span class="emphasis"><em>binarypackage</em></span><span class="strong"><strong>.install</strong></span> files using the above information.
+</li>
+            <li class="listitem">
+Update other <span class="strong"><strong>debian/</strong></span>* files as needed.
+</li>
+            <li class="listitem">
+              <p class="simpara">
+Build the Debian package with the <span class="strong"><strong>debuild</strong></span> command or its equivalent.
+</p>
+              <pre class="screen"> $ debuild</pre>
+            </li>
+            <li class="listitem">
+All binary package entries specified in the <span class="strong"><strong>debian/</strong></span><span class="emphasis"><em>binarypackage</em></span><span class="strong"><strong>.install</strong></span> file are generated as <span class="emphasis"><em>binarypackage_version-revision_arch</em></span><span class="strong"><strong>.deb</strong></span>.
+</li>
+          </ul>
+        </div>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Note]" src="images/note.png"/>
+              </td>
+              <th align="left">Note</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>The <span class="strong"><strong>-j</strong></span> option for the <span class="strong"><strong>debmake</strong></span> command invokes <span class="strong"><strong>dpkg-depcheck</strong></span>(1) to run <span class="strong"><strong>debian/rules</strong></span> under <span class="strong"><strong>strace</strong></span>(1) to obtain library dependencies.  Unfortunately, this is very slow.  If you know the library package dependencies from other sources such as the SPEC file in the source, you may just run the "<span class="strong"><strong>debmake</strong></span> …" command without the <span class="strong"><strong>-j</strong></span> option and run the “<span class="strong"><strong>debian/rules install</strong></span>” command to check the install paths of the generated files.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="xoption"/>6.6. debmake -x</h2>
+            </div>
+          </div>
+        </div>
+        <p>The amount of template files generated by the <span class="strong"><strong>debmake</strong></span> command depends on the <span class="strong"><strong>-x</strong></span>[01234] option.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+See <a class="xref" href="ch08.en.html#emptypkg" title="8.1. Cherry-pick templates">Section 8.1, “Cherry-pick templates”</a> for cherry-picking of the template files.
+</li>
+          </ul>
+        </div>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Note]" src="images/note.png"/>
+              </td>
+              <th align="left">Note</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>None of the existing configuration files are modified by the <span class="strong"><strong>debmake</strong></span> command.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="poption"/>6.7. debmake -P</h2>
+            </div>
+          </div>
+        </div>
+        <p>The <span class="strong"><strong>debmake</strong></span> command invoked with the <span class="strong"><strong>-P</strong></span> option pedantically checks auto-generated files for copyright+license text even if they are with permissive license.</p>
+        <p>This option affects not only the content of the <span class="strong"><strong>debian/copyright</strong></span> file generated by normal execution, but also the output by the execution with the <span class="strong"><strong>-k</strong></span>, <span class="strong"><strong>-c</strong></span>, <span class="strong"><strong>-cc</strong></span>, and <span class="strong"><strong>-ccc</strong></span> options.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="toption"/>6.8. debmake -T</h2>
+            </div>
+          </div>
+        </div>
+        <p>The <span class="strong"><strong>debmake</strong></span> command invoked with the <span class="strong"><strong>-T</strong></span> option additionally prints verbose tutorial comment lines.  The lines marked with <span class="strong"><strong>###</strong></span> in the template files are part of the verbose tutorial comment lines.</p>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="ch05.en.html"><img src="images/prev.png" alt="Prev"/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="ch07.en.html"><img src="images/next.png" alt="Next"/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">Chapter 5. Basics </td>
+          <td align="center">
+            <a accesskey="h" href="index.en.html">
+              <img src="images/home.png" alt="Home"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> Chapter 7. Tips</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

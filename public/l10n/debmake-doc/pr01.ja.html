@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>序文</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.ja.html" title="Debian メンテナー用ガイド"/>
+    <link rel="up" href="index.ja.html" title="Debian メンテナー用ガイド"/>
+    <link rel="prev" href="index.ja.html" title="Debian メンテナー用ガイド"/>
+    <link rel="next" href="ch01.ja.html" title="第1章 Overview"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">序文</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="index.ja.html"><img src="images/prev.png" alt="戻る"/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="ch01.ja.html"><img src="images/next.png" alt="次へ"/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="preface">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="preface"/>序文</h1>
+          </div>
+        </div>
+      </div>
+      <p>If you are a somewhat experienced Debian user <a href="#ftn.idm51" class="footnote" id="idm51"><sup class="footnote">[1]</sup></a>, you may have encountered following situations:</p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist">
+          <li class="listitem">
+You wish to install a certain software package not yet found in the Debian archive.
+</li>
+          <li class="listitem">
+You wish to update a Debian package with the newer upstream release.
+</li>
+          <li class="listitem">
+You wish to fix bugs of a Debian package with some patches.
+</li>
+        </ul>
+      </div>
+      <p>If you wanted to create a Debian package to fulfill these wishes and to share your work with the community, you are the target audience of this guide as a prospective Debian maintainer. <a href="#ftn.idm62" class="footnote" id="idm62"><sup class="footnote">[2]</sup></a>  Welcome to the Debian community.</p>
+      <p>Debian has many social and technical rules and conventions to follow since it is a large volunteer organization with history.  Debian also has developed a huge array of packaging tools and archive maintenance tools to build consistent sets of binary packages addressing many technical objectives:</p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist">
+          <li class="listitem">
+packages build across many architectures (<a class="xref" href="ch05.ja.html#variablesrules" title="5.4.4. Variables for debian/rules">「Variables for debian/rules」</a>)
+</li>
+          <li class="listitem">
+reproducible build (<a class="xref" href="ch05.ja.html#reproducible" title="5.4.5. Reproducible build">「Reproducible build」</a>)
+</li>
+          <li class="listitem">
+clean build under clearly specified package dependencies and patches (<a class="xref" href="ch05.ja.html#control" title="5.5. debian/control">「debian/control」</a>, <a class="xref" href="ch05.ja.html#patches" title="5.8. debian/patches/*">「debian/patches/*」</a>, <a class="xref" href="ch07.ja.html#chroot" title="7.10. chroot">「chroot」</a>)
+</li>
+          <li class="listitem">
+optimal splits into multiple binary packages (<a class="xref" href="ch05.ja.html#split" title="5.5.1. Split of a Debian binary package">「Split of a Debian binary package」</a>)
+</li>
+          <li class="listitem">
+smooth library transitions (<a class="xref" href="ch05.ja.html#lib-trans" title="5.18.2. Library transition">「Library transition」</a>)
+</li>
+          <li class="listitem">
+interactive installation customization (<a class="xref" href="ch05.ja.html#debconf" title="5.19. debconf">「debconf」</a>)
+</li>
+          <li class="listitem">
+multiarch support (<a class="xref" href="ch05.ja.html#multiarch" title="5.20. マルチアーチ">「マルチアーチ」</a>)
+</li>
+          <li class="listitem">
+security enhancement using specific compiler flags (<a class="xref" href="ch05.ja.html#harden" title="5.21. Compiler hardening">「Compiler hardening」</a>)
+</li>
+          <li class="listitem">
+continuous integration (<a class="xref" href="ch05.ja.html#ci" title="5.22. Continuous integration">「Continuous integration」</a>)
+</li>
+          <li class="listitem">
+boot strapping (<a class="xref" href="ch05.ja.html#bootstrap" title="5.23. Bootstrapping">「Bootstrapping」</a>)
+</li>
+          <li class="listitem">
+…
+</li>
+        </ul>
+      </div>
+      <p>These make it somewhat overwhelming for many new prospective Debian maintainers to get involved with Debian.  This guide tries to provide entry points for them to get started.  It describes the following:</p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist">
+          <li class="listitem">
+What you should know before getting involved with Debian as a prospective maintainer.
+</li>
+          <li class="listitem">
+What it looks like to make a simple Debian package.
+</li>
+          <li class="listitem">
+What kind of rules exist for making the Debian package.
+</li>
+          <li class="listitem">
+Tips for making the Debian package.
+</li>
+          <li class="listitem">
+Examples of making Debian packages for several typical scenarios.
+</li>
+        </ul>
+      </div>
+      <p>The author felt limitations of updating the original “New Maintainers' Guide” with the <span class="strong"><strong>dh-make</strong></span> package and decided to create an alternative tool and its matching document to address modern requirements.  The result is the <span class="strong"><strong>debmake</strong></span> (version: 4.3.1) package and this updated “Guide for Debian Maintainers” in the <span class="strong"><strong>debmake-doc</strong></span> (version: 1.14-1) package.</p>
+      <p>Many chores and tips have been integrated into the <span class="strong"><strong>debmake</strong></span> command making this guide simple.  This guide also offers many packaging examples.</p>
+      <div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Caution">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[注意]" src="images/caution.png"/>
+            </td>
+            <th align="left">注意</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>It takes many hours to properly create and maintain Debian packages. The Debian maintainer must be <span class="strong"><strong>both technically competent and diligent</strong></span> to take up this challenge.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <p>Some important topics are explained in detail.  Some of them may look irrelevant to you. Please be patient. Some corner cases are skipped.  Some topics are only covered by the external pointers.  These are intentional choices to keep this guide simple and maintainable.</p>
+      <div class="footnotes">
+        <br/>
+        <hr/>
+        <div id="ftn.idm51" class="footnote">
+          <p><a href="#idm51" class="simpara"><sup class="simpara">[1] </sup></a>You do need to know a little about Unix programming but you certainly don’t need to be a wizard. You can learn about the basic handling of a Debian system from the <a class="ulink" href="https://www.debian.org/doc/user-manuals#quick-reference">Debian Reference</a>. It contains some pointers to learn about Unix programming, too.</p>
+        </div>
+        <div id="ftn.idm62" class="footnote">
+          <p><a href="#idm62" class="simpara"><sup class="simpara">[2] </sup></a>If you are not interested in sharing the Debian package, you can certainly work around your local situation by compiling and installing the fixed upstream source package into <span class="strong"><strong>/usr/local/</strong></span>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="index.ja.html"><img src="images/prev.png" alt="戻る"/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="ch01.ja.html"><img src="images/next.png" alt="次へ"/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">Debian メンテナー用ガイド </td>
+          <td align="center">
+            <a accesskey="h" href="index.ja.html">
+              <img src="images/home.png" alt="ホーム"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> 第1章 Overview</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

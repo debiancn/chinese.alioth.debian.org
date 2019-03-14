@@ -1,0 +1,972 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Debian 维护者指南</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.zh-cn.html" title="Debian 维护者指南"/>
+    <link rel="next" href="pr01.zh-cn.html" title="前言"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Debian 维护者指南</th>
+        </tr>
+        <tr>
+          <td align="left"> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="pr01.zh-cn.html"><img src="images/next.png" alt="下一页"/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div xml:lang="zh-cn" class="book">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="idm1"/>Debian 维护者指南</h1>
+          </div>
+          <div>
+            <div class="author">
+              <h3 class="author"> 青木 修 </h3>
+            </div>
+          </div>
+          <div>
+            <div class="othercredit">
+              <h3 class="othercredit">
+                <span class="firstname">杨博远</span>
+              </h3>
+              <code class="email">&lt;<a class="email" href="mailto:byang@debian.org">byang@debian.org</a>&gt;</code>
+            </div>
+          </div>
+          <div>
+            <div class="othercredit">
+              <h3 class="othercredit">
+                <span class="firstname">Fonzie Huang</span>
+              </h3>
+              <code class="email">&lt;<a class="email" href="mailto:hxf.prc@gmail.com">hxf.prc@gmail.com</a>&gt;</code>
+            </div>
+          </div>
+          <div>
+            <p class="copyright">版权 © 2014-2017 Osamu Aoki</p>
+          </div>
+          <div>
+            <p class="copyright">版权 © 2017-2019 杨博远</p>
+          </div>
+          <div>
+            <p class="copyright">版权 © 2018 Fonzie Huang</p>
+          </div>
+          <div>
+            <div class="legalnotice">
+              <a id="idm14"/>
+              <p>Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:</p>
+              <p>The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.</p>
+              <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+              <p>本指南在撰写过程中参考了以下几篇文档：</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">“Making a Debian Package (AKA the Debmake Manual)”, 版权所有 © 1997 Jaldhar Vyas.</li>
+                  <li class="listitem">“The New-Maintainer’s Debian Packaging Howto”, 版权所有 © 1997 Will Lowe.</li>
+                  <li class="listitem">“Debian New Maintainers’ Guide”, 版权所有 © 1998-2002 Josip Rodin, 2005-2017 Osamu Aoki, 2010 Craig Small 以及 2010 Raphaël Hertzog。</li>
+                </ul>
+              </div>
+              <p>本指南的最新版本应当可以在下列位置找到：</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">在 <a class="ulink" href="https://tracker.debian.org/pkg/debmake-doc">debmake-doc 软件包</a> 中，以及</li>
+                  <li class="listitem">位于 <a class="ulink" href="https://www.debian.org/doc/devel-manuals">Debian 文档网站</a>。</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="abstract">
+              <p class="title">
+                <strong>摘要</strong>
+              </p>
+              <p>本篇《Debian 维护者指南》（2019-03-14）教程文档面向普通 Debian 用户和未来的开发者，描述了使用 <span class="strong"><strong>debmake</strong></span> 命令构建 Debian 软件包的方法。</p>
+              <p>本指南注重描述现代的打包风格，同时提供了许多简单的示例。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">POSIX shell 脚本打包</li>
+                  <li class="listitem">Python3 脚本打包</li>
+                  <li class="listitem">C 和 Makefile/Autotools/CMake</li>
+                  <li class="listitem">含有共享库的多个二进制软件包的打包，等等。</li>
+                </ul>
+              </div>
+              <p>本篇“Debian 维护者指南”可看作“Debian 新维护者手册”的继承文档。</p>
+            </div>
+          </div>
+        </div>
+        <hr/>
+      </div>
+      <div class="toc">
+        <p>
+          <strong>目录</strong>
+        </p>
+        <dl class="toc">
+          <dt>
+            <span class="preface">
+              <a href="pr01.zh-cn.html">前言</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="chapter">
+              <a href="ch01.zh-cn.html">1. 概览</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="chapter">
+              <a href="ch02.zh-cn.html">2. 预备知识</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch02.zh-cn.html#people">2.1. Debian 社区的工作者</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.zh-cn.html#contribute">2.2. 如何做出贡献</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.zh-cn.html#social">2.3. Debian 的社会驱动力</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.zh-cn.html#reminders">2.4. 技术提醒</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.zh-cn.html#debian-doc">2.5. Debian 文档</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.zh-cn.html#help">2.6. 帮助资源</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.zh-cn.html#situation">2.7. 仓库状况</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.zh-cn.html#approaches">2.8. 贡献流程</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.zh-cn.html#novice">2.9. 新手贡献者和维护者</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch03.zh-cn.html">3. 工具的配置</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch03.zh-cn.html#email-setup">3.1. 电子邮件地址</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.zh-cn.html#mc-setup">3.2. mc</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.zh-cn.html#git-setup">3.3. git</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.zh-cn.html#quilt-setup">3.4. quilt</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.zh-cn.html#devscripts-setup">3.5. devscripts</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.zh-cn.html#pbuilder-setup">3.6. pbuilder</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.zh-cn.html#gbp-setup">3.7. git-buildpackage</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.zh-cn.html#proxy">3.8. HTTP 代理</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.zh-cn.html#repropro">3.9. 私有 Debian 仓库</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch04.zh-cn.html">4. 简单例子</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch04.zh-cn.html#big-picture">4.1. 大致流程</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.zh-cn.html#what-debmake">4.2. 什么是 debmake？</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.zh-cn.html#what-debuild">4.3. 什么是 debuild？</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.zh-cn.html#step-upstream">4.4. 第一步：获取上游源代码</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.zh-cn.html#step-debmake">4.5. 第二步：使用 debmake 产生模板文件</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.zh-cn.html#step-maintainer">4.6. 第三步：编辑模板文件</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.zh-cn.html#step-debuild">4.7. 第四步：使用 debuild 构建软件包</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.zh-cn.html#alt-patch">4.8. 第三步（备选）：修改上游源代码</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch04.zh-cn.html#diff-u">4.8.1. 使用 diff -u 处理补丁</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch04.zh-cn.html#dquilt">4.8.2. 使用 dquilt 处理补丁</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch04.zh-cn.html#dpkg-source-commit">4.8.3. 使用 dpkg-source --commit 处理补丁</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch05.zh-cn.html">5. 基本内容</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#workflow">5.1. 打包工作流</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#debhelper">5.1.1. <span class="strong"><strong>debhelper</strong></span> 软件包</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#name-version">5.2. 软件包名称和版本</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#native">5.3. 本土 Debian 软件包</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#rules">5.4. debian/rules</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#dh">5.4.1. dh</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#simplerules">5.4.2. 简单的 debian/rules</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#customrules">5.4.3. 自定义 debian/rules</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#variablesrules">5.4.4. debian/rules 中的变量</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#reproducible">5.4.5. 可重现的构建</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#control">5.5. debian/control</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#split">5.5.1. Debian 二进制软件包的拆分</a>
+                    </span>
+                  </dt>
+                  <dd>
+                    <dl>
+                      <dt>
+                        <span class="section">
+                          <a href="ch05.zh-cn.html#boption">5.5.1.1. debmake -b</a>
+                        </span>
+                      </dt>
+                      <dt>
+                        <span class="section">
+                          <a href="ch05.zh-cn.html#package-split-example">5.5.1.2. 拆包的场景和例子</a>
+                        </span>
+                      </dt>
+                      <dt>
+                        <span class="section">
+                          <a href="ch05.zh-cn.html#libnames">5.5.1.3. 库软件包名称</a>
+                        </span>
+                      </dt>
+                    </dl>
+                  </dd>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#substvar">5.5.2. Substvar</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#binnmu">5.5.3. binNMU 安全</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#changelog">5.6. debian/changelog</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#copyright">5.7. debian/copyright</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#patches">5.8. debian/patches/*</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#dpkg-source-x">5.8.1. dpkg-source -x</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#quilt-dpkg">5.8.2. dquilt 和 dpkg-source</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#signing-key">5.9. debian/upstream/signing-key.asc</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#dfsg">5.10. debian/watch 和 DFSG</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#debianconf">5.11. 其它 debian/* 文件</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#custom">5.12. Debian 打包的定制化</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#vcs">5.13. 在版本控制系统中进行记录（标准）</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#alt-vcs">5.14. 在版本控制系统中进行记录（备选方案）</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#build-noextra">5.15. 构建软件包时排除不必要的内容</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#rules-clean">5.15.1. 使用 debian/rules clean 进行修复</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#git-clean">5.15.2. 使用版本控制系统修复</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#extend-diff-ignore">5.15.3. 使用 extend-diff-ignore 修复</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#tar-ignore">5.15.4. 使用 tar-ignore 修复</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#build">5.16. 上游构建系统</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#autotools">5.16.1. Autotools</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#cmake">5.16.2. CMake</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#distutils">5.16.3. Python distutils</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#dbg">5.17. 调试信息</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#dbgsym">5.17.1. 新的 -dbgsym 软件包（Stretch 9.0 或更新）</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#lib">5.18. 库软件包</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#symbols">5.18.1. 库符号</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#lib-trans">5.18.2. 库变迁</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#debconf">5.19. debconf</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#multiarch">5.20. 多体系结构</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#_the_multiarch_library_path">5.20.1. 多架构库路径</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#_the_multiarch_header_file_path">5.20.2. 多架构头文件路径</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.zh-cn.html#_the_multiarch_emphasis_role_strong_pc_emphasis_file_path">5.20.3. 多架构支持下的 <span class="strong"><strong>*.pc</strong></span> 文件路径</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#harden">5.21. 编译加固</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#ci">5.22. 持续集成</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#bootstrap">5.23. 自举</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.zh-cn.html#bug">5.24. 错误报告</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch06.zh-cn.html">6. debmake 选项</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch06.zh-cn.html#ai-option">6.1. 快捷选项（-a，-i）</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch06.zh-cn.html#pythonmod">6.1.1. Python 模块</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch06.zh-cn.html#dt-option">6.2. 上游快照（-d，-t）</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.zh-cn.html#coption">6.3. debmake -cc</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.zh-cn.html#koption">6.4. debmake -k</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.zh-cn.html#joption">6.5. debmake -j</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.zh-cn.html#xoption">6.6. debmake -x</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.zh-cn.html#poption">6.7. debmake -P</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.zh-cn.html#toption">6.8. debmake -T</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch07.zh-cn.html">7. 提示</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#debdiff">7.1. debdiff</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#dget">7.2. dget</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#debc">7.3. debc</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#piuparts">7.4. piuparts</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#debsign">7.5. debsign</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#dput">7.6. dput</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#bts">7.7. bts</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#gbp">7.8. git-buildpackage</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.zh-cn.html#debsnap">7.8.1. gbp import-dscs --debsnap</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#upstream-git">7.9. 上游 git 仓库</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#chroot">7.10. chroot</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#newrevision">7.11. 新的 Debian 版本</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#newversion">7.12. 新上游版本</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.zh-cn.html#uupdate">7.12.1. uupdate + tarball</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.zh-cn.html#uscan">7.12.2. uscan</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.zh-cn.html#gbp-orig">7.12.3. gbp</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.zh-cn.html#gbp-uscan">7.12.4. gbp + uscan</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#deb3">7.13. 3.0 源代码格式</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#cdbs">7.14. CDBS</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#utf-8-build">7.15. 在 UTF-8 环境下构建</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#utf-8-conv">7.16. UTF-8 转换</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#origtar">7.17. 上传 <span class="strong"><strong>orig.tar.gz</strong></span></a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#skipedupload">7.18. 跳过的上传</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#adv-pkg">7.19. 高级打包</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#other-distro">7.20. 其他发行版</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#debug">7.21. 除错</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch08.zh-cn.html">8. 更多示例</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch08.zh-cn.html#emptypkg">8.1. 挑选最好的模板</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.zh-cn.html#nomakefile">8.2. 无 Makefile（shell，命令行界面）</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.zh-cn.html#makefile-sh">8.3. Makefile（shell，命令行界面）</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.zh-cn.html#setup-py">8.4. setup.py（Python3，命令行界面）</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.zh-cn.html#makefile-sh-gui">8.5. Makefile（shell，图形界面）</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.zh-cn.html#setup-py-gui">8.6. setup.py（Python3，图形界面）</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.zh-cn.html#makefile-single">8.7. Makefile（单个二进制软件包）</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.zh-cn.html#configure-single">8.8. Makefile.in + configure（单个二进制软件包）</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.zh-cn.html#autotools-single">8.9. Autotools（单个二进制文件）</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.zh-cn.html#cmake-single">8.10. CMake（单个二进制软件包）</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.zh-cn.html#autotools-multi">8.11. Autotools（多个二进制软件包）</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.zh-cn.html#cmake-multi">8.12. CMake（多个二进制软件包）</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.zh-cn.html#i18n-example">8.13. 国际化</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.zh-cn.html#details">8.14. 细节</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="appendix">
+              <a href="apa.zh-cn.html">A. <span class="strong"><strong>debmake</strong></span>(1) 手册页</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="apa.zh-cn.html#_name">A.1. 名称</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.zh-cn.html#_synopsis">A.2. 概述</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.zh-cn.html#_description">A.3. 描述</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="apa.zh-cn.html#_optional_arguments">A.3.1. 可选参数：</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="apa.zh-cn.html#_examples">A.4. 示例</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.zh-cn.html#_helper_packages">A.5. 帮助软件包</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.zh-cn.html#_caveat">A.6. 注意事项</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.zh-cn.html#_debug">A.7. 除错</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.zh-cn.html#_author">A.8. 作者</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.zh-cn.html#_license">A.9. 许可证</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.zh-cn.html#_see_also">A.10. 参见</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="pr01.zh-cn.html"><img src="images/next.png" alt="下一页"/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top"> </td>
+          <td align="center"> </td>
+          <td align="right" valign="top"> 前言</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

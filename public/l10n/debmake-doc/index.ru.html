@@ -1,0 +1,973 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Руководство для сопровождающих Debian</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.ru.html" title="Руководство для сопровождающих Debian"/>
+    <link rel="next" href="pr01.ru.html" title="Предисловие"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Руководство для сопровождающих Debian</th>
+        </tr>
+        <tr>
+          <td align="left"> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="pr01.ru.html"><img src="images/next.png" alt="След."/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div xml:lang="ru" class="book">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="idm1"/>Руководство для сопровождающих Debian</h1>
+          </div>
+          <div>
+            <div class="author">
+              <h3 class="author"> Осаму Аоки</h3>
+            </div>
+          </div>
+          <div>
+            <div class="othercredit">
+              <h3 class="othercredit">
+                <span class="firstname">Лев Ламберов</span>
+              </h3>
+              <code class="email">&lt;<a class="email" href="mailto:dogsleg@debian.org">dogsleg@debian.org</a>&gt;</code>
+            </div>
+          </div>
+          <div>
+            <p class="copyright">Авторские права © 2014—2017 Осаму Аоки</p>
+          </div>
+          <div>
+            <p class="copyright">Авторские права © 2018 Лев Ламберов</p>
+          </div>
+          <div>
+            <div class="legalnotice">
+              <a id="idm14"/>
+              <p>Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:</p>
+              <p>The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.</p>
+              <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+              <p>Данное руководство было создано на основе информации, содержащейся в следующих документах:</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">«Создание пакета Debian (руководство по debmake)», copyright © 1997 Джалдхар Виас</li>
+                  <li class="listitem">«Практическое руководство нового сопровождающего по созданию пакетов Debian», copyright © 1997 Уилл Лоу</li>
+                  <li class="listitem">«Руководство начинающего разработчика Debian», copyright © 1998—2002 Джосип Родин, 2005—2017 Осаму Аоки, 2010 Крэйг Смолл, а также 2010 Рафаэль Херцог</li>
+                </ul>
+              </div>
+              <p>Последняя версия данного руководства доступна:</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">в <a class="ulink" href="https://tracker.debian.org/pkg/debmake-doc">пакете debmake-doc</a> и</li>
+                  <li class="listitem">на <a class="ulink" href="https://www.debian.org/doc/devel-manuals">веб-сайте Документации Debian</a>.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="abstract">
+              <p class="title">
+                <strong>Аннотация</strong>
+              </p>
+              <p>Данное учебное руководство описывает сборку пакета Debian с помощью команды <span class="strong"><strong>debmake</strong></span> и предназначено для обычных пользователей Debian и будущих разработчиков.</p>
+              <p>Руководство сконцентрировано на современном стиле создания пакетов и содержит множество простых примеров:</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">Создание пакета, содержащего сценарий командной оболочки POSIX</li>
+                  <li class="listitem">Создание пакета, содержащего сценарий на языке Python3</li>
+                  <li class="listitem">C и Makefile/Autotools/CMake</li>
+                  <li class="listitem">Несколько двоичных пакетов с разделяемой библиотекой и т.д.</li>
+                </ul>
+              </div>
+              <p>Данное «Руководство для сопровождающих Debian» может рассматриваться как замена «Руководства начинающего разработчика Debian».</p>
+            </div>
+          </div>
+        </div>
+        <hr/>
+      </div>
+      <div class="toc">
+        <p>
+          <strong>Содержание</strong>
+        </p>
+        <dl class="toc">
+          <dt>
+            <span class="preface">
+              <a href="pr01.ru.html">Предисловие</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="chapter">
+              <a href="ch01.ru.html">1. Обзор</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="chapter">
+              <a href="ch02.ru.html">2. Необходимые предварительные требования</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch02.ru.html#people">2.1. Люди вокруг Debian</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.ru.html#contribute">2.2. Как принять участие</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.ru.html#social">2.3. Социальная динамика Debian</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.ru.html#reminders">2.4. Техническая памятка</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.ru.html#debian-doc">2.5. Документация Debian</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.ru.html#help">2.6. Справочные ресурсы</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.ru.html#situation">2.7. Ситуация с архивом</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.ru.html#approaches">2.8. Подходы к участию</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.ru.html#novice">2.9. Начинающий участник и сопровождающий</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch03.ru.html">3. Настройка инструментов</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch03.ru.html#email-setup">3.1. Адрес электронной почты</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.ru.html#mc-setup">3.2. mc</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.ru.html#git-setup">3.3. git</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.ru.html#quilt-setup">3.4. quilt</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.ru.html#devscripts-setup">3.5. devscripts</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.ru.html#pbuilder-setup">3.6. pbuilder</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.ru.html#gbp-setup">3.7. git-buildpackage</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.ru.html#proxy">3.8. HTTP-прокси</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.ru.html#repropro">3.9. Частный репозиторий Debian</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch04.ru.html">4. Простой пример</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch04.ru.html#big-picture">4.1. Общая картина</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.ru.html#what-debmake">4.2. Что такое debmake?</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.ru.html#what-debuild">4.3. Что такое debuild?</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.ru.html#step-upstream">4.4. Шаг 1: получение исходного кода основной ветки разработки</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.ru.html#step-debmake">4.5. Шаг 2: создание шаблонных файлов с помощью debmake</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.ru.html#step-maintainer">4.6. Шаг 3: изменение шаблонных файлов</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.ru.html#step-debuild">4.7. Шаг 4: сборка пакета с помощью debuild</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.ru.html#alt-patch">4.8. Шаг 3 (альтернативный): изменение исходного кода основной ветки разработки</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch04.ru.html#diff-u">4.8.1. Создание заплаты с помощью diff -u</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch04.ru.html#dquilt">4.8.2. Создание заплаты с помощью dquilt</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch04.ru.html#dpkg-source-commit">4.8.3. Создание заплаты с помощью dpkg-source --commit</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch05.ru.html">5. Основы</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#workflow">5.1. Работа по созданию пакета</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#debhelper">5.1.1. Пакет <span class="strong"><strong>debhelper</strong></span></a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#name-version">5.2. Имя пакета и версия</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#native">5.3. Родной пакет Debian</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#rules">5.4. debian/rules</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#dh">5.4.1. dh</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#simplerules">5.4.2. Простой сценарий debian/rules</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#customrules">5.4.3. Настроенный файл debian/rules</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#variablesrules">5.4.4. Переменные debian/rules</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#reproducible">5.4.5. Повторяемая сборка</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#control">5.5. debian/control</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#split">5.5.1. Split of a Debian binary package</a>
+                    </span>
+                  </dt>
+                  <dd>
+                    <dl>
+                      <dt>
+                        <span class="section">
+                          <a href="ch05.ru.html#boption">5.5.1.1. debmake -b</a>
+                        </span>
+                      </dt>
+                      <dt>
+                        <span class="section">
+                          <a href="ch05.ru.html#package-split-example">5.5.1.2. Сценарии и примеры разделения пакета</a>
+                        </span>
+                      </dt>
+                      <dt>
+                        <span class="section">
+                          <a href="ch05.ru.html#libnames">5.5.1.3. Имя пакета библиотеки</a>
+                        </span>
+                      </dt>
+                    </dl>
+                  </dd>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#substvar">5.5.2. Переменные подстановки</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#binnmu">5.5.3. Безопасная binNMU-загрузка</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#changelog">5.6. debian/changelog</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#copyright">5.7. debian/copyright</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#patches">5.8. debian/patches/*</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#dpkg-source-x">5.8.1. dpkg-source -x</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#quilt-dpkg">5.8.2. dquilt и dpkg-source</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#signing-key">5.9. debian/upstream/signing-key.asc</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#dfsg">5.10. debian/watch и критерии Debian по определению свободного ПО (DFSG)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#debianconf">5.11. Other debian/* Files</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#custom">5.12. Настройка пакета Debian</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#vcs">5.13. Запись в систему управления версиями (стандарт)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#alt-vcs">5.14. Запись в систему управления версиями (альтернатива)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#build-noextra">5.15. Сборка пакета без постороннего содержимого</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#rules-clean">5.15.1. Исправление с помощью debian/rules clean</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#git-clean">5.15.2. Исправление с помощью систем управления версиями</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#extend-diff-ignore">5.15.3. Исправление с помощью extend-diff-ignore</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#tar-ignore">5.15.4. Исправление с помощью tar-ignore</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#build">5.16. Системы сборки основой ветки</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#autotools">5.16.1. Autotools</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#cmake">5.16.2. CMake</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#distutils">5.16.3. Python distutils</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#dbg">5.17. Отладочная информация</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#dbgsym">5.17.1. New -dbgsym package (Stretch 9.0 and after)</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#lib">5.18. Пакет библиотеки</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#symbols">5.18.1. Библиотека символов</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#lib-trans">5.18.2. Смена библиотек</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#debconf">5.19. debconf</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#multiarch">5.20. Multiarch</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#_the_multiarch_library_path">5.20.1. Путь мультиархитектурной библиотеки</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#_the_multiarch_header_file_path">5.20.2. Путь мультархитектурных заголовочных файлов</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.ru.html#_the_multiarch_emphasis_role_strong_pc_emphasis_file_path">5.20.3. Мультиархиектурный путь к файлу <span class="strong"><strong>*.pc</strong></span></a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#harden">5.21. Усиление безопасности компилятора</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#ci">5.22. Непрерывная интеграция</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#bootstrap">5.23. Предзагрузка</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.ru.html#bug">5.24. Bug reports</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch06.ru.html">6. Опции debmake</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch06.ru.html#ai-option">6.1. Опции быстрых действий (-a, -i)</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch06.ru.html#pythonmod">6.1.1. Модуль Python</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch06.ru.html#dt-option">6.2. Срезы основной ветки (-d, -t)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.ru.html#coption">6.3. debmake -cc</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.ru.html#koption">6.4. debmake -k</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.ru.html#joption">6.5. debmake -j</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.ru.html#xoption">6.6. debmake -x</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.ru.html#poption">6.7. debmake -P</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.ru.html#toption">6.8. debmake -T</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch07.ru.html">7. Полезные советы</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#debdiff">7.1. debdiff</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#dget">7.2. dget</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#debc">7.3. debc</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#piuparts">7.4. piuparts</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#debsign">7.5. debsign</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#dput">7.6. dput</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#bts">7.7. bts</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#gbp">7.8. git-buildpackage</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.ru.html#debsnap">7.8.1. gbp import-dscs --debsnap</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#upstream-git">7.9. git-репозиторий основной ветки</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#chroot">7.10. chroot</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#newrevision">7.11. Новая редакция Debian</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#newversion">7.12. Новый выпуск основной ветки</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.ru.html#uupdate">7.12.1. uupdate + tarball</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.ru.html#uscan">7.12.2. uscan</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.ru.html#gbp-orig">7.12.3. gbp</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.ru.html#gbp-uscan">7.12.4. gbp + uscan</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#deb3">7.13. Формат исходного кода 3.0</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#cdbs">7.14. CDBS</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#utf-8-build">7.15. Сборка с использованием кодировки UTF-8</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#utf-8-conv">7.16. Преобразование в кодировку UTF-8</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#origtar">7.17. Загрузите <span class="strong"><strong>orig.tar.gz</strong></span></a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#skipedupload">7.18. Пропущенные загрузки</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#adv-pkg">7.19. Продвинутые темы работы над пакетом</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#other-distro">7.20. Другие дистрибутивы</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#debug">7.21. Отладка</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch08.ru.html">8. Дополнительные примеры</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch08.ru.html#emptypkg">8.1. Выборочное применение шаблонов</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.ru.html#nomakefile">8.2. Без Makefile (командная оболочка, интерфейс командной оболочки)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.ru.html#makefile-sh">8.3. Makefile (командная оболочка, интерфейс командной оболочки)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.ru.html#setup-py">8.4. setup.py (Python3, интерфейс командной оболочки)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.ru.html#makefile-sh-gui">8.5. Makefile (командная оболочка, графический интерфейс пользователя)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.ru.html#setup-py-gui">8.6. setup.py (Python3, графический интерфейс пользователя)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.ru.html#makefile-single">8.7. Makefile (single-binary package)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.ru.html#configure-single">8.8. Makefile.in + configure (single-binary package)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.ru.html#autotools-single">8.9. Autotools (single-binary package)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.ru.html#cmake-single">8.10. CMake (single-binary package)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.ru.html#autotools-multi">8.11. Autotools (multi-binary package)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.ru.html#cmake-multi">8.12. CMake (multi-binary package)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.ru.html#i18n-example">8.13. Интернационализация</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.ru.html#details">8.14. Детали</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="appendix">
+              <a href="apa.ru.html">A. Страница руководства <span class="strong"><strong>debmake</strong></span>(1)</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="apa.ru.html#_name">A.1. НАЗВАНИЕ</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.ru.html#_synopsis">A.2. СИНТАКСИС</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.ru.html#_description">A.3. ОПИСАНИЕ</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="apa.ru.html#_optional_arguments">A.3.1. необязательные аргументы:</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="apa.ru.html#_examples">A.4. ПРИМЕРЫ</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.ru.html#_helper_packages">A.5. ВСПОМОГАТЕЛЬНЫЕ ПАКЕТЫ</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.ru.html#_caveat">A.6. ПРЕДОСТЕРЕЖЕНИЯ</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.ru.html#_debug">A.7. ОТЛАДКА</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.ru.html#_author">A.8. АВТОР</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.ru.html#_license">A.9. ЛИЦЕНЗИЯ</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.ru.html#_see_also">A.10. СМОТРИТЕ ТАКЖЕ</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="pr01.ru.html"><img src="images/next.png" alt="След."/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top"> </td>
+          <td align="center"> </td>
+          <td align="right" valign="top"> Предисловие</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

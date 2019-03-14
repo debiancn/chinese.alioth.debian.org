@@ -1,0 +1,1354 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>第 7 章 提示</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.zh-cn.html" title="Debian 维护者指南"/>
+    <link rel="up" href="index.zh-cn.html" title="Debian 维护者指南"/>
+    <link rel="prev" href="ch06.zh-cn.html" title="第 6 章 debmake 选项"/>
+    <link rel="next" href="ch08.zh-cn.html" title="第 8 章 更多示例"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">第 7 章 提示</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="ch06.zh-cn.html"><img src="images/prev.png" alt="上一页"/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="ch08.zh-cn.html"><img src="images/next.png" alt="下一页"/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="chapter">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="tips"/>第 7 章 提示</h1>
+          </div>
+        </div>
+      </div>
+      <div class="toc">
+        <p>
+          <strong>目录</strong>
+        </p>
+        <dl class="toc">
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#debdiff">7.1. debdiff</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#dget">7.2. dget</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#debc">7.3. debc</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#piuparts">7.4. piuparts</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#debsign">7.5. debsign</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#dput">7.6. dput</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#bts">7.7. bts</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#gbp">7.8. git-buildpackage</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#debsnap">7.8.1. gbp import-dscs --debsnap</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#upstream-git">7.9. 上游 git 仓库</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#chroot">7.10. chroot</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#newrevision">7.11. 新的 Debian 版本</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#newversion">7.12. 新上游版本</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#uupdate">7.12.1. uupdate + tarball</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#uscan">7.12.2. uscan</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#gbp-orig">7.12.3. gbp</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.zh-cn.html#gbp-uscan">7.12.4. gbp + uscan</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#deb3">7.13. 3.0 源代码格式</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#cdbs">7.14. CDBS</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#utf-8-build">7.15. 在 UTF-8 环境下构建</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#utf-8-conv">7.16. UTF-8 转换</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#origtar">7.17. 上传 <span class="strong"><strong>orig.tar.gz</strong></span></a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#skipedupload">7.18. 跳过的上传</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#adv-pkg">7.19. 高级打包</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#other-distro">7.20. 其他发行版</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.zh-cn.html#debug">7.21. 除错</a>
+            </span>
+          </dt>
+        </dl>
+      </div>
+      <p>这里有一些关于 Debian 打包的值得注意的提示。</p>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="debdiff"/>7.1. debdiff</h2>
+            </div>
+          </div>
+        </div>
+        <p>您可以使用 <span class="strong"><strong>debdiff</strong></span> 命令来对比两个 Debian 软件包组成的差别。</p>
+        <pre class="screen">$ debdiff old-package.dsc new-package.dsc</pre>
+        <p>您也可以使用 <span class="strong"><strong>debdiff</strong></span> 命令来对比两组二进制 Debian 软件包中的文件列表。</p>
+        <pre class="screen">$ debdiff old-package.changes new-package.changes</pre>
+        <p>当检查源代码包中哪些文件被修改时，这个命令非常有用。它还可以用来检测二进制包中是否有文件在更新过程中发生变动，比如被意外替换或删除。</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="dget"/>7.2. dget</h2>
+            </div>
+          </div>
+        </div>
+        <p>您可以使用 <span class="strong"><strong>dget</strong></span> 命令来下载 Debian 源包的文件集。</p>
+        <pre class="screen">$ dget https://www.example.org/path/to/package_version-rev.dsc</pre>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="debc"/>7.3. debc</h2>
+            </div>
+          </div>
+        </div>
+        <p>您应该使用 <span class="strong"><strong>debc</strong></span> 命令安装生成的软件包以在本地测试它。</p>
+        <pre class="screen">$ debc package_version-rev_arch.changes</pre>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="piuparts"/>7.4. piuparts</h2>
+            </div>
+          </div>
+        </div>
+        <p>您应该使用 <span class="strong"><strong>piuparts</strong></span> 命令安装生成的软件包以自动进行测试。</p>
+        <pre class="screen">$ sudo piuparts package_version-rev_arch.changes</pre>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[注意]" src="images/note.png"/>
+              </td>
+              <th align="left">注意</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>这是一个非常慢的过程，因为它需要访问远程 APT 软件包仓库。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="debsign"/>7.5. debsign</h2>
+            </div>
+          </div>
+        </div>
+        <p>完成软件包的测试后，您可以使用 <span class="strong"><strong>debsign</strong></span> 命令对其进行签名。</p>
+        <pre class="screen">$ debsign package_version-rev_arch.changes</pre>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="dput"/>7.6. dput</h2>
+            </div>
+          </div>
+        </div>
+        <p>使用 <span class="strong"><strong>debsign</strong></span> 命令对包进行签名后，您可以使用 <span class="strong"><strong>dput</strong></span> 命令上传 Debian 源和二进制包的文件集。</p>
+        <pre class="screen">$ dput package_version-rev_arch.changes</pre>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="bts"/>7.7. bts</h2>
+            </div>
+          </div>
+        </div>
+        <p>上传软件包后，您将收到错误报告。 如 ”Debian 开发人员参考” <a class="ulink" href="https://www.debian.org/doc/manuals/developers-reference/pkgs.html#bug-handling">5.8. 处理缺陷</a> 中所述，正确地管理这些错误是软件包维护者的一项重要职责。</p>
+        <p><span class="strong"><strong>bts</strong></span> 命令是一个用以处理 <a class="ulink" href="https://www.debian.org/Bugs/">Debian 缺陷追踪系统</a> 上的错误的便捷工具。</p>
+        <pre class="screen">$ bts severity 123123 wishlist , tags -1 pending</pre>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="gbp"/>7.8. git-buildpackage</h2>
+            </div>
+          </div>
+        </div>
+        <p><span class="strong"><strong>git-buildpackage</strong></span> 软件包提供了许多命令来使用 git 仓库自动打包。</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem"><span class="strong"><strong>gbp import-dsc</strong></span>：向 git 仓库中导入先前的 Debian 源码包。</li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>gbp import-orig</strong></span>：向 git 仓库中导入新的上游源码。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem"><span class="strong"><strong>git import-orig</strong></span> 命令的 <span class="strong"><strong>--pristine-tar</strong></span> 选项允许将上游源码包储存在同一个 git 仓库中。</li>
+                  <li class="listitem">将 <span class="strong"><strong>--uscan</strong></span> 选项作为 <span class="strong"><strong>gbp import-orig</strong></span> 命令的最后一个参数会允许下载上游原始码并提交到 git 仓库中。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem"><span class="strong"><strong>gbp dch</strong></span>：从 git 提交信息中生成 Debian 变更信息（changelog）。</li>
+            <li class="listitem"><span class="strong"><strong>gbp buildpackage</strong></span>：从 git 仓库中构建 Debian 二进制包。</li>
+            <li class="listitem"><span class="strong"><strong>gbp pull</strong></span>：从远程仓库中安全更新 <span class="strong"><strong>debian</strong></span>, <span class="strong"><strong>upstream</strong></span> and <span class="strong"><strong>pristine-tar</strong></span> 分支。</li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>git-pbuilder</strong></span>：使用 <span class="strong"><strong>pbuilder</strong></span> 软件包从 git 仓库构建 Debian 二进制软件包。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">使用 <span class="strong"><strong>cowbuilder</strong></span> 软件包作为后端。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>gbp pq</strong></span>、<span class="strong"><strong>git-dpm</strong></span> 或 <span class="strong"><strong>quilt</strong></span>（或者其别名 <span class="strong"><strong>dquilt</strong></span>）命令用于管理兼容 quilt 的补丁。</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem"><span class="strong"><strong>dquilt</strong></span> 命令是学起来最简单的，它只要求您使用 <span class="strong"><strong>git</strong></span> 命令手动提交最后的文件至 <span class="strong"><strong>master</strong></span> 分支。</li>
+                  <li class="listitem">“<span class="strong"><strong>gbp pq</strong></span>” 命令提供了等效的补丁集管理功能，而不需要使用 <span class="strong"><strong>dquilt</strong></span> 并且使用 git 的拣选（cherry-pick）功能简化了包含上游 git 仓库修改的操作流程。</li>
+                  <li class="listitem">“<span class="strong"><strong>git dpm</strong></span>” 命令提供了比 “<span class="strong"><strong>gbp pq</strong></span>” 更强大的功能。</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>使用<span class="strong"><strong>git-buildpackage</strong></span>软件包来管理软件包历史正成为绝大多数 Debian 维护者的实践标准。</p>
+        <p>参见：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+<a class="ulink" href="https://honk.sigxcpu.org/projects/git-buildpackage/manual-html/gbp.html">使用 git-buildpackage 构建 Debian 软件包</a>
+</li>
+            <li class="listitem">
+<a class="ulink" href="https://wiki.debian.org/GitPackagingWorkflow">https://wiki.debian.org/GitPackagingWorkflow</a>
+</li>
+            <li class="listitem">
+<a class="ulink" href="https://wiki.debian.org/GitPackagingWorkflow/DebConf11BOF">https://wiki.debian.org/GitPackagingWorkflow/DebConf11BOF</a>
+</li>
+            <li class="listitem">
+<a class="ulink" href="https://raphaelhertzog.com/2010/11/18/4-tips-to-maintain-a-3-0-quilt-debian-source-package-in-a-vcs/">https://raphaelhertzog.com/2010/11/18/4-tips-to-maintain-a-3-0-quilt-debian-source-package-in-a-vcs/</a>
+</li>
+            <li class="listitem"><span class="strong"><strong>systemd</strong></span> 打包实践文档在 <a class="ulink" href="https://salsa.debian.org/systemd-team/systemd/blob/master/debian/README.source">从源码构建</a>。</li>
+          </ul>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>放松。您并不需要使用全部的打包工具，您只需要使用您所需要的那个就行。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="section">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a id="debsnap"/>7.8.1. gbp import-dscs --debsnap</h3>
+              </div>
+            </div>
+          </div>
+          <p>对于记录在 <a class="ulink" href="http://snapshot.debian.org/">snapshot.debian.org</a> 归档中的名为 <span class="emphasis"><em>&lt;source-package&gt;</em></span> 的 Debian 源码包，可以生成包含所有 Debian 版本历史的初始 git 存储库，如下所示。</p>
+          <pre class="screen">$ gbp import-dscs --debsnap --pristine-tar '&lt;source-package&gt;'</pre>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="upstream-git"/>7.9. 上游 git 仓库</h2>
+            </div>
+          </div>
+        </div>
+        <p>对于使用 <span class="strong"><strong>git-buildpackage</strong></span> 打包的 Debian 软件包，远程存储库 <span class="strong"><strong>origin</strong></span> 上的 <span class="strong"><strong>upstream</strong></span> 分支通常用于跟踪已发布的上游原始码的内容。</p>
+        <p>也可以通过将其远程存储库命名为 <span class="strong"><strong>upstream</strong></span> 而不是默认的 <span class="strong"><strong>origin</strong></span> 来跟踪上游 git 仓库。 然后，您可以通过使用 <span class="strong"><strong>gitk</strong></span> 命令和 <span class="strong"><strong>gbp-pq</strong></span> 命令进行挑选，轻松地将最近的上游更改添加到 Debian 修订版中。</p>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>“<span class="strong"><strong>gbp import-orig --upstream-vcs-tag</strong></span>” 命令可以通过使用上游 git 仓库中的指定标签在 <span class="strong"><strong>upstream</strong></span> 分支上创建一个合并提交的方式来生成干净的打包历史信息。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Caution">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[小心]" src="images/caution.png"/>
+              </td>
+              <th align="left">小心</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>已发布的上游原始码的内容可能与上游 git 存储库的相应内容并不完全匹配。 它可能包含一些自动生成的文件或遗漏一些文件。（Autotools、distutils......）</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="chroot"/>7.10. chroot</h2>
+            </div>
+          </div>
+        </div>
+        <p>可以使用 <a class="xref" href="ch03.zh-cn.html" title="第 3 章 工具的配置">第 3 章 <em>工具的配置</em></a> 中描述的工具创建和管理干净包构建环境的 <a class="ulink" href="https://en.wikipedia.org/wiki/Chroot">chroot</a>。<a href="#ftn.idm4742" class="footnote" id="idm4742"><sup class="footnote">[18]</sup></a></p>
+        <p>以下是可用的软件包构建命令的快速总结。 有很多方法可以做同样的事情。</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem"><span class="strong"><strong>dpkg-buildpackage</strong></span> = 软件包打包工具的核心</li>
+            <li class="listitem"><span class="strong"><strong>debuild</strong></span> = <span class="strong"><strong>dpkg-buildpackage</strong></span> + <span class="strong"><strong>lintian</strong></span> （在清理后的环境变量下构建）</li>
+            <li class="listitem"><span class="strong"><strong>pbuilder</strong></span> = Debian chroot 环境工具的核心</li>
+            <li class="listitem"><span class="strong"><strong>pdebuild</strong></span> = <span class="strong"><strong>pbuilder</strong></span> + <span class="strong"><strong>dpkg-buildpackage</strong></span> （在 chroot 环境下构建）</li>
+            <li class="listitem"><span class="strong"><strong>cowbuilder</strong></span> = 提升 <span class="strong"><strong>pbuilder</strong></span> 执行的速度</li>
+            <li class="listitem"><span class="strong"><strong>git-pbuilder</strong></span> = <span class="strong"><strong>pdebuild</strong></span> 的易于使用的命令行语法（由 <span class="strong"><strong>gbp buildpackge</strong></span> 使用）</li>
+            <li class="listitem"><span class="strong"><strong>gbp</strong></span> = 在 git 下管理 Debian 源代码</li>
+            <li class="listitem"><span class="strong"><strong>gbp buildpackge</strong></span> = <span class="strong"><strong>pbuilder</strong></span> + <span class="strong"><strong>dpkg-buildpackage</strong></span> + <span class="strong"><strong>gbp</strong></span></li>
+          </ul>
+        </div>
+        <p>可以根据如下方式使用干净的 <span class="strong"><strong>sid</strong></span> 版本的 chroot 环境。</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">用于 <span class="strong"><strong>sid</strong></span> 发行版的 chroot 文件系统创建命令</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>pbuilder create</strong>
+                    </span>
+                  </li>
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>git-pbuilder create</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>sid</strong></span> 版本的 chroot 文件系统的文件路径</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>/var/cache/pbuilder/base.cow</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>sid</strong></span> 发行版 chroot 的包构建命令</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>pdebuild</strong>
+                    </span>
+                  </li>
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>git-pbuilder</strong>
+                    </span>
+                  </li>
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>gbp buildpackage</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">更新 <span class="strong"><strong>sid</strong></span> chroot 的命令</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>pbuilder --update</strong>
+                    </span>
+                  </li>
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>git-pbuilder update</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">要登录到 <span class="strong"><strong>sid</strong></span> 修改 chroot 文件系统的命令</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>git-pbuilder login --save-after-login</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>可以根据如下方式使用任意的 <span class="emphasis"><em>dist</em></span> 版本环境。</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">用于 <span class="strong"><strong>dist</strong></span> 版本的 chroot 文件系统创建命令</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem"><span class="strong"><strong>pbuilder create --distribution</strong></span> <span class="emphasis"><em>dist</em></span></li>
+                  <li class="listitem"><span class="strong"><strong>DIST=</strong></span><span class="emphasis"><em>dist</em></span> <span class="strong"><strong>git-pbuilder create</strong></span></li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>dist</strong></span> 版本的 chroot 文件系统的文件路径</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">path: <span class="strong"><strong>/var/cache/pbuilder/base-</strong></span><span class="emphasis"><em>dist</em></span><span class="strong"><strong>.cow</strong></span></li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>dist</strong></span> 版本 chroot 的包构建命令</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>pdebuild -- --basepath=/var/cache/pbuilder/base-</strong>
+                    </span>
+                    <span class="emphasis">
+                      <em>dist</em>
+                    </span>
+                    <span class="strong">
+                      <strong>.cow</strong>
+                    </span>
+                  </li>
+                  <li class="listitem"><span class="strong"><strong>DIST=</strong></span><span class="emphasis"><em>dist</em></span> <span class="strong"><strong>git-pbuilder</strong></span></li>
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>gbp buildpackage --git-dist=</strong>
+                    </span>
+                    <span class="emphasis">
+                      <em>dist</em>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">更新 <span class="strong"><strong>dist</strong></span> chroot 的命令</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>pbuilder update --basepath=/var/cache/pbuilder/base-</strong>
+                    </span>
+                    <span class="emphasis">
+                      <em>dist</em>
+                    </span>
+                    <span class="strong">
+                      <strong>.cow</strong>
+                    </span>
+                  </li>
+                  <li class="listitem"><span class="strong"><strong>DIST=</strong></span><span class="emphasis"><em>dist</em></span> <span class="strong"><strong>git-pbuilder update</strong></span></li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">登入 <span class="strong"><strong>dist</strong></span> chroot 环境以进行修改的命令</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>pbuilder --login --basepath=/var/cache/pbuilder/base-</strong>
+                    </span>
+                    <span class="emphasis">
+                      <em>dist</em>
+                    </span>
+                    <span class="strong">
+                      <strong>.cow --save-after-login</strong>
+                    </span>
+                  </li>
+                  <li class="listitem"><span class="strong"><strong>DIST=</strong></span><span class="emphasis"><em>dist</em></span> <span class="strong"><strong>git-pbuilder login --save-after-login</strong></span></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>使用这个“git-pbuilder login --save-after-login”命令可以非常方便地创建一个包含一些新实验包所需的预加载包的自定义环境。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>如果您的旧 chroot 文件系统缺少例如 <span class="strong"><strong>libeatmydata1</strong></span>、<span class="strong"><strong>ccache</strong></span> 和 <span class="strong"><strong>lintian</strong></span> 等软件包，您可能需要使用“<span class="strong"><strong>git-pbuilder login --save-after-login</strong></span>” 命令来安装这些软件包。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>只需使用 “<span class="strong"><strong>cp -a base-</strong></span><span class="emphasis"><em>dist</em></span><span class="strong"><strong>.cow base-</strong></span><span class="emphasis"><em>customdist</em></span><span class="strong"><strong>.cow</strong></span>” 命令即可克隆 chroot 文件系统。 新的 chroot 可以以 “<span class="strong"><strong>gbp buildpackage --git-dist=</strong></span><span class="emphasis"><em>customdist”</em></span> 和 “<span class="strong"><strong>DIST=</strong></span><span class="emphasis"><em>customdist</em></span> <span class="strong"><strong>git-pbuilder …</strong></span>” 访问。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>当需要为除 <span class="strong"><strong>0</strong></span> 和 <span class="strong"><strong>1</strong></span> 之外的 Debian 修订版上传 <span class="strong"><strong>orig.tar.gz</strong></span> 文件时（例如，对于安全性上传），将 <span class="strong"><strong>-sa</strong></span> 选项添加到 <span class="strong"><strong>dpkg-buildpackage</strong></span>，<span class="strong"><strong>debuild</strong></span>，<span class="strong"><strong>pdebuild</strong></span> 和 <span class="strong"><strong>git-pbuilder</strong></span> 命令末尾。 对于 “<span class="strong"><strong>gbp buildpackage</strong></span>” 命令，临时修改 <span class="strong"><strong>~/.gbp.conf</strong></span> 中的 <span class="strong"><strong>builder</strong></span> 设置。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[注意]" src="images/note.png"/>
+              </td>
+              <th align="left">注意</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>本节中的描述过于简洁，对大多数潜在的维护者都没用。 这是作者的有意为之。 我们强烈建议您搜索并阅读与所用命令相关的所有文档。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="newrevision"/>7.11. 新的 Debian 版本</h2>
+            </div>
+          </div>
+        </div>
+        <p>让我们假设有一个错误报告 <span class="strong"><strong>#</strong></span><span class="emphasis"><em>bug_number</em></span> 是针对您的软件包的。它描述了一个问题，您可以通过编辑上游源码中的错误文件来解决。以下是使用 <span class="strong"><strong>bugname.patch</strong></span> 文件创建软件包的新 Debian 软件包修订版所需的操作。</p>
+        <p><strong>使用 <span class="strong"><strong>dquilt</strong></span> 命令进行新的 Debian 修订. </strong>
+</p>
+        <pre class="screen"> $ dquilt push -a
+ $ dquilt new bugname.patch
+ $ dquilt add buggy
+ $ vim buggy
+   ...
+ $ dquilt refresh
+ $ dquilt header -e
+ $ dquilt pop -a
+ $ dch -i</pre>
+        <p>
+</p>
+        <p>此外，如果软件包是用 <span class="strong"><strong>git-buildpackage</strong></span> 命令以其默认配置管理的 git 仓库：</p>
+        <p><strong>使用 <span class="strong"><strong>gbp-pq</strong></span> 命令进行新的 Debian 修订. </strong>
+</p>
+        <pre class="screen"> $ git checkout master
+ $ gbp pq import
+ $ vim buggy
+ $ git add buggy
+ $ git commit
+ $ git tag pq/&lt;newrev&gt;
+ $ gbp pq export
+ $ gbp drop
+ $ git add debian/patches/*
+ $ dch -i
+ $ git commit -a -m "Closes: #&lt;bug_number&gt;"</pre>
+        <p>
+</p>
+        <p>请确保简明扼要地描述修复报告错误的更改并通过在 <span class="strong"><strong>debian/changelog</strong></span> 文件中添加 “<span class="strong"><strong>Closes: #</strong></span><span class="emphasis"><em>&lt;bug_number&gt;”</em></span> 来关闭这些错误。</p>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>在实验时使用带有版本字符串的 <span class="strong"><strong>debian/changelog</strong></span> 条目，例如 <span class="strong"><strong>1.0.1-1~rc1</strong></span> 。然后，将这些更改日志条目整理到官方软件包的条目中。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="newversion"/>7.12. 新上游版本</h2>
+            </div>
+          </div>
+        </div>
+        <p>如果 <span class="strong"><strong>foo</strong></span> 包是以现代“<span class="strong"><strong>3.0 (native)</strong></span>”或“<span class="strong"><strong>3.0 (quilt)</strong></span>”格式正确打包的，则打包新的上游版本时需要将旧的 <span class="strong"><strong>debian/</strong></span> 目录移动到新的源码路径中。 这可以通过在新提取的源码路径中运行“<span class="strong"><strong>tar -xvzf</strong></span> <span class="emphasis"><em>/path/to/foo_oldversion</em></span><span class="strong"><strong>.debian.tar.gz</strong></span>”命令来完成。<a href="#ftn.idm4974" class="footnote" id="idm4974"><sup class="footnote">[19]</sup></a> 当然，你还需要做一些修改。</p>
+        <p>有很多的工具可以用以处理这些情况。在使用这些软件来更新上游版本后，请在 <span class="strong"><strong>debian/changelog</strong></span> 文件中简要描述修复错误的上游修改，并添加 “<span class="strong"><strong>Closes: #</strong></span><span class="emphasis"><em>bug_number”</em></span> 来关闭错误。</p>
+        <div class="section">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a id="uupdate"/>7.12.1. uupdate + tarball</h3>
+              </div>
+            </div>
+          </div>
+          <p>您可以使用来自 <span class="strong"><strong>uupdate</strong></span> 软件包中的 <span class="strong"><strong>uupdate</strong></span> 命令来自动更新到新的上游源码。该命令需要旧的 Debian 源码包和新的上游源码包。</p>
+          <pre class="screen"> $ wget https://example.org/foo/foo-newversion.tar.gz
+ $ cd foo-oldversion
+ $ uupdate -v newversion ../foo-newversion.tar.gz
+ ...
+ $ cd ../foo-newversion
+ $ while dquilt push; do dquilt refresh; done
+ $ dch</pre>
+        </div>
+        <div class="section">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a id="uscan"/>7.12.2. uscan</h3>
+              </div>
+            </div>
+          </div>
+          <p>您可以使用来自 <span class="strong"><strong>uupdate</strong></span> 软件包中的 <span class="strong"><strong>uscan</strong></span> 命令来自动更新到新的上游源码。该命令需要包含 <span class="strong"><strong>debian/watch</strong></span> 文件的旧的 Debian 源码包。</p>
+          <pre class="screen"> $ cd foo-oldversion
+ $ uscan
+ ...
+ $ while dquilt push; do dquilt refresh; done
+ $ dch</pre>
+        </div>
+        <div class="section">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a id="gbp-orig"/>7.12.3. gbp</h3>
+              </div>
+            </div>
+          </div>
+          <p>您可以使用来自 <span class="strong"><strong>git-buildpackage</strong></span> 软件包中的 “<span class="strong"><strong>gbp import-orig --pristine-tar</strong></span>” 命令来自动更新到新的上游源码。该命令需要在 git 仓库中的 Debian 源码和新的上游源码包。</p>
+          <pre class="screen"> $ ln -sf foo-newversion.tar.gz foo_newversion.orig.tar.gz
+ $ cd foo-vcs
+ $ git checkout master
+ $ gbp pq import
+ $ git checkout master
+ $ gbp import-orig --pristine-tar  ../foo_newversion.orig.tar.gz
+ ...
+ $ gbp pq rebase
+ $ git checkout master
+ $ gbp pq export
+ $ gbp pq drop
+ $ git add debian/patches
+ $ dch -v &lt;newversion&gt;
+ $ git commit -a -m "Refresh patches"</pre>
+          <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+            <table border="0" summary="Tip">
+              <tr>
+                <td rowspan="2" align="center" valign="top">
+                  <img alt="[提示]" src="images/tip.png"/>
+                </td>
+                <th align="left">提示</th>
+              </tr>
+              <tr>
+                <td align="left" valign="top">
+                  <p>如果上游也使用 git 仓库，请为 <span class="strong"><strong>gbp import-orig</strong></span> 命令加上 <span class="strong"><strong>--upstream-vcs-tag</strong></span> 选项。</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="section">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a id="gbp-uscan"/>7.12.4. gbp + uscan</h3>
+              </div>
+            </div>
+          </div>
+          <p>您可以使用来自 <span class="strong"><strong>git-buildpackage</strong></span> 软件包中的“<span class="strong"><strong>gbp import-orig --pristine-tar --uscan</strong></span>”命令来自动更新到新的上游源码。该命令需要在 git 仓库中的包含 <span class="strong"><strong>debian/watch</strong></span> 文件的 Debian 源码。</p>
+          <pre class="screen"> $ cd foo-vcs
+ $ git checkout master
+ $ gbp pq import
+ $ git checkout master
+ $ gbp import-orig --pristine-tar --uscan
+ ...
+ $ gbp pq rebase
+ $ git checkout master
+ $ gbp pq export
+ $ gbp pq drop
+ $ git add debian/patches
+ $ dch -v &lt;newversion&gt;
+ $ git commit -a -m "Refresh patches"</pre>
+          <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+            <table border="0" summary="Tip">
+              <tr>
+                <td rowspan="2" align="center" valign="top">
+                  <img alt="[提示]" src="images/tip.png"/>
+                </td>
+                <th align="left">提示</th>
+              </tr>
+              <tr>
+                <td align="left" valign="top">
+                  <p>如果上游也使用 git 仓库，请为 <span class="strong"><strong>gbp import-orig</strong></span> 命令加上 <span class="strong"><strong>--upstream-vcs-tag</strong></span> 选项。</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="deb3"/>7.13. 3.0 源代码格式</h2>
+            </div>
+          </div>
+        </div>
+        <p>更新软件包的风格并不是更新软件包所必须的步骤。但是，这么做可以让您充分利用现代 <span class="strong"><strong>debhelper</strong></span> 和 <span class="strong"><strong>3.0</strong></span> 源码格式的所有能力。</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">如果您因任何原因需要重新创建已删除的模板文件，您可以在同一个 Debian 软件包源码树中再次运行 <span class="strong"><strong>debmake</strong></span>。然后适当地编辑它们。</li>
+            <li class="listitem">如果软件包还未更新到可为 <span class="strong"><strong>debian/rules</strong></span> 文件使用 <span class="strong"><strong>dh</strong></span> 命令，请升级它以便使用该命令（参见 <a class="xref" href="ch05.zh-cn.html#simplerules" title="5.4.2. 简单的 debian/rules">第 5.4.2 节 “简单的 debian/rules”</a>）。请根据具体情况更新 <span class="strong"><strong>debian/control</strong></span> 文件。</li>
+            <li class="listitem">如果你有一个带有 <span class="strong"><strong>foo.diff.gz</strong></span> 文件的 <span class="strong"><strong>1.0</strong></span> 格式的源码包，你可以通过创建带有“<span class="strong"><strong>3.0 (quilt)</strong></span>”的 <span class="strong"><strong>debian/source/format</strong></span> 文件来升级至新的 “<span class="strong"><strong>3.0 (quilt)</strong></span>”格式。剩下的 <span class="strong"><strong>debian/</strong></span>* 文件可以直接复制。如果需要的话，可以将“<span class="strong"><strong>filterdiff -z -x <span class="emphasis"><em><span class="strong"><strong>/debian/</strong></span></em></span> foo.diff.gz &gt; big.diff</strong></span>”命令生成的 <span class="strong"><strong>big.diff</strong></span> 文件导入到你的 quilt 系统中。<a href="#ftn.idm5046" class="footnote" id="idm5046"><sup class="footnote">[20]</sup></a></li>
+            <li class="listitem">如果它使用了其他的补丁系统，例如 <span class="strong"><strong>dpatch</strong></span>、<span class="strong"><strong>dbs</strong></span> 或者是带有 <span class="strong"><strong>-p0</strong></span>、<span class="strong"><strong>-p1</strong></span>、<span class="strong"><strong>-p2</strong></span> 参数的 <span class="strong"><strong>cdbs</strong></span>。请使用 <span class="strong"><strong>quilt</strong></span> 包中的 <span class="strong"><strong>deb3</strong></span> 脚本来转换它。</li>
+            <li class="listitem">如果它使用了带有 “<span class="strong"><strong>--with quilt</strong></span>” 选项的 <span class="strong"><strong>dh</strong></span> 命令或者使用了 <span class="strong"><strong>dh_quilt_patch</strong></span> 和 <span class="strong"><strong>dh_quilt_unpatch</strong></span> 命令，请移除这些并且使其使用新的 “<span class="strong"><strong>3.0 (quilt)</strong></span>” 格式。</li>
+            <li class="listitem">如果您有一个不带 <span class="strong"><strong>foo.diff.gz</strong></span> 文件的 <span class="strong"><strong>1.0</strong></span> 格式的源码包，您可以通过创建包含“<span class="strong"><strong>3.0 (native)</strong></span>”的 <span class="strong"><strong>debian/source/format</strong></span> 文件，然后将其余的 <span class="strong"><strong>debian/</strong></span>* 文件直接复制的方式来更新至新的“<span class="strong"><strong>3.0 (native)</strong></span>”的源码格式。</li>
+          </ul>
+        </div>
+        <p>您应该核对一下 <a class="ulink" href="http://dep.debian.net/">DEP——Debian 增强提议</a> 并且采用已接受的提议。</p>
+        <p>参见 <a class="ulink" href="https://wiki.debian.org/Projects/DebSrc3.0">ProjectsDebSrc3.0</a> 以核对 Debian 工具链对新 Debian 源码格式的支持情况。</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="cdbs"/>7.14. CDBS</h2>
+            </div>
+          </div>
+        </div>
+        <p>Common Debian Build System （<span class="strong"><strong>CDBS</strong></span>）是 <span class="strong"><strong>debhelper</strong></span> 软件包的包装系统。<span class="strong"><strong>CDBS</strong></span> 基于 Makefile 包含机制并且由 <span class="strong"><strong>debian/rules</strong></span> 文件中设置的 <span class="strong"><strong>DEB_</strong></span>* 变量配置。</p>
+        <p>在将 <span class="strong"><strong>dh</strong></span> 命令引入第七版的 <span class="strong"><strong>debhelper</strong></span> 软件包之前，<span class="strong"><strong>CDBS</strong></span> 是创建简单干净的 <span class="strong"><strong>debian/rules</strong></span> 文件的唯一方法。</p>
+        <p>对于很多简单的软件包，现在 <span class="strong"><strong>dh</strong></span> 命令使 <span class="strong"><strong>debian/rules</strong></span> 文件很简洁，建议保持构建系统简洁，而非使用冗长的 <span class="strong"><strong>CDBS</strong></span>。</p>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[注意]" src="images/note.png"/>
+              </td>
+              <th align="left">注意</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>“<span class="strong"><strong>CDBS</strong></span> 神奇地让我用更少的命令来完成工作”和“我不懂新的 <span class="strong"><strong>dh</strong></span> 的语法”都不是您继续使用旧的 <span class="strong"><strong>CDBS</strong></span> 系统的借口。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p>对于一些复杂的软件包，比如与 GNOME 相关的，当前的维护者有理由利用 <span class="strong"><strong>CDBS</strong></span> 自动化完成他们的统一包装。如果是这种情况，请不要费心从 <span class="strong"><strong>CDBS</strong></span> 转换为 <span class="strong"><strong>dh</strong></span> 语法。</p>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[注意]" src="images/note.png"/>
+              </td>
+              <th align="left">注意</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>如果您正在与维护 <a class="ulink" href="https://wiki.debian.org/Teams">团队</a> 合作，请遵循团队的既定惯例。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p>将软件包从 <span class="strong"><strong>CDBS</strong></span> 转换为 <span class="strong"><strong>dh</strong></span> 语法时，请使用以下内容作为参考：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+<a class="ulink" href="http://cdbs-doc.duckcorp.org/en/cdbs-doc.xhtml">CDBS 文档</a>
+</li>
+            <li class="listitem">
+<a class="ulink" href="https://meetings-archive.debian.net/pub/debian-meetings/2009/fosdem/slides/The_Common_Debian_Build_System_CDBS/">The Common Debian Build System (CDBS), FOSDEM 2009</a>
+</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="utf-8-build"/>7.15. 在 UTF-8 环境下构建</h2>
+            </div>
+          </div>
+        </div>
+        <p>构建环境的默认语言环境是 <span class="strong"><strong>C</strong></span>。</p>
+        <p>某些程序（如 Python3 的 <span class="strong"><strong>read</strong></span> 函数）会根据区域设置改变行为。</p>
+        <p>添加以下代码到 <span class="strong"><strong>debian/rules</strong></span> 文件可以确保程序使用 <span class="strong"><strong>C.UTF-8</strong></span> 的区域语言设置（locale）进行构建。</p>
+        <pre class="screen">LC_ALL := C.UTF-8
+export LC_ALL</pre>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="utf-8-conv"/>7.16. UTF-8 转换</h2>
+            </div>
+          </div>
+        </div>
+        <p>如果上游文档是用旧编码方案编码的，那么将它们转换为 <a class="ulink" href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a> 是个好主意。</p>
+        <p>请使用 <span class="strong"><strong>libc-bin</strong></span> 包中的 <span class="strong"><strong>iconv</strong></span> 命令来转换纯文本文件的编码。</p>
+        <pre class="screen"> $ iconv -f latin1 -t utf8 foo_in.txt &gt; foo_out.txt</pre>
+        <p>使用 <span class="strong"><strong>w3m</strong></span>(1) 将 HTML 文件转换为 UTF-8 纯文本文件。 执行此操作时，请确保在 UTF-8 语言环境下执行它。</p>
+        <pre class="screen"> $ LC_ALL=C.UTF-8 w3m -o display_charset=UTF-8 \
+        -cols 70 -dump -no-graph -T text/html \
+        &lt; foo_in.html &gt; foo_out.txt</pre>
+        <p>在 <span class="strong"><strong>debian/rules</strong></span> 文件的 <span class="strong"><strong>override_dh_</strong></span>* 目标中运行这些脚本。</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="origtar"/>7.17. 上传 <span class="strong"><strong>orig.tar.gz</strong></span></h2>
+            </div>
+          </div>
+        </div>
+        <p>当您第一次向归档上传软件包时，您还需要包含原始的 <span class="strong"><strong>orig.tar.gz</strong></span> 源码。</p>
+        <p>如果 Debian 修订码是 <span class="strong"><strong>1</strong></span> 或者 <span class="strong"><strong>0</strong></span>，这都是默认的。否则，您必须使用带有 <span class="strong"><strong>-sa</strong></span> 选项的 <span class="strong"><strong>dpkg-buildpackage</strong></span> 命令。</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <span class="strong">
+                <strong>dpkg-buildpackage -sa</strong>
+              </span>
+            </li>
+            <li class="listitem">
+              <span class="strong">
+                <strong>debuild -sa</strong>
+              </span>
+            </li>
+            <li class="listitem">
+              <span class="strong">
+                <strong>pdebuild --debbuildopts -sa</strong>
+              </span>
+            </li>
+            <li class="listitem">
+              <span class="strong">
+                <strong>git-pbuilder -sa</strong>
+              </span>
+            </li>
+            <li class="listitem">对于 <span class="strong"><strong>gbp buildpackage</strong></span>，请编辑 <span class="strong"><strong>~/.gbp.conf</strong></span> 文件。</li>
+          </ul>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>另一方面，<span class="strong"><strong>-sd</strong></span> 选项将会强制排除原始的 <span class="strong"><strong>orig.tar.gz</strong></span> 源码。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>添加至 <span class="strong"><strong>~/.bashrc</strong></span> 文件。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="skipedupload"/>7.18. 跳过的上传</h2>
+            </div>
+          </div>
+        </div>
+        <p>如果当跳过上传时，你在 <span class="strong"><strong>debian/changelog</strong></span> 中创建了多个条目，你必须创建一个包含自上次上传以来所有变更的 <span class="strong"><strong>debian/changelog</strong></span> 文件。这可以通过指定 dpkg-buildpackage 选项 <span class="strong"><strong>-v</strong></span> 以及上次上传的版本号，比如 <span class="emphasis"><em>1.2</em></span> 来完成。</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <span class="strong">
+                <strong>dpkg-buildpackage -v</strong>
+              </span>
+              <span class="emphasis">
+                <em>1.2</em>
+              </span>
+            </li>
+            <li class="listitem">
+              <span class="strong">
+                <strong>debuild -v</strong>
+              </span>
+              <span class="emphasis">
+                <em>1.2</em>
+              </span>
+            </li>
+            <li class="listitem">
+              <span class="strong">
+                <strong>pdebuild --debbuildopts -v</strong>
+              </span>
+              <span class="emphasis">
+                <em>1.2</em>
+              </span>
+            </li>
+            <li class="listitem">
+              <span class="strong">
+                <strong>git-pbuilder -v</strong>
+              </span>
+              <span class="emphasis">
+                <em>1.2</em>
+              </span>
+            </li>
+            <li class="listitem">对于 <span class="strong"><strong>gbp buildpackage</strong></span>，请编辑 <span class="strong"><strong>~/.gbp.conf</strong></span> 文件。</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="adv-pkg"/>7.19. 高级打包</h2>
+            </div>
+          </div>
+        </div>
+        <p>关于以下内容的提示可以在 <span class="strong"><strong>debhelper</strong></span>(7) 手册页中找到：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem"> <span class="strong"><strong>debhelper</strong></span> 工具在 “<span class="strong"><strong>compat</strong></span> &lt;= 8” 选项下不同的行为</li>
+            <li class="listitem">
+              <p class="simpara">在数种不同构建条件下构建多种二进制包</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">制作上游源码的多个副本</li>
+                  <li class="listitem">在 <span class="strong"><strong>override_dh_auto_configure</strong></span> 目标中调用多个 “<span class="strong"><strong>dh_auto_configure -S …</strong></span>” 指令</li>
+                  <li class="listitem">在 <span class="strong"><strong>override_dh_auto_build</strong></span> 目标中调用多个 “<span class="strong"><strong>dh_auto_build -S …</strong></span>” 指令</li>
+                  <li class="listitem">在 <span class="strong"><strong>override_dh_auto_install</strong></span> 目标中调用多个 “<span class="strong"><strong>dh_auto_install -S …</strong></span>” 指令</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">在 <span class="strong"><strong>debian/control</strong></span> 中以 “<span class="strong"><strong>Package-Type: udeb</strong></span>” 选项来构建 <span class="strong"><strong>udeb</strong></span> 包（参见 <a class="ulink" href="https://www.debian.org/doc/debian-policy/#s-f-package-type">Package-Type</a>）</li>
+            <li class="listitem">
+              <p class="simpara">从引导进程中排除某些包（参见 <a class="ulink" href="https://wiki.debian.org/BuildProfileSpec">BuildProfileSpec</a>）</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">在 <span class="strong"><strong>debian/control</strong></span> 中的二进制包节中添加 <span class="strong"><strong>Build-Profiles</strong></span> 字段</li>
+                  <li class="listitem">在 <span class="strong"><strong>DEB_BUILD_PROFILES</strong></span> 环境变量设置成相关配置文件名的条件下构建软件包</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>关于以下内容的提示可以在 <span class="strong"><strong>dpkg-source</strong></span>(1) 手册页中找到：</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">多个上游源码包的命名约定</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="emphasis">
+                      <em>软件包名_版本</em>
+                    </span>
+                    <span class="strong">
+                      <strong>.orig.tar.gz</strong>
+                    </span>
+                  </li>
+                  <li class="listitem">
+                    <span class="emphasis">
+                      <em>软件包名_版本</em>
+                    </span>
+                    <span class="strong">
+                      <strong>.orig-</strong>
+                    </span>
+                    <span class="emphasis">
+                      <em>部件名</em>
+                    </span>
+                    <span class="strong">
+                      <strong>.tar.gz</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">将 Debian 更改记录到上游源码包中</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>dpkg-source --commit</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="other-distro"/>7.20. 其他发行版</h2>
+            </div>
+          </div>
+        </div>
+        <p>尽管上游的原始码有着所有构建 Debian 软件包所需的信息，找出使用何种选项的组合仍然不是一件简单的事。</p>
+        <p>此外，上游的包可能更专注于功能的增强，而并不那么重视向后兼容性等特性，这是 Debian 打包实践中的一个重要方面。</p>
+        <p>利用其他发行版的信息是解决上述问题的一种选择。</p>
+        <p>如果其他发行版是由 Debian 派生的，重新使用它是没有价值的。</p>
+        <p>如果其他发行版是基于 <a class="ulink" href="https://en.wikipedia.org/wiki/RPM_Package_Manager">RPM</a> 的发行版，请参见 <a class="ulink" href="https://wiki.debian.org/Repackage_srcrpm">Repackage src.rpm</a>。</p>
+        <p>通过 <span class="strong"><strong>rget</strong></span> 命令，可以下载并打开 <span class="strong"><strong>src.rpm</strong></span>文件。（请将 <span class="strong"><strong>rget</strong></span> 脚本添加至 PATH 中）</p>
+        <p><strong>rget 脚本. </strong>
+</p>
+        <pre class="screen">#!/bin/sh
+FCSRPM=$(basename $1)
+mkdir ${FCSRPM}; cd ${FCSRPM}/
+wget $1
+rpm2cpio ${FCSRPM} | cpio -dium</pre>
+        <p>
+</p>
+        <p>许多上游源码包包含 RPM 系统使用的、以 <span class="emphasis"><em>packagename</em></span>.<span class="strong"><strong>spec</strong></span> 或者 <span class="emphasis"><em>packagename</em></span>.<span class="strong"><strong>spec.in</strong></span> 命名的SPEC 文件。这可以被用做 Debian 软件包的基点。</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="debug"/>7.21. 除错</h2>
+            </div>
+          </div>
+        </div>
+        <p>当您遇到构建问题或者生成的二进制程序核心转储时，您需要自行解决他们。这就是<span class="strong"><strong>除错（debug）</strong></span>。</p>
+        <p>This is too deep a topic to describe here. So, let me just list few pointers and hints for some typical debug tools.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">
+<a class="ulink" href="https://en.wikipedia.org/wiki/Core_dump">核心转储</a>
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">“<span class="strong"><strong>man core</strong></span>”</li>
+                  <li class="listitem">
+                    <p class="simpara">更新 “<span class="strong"><strong>/etc/security/limits.conf</strong></span>” 文件来包含以下代码：</p>
+                    <pre class="screen">* soft core unlimited</pre>
+                  </li>
+                  <li class="listitem">在 <span class="strong"><strong>~/.bashrc</strong></span> 中添加“<span class="strong"><strong>ulimit -c unlimited</strong></span>”</li>
+                  <li class="listitem">使用 “<span class="strong"><strong>ulimit -a</strong></span>” 来检查</li>
+                  <li class="listitem">按下 <span class="strong"><strong>Ctrl-\</strong></span> 或者“<span class="strong"><strong>kill -ABRT</strong></span> <span class="emphasis"><em>PID”</em></span> 来建立一个核心转储文件</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>gdb</strong></span> - The GNU Debugger</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">“<span class="strong"><strong>info gdb</strong></span>”</li>
+                  <li class="listitem">参见 <span class="strong"><strong>/usr/share/doc/gdb-doc/html/gdb/index.html</strong></span> 中的 “Debugging with GDB”</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>strace</strong></span> - 跟踪系统调用和信号</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">使用 <span class="strong"><strong>/usr/share/doc/strace/examples/</strong></span> 中的 <span class="strong"><strong>strace-graph</strong></span> 脚本来建立一个好看的树形图</li>
+                  <li class="listitem">“<span class="strong"><strong>man strace</strong></span>”</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>ltrace</strong></span> - 跟踪库调用</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">“<span class="strong"><strong>man ltrace</strong></span>”</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">“<span class="strong"><strong>sh -n</strong></span> <span class="emphasis"><em>script.sh”</em></span> - Shell 脚本的语法检查</li>
+            <li class="listitem">“<span class="strong"><strong>sh -x</strong></span> <span class="emphasis"><em>script.sh”</em></span> - 跟踪 Shell 脚本</li>
+            <li class="listitem">“<span class="strong"><strong>python -m py_compile</strong></span> <span class="emphasis"><em>script.py”</em></span> - Python 脚本的语法检查</li>
+            <li class="listitem">“<span class="strong"><strong>python -mtrace --trace</strong></span> <span class="emphasis"><em>script.py”</em></span> - 跟踪 Python 脚本</li>
+            <li class="listitem">“<span class="strong"><strong>perl -I ../libpath -c</strong></span> <span class="emphasis"><em>script.pl”</em></span> - Perl 脚本的语法检查</li>
+            <li class="listitem">
+              <p class="simpara">“<span class="strong"><strong>perl -d:Trace</strong></span> <span class="emphasis"><em>script.pl”</em></span> - 跟踪 Perl 脚本</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">安装 <span class="strong"><strong>libterm-readline-gnu-perl</strong></span> 软件包或者同类型软件来添加输入行编辑功能与历史记录支持。</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>lsof</strong></span> - 按进程列出打开的文件</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">“<span class="strong"><strong>man lsof</strong></span>”</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p><span class="strong"><strong>script</strong></span> 命令能帮助记录控制台输出。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>在 <span class="strong"><strong>ssh</strong></span> 命令中搭配使用 <span class="strong"><strong>screen</strong></span> 和 <span class="strong"><strong>tmux</strong></span> 命令，能够提供安全并且强健的远程连接终端。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p><span class="strong"><strong>libreply-perl</strong></span>（新的）软件包和来自 <span class="strong"><strong>libdevel-repl-perl</strong></span>（旧的）软件包的 <span class="strong"><strong>re.pl</strong></span> 命令为 Perl 提供了一个类似 Python 和 Shell 的 REPL (=READ + EVAL + PRINT + LOOP) 环境。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[提示]" src="images/tip.png"/>
+              </td>
+              <th align="left">提示</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p><span class="strong"><strong>rlwrap</strong></span> 和 <span class="strong"><strong>rlfe</strong></span> 命令为所有交互命令提供了输入行编辑功能。例如 “<span class="strong"><strong>rlwrap dash -i</strong></span>”。</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="footnotes">
+        <br/>
+        <hr/>
+        <div id="ftn.idm4742" class="footnote">
+          <p><a href="#idm4742" class="simpara"><sup class="simpara">[18] </sup></a><a class="ulink" href="https://wiki.debian.org/git-pbuilder">https://wiki.debian.org/git-pbuilder</a> 采用了 <span class="strong"><strong>git-pbuilder</strong></span> 风格管理。请小心，因为许多 HOWTO 使用了不同的组织。</p>
+        </div>
+        <div id="ftn.idm4974" class="footnote">
+          <p><a href="#idm4974" class="simpara"><sup class="simpara">[19] </sup></a>如果 <span class="strong"><strong>foo</strong></span> 包是以旧的 <span class="strong"><strong>1.0</strong></span> 格式打包的，则相对的，只要在新的源代码路径中执行“<span class="strong"><strong>zcat</strong></span> <span class="emphasis"><em>/path/to/foo_oldversion</em></span><span class="strong"><strong>.diff.gz|patch -p1</strong></span>”命令。</p>
+        </div>
+        <div id="ftn.idm5046" class="footnote">
+          <p><a href="#idm5046" class="simpara"><sup class="simpara">[20] </sup></a>您可以使用 <span class="strong"><strong>splitdiff</strong></span> 命令来将 <span class="strong"><strong>big.diff</strong></span> 文件分割成多个小的增量更新补丁文件。</p>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="ch06.zh-cn.html"><img src="images/prev.png" alt="上一页"/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="ch08.zh-cn.html"><img src="images/next.png" alt="下一页"/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">第 6 章 debmake 选项 </td>
+          <td align="center">
+            <a accesskey="h" href="index.zh-cn.html">
+              <img src="images/home.png" alt="起始页"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> 第 8 章 更多示例</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

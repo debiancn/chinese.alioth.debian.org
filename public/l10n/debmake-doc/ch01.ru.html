@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Глава 1. Обзор</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.ru.html" title="Руководство для сопровождающих Debian"/>
+    <link rel="up" href="index.ru.html" title="Руководство для сопровождающих Debian"/>
+    <link rel="prev" href="pr01.ru.html" title="Предисловие"/>
+    <link rel="next" href="ch02.ru.html" title="Глава 2. Необходимые предварительные требования"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Глава 1. Обзор</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="pr01.ru.html"><img src="images/prev.png" alt="Пред."/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="ch02.ru.html"><img src="images/next.png" alt="След."/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="chapter">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="overview"/>Глава 1. Обзор</h1>
+          </div>
+        </div>
+      </div>
+      <p>Создание пакета Debian из архива <span class="emphasis"><em>package-1.0</em></span><span class="strong"><strong>.tar.gz</strong></span>, содержащего простой исходный код на языке C, соответствующий <a class="ulink" href="https://www.gnu.org/prep/standards/">Стандартам написания кода GNU</a> и <a class="ulink" href="https://en.wikipedia.org/wiki/Filesystem_Hierarchy_Standard">Стандарту иерархии файловой системы</a>, может быть выполнено с помощью команды <span class="strong"><strong>debmake</strong></span>, как показано ниже.</p>
+      <pre class="screen"> $ tar -xvzf package-1.0.tar.gz
+ $ cd package-1.0
+ $ debmake
+   ... Make manual adjustments of generated configuration files
+ $ debuild</pre>
+      <p>Если будет пропущена ручная правка созданных настроечных файлов, то в созданном двоичном пакете будет отсутствовать осмысленное описание, но он будет вполне работоспособным при использовании команды <span class="strong"><strong>dpkg</strong></span> для его локального развёртывания.</p>
+      <div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Caution">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[Внимание]" src="images/caution.png"/>
+            </td>
+            <th align="left">Внимание</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>Команда <span class="strong"><strong>debmake</strong></span> предоставляет лишь хорошие файлы шаблонов. Если пакет предназначен для широкой аудитории, то эти шаблоны следует отредактировать вручную, чтобы довести их до совершенства и соответствия строгим требованиями качества, предъявляемым к архиву Debian.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <p>Если вы только начинаете создавать пакеты Debian, то не беспокойтесь о деталях и переходите к рассмотрению общей картины.</p>
+      <p>Если у вас уже имеется опыт создания пакетов Debian, то предлагаемое в данном руководстве очень похоже на использование команды <span class="strong"><strong>dh_make</strong></span>, так как команда <span class="strong"><strong>debmake</strong></span> задумывалась в качестве замены для функций, исторически предоставляемых командой <span class="strong"><strong>dh_make</strong></span>. <a href="#ftn.idm149" class="footnote" id="idm149"><sup class="footnote">[3]</sup></a></p>
+      <p>Команда <span class="strong"><strong>debmake</strong></span> имеет следующие возможности:</p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist">
+          <li class="listitem">
+            <p class="simpara">современный стиль создания пакетов</p>
+            <div class="itemizedlist">
+              <ul class="itemizedlist">
+                <li class="listitem"><span class="strong"><strong>debian/copyright</strong></span>: соответствие <span class="strong"><strong>DEP-5</strong></span></li>
+                <li class="listitem"><span class="strong"><strong>debian/control</strong></span>: поддержка <span class="strong"><strong>переменных подстановки</strong></span>, поддержка <span class="strong"><strong>мультиархитектурности</strong></span>, несколько двоичных пакетов, …</li>
+                <li class="listitem"><span class="strong"><strong>debian/rules</strong></span>: синтаксис <span class="strong"><strong>dh</strong></span>, опции компилятора для улучшения безопасности, …</li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p class="simpara">гибкость</p>
+            <div class="itemizedlist">
+              <ul class="itemizedlist">
+                <li class="listitem">множество опций (см. <a class="xref" href="ch05.ru.html#boption" title="5.5.1.1. debmake -b">Раздел 5.5.1.1, «debmake -b»</a> и <a class="xref" href="ch06.ru.html" title="Глава 6. Опции debmake">Глава 6, <em>Опции debmake</em></a>, <a class="xref" href="apa.ru.html" title="Приложение A. Страница руководства debmake(1)">Приложение A, <em>Страница руководства <span class="strong"><strong>debmake</strong></span>(1)</em></a>)</li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p class="simpara">разумные действия по умолчанию</p>
+            <div class="itemizedlist">
+              <ul class="itemizedlist">
+                <li class="listitem">выполнение без остановок с чистыми результатами</li>
+                <li class="listitem">создание мультиархитектурного пакета, если явно не указана опция <span class="strong"><strong>-m</strong></span>.</li>
+                <li class="listitem">создание неродного пакета Debian в формате «<span class="strong"><strong>3.0 (quilt)</strong></span>», если явно не указана опция <span class="strong"><strong>-n</strong></span>.</li>
+              </ul>
+            </div>
+          </li>
+          <li class="listitem">
+            <p class="simpara">дополнительные обслуживающие программы</p>
+            <div class="itemizedlist">
+              <ul class="itemizedlist">
+                <li class="listitem">проверка <span class="strong"><strong>debian/copyright</strong></span> с учётом текущего исходного кода (см. <a class="xref" href="ch06.ru.html#koption" title="6.4. debmake -k">Раздел 6.4, «debmake -k»</a>)</li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <p>Команда <span class="strong"><strong>debmake</strong></span> делегирует большинство сложных действий инструментальным пакетам: <span class="strong"><strong>debhelper</strong></span>, <span class="strong"><strong>dpkg-dev</strong></span>, <span class="strong"><strong>devscripts</strong></span>, <span class="strong"><strong>pbuilder</strong></span> и т.д.</p>
+      <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Tip">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[Подсказка]" src="images/tip.png"/>
+            </td>
+            <th align="left">Подсказка</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>Обязательно защитите путём соответствующего включения в кавычки аргументы опций <span class="strong"><strong>-b</strong></span>, <span class="strong"><strong>-f</strong></span>, <span class="strong"><strong>-l</strong></span> и <span class="strong"><strong>-w</strong></span> от вмешательства командной оболочки.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Tip">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[Подсказка]" src="images/tip.png"/>
+            </td>
+            <th align="left">Подсказка</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>Неродной пакет Debian — обычный пакет Debian.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Tip">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[Подсказка]" src="images/tip.png"/>
+            </td>
+            <th align="left">Подсказка</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>Подробный журнал всех примеров сборки пакетов из данной документации можно получить, следуя инструкциям из <a class="xref" href="ch08.ru.html#details" title="8.14. Детали">Раздел 8.14, «Детали»</a>.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Note">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[Примечание]" src="images/note.png"/>
+            </td>
+            <th align="left">Примечание</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>Создание файла <span class="strong"><strong>debian/copyright</strong></span>, а также результаты работы опций <span class="strong"><strong>-c</strong></span> (<a class="xref" href="ch06.ru.html#coption" title="6.3. debmake -cc">Раздел 6.3, «debmake -cc»</a>) и <span class="strong"><strong>-k</strong></span> (<a class="xref" href="ch06.ru.html#koption" title="6.4. debmake -k">Раздел 6.4, «debmake -k»</a>) предполагают эвристические операции, производимые над информацией об авторском праве и лицензиях. Это может приводить к получению ошибочных результатов.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="footnotes">
+        <br/>
+        <hr/>
+        <div id="ftn.idm149" class="footnote">
+          <p><a href="#idm149" class="simpara"><sup class="simpara">[3] </sup></a>Команда <span class="strong"><strong>deb-make</strong></span> была популярна ещё до команды <span class="strong"><strong>dh_make</strong></span>. Версии текущего пакета <span class="strong"><strong>debmake</strong></span> начинаются с <span class="strong"><strong>4.0</strong></span>, чтобы исключить совпадения и конфликты версий с устаревшим пакетом <span class="strong"><strong>debmake</strong></span>, предоставлявшим команду <span class="strong"><strong>deb-make</strong></span>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="pr01.ru.html"><img src="images/prev.png" alt="Пред."/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="ch02.ru.html"><img src="images/next.png" alt="След."/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">Предисловие </td>
+          <td align="center">
+            <a accesskey="h" href="index.ru.html">
+              <img src="images/home.png" alt="Начало"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> Глава 2. Необходимые предварительные требования</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>第3章 Tool Setups</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.ja.html" title="Debian メンテナー用ガイド"/>
+    <link rel="up" href="index.ja.html" title="Debian メンテナー用ガイド"/>
+    <link rel="prev" href="ch02.ja.html" title="第2章 Prerequisites"/>
+    <link rel="next" href="ch04.ja.html" title="第4章 Simple Example"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">第3章 Tool Setups</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="ch02.ja.html"><img src="images/prev.png" alt="戻る"/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="ch04.ja.html"><img src="images/next.png" alt="次へ"/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="chapter">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="setup"/>第3章 Tool Setups</h1>
+          </div>
+        </div>
+      </div>
+      <div class="toc">
+        <p>
+          <strong>目次</strong>
+        </p>
+        <dl class="toc">
+          <dt>
+            <span class="section">
+              <a href="ch03.ja.html#email-setup">3.1. Email address</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ja.html#mc-setup">3.2. mc</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ja.html#git-setup">3.3. git</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ja.html#quilt-setup">3.4. quilt</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ja.html#devscripts-setup">3.5. devscripts</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ja.html#pbuilder-setup">3.6. pbuilder</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ja.html#gbp-setup">3.7. git-buildpackage</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ja.html#proxy">3.8. HTTP proxy</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch03.ja.html#repropro">3.9. Private Debian repository</a>
+            </span>
+          </dt>
+        </dl>
+      </div>
+      <p>The <span class="strong"><strong>build-essential</strong></span> package must be installed in the build environment.</p>
+      <p>The <span class="strong"><strong>devscripts</strong></span> package should be installed in the maintainer environment.</p>
+      <p>Although this is not necessarily an absolute requirement, it is a good idea to install and set up all of the popular set of packages mentioned in this chapter in the maintainer environment.  This enables us to share the common baseline working environment.</p>
+      <p>Please install the tools mentioned in the <a class="ulink" href="https://www.debian.org/doc/manuals/developers-reference/tools.html">Overview of Debian Maintainer Tools</a> in the “Debian Developer’s Reference”, as needed, too.</p>
+      <div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Caution">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[注意]" src="images/caution.png"/>
+            </td>
+            <th align="left">注意</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>Tool setups presented here are only meant as an example and may not be up-to-date with the latest packages on the system.  Debian development is a moving target.  Please make sure to read the pertinent documentation and update the configuration as needed.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="email-setup"/>3.1. Email address</h2>
+            </div>
+          </div>
+        </div>
+        <p>Various Debian maintenance tools recognize your email address and name to use by the shell environment variables <span class="strong"><strong>$DEBEMAIL</strong></span> and <span class="strong"><strong>$DEBFULLNAME</strong></span>.</p>
+        <p>Let’s setup these packages by adding the following lines to <span class="strong"><strong>~/.bashrc</strong></span> <a href="#ftn.idm629" class="footnote" id="idm629"><sup class="footnote">[6]</sup></a>.</p>
+        <p><strong>Add to the <span class="strong"><strong>~/.bashrc</strong></span> file. </strong>
+</p>
+        <pre class="screen">DEBEMAIL="your.email.address@example.org"
+DEBFULLNAME="Firstname Lastname"
+export DEBEMAIL DEBFULLNAME</pre>
+        <p>
+</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="mc-setup"/>3.2. mc</h2>
+            </div>
+          </div>
+        </div>
+        <p>The <span class="strong"><strong>mc</strong></span> command offers very easy ways to manage files.  It can open the binary <span class="strong"><strong>deb</strong></span> file to check its content by pressing the Enter key over the binary <span class="strong"><strong>deb</strong></span> file.  It uses the <span class="strong"><strong>dpkg-deb</strong></span> command as its back-end.  Let’s set it up to support easy <span class="strong"><strong>chdir</strong></span> as follows.</p>
+        <p><strong>Add to the <span class="strong"><strong>~/.bashrc</strong></span> file. </strong>
+</p>
+        <pre class="screen"># mc related
+export HISTCONTROL=ignoreboth
+. /usr/lib/mc/mc.sh</pre>
+        <p>
+</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="git-setup"/>3.3. git</h2>
+            </div>
+          </div>
+        </div>
+        <p>Nowadays, the <span class="strong"><strong>git</strong></span> command is the essential tool to manage the source tree with history.</p>
+        <p>The global user configuration for the <span class="strong"><strong>git</strong></span> command such as your name and email address can be set in <span class="strong"><strong>~/.gitconfig</strong></span> as follows.</p>
+        <pre class="screen">$ git config --global user.name "Name Surname"
+$ git config --global user.email yourname@example.com</pre>
+        <p>If you are too accustomed to the CVS or Subversion commands, you may wish to set several command aliases as follows.</p>
+        <pre class="screen">$ git config --global alias.ci "commit -a"
+$ git config --global alias.co checkout</pre>
+        <p>You can check your global configuration as follows.</p>
+        <pre class="screen">$ git config --global --list</pre>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[ヒント]" src="images/tip.png"/>
+              </td>
+              <th align="left">ヒント</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>It is essential to use some GUI git tools like <span class="strong"><strong>gitk</strong></span> or <span class="strong"><strong>gitg</strong></span> to work effectively with the history of the git repository.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="quilt-setup"/>3.4. quilt</h2>
+            </div>
+          </div>
+        </div>
+        <p>The <span class="strong"><strong>quilt</strong></span> command offers a basic method for recording modifications. For the Debian packaging, it should be customized to record modifications in the <span class="strong"><strong>debian/patches/</strong></span> directory instead of its default <span class="strong"><strong>patches/</strong></span> directory.</p>
+        <p>In order to avoid changing the behavior of the <span class="strong"><strong>quilt</strong></span> command itself, let’s create an alias <span class="strong"><strong>dquilt</strong></span> for the Debian packaging by adding the following lines to the <span class="strong"><strong>~/.bashrc</strong></span> file. The second line provides the same shell completion feature of the <span class="strong"><strong>quilt</strong></span> command to the <span class="strong"><strong>dquilt</strong></span> command.</p>
+        <p><strong>Add to the <span class="strong"><strong>~/.bashrc</strong></span> file. </strong>
+</p>
+        <pre class="screen">alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+complete -F _quilt_completion $_quilt_complete_opt dquilt</pre>
+        <p>
+</p>
+        <p>Then let’s create <span class="strong"><strong>~/.quiltrc-dpkg</strong></span> as follows.</p>
+        <pre class="screen">d=.
+while [ ! -d $d/debian -a `readlink -e $d` != / ];
+    do d=$d/..; done
+if [ -d $d/debian ] &amp;&amp; [ -z $QUILT_PATCHES ]; then
+    # if in Debian packaging tree with unset $QUILT_PATCHES
+    QUILT_PATCHES="debian/patches"
+    QUILT_PATCH_OPTS="--reject-format=unified"
+    QUILT_DIFF_ARGS="-p ab --no-timestamps --no-index --color=auto"
+    QUILT_REFRESH_ARGS="-p ab --no-timestamps --no-index"
+    QUILT_COLORS="diff_hdr=1;32:diff_add=1;34:" + \
+            "diff_rem=1;31:diff_hunk=1;33:diff_ctx=35:diff_cctx=33"
+    if ! [ -d $d/debian/patches ]; then mkdir $d/debian/patches; fi
+fi</pre>
+        <p>See <span class="strong"><strong>quilt</strong></span>(1) and <a class="ulink" href="file:///usr/share/doc/quilt/quilt.html">How To Survive With Many Patches or Introduction to Quilt</a> on how to use the <span class="strong"><strong>quilt</strong></span> command.</p>
+        <p>See <a class="xref" href="ch04.ja.html#alt-patch" title="4.8. Step 3 (alternative): Modification to the upstream source">「Step 3 (alternative): Modification to the upstream source」</a> for example usages.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="devscripts-setup"/>3.5. devscripts</h2>
+            </div>
+          </div>
+        </div>
+        <p>The <span class="strong"><strong>debsign</strong></span> command, included in the <span class="strong"><strong>devscripts</strong></span> package, is used to sign the Debian package with your private GPG key.</p>
+        <p>The <span class="strong"><strong>debuild</strong></span> command, included in the <span class="strong"><strong>devscripts</strong></span> package, builds the binary package and checks it with the <span class="strong"><strong>lintian</strong></span> command.  It is useful to have verbose outputs from the <span class="strong"><strong>lintian</strong></span> command.</p>
+        <p>You can set these up in <span class="strong"><strong>~/.devscripts</strong></span> as follows.</p>
+        <pre class="screen">DEBUILD_DPKG_BUILDPACKAGE_OPTS="-i -I -us -uc"
+DEBUILD_LINTIAN_OPTS="-i -I --show-overrides"
+DEBSIGN_KEYID="Your_GPG_keyID"</pre>
+        <p>The <span class="strong"><strong>-i</strong></span> and <span class="strong"><strong>-I</strong></span> options in <span class="strong"><strong>DEBUILD_DPKG_BUILDPACKAGE_OPTS</strong></span> for the <span class="strong"><strong>dpkg-source</strong></span> command help rebuilding of Debian packages without extraneous contents (see <a class="xref" href="ch05.ja.html#build-noextra" title="5.15. Building package without extraneous contents">「Building package without extraneous contents」</a>).</p>
+        <p>Currently, an RSA key with 4096 bits is a good idea.  See <a class="ulink" href="https://keyring.debian.org/creating-key.html">Creating a new GPG key</a>.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="pbuilder-setup"/>3.6. pbuilder</h2>
+            </div>
+          </div>
+        </div>
+        <p>The <span class="strong"><strong>pbuilder</strong></span> package provides a clean room (<span class="strong"><strong>chroot</strong></span>) build environment. <a href="#ftn.idm718" class="footnote" id="idm718"><sup class="footnote">[7]</sup></a></p>
+        <p>Let’s customize it with several helper packages.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+The <span class="strong"><strong>cowbuilder</strong></span> package to boost the chroot creation speed.
+</li>
+            <li class="listitem">
+The <span class="strong"><strong>lintian</strong></span> package to find bugs in the package.
+</li>
+            <li class="listitem">
+The <span class="strong"><strong>bash</strong></span>, <span class="strong"><strong>mc</strong></span>, and <span class="strong"><strong>vim</strong></span> packages in case build fails.
+</li>
+            <li class="listitem">
+The <span class="strong"><strong>ccache</strong></span> package to boost the <span class="strong"><strong>gcc</strong></span> speed. (optional)
+</li>
+            <li class="listitem">
+The <span class="strong"><strong>libeatmydata1</strong></span> package to boost the <span class="strong"><strong>dpkg</strong></span> speed. (optional)
+</li>
+            <li class="listitem">
+The parallel <span class="strong"><strong>make</strong></span> to boost the build speed. (optional)
+</li>
+          </ul>
+        </div>
+        <div class="warning" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Warning">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[警告]" src="images/warning.png"/>
+              </td>
+              <th align="left">警告</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>The optional customization may cause negative effects.  In case of doubts, disable them.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p>Let’s create <span class="strong"><strong>~/.pbuilderrc</strong></span> as follows (all optional features are disabled).</p>
+        <pre class="screen">AUTO_DEBSIGN="${AUTO_DEBSIGN:-no}"
+PDEBUILD_PBUILDER=cowbuilder
+HOOKDIR="/var/cache/pbuilder/hooks"
+MIRRORSITE="http://deb.debian.org/debian/"
+#APTCACHE=/var/cache/pbuilder/aptcache
+APTCACHE=/var/cache/apt/archives
+#BUILDRESULT=/var/cache/pbuilder/result/
+BUILDRESULT=../
+EXTRAPACKAGES="ccache lintian libeatmydata1"
+
+# enable to use libeatmydata1 for pbuilder
+#export LD_PRELOAD=${LD_PRELOAD+$LD_PRELOAD:}libeatmydata.so
+
+# enable ccache for pbuilder
+#export PATH="/usr/lib/ccache${PATH+:$PATH}"
+#export CCACHE_DIR="/var/cache/pbuilder/ccache"
+#BINDMOUNTS="${CCACHE_DIR}"
+
+# parallel make
+#DEBBUILDOPTS=-j8</pre>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[注記]" src="images/note.png"/>
+              </td>
+              <th align="left">注記</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>A symlink from <span class="strong"><strong>/root/.pbuilderrc</strong></span> to <span class="strong"><strong>/home/&lt;user&gt;/.pbuilderrc</strong></span> may help for the consistent experience.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[注記]" src="images/note.png"/>
+              </td>
+              <th align="left">注記</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Due to <a class="ulink" href="https://bugs.debian.org/606542">Bug #606542</a>, you may need to manually install packages listed in <span class="strong"><strong>EXTRAPACKAGES</strong></span> into the chroot.  See <a class="xref" href="ch07.ja.html#chroot" title="7.10. chroot">「chroot」</a>.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[注記]" src="images/note.png"/>
+              </td>
+              <th align="left">注記</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Install <span class="strong"><strong>libeatmydata1</strong></span> (&gt;=82-2) both inside and outside of the chroot or disable to use <span class="strong"><strong>libeatmydata1</strong></span>.  This may cause a race condition with some build systems.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[注記]" src="images/note.png"/>
+              </td>
+              <th align="left">注記</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>The parallel <span class="strong"><strong>make</strong></span> may fail for some existing packages and may make the build log difficult to read.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p>Let’s create a hook scripts as follows.</p>
+        <p>
+          <span class="strong">
+            <strong>/var/cache/pbuilder/hooks/A10ccache</strong>
+          </span>
+        </p>
+        <pre class="screen">#!/bin/sh
+set -e
+# increase the ccache caching size
+ccache -M 4G
+# output the current statistics
+ccache -s</pre>
+        <p>
+          <span class="strong">
+            <strong>/var/cache/pbuilder/hooks/B90lintian</strong>
+          </span>
+        </p>
+        <pre class="screen">#!/bin/sh
+set -e
+apt-get -y --allow-downgrades install lintian
+echo "+++ lintian output +++"
+su -c "lintian -i -I --show-overrides /tmp/buildd/*.changes; :" -l pbuilder
+echo "+++ end of lintian output +++"</pre>
+        <p>
+          <span class="strong">
+            <strong>/var/cache/pbuilder/hooks/C10shell</strong>
+          </span>
+        </p>
+        <pre class="screen">#!/bin/sh
+set -e
+apt-get -y --allow-downgrades install vim bash mc
+# invoke shell if build fails
+cd /tmp/buildd/*/debian/..
+/bin/bash &lt; /dev/tty &gt; /dev/tty 2&gt; /dev/tty</pre>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[注記]" src="images/note.png"/>
+              </td>
+              <th align="left">注記</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>All these scripts need to be set world executable: “<span class="strong"><strong>-rwxr-xr-x 1 root root</strong></span>”.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[注記]" src="images/note.png"/>
+              </td>
+              <th align="left">注記</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>The <span class="strong"><strong>ccache</strong></span> cache directory <span class="strong"><strong>/var/cache/pbuilder/ccache</strong></span> needs to be set world writable: “<span class="strong"><strong>-rwxrwxrwx 1 root root</strong></span>” for the <span class="strong"><strong>pbuilder</strong></span> command.  You should be aware of associated security concerns.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="gbp-setup"/>3.7. git-buildpackage</h2>
+            </div>
+          </div>
+        </div>
+        <p>You may wish to set several global configurations in <span class="strong"><strong>~/.gbp.conf</strong></span></p>
+        <pre class="screen"># Configuration file for "gbp &lt;command&gt;"
+
+[DEFAULT]
+# the default build command:
+builder = git-pbuilder -i -I -us -uc
+# use pristine-tar:
+pristine-tar = True
+# Use color when on a terminal, alternatives: on/true, off/false or auto
+color = auto</pre>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[ヒント]" src="images/tip.png"/>
+              </td>
+              <th align="left">ヒント</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>The <span class="strong"><strong>gbp</strong></span> command is the alias of the <span class="strong"><strong>git-buildpackage</strong></span> command.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="proxy"/>3.8. HTTP proxy</h2>
+            </div>
+          </div>
+        </div>
+        <p>You should set up a local HTTP caching proxy to save the bandwidth for the Debian package repository access.  There are several choices:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+Simple HTTP caching proxy using the <span class="strong"><strong>squid</strong></span> package.
+</li>
+            <li class="listitem">
+Specialized HTTP caching proxy using the <span class="strong"><strong>apt-cacher-ng</strong></span> package.
+</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="repropro"/>3.9. Private Debian repository</h2>
+            </div>
+          </div>
+        </div>
+        <p>You can set up a private Debian package repository with the <span class="strong"><strong>reprepro</strong></span> package.</p>
+      </div>
+      <div class="footnotes">
+        <br/>
+        <hr/>
+        <div id="ftn.idm629" class="footnote">
+          <p><a href="#idm629" class="simpara"><sup class="simpara">[6] </sup></a>This assumes you are using Bash as your login shell. If you use some other login shell such as Z shell, use their corresponding configuration files instead of <span class="strong"><strong>~/.bashrc</strong></span>.</p>
+        </div>
+        <div id="ftn.idm718" class="footnote">
+          <p><a href="#idm718" class="simpara"><sup class="simpara">[7] </sup></a>The <span class="strong"><strong>sbuild</strong></span> package provides an alternative chroot platform.</p>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="ch02.ja.html"><img src="images/prev.png" alt="戻る"/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="ch04.ja.html"><img src="images/next.png" alt="次へ"/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">第2章 Prerequisites </td>
+          <td align="center">
+            <a accesskey="h" href="index.ja.html">
+              <img src="images/home.png" alt="ホーム"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> 第4章 Simple Example</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

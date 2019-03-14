@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Предисловие</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.ru.html" title="Руководство для сопровождающих Debian"/>
+    <link rel="up" href="index.ru.html" title="Руководство для сопровождающих Debian"/>
+    <link rel="prev" href="index.ru.html" title="Руководство для сопровождающих Debian"/>
+    <link rel="next" href="ch01.ru.html" title="Глава 1. Обзор"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Предисловие</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="index.ru.html"><img src="images/prev.png" alt="Пред."/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="ch01.ru.html"><img src="images/next.png" alt="След."/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="preface">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="preface"/>Предисловие</h1>
+          </div>
+        </div>
+      </div>
+      <p>Если вы уже в какой-то степени являетесь опытным пользователем Debian <a href="#ftn.idm58" class="footnote" id="idm58"><sup class="footnote">[1]</sup></a>, то можете столкнутся со следующими ситуациями:</p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist">
+          <li class="listitem">Желание установить некоторый пакет ПО, который пока отсутствует в архиве Debian.</li>
+          <li class="listitem">Желание обновить пакет Debian до более свежего выпуска из основной ветки разработки.</li>
+          <li class="listitem">Желание исправить ошибки в пакете Debian с помощью заплат.</li>
+        </ul>
+      </div>
+      <p>Если вы хотите создать пакет Debian для удовлетворения указанных желаний, а также чтобы поделиться вашей работой с сообществом, то вы входите в целевую аудиторию данного руководства как будущий сопровождающий Debian. <a href="#ftn.idm69" class="footnote" id="idm69"><sup class="footnote">[2]</sup></a> Добро пожаловать в сообщество Debian.</p>
+      <p>В Debian имеется множество социальных и технических правил и договорённостей, которым необходимо следовать, поскольку Debian представляет собой большую организацию добровольцев со своей историей. Также в Debian был разработан огромный массив инструментов для создания пакетов и инструментов для сопровождения архива, которые позволяют создавать согласованный набор двоичных пакетов, отвечающих множеству технических целей:</p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist">
+          <li class="listitem">
+packages build across many architectures (<a class="xref" href="ch05.ru.html#variablesrules" title="5.4.4. Переменные debian/rules">Раздел 5.4.4, «Переменные debian/rules»</a>)
+</li>
+          <li class="listitem">
+reproducible build (<a class="xref" href="ch05.ru.html#reproducible" title="5.4.5. Повторяемая сборка">Раздел 5.4.5, «Повторяемая сборка»</a>)
+</li>
+          <li class="listitem">
+clean build under clearly specified package dependencies and patches (<a class="xref" href="ch05.ru.html#control" title="5.5. debian/control">Раздел 5.5, «debian/control»</a>, <a class="xref" href="ch05.ru.html#patches" title="5.8. debian/patches/*">Раздел 5.8, «debian/patches/*»</a>, <a class="xref" href="ch07.ru.html#chroot" title="7.10. chroot">Раздел 7.10, «chroot»</a>)
+</li>
+          <li class="listitem">
+optimal splits into multiple binary packages (<a class="xref" href="ch05.ru.html#split" title="5.5.1. Split of a Debian binary package">Раздел 5.5.1, «Split of a Debian binary package»</a>)
+</li>
+          <li class="listitem">
+smooth library transitions (<a class="xref" href="ch05.ru.html#lib-trans" title="5.18.2. Смена библиотек">Раздел 5.18.2, «Смена библиотек»</a>)
+</li>
+          <li class="listitem">
+interactive installation customization (<a class="xref" href="ch05.ru.html#debconf" title="5.19. debconf">Раздел 5.19, «debconf»</a>)
+</li>
+          <li class="listitem">
+multiarch support (<a class="xref" href="ch05.ru.html#multiarch" title="5.20. Multiarch">Раздел 5.20, «Multiarch»</a>)
+</li>
+          <li class="listitem">
+security enhancement using specific compiler flags (<a class="xref" href="ch05.ru.html#harden" title="5.21. Усиление безопасности компилятора">Раздел 5.21, «Усиление безопасности компилятора»</a>)
+</li>
+          <li class="listitem">
+continuous integration (<a class="xref" href="ch05.ru.html#ci" title="5.22. Непрерывная интеграция">Раздел 5.22, «Непрерывная интеграция»</a>)
+</li>
+          <li class="listitem">
+boot strapping (<a class="xref" href="ch05.ru.html#bootstrap" title="5.23. Предзагрузка">Раздел 5.23, «Предзагрузка»</a>)
+</li>
+          <li class="listitem">…</li>
+        </ul>
+      </div>
+      <p>Всё это ошеломляет многих новых будущих сопровождающих Debian и затрудняет их участие в Debian. В настоящем руководстве делается попытка предоставить отправные точки для того, чтобы начать работу. В руководстве описано следующее:</p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist">
+          <li class="listitem">Что следует знать до того, как быть вовлечённым в Debian в качестве будущего сопровождающего.</li>
+          <li class="listitem">Как создать простой пакет Debian.</li>
+          <li class="listitem">Какие существуют виды правил для создания пакета Debian.</li>
+          <li class="listitem">Полезные советы по созданию пакета Debian.</li>
+          <li class="listitem">Примеры создания пакетов Debian для некоторых типовых сценариев.</li>
+        </ul>
+      </div>
+      <p>Автор осознаёт возможные ограничения при обновлении изначального «Руководства начинающего разработчика Debian» и добавлении сведений по использованию пакета <span class="strong"><strong>dh-make</strong></span> и принял решение создать альтернативный инструмент и соответствующую ему документацию для того, чтобы они соответствовали современным требованиям. Результатом является пакет <span class="strong"><strong>debmake</strong></span> (версия 4.3.1) и данное обновлённое «Руководство для сопровождающих Debian» в пакете <span class="strong"><strong>debmake-doc</strong></span> (версия 1.14-1).</p>
+      <p>В команду <span class="strong"><strong>debmake</strong></span> было интегрировано большое количество полезных советов и рутинных действий, что значительно упрощает данное руководство. Кроме того, руководство содержит множество примеров создания пакетов.</p>
+      <div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;">
+        <table border="0" summary="Caution">
+          <tr>
+            <td rowspan="2" align="center" valign="top">
+              <img alt="[Внимание]" src="images/caution.png"/>
+            </td>
+            <th align="left">Внимание</th>
+          </tr>
+          <tr>
+            <td align="left" valign="top">
+              <p>На создание и сопровождение пакета Debian хорошего качества уходят многие часы. Для выполнения этой задачи сопровождающий Debian должен быть одновременно <span class="strong"><strong>и технически компетентным, и усердным</strong></span>.</p>
+            </td>
+          </tr>
+        </table>
+      </div>
+      <p>Некоторые важные темы объяснены подробно. Некоторые из них могут показаться вам незначительными, но, пожалуйста, проявите терпение. Некоторые специальные случаи пропускаются. Для некоторых тем приводятся только ссылки на внешние источники. Всё это сделано намеренно, чтобы данное руководство оставалось простым и удобным в сопровождении.</p>
+      <div class="footnotes">
+        <br/>
+        <hr/>
+        <div id="ftn.idm58" class="footnote">
+          <p><a href="#idm58" class="simpara"><sup class="simpara">[1] </sup></a>Вам необходимо знать немного о программировании в Unix, но от вас определённо не требуется быть экспертом. Вы можете узнать об основах управления системой Debian из <a class="ulink" href="https://www.debian.org/doc/user-manuals#quick-reference">Справочника Debian</a>. Там же можно найти ссылки на ресурсы для изучения программирования в Unix.</p>
+        </div>
+        <div id="ftn.idm69" class="footnote">
+          <p><a href="#idm69" class="simpara"><sup class="simpara">[2] </sup></a>Если вы не желаете делиться пакетом Debian с другими, то вы, разумеется, можете скомпилировать ПО и установить пакет с исправленным исходным кодом из основной ветки разработки в каталог <span class="strong"><strong>/usr/local/</strong></span>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="index.ru.html"><img src="images/prev.png" alt="Пред."/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="ch01.ru.html"><img src="images/next.png" alt="След."/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">Руководство для сопровождающих Debian </td>
+          <td align="center">
+            <a accesskey="h" href="index.ru.html">
+              <img src="images/home.png" alt="Начало"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> Глава 1. Обзор</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

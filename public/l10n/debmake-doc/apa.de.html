@@ -1,0 +1,676 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Anhang A. debmake(1) manpage</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.de.html" title="Leitfaden für Debian-Betreuer"/>
+    <link rel="up" href="index.de.html" title="Leitfaden für Debian-Betreuer"/>
+    <link rel="prev" href="ch08.de.html" title="Kapitel 8. Weitere Beispiele"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Anhang A. <span class="strong"><strong>debmake</strong></span>(1) manpage</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="ch08.de.html"><img src="images/prev.png" alt="Zurück"/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> </td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="appendix">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="manpage"/>Anhang A. <span class="strong"><strong>debmake</strong></span>(1) manpage</h1>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_name"/>A.1. NAME</h2>
+            </div>
+          </div>
+        </div>
+        <p>debmake - program to make a Debian source package</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_synopsis"/>A.2. SYNOPSIS</h2>
+            </div>
+          </div>
+        </div>
+        <p><span class="strong"><strong>debmake</strong></span>  [<span class="strong"><strong>-h</strong></span>]  [<span class="strong"><strong>-c</strong></span> | <span class="strong"><strong>-k</strong></span>] [<span class="strong"><strong>-n</strong></span> | <span class="strong"><strong>-a</strong></span> <span class="emphasis"><em>package-version</em></span><span class="strong"><strong>.orig.tar.gz</strong></span> | <span class="strong"><strong>-d</strong></span> | <span class="strong"><strong>-t</strong></span> ] [<span class="strong"><strong>-p</strong></span> <span class="emphasis"><em>package</em></span>] [<span class="strong"><strong>-u</strong></span> <span class="emphasis"><em>version</em></span>] [<span class="strong"><strong>-r</strong></span> <span class="emphasis"><em>revision</em></span>] [<span class="strong"><strong>-z</strong></span> <span class="emphasis"><em>extension</em></span>] [<span class="strong"><strong>-b</strong></span> "<span class="emphasis"><em>binarypackage</em></span><span class="emphasis"><em><span class=":__type__">, …</span></em></span>]" [<span class="strong"><strong>-e</strong></span> <span class="emphasis"><em>foo@example.org</em></span>] [<span class="strong"><strong>-f</strong></span> "<span class="emphasis"><em>firstname lastname</em></span>"] [<span class="strong"><strong>-i</strong></span> "<span class="emphasis"><em>buildtool</em></span>" | <span class="strong"><strong>-j</strong></span>] [<span class="strong"><strong>-l</strong></span> <span class="emphasis"><em>license_file</em></span>] [<span class="strong"><strong>-m</strong></span>] [<span class="strong"><strong>-o</strong></span> <span class="emphasis"><em>file</em></span>] [<span class="strong"><strong>-q</strong></span>] [<span class="strong"><strong>-s</strong></span>] [<span class="strong"><strong>-v</strong></span>] [<span class="strong"><strong>-w</strong></span> "<span class="emphasis"><em>addon, …</em></span>"] [<span class="strong"><strong>-x</strong></span> [01234]] [<span class="strong"><strong>-y</strong></span>] [<span class="strong"><strong>-L</strong></span>] [<span class="strong"><strong>-P</strong></span>] [<span class="strong"><strong>-T</strong></span>]</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_description"/>A.3. DESCRIPTION</h2>
+            </div>
+          </div>
+        </div>
+        <p><span class="strong"><strong>debmake</strong></span> helps to build a Debian package from the upstream source.  Normally, this is done as follows:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">Der Tarball der Originalautoren wird als Datei <span class="emphasis"><em>Paket-Version</em></span><span class="strong"><strong>.tar.gz</strong></span> heruntergeladen.</li>
+            <li class="listitem">
+It is untarred to create many files under the <span class="emphasis"><em>package-version/</em></span> directory.
+</li>
+            <li class="listitem">
+debmake is invoked in the <span class="emphasis"><em>package-version/</em></span> directory, possibly without any arguments.
+</li>
+            <li class="listitem">
+Files in the <span class="emphasis"><em>package-version</em></span><span class="strong"><strong>/debian/</strong></span> directory are manually adjusted.
+</li>
+            <li class="listitem">
+<span class="strong"><strong>dpkg-buildpackage</strong></span> (usually from its wrapper <span class="strong"><strong>debuild</strong></span> or <span class="strong"><strong>pdebuild</strong></span>) is invoked in the <span class="emphasis"><em>package-version/</em></span> directory to make Debian packages.
+</li>
+          </ul>
+        </div>
+        <p>Stellen Sie sicher, dass die Argumente <span class="strong"><strong>-b</strong></span>, <span class="strong"><strong>-f</strong></span>, <span class="strong"><strong>-l</strong></span> und <span class="strong"><strong>-w</strong></span> durch Maskieren vor dem Einfluss der Shell geschützt sind.</p>
+        <div class="section">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a id="_optional_arguments"/>A.3.1. optional arguments:</h3>
+              </div>
+            </div>
+          </div>
+          <div class="variablelist">
+            <dl class="variablelist">
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-h</strong></span>, <span class="strong"><strong>--help</strong></span>
+</span>
+              </dt>
+              <dd>
+show this help message and exit.
+</dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-c</strong></span>, <span class="strong"><strong>--copyright</strong></span>
+</span>
+              </dt>
+              <dd>
+                <p class="simpara">
+scan source for copyright+license text and exit.
+</p>
+                <div class="itemizedlist">
+                  <ul class="itemizedlist">
+                    <li class="listitem">
+<span class="strong"><strong>-c</strong></span>: simple output style
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>-cc</strong></span>: normal output style (similar to the <span class="strong"><strong>debian/copyright</strong></span> file)
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>-ccc</strong></span>: debug output style
+</li>
+                  </ul>
+                </div>
+              </dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-k</strong></span>, <span class="strong"><strong>--kludge</strong></span>
+</span>
+              </dt>
+              <dd>
+                <p class="simpara">
+compare the <span class="strong"><strong>debian/copyright</strong></span> file with the source and exit.
+</p>
+                <p class="simpara">The <span class="strong"><strong>debian/copyright</strong></span> file must be organized to list the generic file patterns before the specific exceptions.</p>
+                <div class="itemizedlist">
+                  <ul class="itemizedlist">
+                    <li class="listitem">
+<span class="strong"><strong>-k</strong></span>: basic output style
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>-kk</strong></span>: verbose output style
+</li>
+                  </ul>
+                </div>
+              </dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-n</strong></span>, <span class="strong"><strong>--native</strong></span>
+</span>
+              </dt>
+              <dd>
+                <p class="simpara">
+make a native Debian source package without <span class="strong"><strong>.orig.tar.gz</strong></span>.  This makes a “<span class="strong"><strong>3.0 (native)</strong></span>” format package.
+</p>
+                <p class="simpara">If you are thinking of packaging a Debian-specific source tree with <span class="strong"><strong>debian/</strong></span>* in it into a native Debian package, please think otherwise.  You can use  the “<span class="strong"><strong>debmake -d  -i debuild</strong></span>” or “<span class="strong"><strong>debmake -t -i debuild</strong></span>” commands to make a “<span class="strong"><strong>3.0 (quilt)</strong></span>” format non-native Debian package.  The only difference is that the <span class="strong"><strong>debian/changelog</strong></span> file must use the  non-native version scheme: <span class="emphasis"><em>version-revision</em></span>.  The non-native package is more friendly to downstream distributions.</p>
+              </dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-a</strong></span> <span class="emphasis"><em>package-version</em></span><span class="strong"><strong>.tar.gz</strong></span>, <span class="strong"><strong>--archive</strong></span> <span class="emphasis"><em>package-version</em></span><span class="strong"><strong>.tar.gz</strong></span>
+</span>
+              </dt>
+              <dd>
+                <p class="simpara">
+use the upstream source tarball directly. (<span class="strong"><strong>-p</strong></span>, <span class="strong"><strong>-u</strong></span>, <span class="strong"><strong>-z</strong></span>: overridden)
+</p>
+                <p class="simpara">The upstream tarball may be specified as <span class="emphasis"><em>package_version</em></span><span class="strong"><strong>.orig.tar.gz</strong></span> and <span class="strong"><strong>tar.gz</strong></span>.  For other cases, it may be <span class="strong"><strong>tar.bz2</strong></span>, or <span class="strong"><strong>tar.xz</strong></span>.</p>
+                <p class="simpara">If the specified upstream tarball name contains uppercase letters, the Debian package name is generated by converting them to lowercase letters.</p>
+                <p class="simpara">If the specified argument is the URL (http://, https://, or ftp://) to the upstream tarball, the upstream tarball is downloaded from the URL using <span class="strong"><strong>wget</strong></span> or <span class="strong"><strong>curl</strong></span>.</p>
+              </dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-d</strong></span>, <span class="strong"><strong>--dist</strong></span>
+</span>
+              </dt>
+              <dd>
+                <p class="simpara">
+run the “make dist” command equivalents first to generate the upstream tarball and use it.
+</p>
+                <p class="simpara">The “<span class="strong"><strong>debmake -d</strong></span>” command is designed to run in the <span class="emphasis"><em>package/</em></span> directory hosting the upstream VCS with the build system supporting the “<span class="strong"><strong>make dist</strong></span>” command equivalents.  (automake/autoconf, Python distutils, …)</p>
+              </dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-t</strong></span>, <span class="strong"><strong>--tar</strong></span>
+</span>
+              </dt>
+              <dd>
+                <p class="simpara">
+run the “<span class="strong"><strong>tar</strong></span>” command to generate the upstream tarball and use it.
+</p>
+                <p class="simpara">The “<span class="strong"><strong>debmake -t</strong></span>” command is designed to run in the <span class="emphasis"><em>package/</em></span> directory hosting the upstream VCS.  Unless you provide the upstream version with the <span class="strong"><strong>-u</strong></span> option or with the <span class="strong"><strong>debian/changelog</strong></span> file, a snapshot upstream version is generated in the <span class="strong"><strong>0~%y%m%d%H%M</strong></span> format, e.g., <span class="emphasis"><em>0~1403012359</em></span>, from the UTC date and time.  The generated tarball excludes the <span class="strong"><strong>debian/</strong></span> directory found in the upstream VCS. (It also excludes typical VCS directories: <span class="strong"><strong>.git/ .hg/ .svn/ .CVS/</strong></span>.)</p>
+              </dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-p</strong></span> <span class="emphasis"><em>package</em></span>, <span class="strong"><strong>--package</strong></span> <span class="emphasis"><em>package</em></span>
+</span>
+              </dt>
+              <dd>
+set the Debian package name.
+</dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-u</strong></span> <span class="emphasis"><em>version</em></span>, <span class="strong"><strong>--upstreamversion</strong></span> <span class="emphasis"><em>version</em></span>
+</span>
+              </dt>
+              <dd>
+set the upstream package version.
+</dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-r</strong></span> <span class="emphasis"><em>revision</em></span>, <span class="strong"><strong>--revision</strong></span> <span class="emphasis"><em>revision</em></span>
+</span>
+              </dt>
+              <dd>
+set the Debian package revision.
+</dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-z</strong></span> <span class="emphasis"><em>extension</em></span>, <span class="strong"><strong>--targz</strong></span> <span class="emphasis"><em>extension</em></span>
+</span>
+              </dt>
+              <dd>
+set the tarball type, <span class="emphasis"><em>extension</em></span>=(<span class="strong"><strong>tar.gz</strong></span>|<span class="strong"><strong>tar.bz2</strong></span>|<span class="strong"><strong>tar.xz</strong></span>). (alias: <span class="strong"><strong>z</strong></span>, <span class="strong"><strong>b</strong></span>, <span class="strong"><strong>x</strong></span>)
+</dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-b</strong></span> "<span class="emphasis"><em>binarypackage[:type],…</em></span>", <span class="strong"><strong>--binaryspec</strong></span> "<span class="emphasis"><em>binarypackage[:type],…</em></span>"
+</span>
+              </dt>
+              <dd>
+                <p class="simpara">
+set the binary package specs by a comma separated list of <span class="emphasis"><em>binarypackage:type</em></span> pairs, e.g., in the full form “<span class="strong"><strong>foo:bin,foo-doc:doc,libfoo1:lib,libfoo-dev:dev</strong></span>” or in the short form, “<span class="strong"><strong>-doc,libfoo1,libfoo-dev</strong></span>”.
+</p>
+                <p class="simpara">Here, <span class="emphasis"><em>binarypackage</em></span> is the binary package name, and the optional <span class="emphasis"><em>type</em></span> is chosen from the following <span class="emphasis"><em>type</em></span> values:</p>
+                <div class="itemizedlist">
+                  <ul class="itemizedlist">
+                    <li class="listitem">
+<span class="strong"><strong>bin</strong></span>: C/C++ compiled ELF binary code package (any, foreign) (default, alias: <span class="strong"><strong>""</strong></span>, i.e., <span class="emphasis"><em>null-string</em></span>)
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>data</strong></span>: Data (fonts, graphics, …) package (all, foreign) (alias: <span class="strong"><strong>da</strong></span>)
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>dev</strong></span>: Library development package (any, same) (alias: <span class="strong"><strong>de</strong></span>)
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>doc</strong></span>: Documentation package (all, foreign) (alias: <span class="strong"><strong>do</strong></span>)
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>lib</strong></span>: Library package (any, same) (alias: <span class="strong"><strong>l</strong></span>)
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>perl</strong></span>: Perl script package (all, foreign) (alias: <span class="strong"><strong>pl</strong></span>)
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>python</strong></span>: Python script package (all, foreign) (alias: <span class="strong"><strong>py</strong></span>)
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>python3</strong></span>: Python3 script package (all, foreign) (alias: <span class="strong"><strong>py3</strong></span>)
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>ruby</strong></span>: Ruby script package (all, foreign) (alias: <span class="strong"><strong>rb</strong></span>)
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>script</strong></span>: Shell script package (all, foreign) (alias: <span class="strong"><strong>sh</strong></span>)
+</li>
+                  </ul>
+                </div>
+                <p class="simpara">The pair values in the parentheses, such as (any, foreign), are the <span class="strong"><strong>Architecture</strong></span> and <span class="strong"><strong>Multi-Arch</strong></span> stanza values set in the <span class="strong"><strong>debian/control</strong></span> file.</p>
+                <p class="simpara">In many cases, the <span class="strong"><strong>debmake</strong></span> command makes good guesses for <span class="emphasis"><em>type</em></span> from <span class="emphasis"><em>binarypackage</em></span>.  If <span class="emphasis"><em>type</em></span> is not obvious, <span class="emphasis"><em>type</em></span> is set to <span class="strong"><strong>bin</strong></span>.  For example, <span class="strong"><strong>libfoo</strong></span> sets <span class="emphasis"><em>type</em></span> to <span class="strong"><strong>lib</strong></span>, and <span class="strong"><strong>font-bar</strong></span> sets <span class="emphasis"><em>type</em></span> to <span class="strong"><strong>data</strong></span>, …</p>
+                <p class="simpara">If the source tree contents do not match settings for <span class="emphasis"><em>type</em></span>, the <span class="strong"><strong>debmake</strong></span> command warns you.</p>
+              </dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-e</strong></span> <span class="emphasis"><em>foo@example.org</em></span>, <span class="strong"><strong>--email</strong></span> <span class="emphasis"><em>foo@example.org</em></span>
+</span>
+              </dt>
+              <dd>
+                <p class="simpara">
+set e-mail address.
+</p>
+                <p class="simpara">The default is taken from the value of the environment variable <span class="strong"><strong>$DEBEMAIL</strong></span>.</p>
+              </dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-f</strong></span> "<span class="emphasis"><em>firstname lastname</em></span>", <span class="strong"><strong>--fullname</strong></span> "<span class="emphasis"><em>firstname lastname</em></span>"
+</span>
+              </dt>
+              <dd>
+                <p class="simpara">
+set the fullname.
+</p>
+                <p class="simpara">The default is taken from the value of the environment variable <span class="strong"><strong>$DEBFULLNAME</strong></span>.</p>
+              </dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-i</strong></span> "<span class="emphasis"><em>buildtool</em></span>", <span class="strong"><strong>--invoke</strong></span> "<span class="emphasis"><em>buildtool</em></span>"
+</span>
+              </dt>
+              <dd>
+                <p class="simpara">
+invoke "<span class="emphasis"><em>buildtool</em></span>" at the end of execution.  <span class="emphasis"><em>buildtool</em></span> may be “<span class="strong"><strong>dpkg-buildpackage</strong></span>”, “<span class="strong"><strong>debuild</strong></span>”, “<span class="strong"><strong>pdebuild</strong></span>”, “<span class="strong"><strong>pdebuild  --pbuilder cowbuilder</strong></span>”, etc.
+</p>
+                <p class="simpara">The default is not to execute any program.</p>
+                <p class="simpara">Setting this option automatically sets the <span class="strong"><strong>--local</strong></span> option.</p>
+              </dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-j</strong></span>, <span class="strong"><strong>--judge</strong></span>
+</span>
+              </dt>
+              <dd>
+                <p class="simpara">
+run <span class="strong"><strong>dpkg-depcheck</strong></span> to judge build dependencies and identify file paths.  Log files are in the parent directory.
+</p>
+                <div class="itemizedlist">
+                  <ul class="itemizedlist">
+                    <li class="listitem">
+<span class="emphasis"><em>package</em></span><span class="strong"><strong>.build-dep.log</strong></span>: Log file for <span class="strong"><strong>dpkg-depcheck</strong></span>.
+</li>
+                    <li class="listitem">
+<span class="emphasis"><em>package</em></span><span class="strong"><strong>.install.log</strong></span>: Log file recording files in the <span class="strong"><strong>debian/tmp</strong></span> directory.
+</li>
+                  </ul>
+                </div>
+              </dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-l</strong></span> "<span class="emphasis"><em>license_file,…</em></span>", <span class="strong"><strong>--license</strong></span> "<span class="emphasis"><em>license_file,…</em></span>"
+</span>
+              </dt>
+              <dd>
+                <p class="simpara">
+add formatted license text to the end of the <span class="strong"><strong>debian/copyright</strong></span> file holding license scan results.
+</p>
+                <p class="simpara">The default is to add <span class="strong"><strong>COPYING</strong></span> and <span class="strong"><strong>LICENSE</strong></span>, and <span class="emphasis"><em>license_file</em></span> needs to list only the additional file names all separated by “<span class="strong"><strong>,</strong></span>”.</p>
+              </dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-m</strong></span>, <span class="strong"><strong>--monoarch</strong></span>
+</span>
+              </dt>
+              <dd>
+force packages to be non-multiarch.
+</dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-o</strong></span> <span class="emphasis"><em>file</em></span>, <span class="strong"><strong>--option</strong></span> <span class="emphasis"><em>file</em></span>
+</span>
+              </dt>
+              <dd>
+                <p class="simpara">
+read optional parameters from <span class="emphasis"><em>file</em></span>. (This is not for everyday use.)
+</p>
+                <p class="simpara">The content of <span class="emphasis"><em>file</em></span> is sourced as the Python3 code at the end of <span class="strong"><strong>para.py</strong></span>.  For example, the package description can be specified by the following file.</p>
+                <pre class="screen">para['desc'] = 'program short description'
+para['desc_long'] = '''\
+ program long description which you wish to include.
+ .
+ Empty line is space + .
+ You keep going on ...
+'''</pre>
+              </dd>
+            </dl>
+          </div>
+          <div class="variablelist">
+            <dl class="variablelist">
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-q</strong></span>, <span class="strong"><strong>--quitearly</strong></span>
+</span>
+              </dt>
+              <dd>
+quit early before creating files in the <span class="strong"><strong>debian/</strong></span> directory.
+</dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-s</strong></span>, <span class="strong"><strong>--spec</strong></span></span>
+              </dt>
+              <dd>
+use upstream spec (setup.py for Python, etc.) for the package description.
+</dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-v</strong></span>, <span class="strong"><strong>--version</strong></span>
+</span>
+              </dt>
+              <dd>
+show version information.
+</dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-w</strong></span> "<span class="emphasis"><em>addon,…</em></span>", <span class="strong"><strong>--with</strong></span> "<span class="emphasis"><em>addon,…</em></span>"
+</span>
+              </dt>
+              <dd>
+                <p class="simpara">
+add extra arguments to the <span class="strong"><strong>--with</strong></span> option of the <span class="strong"><strong>dh</strong></span>(1) command as <span class="emphasis"><em>addon</em></span> in <span class="strong"><strong>debian/rules</strong></span>.
+</p>
+                <p class="simpara">The <span class="emphasis"><em>addon</em></span> values are listed all separated by “<span class="strong"><strong>,</strong></span>”, e.g., “<span class="strong"><strong>-w "python2,autoreconf"”</strong></span>.</p>
+                <p class="simpara">For  Autotools based packages, setting <span class="strong"><strong>autoreconf</strong></span> as <span class="emphasis"><em>addon</em></span> forces running “<span class="strong"><strong>autoreconf -i -v -f</strong></span>” for every package building.  Otherwise, <span class="strong"><strong>autotools-dev</strong></span> as <span class="emphasis"><em>addon</em></span> is used as the default.</p>
+                <p class="simpara">For Autotools based packages, if they install Python programs, <span class="strong"><strong>python2</strong></span> as <span class="emphasis"><em>addon</em></span> is needed for packages with “<span class="strong"><strong>compat &lt; 9</strong></span>” since this is non-obvious.   But for <span class="strong"><strong>setup.py</strong></span> based packages, <span class="strong"><strong>python2</strong></span> as <span class="emphasis"><em>addon</em></span> is not needed since this is obvious and it is automatically set for the <span class="strong"><strong>dh</strong></span>(1) command by the <span class="strong"><strong>debmake</strong></span> command when it is required.</p>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-x</strong></span> <span class="emphasis"><em>n</em></span>, <span class="strong"><strong>--extra</strong></span> <span class="emphasis"><em>n</em></span></span>
+              </dt>
+              <dd>
+                <p class="simpara">
+generate configuration files as templates.  (Please note <span class="strong"><strong>debian/changelog</strong></span>, <span class="strong"><strong>debian/control</strong></span>, <span class="strong"><strong>debian/copyright</strong></span>, and <span class="strong"><strong>debian/rules</strong></span> are bare minimum configuration files to build a Debian binary package.)
+</p>
+                <p class="simpara">The number <span class="emphasis"><em>n</em></span> determines which configuration templates are generated.</p>
+                <div class="itemizedlist">
+                  <ul class="itemizedlist">
+                    <li class="listitem">
+<span class="strong"><strong>-x0</strong></span>: bare minimum configuration files. (default option if any of bare minimum configuration files already exist)
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>-x1</strong></span>: all <span class="strong"><strong>-x0</strong></span> files + desirable configuration files for the single binary package. (default option for the single binary package if none of bare minimum configuration files exist)
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>-x2</strong></span>: all <span class="strong"><strong>-x1</strong></span> files + desirable configuration files for the multi binary package. (default option for the multi binary package if none of bare minimum configuration files exist)
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>-x3</strong></span>: all <span class="strong"><strong>-x2</strong></span> files + unusual configuration template files. Unsual configuration template files are generated with the extra <span class="strong"><strong>.ex</strong></span> suffix to ease their removal. To use these as configuration files, rename their file names to ones without the <span class="strong"><strong>.ex</strong></span> suffix.
+</li>
+                    <li class="listitem">
+<span class="strong"><strong>-x4</strong></span>: all <span class="strong"><strong>-x3</strong></span> files + copyright file examples.
+</li>
+                  </ul>
+                </div>
+              </dd>
+              <dt>
+                <span class="term"><span class="strong"><strong>-y</strong></span>, <span class="strong"><strong>--yes</strong></span></span>
+              </dt>
+              <dd>
+“force yes” for all prompts. (without option: “ask [Y/n]”; doubled option: “force no”)
+</dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-L</strong></span>, <span class="strong"><strong>--local</strong></span>
+</span>
+              </dt>
+              <dd>
+generate configuration files for the local package to fool <span class="strong"><strong>lintian</strong></span>(1) checks.
+</dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-P</strong></span>, <span class="strong"><strong>--pedantic</strong></span>
+</span>
+              </dt>
+              <dd>
+pedantically check auto-generated files.
+</dd>
+              <dt>
+                <span class="term">
+<span class="strong"><strong>-T</strong></span>, <span class="strong"><strong>--tutorial</strong></span>
+</span>
+              </dt>
+              <dd>
+output tutorial comment lines in template files.
+</dd>
+            </dl>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_examples"/>A.4. BEISPIELE</h2>
+            </div>
+          </div>
+        </div>
+        <p>For a well behaving source, you can build a good-for-local-use installable single Debian binary package easily with one command.  Test install of such a package generated in this way offers a good alternative to the traditional “<span class="strong"><strong>make install</strong></span>” command installing into the <span class="strong"><strong>/usr/local</strong></span> directory since the Debian package can be  removed  cleanly  by  the “<span class="strong"><strong>dpkg -P</strong></span> <span class="emphasis"><em>…”</em></span> command. Here are some examples of how to build such test packages. (These should work in most cases.  If the <span class="strong"><strong>-d</strong></span> option does not work, try the <span class="strong"><strong>-t</strong></span> option instead.)</p>
+        <p>Für ein typischen, mit Autoconf/Automake paketierten C-Programmquellbaum:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <span class="strong">
+                <strong>debmake -d -i debuild</strong>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <p>Für einen typischen Pythonmodulquellbaum:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <span class="strong">
+                <strong>debmake -s -d -b":python" -i debuild</strong>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <p>Für ein typisches Python-Modul im Archiv <span class="emphasis"><em>Paketversion</em></span><span class="strong"><strong>.tar.gz</strong></span>:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <span class="strong">
+                <strong>debmake -s -a <span class="emphasis"><em>Paketversion</em></span>.tar.gz -b":python" -i debuild</strong>
+              </span>
+            </li>
+          </ul>
+        </div>
+        <p>Für ein typisches Perl-Modul im Archiv <span class="emphasis"><em>Paketversion</em></span><span class="strong"><strong>.tar.gz</strong></span>:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <span class="strong">
+                <strong>debmake -a <span class="emphasis"><em>Paketversion</em></span>.tar.gz -b":perl" -i debuild</strong>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_helper_packages"/>A.5. HELFERPAKETE</h2>
+            </div>
+          </div>
+        </div>
+        <p>Die Paketierung könnte die Installation einiger zusätzlicher, spezialisierter Helferpakete benötigen.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">Python3-Programme könnten das Paket <span class="strong"><strong>dh-python</strong></span> benötigen.</li>
+            <li class="listitem">
+The Autotools (Autoconf + Automake) build system may require <span class="strong"><strong>autotools-dev</strong></span> or <span class="strong"><strong>dh-autoreconf</strong></span> package.
+</li>
+            <li class="listitem">Ruby-Programme könnten das Paket <span class="strong"><strong>gem2deb</strong></span> benötigen.</li>
+            <li class="listitem">Java-Programme könnten das Paket <span class="strong"><strong>javahelper</strong></span> benötigen.</li>
+            <li class="listitem">Gnome-Programme könnten das Paket <span class="strong"><strong>gobject-introspection</strong></span> benötigen.</li>
+            <li class="listitem">usw.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_caveat"/>A.6. CAVEAT</h2>
+            </div>
+          </div>
+        </div>
+        <p><span class="strong"><strong>debmake</strong></span> is meant to provide template files for the package maintainer to work on.  Comment lines started by <span class="strong"><strong>#</strong></span> contain the tutorial text.  You must remove or edit such comment lines before uploading to the Debian archive.</p>
+        <p>The license extraction and assignment process involves a lot of heuristics; it may fail in some cases.  It is highly recommended to use other tools such as <span class="strong"><strong>licensecheck</strong></span> from the <span class="strong"><strong>devscripts</strong></span> package in conjunction with <span class="strong"><strong>debmake</strong></span>.</p>
+        <p>There  are some limitations for what characters may be used as a part of the Debian package.  The most notable limitation is the prohibition of uppercase letters in the package name.  Here is a summary as a set of regular expressions:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+Upstream package name (<span class="strong"><strong>-p</strong></span>): [-+.a-z0-9]{2,}
+</li>
+            <li class="listitem">
+Binary package name (<span class="strong"><strong>-b</strong></span>): [-+.a-z0-9]{2,}
+</li>
+            <li class="listitem">
+Upstream version (<span class="strong"><strong>-u</strong></span>): [0-9][-+.:~a-z0-9A-Z]*
+</li>
+            <li class="listitem">
+Debian revision (<span class="strong"><strong>-r</strong></span>): [0-9][+.~a-z0-9A-Z]*
+</li>
+          </ul>
+        </div>
+        <p>See the exact definition in <a class="ulink" href="https://www.debian.org/doc/debian-policy/#document-ch-controlfields">Chapter 5 - Control files and their fields</a> in the “Debian Policy Manual”.</p>
+        <p><span class="strong"><strong>debmake</strong></span> assumes relatively simple packaging cases.  So all programs related to the interpreter are assumed to be "<span class="strong"><strong>Architecture: all</strong></span>".  This is not always true.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_debug"/>A.7. DEBUG</h2>
+            </div>
+          </div>
+        </div>
+        <p>Bitte berichten Sie Fehler (auf Englisch) mittels des Befehls <span class="strong"><strong>reportbug</strong></span> gegen das Paket <span class="strong"><strong>debmake</strong></span>.</p>
+        <p>The character set in the environment variable <span class="strong"><strong>$DEBUG</strong></span> determines the logging output level.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+<span class="strong"><strong>i</strong></span>: print information
+</li>
+            <li class="listitem">
+<span class="strong"><strong>p</strong></span>: list all global parameters
+</li>
+            <li class="listitem">
+<span class="strong"><strong>d</strong></span>: list parsed parameters for all binary packages
+</li>
+            <li class="listitem">
+<span class="strong"><strong>f</strong></span>: input filename for the copyright scan
+</li>
+            <li class="listitem">
+<span class="strong"><strong>y</strong></span>: year/name split of copyright line
+</li>
+            <li class="listitem">
+<span class="strong"><strong>s</strong></span>: line scanner for format_state
+</li>
+            <li class="listitem">
+<span class="strong"><strong>b</strong></span>: content_state scan loop: begin-loop
+</li>
+            <li class="listitem">
+<span class="strong"><strong>m</strong></span>: content_state scan loop: after regex match
+</li>
+            <li class="listitem">
+<span class="strong"><strong>e</strong></span>: content_state scan loop: end-loop
+</li>
+            <li class="listitem">
+<span class="strong"><strong>c</strong></span>: print copyright section text
+</li>
+            <li class="listitem">
+<span class="strong"><strong>l</strong></span>: print license section text
+</li>
+            <li class="listitem">
+<span class="strong"><strong>a</strong></span>: print author/translator section text
+</li>
+            <li class="listitem">
+<span class="strong"><strong>k</strong></span>: sort key for debian/copyright stanza
+</li>
+            <li class="listitem">
+<span class="strong"><strong>n</strong></span>: scan result of debian/copyright (“<span class="strong"><strong>debmake -k</strong></span>”)
+</li>
+          </ul>
+        </div>
+        <p>Use this as:</p>
+        <pre class="screen"> $ DEBUG=pdfbmeclak debmake ...</pre>
+        <p>Siehe README.developer in den Quellen für weiteres.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_author"/>A.8. AUTOR</h2>
+            </div>
+          </div>
+        </div>
+        <p>Copyright © 2014-2017 Osamu Aoki &lt;<a class="ulink" href="mailto:osamu@debian.org">osamu@debian.org</a>&gt;</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_license"/>A.9. LIZENZ</h2>
+            </div>
+          </div>
+        </div>
+        <p>Expat-Lizenz</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="_see_also"/>A.10. SIEHE AUCH</h2>
+            </div>
+          </div>
+        </div>
+        <p>Das Paket <span class="strong"><strong>debmake-doc</strong></span> stellt die »Anleitung für Debian-Betreuer« in einfachem Text, HTML und PDF-Format im Verzeichnis <span class="strong"><strong>/usr/share/doc/debmake-doc/</strong></span> zur Verfügung.</p>
+        <p>Siehe auch die Handbuchseiten <span class="strong"><strong>dpkg-source</strong></span>(1), <span class="strong"><strong>deb-control</strong></span>(5), <span class="strong"><strong>debhelper</strong></span>(7), <span class="strong"><strong>dh</strong></span>(1), <span class="strong"><strong>dpkg-buildpackage</strong></span>(1), <span class="strong"><strong>debuild</strong></span>(1), <span class="strong"><strong>quilt</strong></span>(1), <span class="strong"><strong>dpkg-depcheck</strong></span>(1), <span class="strong"><strong>pdebuild</strong></span>(1), <span class="strong"><strong>pbuilder</strong></span>(8), <span class="strong"><strong>cowbuilder</strong></span>(8), <span class="strong"><strong>gbp-buildpackage</strong></span>(1), <span class="strong"><strong>gbp-pq</strong></span>(1) und <span class="strong"><strong>git-pbuilder</strong></span>(1).</p>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="ch08.de.html"><img src="images/prev.png" alt="Zurück"/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> </td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">Kapitel 8. Weitere Beispiele </td>
+          <td align="center">
+            <a accesskey="h" href="index.de.html">
+              <img src="images/home.png" alt="Zum Anfang"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

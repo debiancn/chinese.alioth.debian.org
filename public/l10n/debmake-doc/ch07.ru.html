@@ -1,0 +1,1379 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Глава 7. Полезные советы</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.ru.html" title="Руководство для сопровождающих Debian"/>
+    <link rel="up" href="index.ru.html" title="Руководство для сопровождающих Debian"/>
+    <link rel="prev" href="ch06.ru.html" title="Глава 6. Опции debmake"/>
+    <link rel="next" href="ch08.ru.html" title="Глава 8. Дополнительные примеры"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Глава 7. Полезные советы</th>
+        </tr>
+        <tr>
+          <td align="left"><a accesskey="p" href="ch06.ru.html"><img src="images/prev.png" alt="Пред."/></a> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="ch08.ru.html"><img src="images/next.png" alt="След."/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="chapter">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="tips"/>Глава 7. Полезные советы</h1>
+          </div>
+        </div>
+      </div>
+      <div class="toc">
+        <p>
+          <strong>Содержание</strong>
+        </p>
+        <dl class="toc">
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#debdiff">7.1. debdiff</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#dget">7.2. dget</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#debc">7.3. debc</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#piuparts">7.4. piuparts</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#debsign">7.5. debsign</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#dput">7.6. dput</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#bts">7.7. bts</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#gbp">7.8. git-buildpackage</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#debsnap">7.8.1. gbp import-dscs --debsnap</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#upstream-git">7.9. git-репозиторий основной ветки</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#chroot">7.10. chroot</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#newrevision">7.11. Новая редакция Debian</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#newversion">7.12. Новый выпуск основной ветки</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#uupdate">7.12.1. uupdate + tarball</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#uscan">7.12.2. uscan</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#gbp-orig">7.12.3. gbp</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.ru.html#gbp-uscan">7.12.4. gbp + uscan</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#deb3">7.13. Формат исходного кода 3.0</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#cdbs">7.14. CDBS</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#utf-8-build">7.15. Сборка с использованием кодировки UTF-8</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#utf-8-conv">7.16. Преобразование в кодировку UTF-8</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#origtar">7.17. Загрузите <span class="strong"><strong>orig.tar.gz</strong></span></a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#skipedupload">7.18. Пропущенные загрузки</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#adv-pkg">7.19. Продвинутые темы работы над пакетом</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#other-distro">7.20. Другие дистрибутивы</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="section">
+              <a href="ch07.ru.html#debug">7.21. Отладка</a>
+            </span>
+          </dt>
+        </dl>
+      </div>
+      <p>Here are some notable tips about Debian packaging.</p>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="debdiff"/>7.1. debdiff</h2>
+            </div>
+          </div>
+        </div>
+        <p>Можно сравнивать содержимое файлов в двух пакетах Debian с исходным кодом с помощью команды <span class="strong"><strong>debdiff</strong></span>.</p>
+        <pre class="screen">$ debdiff old-package.dsc new-package.dsc</pre>
+        <p>Также можно сравнивать списки файлов в двух наборах двоичных пакетов Debian с помощью команды <span class="strong"><strong>debdiff</strong></span>.</p>
+        <pre class="screen">$ debdiff old-package.changes new-package.changes</pre>
+        <p>Это полезно для определения изменений в пакетах с исходным кодом и для проверки на предмет нечаянных изменений, привнесённых при обновлении двоичных пакетов, таких как непреднамеренное ошибочное размещение или удаление файлов.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="dget"/>7.2. dget</h2>
+            </div>
+          </div>
+        </div>
+        <p>Можно скачать набор файлв для пакета Debian с исходным кодом с помощью команды <span class="strong"><strong>dget</strong></span>.</p>
+        <pre class="screen">$ dget https://www.example.org/path/to/package_version-rev.dsc</pre>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="debc"/>7.3. debc</h2>
+            </div>
+          </div>
+        </div>
+        <p>Созданные пакеты следуется установить с помощью команды <span class="strong"><strong>debc</strong></span> для их локальной проверки.</p>
+        <pre class="screen">$ debc package_version-rev_arch.changes</pre>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="piuparts"/>7.4. piuparts</h2>
+            </div>
+          </div>
+        </div>
+        <p>Созданные пакеты следует установить с помощью команды <span class="strong"><strong>piuparts</strong></span> для их автоматической проверки.</p>
+        <pre class="screen">$ sudo piuparts package_version-rev_arch.changes</pre>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Примечание]" src="images/note.png"/>
+              </td>
+              <th align="left">Примечание</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>This is a very slow process with remote APT package repository access.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="debsign"/>7.5. debsign</h2>
+            </div>
+          </div>
+        </div>
+        <p>После завершения тестирования пакета можно его подписать с помощью команды <span class="strong"><strong>debsign</strong></span>.</p>
+        <pre class="screen">$ debsign package_version-rev_arch.changes</pre>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="dput"/>7.6. dput</h2>
+            </div>
+          </div>
+        </div>
+        <p>After signing the package with the <span class="strong"><strong>debsign</strong></span> command, you can upload the set of files for the Debian source and binary packages with the <span class="strong"><strong>dput</strong></span> command.</p>
+        <pre class="screen">$ dput package_version-rev_arch.changes</pre>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="bts"/>7.7. bts</h2>
+            </div>
+          </div>
+        </div>
+        <p>После загрузки пакета вы начнёте получать сообщения об ошибках. Соответствующая работа с ошибками является важным обязательством сопровождающего, что описано в разделе <a class="ulink" href="https://www.debian.org/doc/manuals/developers-reference/pkgs.html#bug-handling">5.8. Работа с ошибками</a> «Справочника разработчика Debian».</p>
+        <p>The <span class="strong"><strong>bts</strong></span> command is a handy tool to manage bugs on the <a class="ulink" href="https://www.debian.org/Bugs/">Debian Bug Tracking System</a>.</p>
+        <pre class="screen">$ bts severity 123123 wishlist , tags -1 pending</pre>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="gbp"/>7.8. git-buildpackage</h2>
+            </div>
+          </div>
+        </div>
+        <p>Пакет <span class="strong"><strong>git-buildpackage</strong></span> предлагает множество команд для автоматизации деятельности по работе над пакетом с помощью репозитория git.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem"><span class="strong"><strong>gbp import-dsc</strong></span>: импортировать предыдущий пакет Debian с исходным кодом в git-репозиторий.</li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>gbp import-orig</strong></span>: импортировать новый tar-архив основной ветки в git-репозиторий.</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+The <span class="strong"><strong>--pristine-tar</strong></span> option for the <span class="strong"><strong>git import-orig</strong></span> command enables storing the upstream tarball in the same git repository.
+</li>
+                  <li class="listitem">
+The <span class="strong"><strong>--uscan</strong></span> option as the last argument of the <span class="strong"><strong>gbp import-orig</strong></span> command enables downloading and committing the new upstream tarball into the git repository.
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem"><span class="strong"><strong>gbp dch</strong></span>: создание записи журнала изменений Debian из сообщений о коммитах.</li>
+            <li class="listitem"><span class="strong"><strong>gbp buildpackage</strong></span>: сборка двоичного пакета Debian из git-репозитория.</li>
+            <li class="listitem"><span class="strong"><strong>gbp pull</strong></span>: безопасно обновить ветки <span class="strong"><strong>debian</strong></span>, <span class="strong"><strong>upstream</strong></span> и <span class="strong"><strong>pristine-tar</strong></span> из удалённого репозитория.</li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>git-pbuilder</strong></span>: сборка двоичного пакета Debian из git-репозитория с помощью пакета <span class="strong"><strong>pbuilder</strong></span>.</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">Пакет <span class="strong"><strong>cowbuilder</strong></span> используется в качестве движка.</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">Команды <span class="strong"><strong>gbp pq</strong></span>, <span class="strong"><strong>git-dpm</strong></span> или <span class="strong"><strong>quilt</strong></span> (или её псевдоним <span class="strong"><strong>dquilt</strong></span>) используются для работы с заплатами quilt.</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+The <span class="strong"><strong>dquilt</strong></span> command is the simplest to learn and requires you to commit the resulting files manually with the <span class="strong"><strong>git</strong></span> command to the <span class="strong"><strong>master</strong></span> branch.
+</li>
+                  <li class="listitem">
+The “<span class="strong"><strong>gbp pq</strong></span>” command provides the equivalent functionality of patch set management without using <span class="strong"><strong>dquilt</strong></span> and eases including upstream git repository changes by cherry-picking.
+</li>
+                  <li class="listitem">
+The “<span class="strong"><strong>git dpm</strong></span>” command provides more enhanced functionality than that of the ‘<span class="strong"><strong>gbp pq</strong></span>’' command.
+</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>Package history management with the <span class="strong"><strong>git-buildpackage</strong></span> package is becoming the standard practice for most Debian maintainers.</p>
+        <p>См.:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+<a class="ulink" href="https://honk.sigxcpu.org/projects/git-buildpackage/manual-html/gbp.html">Сборка пакетов Debian с помощью git-buildpackage</a>
+</li>
+            <li class="listitem">
+<a class="ulink" href="https://wiki.debian.org/GitPackagingWorkflow">https://wiki.debian.org/GitPackagingWorkflow</a>
+</li>
+            <li class="listitem">
+<a class="ulink" href="https://wiki.debian.org/GitPackagingWorkflow/DebConf11BOF">https://wiki.debian.org/GitPackagingWorkflow/DebConf11BOF</a>
+</li>
+            <li class="listitem">
+<a class="ulink" href="https://raphaelhertzog.com/2010/11/18/4-tips-to-maintain-a-3-0-quilt-debian-source-package-in-a-vcs/">https://raphaelhertzog.com/2010/11/18/4-tips-to-maintain-a-3-0-quilt-debian-source-package-in-a-vcs/</a>
+</li>
+            <li class="listitem">Практическая документация по работе над пакетом <span class="strong"><strong>systemd</strong></span> в <a class="ulink" href="https://salsa.debian.org/systemd-team/systemd/blob/master/debian/README.source">Сборка из исходного кода</a>.</li>
+          </ul>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Расслабьтесь. Вам не нужно использовать все обёртки и инструменты. Используйте только те, которые подходят под ваши нужды.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="section">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a id="debsnap"/>7.8.1. gbp import-dscs --debsnap</h3>
+              </div>
+            </div>
+          </div>
+          <p>Для пакета Debian с исходным кодом с именем <span class="emphasis"><em>&lt;source-package&gt;</em></span>, сохранённого в архиве <a class="ulink" href="http://snapshot.debian.org/">snapshot.debian.org</a> начальный git-репозиторий со всей историей версий Debian можно получить следующим образом.</p>
+          <pre class="screen">$ gbp import-dscs --debsnap --pristine-tar '&lt;source-package&gt;'</pre>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="upstream-git"/>7.9. git-репозиторий основной ветки</h2>
+            </div>
+          </div>
+        </div>
+        <p>For Debian packaging with the <span class="strong"><strong>git-buildpackage</strong></span> package, the <span class="strong"><strong>upstream</strong></span> branch on the remote repository <span class="strong"><strong>origin</strong></span> is normally used to track the content of the released upstream tarball.</p>
+        <p>git-репозиторий основной ветки также может отслеживаться, его удалённый репозиторий следует назвать <span class="strong"><strong>upstream</strong></span>, а не <span class="strong"><strong>origin</strong></span> как по умолчанию. Теперь вы легко сможете избирательно применять наиболее свежие изменения основной ветки к редакции Debian с помощью команды <span class="strong"><strong>gitk</strong></span> и используя команду <span class="strong"><strong>gbp-pq</strong></span>.</p>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>The “<span class="strong"><strong>gbp import-orig --upstream-vcs-tag</strong></span>” command can create a nice packaging history by making a merge commit into the <span class="strong"><strong>upstream</strong></span> branch from the specified tag on the upstream git repository.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Caution">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Внимание]" src="images/caution.png"/>
+              </td>
+              <th align="left">Внимание</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Содержимое выпущенного разработчиками основной ветки tar-архива может не совпадать в точности с соответствующим содержимым git-репозитория основной ветки. Оно может содержать созданные автоматически файлы, либо какие-то файлы могут отсутствовать. (Autotools, distutils, …)</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="chroot"/>7.10. chroot</h2>
+            </div>
+          </div>
+        </div>
+        <p>The <a class="ulink" href="https://en.wikipedia.org/wiki/Chroot">chroot</a> for a clean package build environment can be created and managed using the tools described in <a class="xref" href="ch03.ru.html" title="Глава 3. Настройка инструментов">Глава 3, <em>Настройка инструментов</em></a>.
+<a href="#ftn.idm4735" class="footnote" id="idm4735"><sup class="footnote">[19]</sup></a></p>
+        <p>Ниже приводится краткий обзор доступных команд для сборки пакетов. Существует множество способов сделать одно и то же.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem"><span class="strong"><strong>dpkg-buildpackage</strong></span> = ядро инструмента для сборки пакета</li>
+            <li class="listitem"><span class="strong"><strong>debuild</strong></span> = <span class="strong"><strong>dpkg-buildpackage</strong></span> + <span class="strong"><strong>lintian</strong></span> (сборка с очищенными переменными окружения)</li>
+            <li class="listitem"><span class="strong"><strong>pbuilder</strong></span> = ядро инструмента Debian для работы с chroot-окружением</li>
+            <li class="listitem"><span class="strong"><strong>pdebuild</strong></span> = <span class="strong"><strong>pbuilder</strong></span> + <span class="strong"><strong>dpkg-buildpackage</strong></span> (сборка в chroot-окружении)</li>
+            <li class="listitem"><span class="strong"><strong>cowbuilder</strong></span> = увеличение скорости выполнения <span class="strong"><strong>pbuilder</strong></span></li>
+            <li class="listitem"><span class="strong"><strong>git-pbuilder</strong></span> = простой в использовании синтаксис командной строки для <span class="strong"><strong>pdebuild</strong></span> (используется в <span class="strong"><strong>gbp buildpackge</strong></span>)</li>
+            <li class="listitem">
+<span class="strong"><strong>gbp</strong></span> = manage the Debian source under git
+</li>
+            <li class="listitem"><span class="strong"><strong>gbp buildpackge</strong></span> = <span class="strong"><strong>pbuilder</strong></span> + <span class="strong"><strong>dpkg-buildpackage</strong></span> + <span class="strong"><strong>gbp</strong></span></li>
+          </ul>
+        </div>
+        <p>Чистое chroot-окружение выпуска <span class="strong"><strong>sid</strong></span> может использоваться следующим образом.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">Команда создания файловой системы chroot-окружения для выпуска <span class="strong"><strong>sid</strong></span></p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>pbuilder create</strong>
+                    </span>
+                  </li>
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>git-pbuilder create</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+The master chroot filesystem path for the <span class="strong"><strong>sid</strong></span> distribution chroot filesystem
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>/var/cache/pbuilder/base.cow</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">Команда для сборки пакета для chroot-окружения выпуска <span class="strong"><strong>sid</strong></span></p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>pdebuild</strong>
+                    </span>
+                  </li>
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>git-pbuilder</strong>
+                    </span>
+                  </li>
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>gbp buildpackage</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">Команда для обновления chroot-окружения <span class="strong"><strong>sid</strong></span></p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>pbuilder --update</strong>
+                    </span>
+                  </li>
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>git-pbuilder update</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+The command to login to the <span class="strong"><strong>sid</strong></span> chroot filesystem to modify it
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>git-pbuilder login --save-after-login</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>Произвольное окружение выпуска <span class="emphasis"><em>выпуск</em></span> может быть использовано следующим образом.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">Команда создания файловой системы chroot-окружения для выпуска <span class="emphasis"><em>выпуск</em></span></p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem"><span class="strong"><strong>pbuilder create --distribution</strong></span> <span class="emphasis"><em>выпуск</em></span></li>
+                  <li class="listitem"><span class="strong"><strong>DIST=</strong></span><span class="emphasis"><em>выпуск</em></span> <span class="strong"><strong>git-pbuilder create</strong></span></li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">Главный путь файловой системы chroot-окружения для chroot-окружения выпуска <span class="emphasis"><em>выпуск</em></span></p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">путь: <span class="strong"><strong>/var/cache/pbuilder/base-</strong></span><span class="emphasis"><em>выпуск</em></span><span class="strong"><strong>.cow</strong></span></li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">Команда сборки пакета для chroot-окружения выпуска <span class="emphasis"><em>выпуск</em></span></p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>pdebuild -- --basepath=/var/cache/pbuilder/base-</strong>
+                    </span>
+                    <span class="emphasis">
+                      <em>выпуск</em>
+                    </span>
+                    <span class="strong">
+                      <strong>.cow</strong>
+                    </span>
+                  </li>
+                  <li class="listitem"><span class="strong"><strong>DIST=</strong></span><span class="emphasis"><em>выпуск</em></span> <span class="strong"><strong>git-pbuilder</strong></span></li>
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>gbp buildpackage --git-dist=</strong>
+                    </span>
+                    <span class="emphasis">
+                      <em>выпуск</em>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">Команда для обновления chroot-окружения <span class="emphasis"><em>выпуск</em></span></p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>pbuilder update --basepath=/var/cache/pbuilder/base-</strong>
+                    </span>
+                    <span class="emphasis">
+                      <em>выпуск</em>
+                    </span>
+                    <span class="strong">
+                      <strong>.cow</strong>
+                    </span>
+                  </li>
+                  <li class="listitem"><span class="strong"><strong>DIST=</strong></span><span class="emphasis"><em>выпуск</em></span> <span class="strong"><strong>git-pbuilder update</strong></span></li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">
+The command to login to the <span class="strong"><strong>dist</strong></span> chroot to modify it
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>pbuilder --login --basepath=/var/cache/pbuilder/base-</strong>
+                    </span>
+                    <span class="emphasis">
+                      <em>выпуск</em>
+                    </span>
+                    <span class="strong">
+                      <strong>.cow --save-after-login</strong>
+                    </span>
+                  </li>
+                  <li class="listitem"><span class="strong"><strong>DIST=</strong></span><span class="emphasis"><em>выпуск</em></span> <span class="strong"><strong>git-pbuilder login --save-after-login</strong></span></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Для новых экспериментальных пакетов требуется специально настроенное окружение с несколькими предварительно загруженными пакетами, в таких случаях команда «<span class="strong"><strong>git-pbuilder login --save-after-login</strong></span>» будет весьма полезна.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>If your old chroot filesystem is missing packages such as <span class="strong"><strong>libeatmydata1</strong></span>, <span class="strong"><strong>ccache</strong></span>, and <span class="strong"><strong>lintian</strong></span>, you may want to install these with the “<span class="strong"><strong>git-pbuilder login --save-after-login</strong></span>” command.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>The chroot filesystem can be cloned simply by copying with the “<span class="strong"><strong>cp -a base-</strong></span><span class="emphasis"><em>dist</em></span><span class="strong"><strong>.cow base-</strong></span><span class="emphasis"><em>customdist</em></span><span class="strong"><strong>.cow</strong></span>” command.  The new chroot filesystem can be accessed as “<span class="strong"><strong>gbp buildpackage --git-dist=</strong></span><span class="emphasis"><em>customdist”</em></span> and “<span class="strong"><strong>DIST=</strong></span><span class="emphasis"><em>customdist</em></span> <span class="strong"><strong>git-pbuilder …</strong></span>”.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>When the <span class="strong"><strong>orig.tar.gz</strong></span> file needs to be uploaded for a Debian revision other than <span class="strong"><strong>0</strong></span> or <span class="strong"><strong>1</strong></span> (e.g., for a security upload), add the <span class="strong"><strong>-sa</strong></span> option to the end of <span class="strong"><strong>dpkg-buildpackage</strong></span>, <span class="strong"><strong>debuild</strong></span>, <span class="strong"><strong>pdebuild</strong></span>, and <span class="strong"><strong>git-pbuilder</strong></span> commands.  For the “<span class="strong"><strong>gbp buildpackage</strong></span>” command,  temporarily modify the <span class="strong"><strong>builder</strong></span> setting of <span class="strong"><strong>~/.gbp.conf</strong></span>.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Примечание]" src="images/note.png"/>
+              </td>
+              <th align="left">Примечание</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Описание в этом разделе слишком кратко, чтобы оно оказалось полезным для большинства будущих сопровождающих. Это — намеренный выбор автора. Настоятельно рекомендуется поискать и прочесть всю соответствующую документация, связанную с используемыми командами.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="newrevision"/>7.11. Новая редакция Debian</h2>
+            </div>
+          </div>
+        </div>
+        <p>Let’s assume that a bug report <span class="strong"><strong>#</strong></span><span class="emphasis"><em>bug_number</em></span> was filed against your package, and it describes a problem that you can solve by editing the <span class="strong"><strong>buggy</strong></span> file in the upstream source.  Here’s what you need to do to create a new Debian revision of the package with the <span class="strong"><strong>bugname.patch</strong></span> file recording the fix.</p>
+        <p><strong>Новая редакция Debian с помощью команды <span class="strong"><strong>dquilt</strong></span>. </strong>
+</p>
+        <pre class="screen"> $ dquilt push -a
+ $ dquilt new bugname.patch
+ $ dquilt add buggy
+ $ vim buggy
+   ...
+ $ dquilt refresh
+ $ dquilt header -e
+ $ dquilt pop -a
+ $ dch -i</pre>
+        <p>
+</p>
+        <p>Alternatively if the package is managed in the git repository using the <span class="strong"><strong>git-buildpackage</strong></span> command with its default configuration:</p>
+        <p><strong>Новая редакция Debian с помощью команды <span class="strong"><strong>gbp-pq</strong></span>. </strong>
+</p>
+        <pre class="screen"> $ git checkout master
+ $ gbp pq import
+ $ vim buggy
+ $ git add buggy
+ $ git commit
+ $ git tag pq/&lt;newrev&gt;
+ $ gbp pq export
+ $ gbp drop
+ $ git add debian/patches/*
+ $ dch -i
+ $ git commit -a -m "Closes: #&lt;bug_number&gt;"</pre>
+        <p>
+</p>
+        <p>Проверьте, что вы лаконично описали изменения, исправляющие ошибку, и закрыли сообщение об ошибке, добавив «<span class="strong"><strong>Closes: #</strong></span><span class="emphasis"><em>&lt;номер_ошибки&gt;»</em></span> в файл <span class="strong"><strong>debian/changelog</strong></span>.</p>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Когда вы экспериментируете, то используйте запись <span class="strong"><strong>debian/changelog</strong></span> со строкой версии вида <span class="strong"><strong>1.0.1-1~rc1</strong></span>. Затем сведите такие записи <span class="strong"><strong>журнала изменений</strong></span> в одну запись для официального пакета.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="newversion"/>7.12. Новый выпуск основной ветки</h2>
+            </div>
+          </div>
+        </div>
+        <p>Если пакет <span class="strong"><strong>foo</strong></span> создан в одном из современных форматов «<span class="strong"><strong>3.0 (native)</strong></span>» или «<span class="strong"><strong>3.0 (quilt)</strong></span>», то работа над пакетом с новым выпуском основной ветки будет представлять собой по сути перемещение старого каталога <span class="strong"><strong>debian/</strong></span> в новый исходный код. Это можно сделать, запустив команду «<span class="strong"><strong>tar -xvzf</strong></span> <span class="emphasis"><em>/путь/к/foo_стараяверсия</em></span><span class="strong"><strong>.debian.tar.gz</strong></span>» в каталоге с распакованным новым исходным кодом. <a href="#ftn.idm4970" class="footnote" id="idm4970"><sup class="footnote">[20]</sup></a> Конечно, вам придётся сделать некоторую рутинную работу.</p>
+        <p>Для такой ситуации существует несколько инструментов. После обновления до нового выпуска основной ветки с помощью этих инструментов убедитесь, что вы лаконично описали изменения в новом выпуске основной ветки, исправляющие известные ошибки, и закрыли эти сообщения об ошибках, добавив «<span class="strong"><strong>Closes: #</strong></span><span class="emphasis"><em>номер_ошибки»</em></span> в файл <span class="strong"><strong>debian/changelog</strong></span>.</p>
+        <div class="section">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a id="uupdate"/>7.12.1. uupdate + tarball</h3>
+              </div>
+            </div>
+          </div>
+          <p>You can automatically update to the new upstream source with the <span class="strong"><strong>uupdate</strong></span> command from the <span class="strong"><strong>devscripts</strong></span> package.  It requires having the old Debian source package and the new upstream tarball.</p>
+          <pre class="screen"> $ wget https://example.org/foo/foo-newversion.tar.gz
+ $ cd foo-oldversion
+ $ uupdate -v newversion ../foo-newversion.tar.gz
+ ...
+ $ cd ../foo-newversion
+ $ while dquilt push; do dquilt refresh; done
+ $ dch</pre>
+        </div>
+        <div class="section">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a id="uscan"/>7.12.2. uscan</h3>
+              </div>
+            </div>
+          </div>
+          <p>You can automatically update to the new upstream source with the <span class="strong"><strong>uscan</strong></span> command from the <span class="strong"><strong>devscripts</strong></span> package.  It requires having the old Debian source package and the <span class="strong"><strong>debian/watch</strong></span> file in it.</p>
+          <pre class="screen"> $ cd foo-oldversion
+ $ uscan
+ ...
+ $ while dquilt push; do dquilt refresh; done
+ $ dch</pre>
+        </div>
+        <div class="section">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a id="gbp-orig"/>7.12.3. gbp</h3>
+              </div>
+            </div>
+          </div>
+          <p>You can automatically update to the new upstream source with the “<span class="strong"><strong>gbp import-orig --pristine-tar</strong></span>” command from the <span class="strong"><strong>git-buildpackage</strong></span> package.  It requires having the old Debian source in the git repository and the new upstream tarball.</p>
+          <pre class="screen"> $ ln -sf foo-newversion.tar.gz foo_newversion.orig.tar.gz
+ $ cd foo-vcs
+ $ git checkout master
+ $ gbp pq import
+ $ git checkout master
+ $ gbp import-orig --pristine-tar  ../foo_newversion.orig.tar.gz
+ ...
+ $ gbp pq rebase
+ $ git checkout master
+ $ gbp pq export
+ $ gbp pq drop
+ $ git add debian/patches
+ $ dch -v &lt;newversion&gt;
+ $ git commit -a -m "Refresh patches"</pre>
+          <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+            <table border="0" summary="Tip">
+              <tr>
+                <td rowspan="2" align="center" valign="top">
+                  <img alt="[Подсказка]" src="images/tip.png"/>
+                </td>
+                <th align="left">Подсказка</th>
+              </tr>
+              <tr>
+                <td align="left" valign="top">
+                  <p>If upstream uses a git repository, please also use the <span class="strong"><strong>--upstream-vcs-tag</strong></span> option for the <span class="strong"><strong>gbp import-orig</strong></span> command.</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        <div class="section">
+          <div class="titlepage">
+            <div>
+              <div>
+                <h3 class="title"><a id="gbp-uscan"/>7.12.4. gbp + uscan</h3>
+              </div>
+            </div>
+          </div>
+          <p>You can automatically update to the new upstream source with the “<span class="strong"><strong>gbp import-orig --pristine-tar --uscan</strong></span>” command from the <span class="strong"><strong>git-buildpackage</strong></span> package.  It requires having the old Debian source in the git repository and the <span class="strong"><strong>debian/watch</strong></span> file in it.</p>
+          <pre class="screen"> $ cd foo-vcs
+ $ git checkout master
+ $ gbp pq import
+ $ git checkout master
+ $ gbp import-orig --pristine-tar --uscan
+ ...
+ $ gbp pq rebase
+ $ git checkout master
+ $ gbp pq export
+ $ gbp pq drop
+ $ git add debian/patches
+ $ dch -v &lt;newversion&gt;
+ $ git commit -a -m "Refresh patches"</pre>
+          <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+            <table border="0" summary="Tip">
+              <tr>
+                <td rowspan="2" align="center" valign="top">
+                  <img alt="[Подсказка]" src="images/tip.png"/>
+                </td>
+                <th align="left">Подсказка</th>
+              </tr>
+              <tr>
+                <td align="left" valign="top">
+                  <p>If upstream uses a git repository, please also use the <span class="strong"><strong>--upstream-vcs-tag</strong></span> option for the <span class="strong"><strong>gbp import-orig</strong></span> command.</p>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="deb3"/>7.13. Формат исходного кода 3.0</h2>
+            </div>
+          </div>
+        </div>
+        <p>Обновление стиля пакета не является требуемой деятельностью до обновления пакета. Тем не менее, такое обновление позволяет использовать все возможности современной системы <span class="strong"><strong>debhelper</strong></span> и формат исходного кода <span class="strong"><strong>3.0</strong></span>.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">Если вам требуется заново создать удалённые по какой-либо причине шаблонные файлы, вы можете снова запустить <span class="strong"><strong>debmake</strong></span> в том же дереве исходного кода пакета Debian. Замет эти файлы можно отредактирровать.</li>
+            <li class="listitem">Если пакет не был должным образом обновлён для использовани команды <span class="strong"><strong>dh</strong></span> в файле <span class="strong"><strong>debian/rules</strong></span>, то обновите его (см. <a class="xref" href="ch05.ru.html#simplerules" title="5.4.2. Простой сценарий debian/rules">Раздел 5.4.2, «Простой сценарий debian/rules»</a>). Также соответствующим образом обновите файл <span class="strong"><strong>debian/control</strong></span>.</li>
+            <li class="listitem">Если у вас имеется пакет с исходным кодом в формате <span class="strong"><strong>1.0</strong></span> с файлом <span class="strong"><strong>foo.diff.gz</strong></span>, то вы можете обновить его до более нового формате исходного кода «<span class="strong"><strong>3.0 (quilt)</strong></span>», создав файл <span class="strong"><strong>debian/source/format</strong></span> со строкой «<span class="strong"><strong>3.0 (quilt)</strong></span>». Остальные файлы <span class="strong"><strong>debian/</strong></span>* можно просто скопировать. При необходимости импортируйте файл <span class="strong"><strong>большой.diff</strong></span>, созданный командой «<span class="strong"><strong>filterdiff -z -x <span class="emphasis"><em><span class="strong"><strong>/debian/</strong></span></em></span> foo.diff.gz &gt; big.diff</strong></span>» в вашу систему quilt. <a href="#ftn.idm5042" class="footnote" id="idm5042"><sup class="footnote">[21]</sup></a></li>
+            <li class="listitem">Если в пакете используется другая система заплат, например, <span class="strong"><strong>dpatch</strong></span>, <span class="strong"><strong>dbs</strong></span> или <span class="strong"><strong>cdbs</strong></span> с <span class="strong"><strong>-p0</strong></span>, <span class="strong"><strong>-p1</strong></span> или <span class="strong"><strong>-p2</strong></span>, то преобразуйте её в формат заплат quilt с помощью сценария <span class="strong"><strong>deb3</strong></span> из пакета <span class="strong"><strong>quilt</strong></span>.</li>
+            <li class="listitem">Если в пакете используется команда <span class="strong"><strong>dh</strong></span> с опцией «<span class="strong"><strong>--with quilt</strong></span>» или с командами <span class="strong"><strong>dh_quilt_patch</strong></span> и <span class="strong"><strong>dh_quilt_unpatch</strong></span>, то удалите соответствующие вызовы и перейдите на использование более нового формата исходного кода «<span class="strong"><strong>3.0 (quilt)</strong></span>».</li>
+            <li class="listitem">Если у вас имеется пакет с исходным кодом в формате <span class="strong"><strong>1.0</strong></span> без файла <span class="strong"><strong>foo.diff.gz</strong></span>, то вы можете обновить такой пакет до более нового формата исходного кода «<span class="strong"><strong>3.0 (native)</strong></span>», создав файл <span class="strong"><strong>debian/source/format</strong></span> со строкой «<span class="strong"><strong>3.0 (native)</strong></span>». Остальные файлы <span class="strong"><strong>debian/</strong></span>* можно просто скопировать.</li>
+          </ul>
+        </div>
+        <p>Вам следует просмотреть <a class="ulink" href="http://dep.debian.net/">DEP — Предложения по улучшению Debian</a> и использовать принятые (ACCEPTED) предложения.</p>
+        <p>Информацию о статусе поддержки новых форматов исходного кода Debian в наборе инструментальных средств Debian см. в <a class="ulink" href="https://wiki.debian.org/Projects/DebSrc3.0">ProjectsDebSrc3.0</a>.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="cdbs"/>7.14. CDBS</h2>
+            </div>
+          </div>
+        </div>
+        <p>Общая система сборки Debian (<span class="strong"><strong>CDBS</strong></span>) является обёрткой над пакетом <span class="strong"><strong>debhelper</strong></span>. <span class="strong"><strong>CDBS</strong></span> построена на основе механизма включения Makefile и настраивается с помощью установки переменных настройки <span class="strong"><strong>DEB_</strong></span>* в файле <span class="strong"><strong>debian/rules</strong></span>.</p>
+        <p>До добавления команды <span class="strong"><strong>dh</strong></span> в пакет <span class="strong"><strong>debhelper</strong></span> (начиная с версии 7) <span class="strong"><strong>CDBS</strong></span> являлась единственным подходом к созданию простого и ясного файла <span class="strong"><strong>debian/rules</strong></span>.</p>
+        <p>For many simple packages, the <span class="strong"><strong>dh</strong></span> command alone allows us to make a simple and clean <span class="strong"><strong>debian/rules</strong></span> file now.  It is desirable to keep the build system simple and clean by not using the superfluous <span class="strong"><strong>CDBS</strong></span>.</p>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Примечание]" src="images/note.png"/>
+              </td>
+              <th align="left">Примечание</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Neither “the <span class="strong"><strong>CDBS</strong></span> magically does the job for me with less typing” nor “I don’t understand the new <span class="strong"><strong>dh</strong></span> syntax” can be an excuse to keep using the <span class="strong"><strong>CDBS</strong></span> system.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p>For some complicated packages such as GNOME related ones, the <span class="strong"><strong>CDBS</strong></span> is leveraged to automate their uniform packaging by the current maintainers with justification.  If this is the case, please do not bother converting from the <span class="strong"><strong>CDBS</strong></span> to the <span class="strong"><strong>dh</strong></span> syntax.</p>
+        <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Note">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Примечание]" src="images/note.png"/>
+              </td>
+              <th align="left">Примечание</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Если вы работаете вместе с <a class="ulink" href="https://wiki.debian.org/Teams">командой</a> сопровождающих, то следуйте установленным традициям и практикам этой команды.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <p>При переходе с использования системы <span class="strong"><strong>CDBS</strong></span> на синтаксис <span class="strong"><strong>dh</strong></span> в качестве справочника используйте следующую документацию:</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+<a class="ulink" href="http://cdbs-doc.duckcorp.org/en/cdbs-doc.xhtml">Документация по CDBS</a>
+</li>
+            <li class="listitem">
+<a class="ulink" href="https://meetings-archive.debian.net/pub/debian-meetings/2009/fosdem/slides/The_Common_Debian_Build_System_CDBS/">Общая система сборки Debian (CDBS), FOSDEM 2009</a>
+</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="utf-8-build"/>7.15. Сборка с использованием кодировки UTF-8</h2>
+            </div>
+          </div>
+        </div>
+        <p>Локалью по умолчанию в сборочном окружении является <span class="strong"><strong>C</strong></span>.</p>
+        <p>Некоторые программы, такие как функци <span class="strong"><strong>read</strong></span> из Python3, изменяют своё поведение в зависимости от текущей локали.</p>
+        <p>Adding the following code to the <span class="strong"><strong>debian/rules</strong></span> file ensures building the program under the <span class="strong"><strong>C.UTF-8</strong></span> locale.</p>
+        <pre class="screen">LC_ALL := C.UTF-8
+export LC_ALL</pre>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="utf-8-conv"/>7.16. Преобразование в кодировку UTF-8</h2>
+            </div>
+          </div>
+        </div>
+        <p>Если документация основной ветки разработки закодирована с помощью устаревших кодировок, то лучше будет преобразовать её в <a class="ulink" href="https://en.wikipedia.org/wiki/UTF-8">UTF-8</a>.</p>
+        <p>Используйте команду <span class="strong"><strong>iconv</strong></span> из пакета <span class="strong"><strong>libc-bin</strong></span> для преобразования кодировки в обычных текстовых файлах.</p>
+        <pre class="screen"> $ iconv -f latin1 -t utf8 foo_in.txt &gt; foo_out.txt</pre>
+        <p>Используйте <span class="strong"><strong>w3m</strong></span>(1) для преобразования HTML-файлов в обычные текстовые файлы в кодировке UTF-8. При выполнении преобразования убедитесь, что у вас используется локаль UTF-8.</p>
+        <pre class="screen"> $ LC_ALL=C.UTF-8 w3m -o display_charset=UTF-8 \
+        -cols 70 -dump -no-graph -T text/html \
+        &lt; foo_in.html &gt; foo_out.txt</pre>
+        <p>Запустите эти сценарии в цели <span class="strong"><strong>override_dh_</strong></span>* файла <span class="strong"><strong>debian/rules</strong></span>.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="origtar"/>7.17. Загрузите <span class="strong"><strong>orig.tar.gz</strong></span></h2>
+            </div>
+          </div>
+        </div>
+        <p>При первой загрузке пакета в архив вам следует включить в загрузку также и архив с оригинальным исходным кодом, <span class="strong"><strong>orig.tar.gz</strong></span>.</p>
+        <p>Если номер редакции Debian вашего пакета не является <span class="strong"><strong>1</strong></span> или <span class="strong"><strong>0</strong></span>, то это происходит по умолчанию. В противном случае, вам следует передать опцию <span class="strong"><strong>-sa</strong></span> команде <span class="strong"><strong>dpkg-buildpackage</strong></span>.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <span class="strong">
+                <strong>dpkg-buildpackage -sa</strong>
+              </span>
+            </li>
+            <li class="listitem">
+              <span class="strong">
+                <strong>debuild -sa</strong>
+              </span>
+            </li>
+            <li class="listitem">
+              <span class="strong">
+                <strong>pdebuild --debbuildopts -sa</strong>
+              </span>
+            </li>
+            <li class="listitem">
+              <span class="strong">
+                <strong>git-pbuilder -sa</strong>
+              </span>
+            </li>
+            <li class="listitem">При использовании <span class="strong"><strong>gbp buildpackage</strong></span> отредактируйте файл <span class="strong"><strong>~/.gbp.conf</strong></span>.</li>
+          </ul>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>С другой стороны использование опции <span class="strong"><strong>-sd</strong></span> приведёт к тому, что архив с оригинальным исходным кодом, <span class="strong"><strong>orig.tar.gz</strong></span>, будет включён в загрузку.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>Security uploads require including the <span class="strong"><strong>orig.tar.gz</strong></span> file.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="skipedupload"/>7.18. Пропущенные загрузки</h2>
+            </div>
+          </div>
+        </div>
+        <p>Если вы создаёте несколько записей в файле <span class="strong"><strong>debian/changelog</strong></span> и пропускаете загрузки, то вам следует создать соответствующий файл <span class="strong"><strong>*_.changes</strong></span>, включающий все изменения с последней загрузки. Это можно сделать, передав dpkg-buildpackage опцию <span class="strong"><strong>-v</strong></span> с указанием последней загруженной версии, например, <span class="emphasis"><em>1.2</em></span>.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <span class="strong">
+                <strong>dpkg-buildpackage -v</strong>
+              </span>
+              <span class="emphasis">
+                <em>1.2</em>
+              </span>
+            </li>
+            <li class="listitem">
+              <span class="strong">
+                <strong>debuild -v</strong>
+              </span>
+              <span class="emphasis">
+                <em>1.2</em>
+              </span>
+            </li>
+            <li class="listitem">
+              <span class="strong">
+                <strong>pdebuild --debbuildopts -v</strong>
+              </span>
+              <span class="emphasis">
+                <em>1.2</em>
+              </span>
+            </li>
+            <li class="listitem">
+              <span class="strong">
+                <strong>git-pbuilder -v</strong>
+              </span>
+              <span class="emphasis">
+                <em>1.2</em>
+              </span>
+            </li>
+            <li class="listitem">При использовании <span class="strong"><strong>gbp buildpackage</strong></span> отредактируйте файл <span class="strong"><strong>~/.gbp.conf</strong></span>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="adv-pkg"/>7.19. Продвинутые темы работы над пакетом</h2>
+            </div>
+          </div>
+        </div>
+        <p>Полезные советы по приведённым ниже вопросам можно найти в странице руководства <span class="strong"><strong>debhelper</strong></span>(7):</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">отличия поведения инструмента <span class="strong"><strong>debhelper</strong></span> при использовании «<span class="strong"><strong>compat</strong></span> &lt;= 8»</li>
+            <li class="listitem">
+              <p class="simpara">сборка нескольких двоичных пакетов в нескольких разных условиях сборки</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">создание нескольких копий исходного кода основной ветки</li>
+                  <li class="listitem">вызов нескольких команд «<span class="strong"><strong>dh_auto_configure -S …</strong></span>» в цели <span class="strong"><strong>override_dh_auto_configure</strong></span></li>
+                  <li class="listitem">Вызов нескольких команд «<span class="strong"><strong>dh_auto_build -S …</strong></span>» в цели <span class="strong"><strong>override_dh_auto_build</strong></span></li>
+                  <li class="listitem">вызов нескольких команд «<span class="strong"><strong>dh_auto_install -S …</strong></span>» в цели <span class="strong"><strong>override_dh_auto_install</strong></span></li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">Сборка пакетов <span class="strong"><strong>udeb</strong></span> со сторокой «<span class="strong"><strong>Package-Type: udeb</strong></span>» в файле <span class="strong"><strong>debian/control</strong></span> (см. <a class="ulink" href="https://www.debian.org/doc/debian-policy/#s-f-package-type">Package-Type</a>)</li>
+            <li class="listitem">
+              <p class="simpara">
+excluding some packages for the bootstrapping process (see also <a class="ulink" href="https://wiki.debian.org/BuildProfileSpec">BuildProfileSpec</a>)
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">добавление полей <span class="strong"><strong>Build-Profiles</strong></span> в записи двоичных пакетов в файле <span class="strong"><strong>debian/control</strong></span></li>
+                  <li class="listitem">сборка пакетов с переменной окружения <span class="strong"><strong>DEB_BUILD_PROFILES</strong></span>, имеющей в качестве значения имя соответствующего профиля</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <p>Полезные советы по приведённым ниже вопросам можно найти в странице руководства <span class="strong"><strong>dpkg-source</strong></span>(1):</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">
+naming convention for multiple upstream source tarballs
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="emphasis">
+                      <em>имяпакета_версия</em>
+                    </span>
+                    <span class="strong">
+                      <strong>.orig.tar.gz</strong>
+                    </span>
+                  </li>
+                  <li class="listitem">
+                    <span class="emphasis">
+                      <em>имяпакета_версия</em>
+                    </span>
+                    <span class="strong">
+                      <strong>.orig-</strong>
+                    </span>
+                    <span class="emphasis">
+                      <em>имякомпонента</em>
+                    </span>
+                    <span class="strong">
+                      <strong>.tar.gz</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara">запись изменений Debian в пакет исходного кода основной ветки</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+                    <span class="strong">
+                      <strong>dpkg-source --commit</strong>
+                    </span>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="other-distro"/>7.20. Другие дистрибутивы</h2>
+            </div>
+          </div>
+        </div>
+        <p>Несмотря на то, что в tar-архиве основной ветки имеется вся информация для сборки пакета Debian, не всегда легко понять, какую комбинацию опций следует использовать.</p>
+        <p>Also, the upstream package may be more focused on feature enhancements and may be less eager about backward compatibilities etc., which are an important aspect of Debian packaging practice.</p>
+        <p>The leveraging of information from other distributions is an option to address the above issues.</p>
+        <p>If the other distribution of interest is a Debian derivative one, it is trivial to reuse it.</p>
+        <p>If the other distribution of interest is an <a class="ulink" href="https://en.wikipedia.org/wiki/RPM_Package_Manager">RPM</a> based distribution, see <a class="ulink" href="https://wiki.debian.org/Repackage_srcrpm">Repackage src.rpm</a>.</p>
+        <p>Скачивание и открытие файла <span class="strong"><strong>src.rpm</strong></span> может быть выполнено с помощью команды <span class="strong"><strong>rget</strong></span>. (Разместите сценарий <span class="strong"><strong>rget</strong></span> в одном из каталогов, указанных в вашей переменной PATH.)</p>
+        <p><strong>Сценарий rget. </strong>
+</p>
+        <pre class="screen">#!/bin/sh
+FCSRPM=$(basename $1)
+mkdir ${FCSRPM}; cd ${FCSRPM}/
+wget $1
+rpm2cpio ${FCSRPM} | cpio -dium</pre>
+        <p>
+</p>
+        <p>Во многих tar-архивах основной ветки содержится файл SPEC, который имеет имя <span class="emphasis"><em>packagename</em></span>.<span class="strong"><strong>spec</strong></span> или <span class="emphasis"><em>packagename</em></span>.<span class="strong"><strong>spec.in</strong></span> и используется системой RPM. Также он может использоваться в качестве основы для пакета Debian.</p>
+      </div>
+      <div class="section">
+        <div class="titlepage">
+          <div>
+            <div>
+              <h2 class="title"><a id="debug"/>7.21. Отладка</h2>
+            </div>
+          </div>
+        </div>
+        <p>Когда вы сталкиваетесь с проблемами сборки или дампом памяти созданных двоичных программ, вам необходимо разрешить их самостоятельно. Это называется <span class="strong"><strong>отладкой</strong></span>.</p>
+        <p>Это слишком обширная тема, чтобы обсуждать её в настоящем руководстве. Поэтому позвольте просто привести несколько ссылок и полезных советов по использованию типичных инструментов отладки.</p>
+        <div class="itemizedlist">
+          <ul class="itemizedlist">
+            <li class="listitem">
+              <p class="simpara">
+<a class="ulink" href="https://en.wikipedia.org/wiki/Core_dump">дамп памяти</a>
+</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">“<span class="strong"><strong>man core</strong></span>”</li>
+                  <li class="listitem">
+                    <p class="simpara">Обновите файл «<span class="strong"><strong>/etc/security/limits.conf</strong></span>» так, чтобы он включал в себя следующее:</p>
+                    <pre class="screen">* soft core unlimited</pre>
+                  </li>
+                  <li class="listitem">«<span class="strong"><strong>ulimit -c unlimited</strong></span>» в <span class="strong"><strong>~/.bashrc</strong></span></li>
+                  <li class="listitem">«<span class="strong"><strong>ulimit -a</strong></span>» для проверки</li>
+                  <li class="listitem">Нажмите <span class="strong"><strong>Ctrl-\</strong></span> или «<span class="strong"><strong>kill -ABRT</strong></span> <span class="emphasis"><em>PID»</em></span> для того, чтобы создать файл с дампом памяти</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>gdb</strong></span> — отладчик GNU</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">“<span class="strong"><strong>info gdb</strong></span>”</li>
+                  <li class="listitem">«Отладка с помощью GDB» в <span class="strong"><strong>/usr/share/doc/gdb-doc/html/gdb/index.html</strong></span></li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>strace</strong></span> — трассировка системных вызовов и сигналов</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">Используйте сценарий <span class="strong"><strong>strace-graph</strong></span> из каталога <span class="strong"><strong>/usr/share/doc/strace/examples/</strong></span>, чтобы иметь удобную визуализацию в виде дерева</li>
+                  <li class="listitem">“<span class="strong"><strong>man strace</strong></span>”</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>ltrace</strong></span> - трассировка библиотечных вызовов</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">«<span class="strong"><strong>man ltrace</strong></span>»</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">«<span class="strong"><strong>sh -n</strong></span> <span class="emphasis"><em>script.sh»</em></span> — проверка синтаксиса сценариев командной оболочки</li>
+            <li class="listitem">«<span class="strong"><strong>sh -x</strong></span> <span class="emphasis"><em>script.sh»</em></span> — трассировка сценария командной оболочки</li>
+            <li class="listitem">«<span class="strong"><strong>python -m py_compile</strong></span> <span class="emphasis"><em>script.py»</em></span> — проверка синтаксиса сценария на языке Python</li>
+            <li class="listitem">«<span class="strong"><strong>python -mtrace --trace</strong></span> <span class="emphasis"><em>script.py»</em></span> — трассировка сценария на языке Python</li>
+            <li class="listitem">«<span class="strong"><strong>perl -I ../libpath -c</strong></span> <span class="emphasis"><em>script.pl»</em></span> — проверка синтаксиса сценария на языке Perl</li>
+            <li class="listitem">
+              <p class="simpara">«<span class="strong"><strong>perl -d:Trace</strong></span> <span class="emphasis"><em>script.pl»</em></span> — трассировка сценария на языке Perl</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+Install the <span class="strong"><strong>libterm-readline-gnu-perl</strong></span> package or its equivalent to add input line editing capability with history support.
+</li>
+                </ul>
+              </div>
+            </li>
+            <li class="listitem">
+              <p class="simpara"><span class="strong"><strong>lsof</strong></span> — вывод списка файлов, открытых процессами</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">“<span class="strong"><strong>man lsof</strong></span>”</li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>The <span class="strong"><strong>script</strong></span> command records console outputs.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>The <span class="strong"><strong>screen</strong></span> and <span class="strong"><strong>tmux</strong></span> commands used with the <span class="strong"><strong>ssh</strong></span> command offer secure and robust remote connection terminals.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>A Python- and Shell-like REPL (=READ + EVAL + PRINT + LOOP) environment for Perl is offered by the <span class="strong"><strong>reply</strong></span> command from the <span class="strong"><strong>libreply-perl</strong></span> (new) package and the <span class="strong"><strong>re.pl</strong></span> command from the <span class="strong"><strong>libdevel-repl-perl</strong></span> (old) package.</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
+          <table border="0" summary="Tip">
+            <tr>
+              <td rowspan="2" align="center" valign="top">
+                <img alt="[Подсказка]" src="images/tip.png"/>
+              </td>
+              <th align="left">Подсказка</th>
+            </tr>
+            <tr>
+              <td align="left" valign="top">
+                <p>The <span class="strong"><strong>rlwrap</strong></span> and <span class="strong"><strong>rlfe</strong></span> commands add input line editing capability with history support to any interactive commands.  E.g. “<span class="strong"><strong>rlwrap dash -i</strong></span>”' .</p>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="footnotes">
+        <br/>
+        <hr/>
+        <div id="ftn.idm4735" class="footnote">
+          <p><a href="#idm4735" class="simpara"><sup class="simpara">[19] </sup></a>The <span class="strong"><strong>git-pbuilder</strong></span> style organization is deployed here.  See <a class="ulink" href="https://wiki.debian.org/git-pbuilder">https://wiki.debian.org/git-pbuilder</a> .  Be careful since many HOWTOs use different organization.</p>
+        </div>
+        <div id="ftn.idm4970" class="footnote">
+          <p><a href="#idm4970" class="simpara"><sup class="simpara">[20] </sup></a>If a package <span class="strong"><strong>foo</strong></span> is packaged in the old <span class="strong"><strong>1.0</strong></span> format, this can be done by running the “<span class="strong"><strong>zcat</strong></span> <span class="emphasis"><em>/path/to/foo_oldversion</em></span><span class="strong"><strong>.diff.gz|patch -p1</strong></span>” command in the new extracted source, instead.</p>
+        </div>
+        <div id="ftn.idm5042" class="footnote">
+          <p><a href="#idm5042" class="simpara"><sup class="simpara">[21] </sup></a>Можно разделить файл <span class="strong"><strong>большой.diff</strong></span> на несколько небольших инкрементальных заплат с помощью команды <span class="strong"><strong>splitdiff</strong></span>.</p>
+        </div>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"><a accesskey="p" href="ch06.ru.html"><img src="images/prev.png" alt="Пред."/></a> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="ch08.ru.html"><img src="images/next.png" alt="След."/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top">Глава 6. Опции debmake </td>
+          <td align="center">
+            <a accesskey="h" href="index.ru.html">
+              <img src="images/home.png" alt="Начало"/>
+            </a>
+          </td>
+          <td align="right" valign="top"> Глава 8. Дополнительные примеры</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,983 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Guide for Debian Maintainers</title>
+    <link rel="stylesheet" type="text/css" href="debian.css"/>
+    <meta name="generator" content="DocBook XSL Stylesheets V1.79.1"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="home" href="index.en.html" title="Guide for Debian Maintainers"/>
+    <link rel="next" href="pr01.en.html" title="Preface"/>
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Guide for Debian Maintainers</th>
+        </tr>
+        <tr>
+          <td align="left"> </td>
+          <th width="60%" align="center"> </th>
+          <td align="right"> <a accesskey="n" href="pr01.en.html"><img src="images/next.png" alt="Next"/></a></td>
+        </tr>
+      </table>
+      <hr/>
+    </div>
+    <div class="book">
+      <div class="titlepage">
+        <div>
+          <div>
+            <h1 class="title"><a id="idm1"/>Guide for Debian Maintainers</h1>
+          </div>
+          <div>
+            <div class="author">
+              <h3 class="author"> Osamu Aoki</h3>
+            </div>
+          </div>
+          <div>
+            <p class="copyright">Copyright © 2014-2017 Osamu Aoki</p>
+          </div>
+          <div>
+            <div class="legalnotice">
+              <a id="idm14"/>
+              <p>Permission is hereby granted, free of charge, to any person obtaining a
+copy of this software and associated documentation files (the "Software"),
+to deal in the Software without restriction, including without limitation
+the rights to use, copy, modify, merge, publish, distribute, sublicense,
+and/or sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following conditions:</p>
+              <p>The above copyright notice and this permission notice shall be included
+in all copies or substantial portions of the Software.</p>
+              <p>THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+              <p>This guide was made using the following previous documents as its reference:</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+“Making a Debian Package (AKA the Debmake Manual)”, copyright © 1997 Jaldhar Vyas.
+</li>
+                  <li class="listitem">
+“The New-Maintainer’s Debian Packaging Howto”, copyright © 1997 Will Lowe.
+</li>
+                  <li class="listitem">
+“Debian New Maintainers’ Guide”, copyright © 1998-2002 Josip Rodin, 2005-2017 Osamu Aoki, 2010 Craig Small, and 2010 Raphaël Hertzog.
+</li>
+                </ul>
+              </div>
+              <p>The latest version of this guide should be available:</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+in the <a class="ulink" href="https://tracker.debian.org/pkg/debmake-doc">debmake-doc package</a> and
+</li>
+                  <li class="listitem">
+at the <a class="ulink" href="https://www.debian.org/doc/devel-manuals">Debian Documentation web site</a>.
+</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+          <div>
+            <div class="abstract">
+              <p class="title">
+                <strong>Abstract</strong>
+              </p>
+              <p>This “Guide for Debian Maintainers” (2019-03-14)
+tutorial guide describes the building of the Debian
+package to ordinary Debian users and prospective developers using
+the <span class="strong"><strong>debmake</strong></span> command.</p>
+              <p>This guide focuses on the modern packaging style and comes with many simple examples.</p>
+              <div class="itemizedlist">
+                <ul class="itemizedlist">
+                  <li class="listitem">
+POSIX shell script packaging
+</li>
+                  <li class="listitem">
+Python3 script packaging
+</li>
+                  <li class="listitem">
+C with Makefile/Autotools/CMake
+</li>
+                  <li class="listitem">
+multiple binary packages with shared library etc.
+</li>
+                </ul>
+              </div>
+              <p>This “Guide for Debian Maintainers” can be considered as the successor to the “Debian New Maintainers’ Guide”.</p>
+            </div>
+          </div>
+        </div>
+        <hr/>
+      </div>
+      <div class="toc">
+        <p>
+          <strong>Table of Contents</strong>
+        </p>
+        <dl class="toc">
+          <dt>
+            <span class="preface">
+              <a href="pr01.en.html">Preface</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="chapter">
+              <a href="ch01.en.html">1. Overview</a>
+            </span>
+          </dt>
+          <dt>
+            <span class="chapter">
+              <a href="ch02.en.html">2. Prerequisites</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch02.en.html#people">2.1. People around Debian</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.en.html#contribute">2.2. How to contribute</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.en.html#social">2.3. Social dynamics of Debian</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.en.html#reminders">2.4. Technical reminders</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.en.html#debian-doc">2.5. Debian documentation</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.en.html#help">2.6. Help resources</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.en.html#situation">2.7. Archive situation</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.en.html#approaches">2.8. Contribution approaches</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch02.en.html#novice">2.9. Novice contributor and maintainer</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch03.en.html">3. Tool Setups</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch03.en.html#email-setup">3.1. Email address</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.en.html#mc-setup">3.2. mc</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.en.html#git-setup">3.3. git</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.en.html#quilt-setup">3.4. quilt</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.en.html#devscripts-setup">3.5. devscripts</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.en.html#pbuilder-setup">3.6. pbuilder</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.en.html#gbp-setup">3.7. git-buildpackage</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.en.html#proxy">3.8. HTTP proxy</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch03.en.html#repropro">3.9. Private Debian repository</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch04.en.html">4. Simple Example</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch04.en.html#big-picture">4.1. Big picture</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.en.html#what-debmake">4.2. What is debmake?</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.en.html#what-debuild">4.3. What is debuild?</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.en.html#step-upstream">4.4. Step 1: Get the upstream source</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.en.html#step-debmake">4.5. Step 2: Generate template files with debmake</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.en.html#step-maintainer">4.6. Step 3: Modification to the template files</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.en.html#step-debuild">4.7. Step 4: Building package with debuild</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch04.en.html#alt-patch">4.8. Step 3 (alternative): Modification to the upstream source</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch04.en.html#diff-u">4.8.1. Patch by diff -u</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch04.en.html#dquilt">4.8.2. Patch by dquilt</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch04.en.html#dpkg-source-commit">4.8.3. Patch by dpkg-source --commit</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch05.en.html">5. Basics</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#workflow">5.1. Packaging workflow</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#debhelper">5.1.1. The <span class="strong"><strong>debhelper</strong></span> package</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#name-version">5.2. Package name and version</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#native">5.3. Native Debian package</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#rules">5.4. debian/rules</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#dh">5.4.1. dh</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#simplerules">5.4.2. Simple debian/rules</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#customrules">5.4.3. Customized debian/rules</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#variablesrules">5.4.4. Variables for debian/rules</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#reproducible">5.4.5. Reproducible build</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#control">5.5. debian/control</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#split">5.5.1. Split of a Debian binary package</a>
+                    </span>
+                  </dt>
+                  <dd>
+                    <dl>
+                      <dt>
+                        <span class="section">
+                          <a href="ch05.en.html#boption">5.5.1.1. debmake -b</a>
+                        </span>
+                      </dt>
+                      <dt>
+                        <span class="section">
+                          <a href="ch05.en.html#package-split-example">5.5.1.2. Package split scenario and examples</a>
+                        </span>
+                      </dt>
+                      <dt>
+                        <span class="section">
+                          <a href="ch05.en.html#libnames">5.5.1.3. The library package name</a>
+                        </span>
+                      </dt>
+                    </dl>
+                  </dd>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#substvar">5.5.2. Substvar</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#binnmu">5.5.3. binNMU safe</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#changelog">5.6. debian/changelog</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#copyright">5.7. debian/copyright</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#patches">5.8. debian/patches/*</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#dpkg-source-x">5.8.1. dpkg-source -x</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#quilt-dpkg">5.8.2. dquilt and dpkg-source</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#signing-key">5.9. debian/upstream/signing-key.asc</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#dfsg">5.10. debian/watch and DFSG</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#debianconf">5.11. Other debian/* Files</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#custom">5.12. Customization of the Debian packaging</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#vcs">5.13. Recording in VCS (standard)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#alt-vcs">5.14. Recording in VCS (alternative)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#build-noextra">5.15. Building package without extraneous contents</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#rules-clean">5.15.1. Fix by debian/rules clean</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#git-clean">5.15.2. Fix using VCS</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#extend-diff-ignore">5.15.3. Fix by extend-diff-ignore</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#tar-ignore">5.15.4. Fix by tar-ignore</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#build">5.16. Upstream build systems</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#autotools">5.16.1. Autotools</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#cmake">5.16.2. CMake</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#distutils">5.16.3. Python distutils</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#dbg">5.17. Debugging information</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#dbgsym">5.17.1. New -dbgsym package (Stretch 9.0 and after)</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#lib">5.18. Library package</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#symbols">5.18.1. Library symbols</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#lib-trans">5.18.2. Library transition</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#debconf">5.19. debconf</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#multiarch">5.20. Multiarch</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#_the_multiarch_library_path">5.20.1. The multiarch library path</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#_the_multiarch_header_file_path">5.20.2. The multiarch header file path</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch05.en.html#_the_multiarch_emphasis_role_strong_pc_emphasis_file_path">5.20.3. The multiarch <span class="strong"><strong>*.pc</strong></span> file path</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#harden">5.21. Compiler hardening</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#ci">5.22. Continuous integration</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#bootstrap">5.23. Bootstrapping</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch05.en.html#bug">5.24. Bug reports</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch06.en.html">6. debmake options</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch06.en.html#ai-option">6.1. Shortcut options (-a, -i)</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch06.en.html#pythonmod">6.1.1. Python module</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch06.en.html#dt-option">6.2. Upstream snapshot (-d, -t)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.en.html#coption">6.3. debmake -cc</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.en.html#koption">6.4. debmake -k</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.en.html#joption">6.5. debmake -j</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.en.html#xoption">6.6. debmake -x</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.en.html#poption">6.7. debmake -P</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch06.en.html#toption">6.8. debmake -T</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch07.en.html">7. Tips</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#debdiff">7.1. debdiff</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#dget">7.2. dget</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#debc">7.3. debc</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#piuparts">7.4. piuparts</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#debsign">7.5. debsign</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#dput">7.6. dput</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#bts">7.7. bts</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#gbp">7.8. git-buildpackage</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.en.html#debsnap">7.8.1. gbp import-dscs --debsnap</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#upstream-git">7.9. Upstream git repository</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#chroot">7.10. chroot</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#newrevision">7.11. New Debian revision</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#newversion">7.12. New upstream release</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.en.html#uupdate">7.12.1. uupdate + tarball</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.en.html#uscan">7.12.2. uscan</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.en.html#gbp-orig">7.12.3. gbp</a>
+                    </span>
+                  </dt>
+                  <dt>
+                    <span class="section">
+                      <a href="ch07.en.html#gbp-uscan">7.12.4. gbp + uscan</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#deb3">7.13. 3.0 source format</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#cdbs">7.14. CDBS</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#utf-8-build">7.15. Build under UTF-8</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#utf-8-conv">7.16. UTF-8 conversion</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#origtar">7.17. Upload <span class="strong"><strong>orig.tar.gz</strong></span></a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#skipedupload">7.18. Skipped uploads</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#adv-pkg">7.19. Advanced packaging</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#other-distro">7.20. Other distros</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch07.en.html#debug">7.21. Debug</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="chapter">
+              <a href="ch08.en.html">8. More Examples</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="ch08.en.html#emptypkg">8.1. Cherry-pick templates</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.en.html#nomakefile">8.2. No Makefile (shell, CLI)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.en.html#makefile-sh">8.3. Makefile (shell, CLI)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.en.html#setup-py">8.4. setup.py (Python3, CLI)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.en.html#makefile-sh-gui">8.5. Makefile (shell, GUI)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.en.html#setup-py-gui">8.6. setup.py (Python3, GUI)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.en.html#makefile-single">8.7. Makefile (single-binary package)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.en.html#configure-single">8.8. Makefile.in + configure (single-binary package)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.en.html#autotools-single">8.9. Autotools (single-binary package)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.en.html#cmake-single">8.10. CMake (single-binary package)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.en.html#autotools-multi">8.11. Autotools (multi-binary package)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.en.html#cmake-multi">8.12. CMake (multi-binary package)</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.en.html#i18n-example">8.13. Internationalization</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="ch08.en.html#details">8.14. Details</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+          <dt>
+            <span class="appendix">
+              <a href="apa.en.html">A. <span class="strong"><strong>debmake</strong></span>(1) manpage</a>
+            </span>
+          </dt>
+          <dd>
+            <dl>
+              <dt>
+                <span class="section">
+                  <a href="apa.en.html#_name">A.1. NAME</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.en.html#_synopsis">A.2. SYNOPSIS</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.en.html#_description">A.3. DESCRIPTION</a>
+                </span>
+              </dt>
+              <dd>
+                <dl>
+                  <dt>
+                    <span class="section">
+                      <a href="apa.en.html#_optional_arguments">A.3.1. optional arguments:</a>
+                    </span>
+                  </dt>
+                </dl>
+              </dd>
+              <dt>
+                <span class="section">
+                  <a href="apa.en.html#_examples">A.4. EXAMPLES</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.en.html#_helper_packages">A.5. HELPER PACKAGES</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.en.html#_caveat">A.6. CAVEAT</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.en.html#_debug">A.7. DEBUG</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.en.html#_author">A.8. AUTHOR</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.en.html#_license">A.9. LICENSE</a>
+                </span>
+              </dt>
+              <dt>
+                <span class="section">
+                  <a href="apa.en.html#_see_also">A.10. SEE ALSO</a>
+                </span>
+              </dt>
+            </dl>
+          </dd>
+        </dl>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr/>
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td align="left"> </td>
+          <td align="center"> </td>
+          <td align="right"> <a accesskey="n" href="pr01.en.html"><img src="images/next.png" alt="Next"/></a></td>
+        </tr>
+        <tr>
+          <td align="left" valign="top"> </td>
+          <td align="center"> </td>
+          <td align="right" valign="top"> Preface</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>
