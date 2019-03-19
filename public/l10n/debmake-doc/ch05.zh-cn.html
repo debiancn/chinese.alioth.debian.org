@@ -378,7 +378,7 @@
             </div>
           </div>
         </div>
-        <p>创建 Debian 二进制软件包的 Debian 打包工作流涉及创建数个特定名称的文件（参见 <a class="xref" href="ch05.zh-cn.html#name-version" title="5.2. 软件包名称和版本">第 5.2 节 “软件包名称和版本”</a>），与“Debian 政策手册”的定义保持一致。</p>
+        <p>创建 Debian 二进制软件包的 Debian 打包工作流涉及创建数个特定名称的文件（参见 <a class="xref" href="ch05.zh-cn.html#name-version" title="5.2. 软件包名称和版本">第 5.2 节 “软件包名称和版本”</a>），与《Debian 政策手册》的定义保持一致。</p>
         <p>一个极其简化的 Debian 打包工作流可以概括为以下五步。</p>
         <div class="orderedlist">
           <ol class="orderedlist">
@@ -446,7 +446,7 @@
                       </ul>
                     </div>
                   </li>
-                  <li class="listitem">这些文件必须手工编辑以达到理想状态。请使用“Debian 政策手册”和“Debian 开发者参考”作为编辑依据。</li>
+                  <li class="listitem">这些文件必须手工编辑以达到理想状态。请使用《Debian 政策手册》和《Debian 开发者参考》作为编辑依据。</li>
                 </ul>
               </div>
             </li>
@@ -592,10 +592,10 @@
             <li class="listitem">Debian 修订版本（<span class="strong"><strong>-r</strong></span>）： [0-9][+.~a-z0-9A-Z]*</li>
           </ul>
         </div>
-        <p>请在“Debian 政策手册”的 <a class="ulink" href="https://www.debian.org/doc/debian-policy/#document-ch-controlfields">第 5 章 - Control 文件及其字段</a> 一节中查看其精确定义。</p>
+        <p>请在《Debian 政策手册》的 <a class="ulink" href="https://www.debian.org/doc/debian-policy/#document-ch-controlfields">第 5 章 - Control 文件及其字段</a> 一节中查看其精确定义。</p>
         <p><span class="strong"><strong>debmake</strong></span> 所假设的打包情景是相对简单的。因此，所有与解释器相关的程序都会默认为“<span class="strong"><strong>Architecture: all</strong></span>”的情况。当然，这个假设并非总是成立。</p>
         <p>您必须为 Debian 打包工作适当地调整软件包名称和上游版本号。</p>
-        <p>为了能有效地使用一些流行的工具（如 <span class="strong"><strong>aptitude</strong></span>）管理软件包名称和版本信息，最好能将软件包名称保持在 30 字符以下；版本号和修订号加起来最好能不超过 14 个字符。<a href="#ftn.idm1589" class="footnote" id="idm1589"><sup class="footnote">[10]</sup></a></p>
+        <p>为了能有效地使用一些流行的工具（如 <span class="strong"><strong>aptitude</strong></span>）管理软件包名称和版本信息，最好能将软件包名称保持在 30 字符以下；版本号和修订号加起来最好能不超过 14 个字符。<a href="#ftn.idm1592" class="footnote" id="idm1592"><sup class="footnote">[10]</sup></a></p>
         <p>为了避免命名冲突，对用户可见的二进制软件包名称不应选择任何常用的单词。</p>
         <p>如果上游没有使用像 <span class="strong"><strong>2.30.32</strong></span> 这样正常的版本编号方案，而是使用了诸如 <span class="strong"><strong>11Apr29</strong></span> 这样包含日期、某些代号或者一个版本控制系统散列值等字符串作为版本号的一部分的话，请在上游版本号中将这些部分移除。这些信息可以稍后在 <span class="strong"><strong>debian/changelog</strong></span> 文件中进行记录。如果您需要为软件设计一个版本字符串，可以使用 <span class="strong"><strong>YYYYMMDD</strong></span> 格式，如 <span class="strong"><strong>20110429</strong></span> 的字符串作为上游版本号。这样能保证 <span class="strong"><strong>dpkg</strong></span> 命令在升级时能正确地确定版本的先后关系。如果您想要确保万一上游在未来重新采纳正常版本编号方案，例如 <span class="strong"><strong>0.1</strong></span> 时能够做到顺畅地迁移，可以另行使用 <span class="strong"><strong>0~YYMMDD</strong></span> 的格式，如 <span class="strong"><strong>0~110429</strong></span> 作为上游版本号。</p>
         <p>版本字符串可以按如下的方式使用 <span class="strong"><strong>dpkg</strong></span> 命令进行比较。</p>
@@ -755,7 +755,7 @@
               </div>
             </div>
           </div>
-          <p>受益于 <span class="strong"><strong>dh</strong></span> 命令对构建目标的抽象化 <a href="#ftn.idm1762" class="footnote" id="idm1762"><sup class="footnote">[11]</sup></a>，一个符合 Debian 政策而支持所有必需目标（target）的 <span class="strong"><strong>debian/rules</strong></span> 文件可以简单地写成如下形式<a href="#ftn.idm1767" class="footnote" id="idm1767"><sup class="footnote">[12]</sup></a>：</p>
+          <p>受益于 <span class="strong"><strong>dh</strong></span> 命令对构建目标的抽象化 <a href="#ftn.idm1765" class="footnote" id="idm1765"><sup class="footnote">[11]</sup></a>，一个符合 Debian 政策而支持所有必需目标（target）的 <span class="strong"><strong>debian/rules</strong></span> 文件可以简单地写成如下形式<a href="#ftn.idm1770" class="footnote" id="idm1770"><sup class="footnote">[12]</sup></a>：</p>
           <p><strong>简单的 <span class="strong"><strong>debian/rules</strong></span>：. </strong>
 </p>
           <pre class="screen">#!/usr/bin/make -f
@@ -956,7 +956,7 @@ Export the build environment as “<span class="strong"><strong>LC_ALL=C.UTF-8</
             <li class="listitem">Debian 二进制软件包的元信息</li>
           </ul>
         </div>
-        <p>参见“Debian 政策手册”中的 <a class="ulink" href="https://www.debian.org/doc/debian-policy/#document-ch-controlfields">第 5 章 - Control 文件及其字段</a> 一章以了解每块元信息的具体定义。</p>
+        <p>参见《Debian 政策手册》中的 <a class="ulink" href="https://www.debian.org/doc/debian-policy/#document-ch-controlfields">第 5 章 - Control 文件及其字段</a> 一章以了解每块元信息的具体定义。</p>
         <div class="section">
           <div class="titlepage">
             <div>
@@ -1493,7 +1493,7 @@ Export the build environment as “<span class="strong"><strong>LC_ALL=C.UTF-8</
             </li>
           </ul>
         </div>
-        <p>The <span class="strong"><strong>debmake</strong></span> command creates the initial template file with the upstream package version and the Debian revision.  The distribution is set to <span class="strong"><strong>UNRELEASED</strong></span> to prevent accidental upload to the Debian archive.</p>
+        <p><span class="strong"><strong>debmake</strong></span> 命令会创建初始的模板文件，其中带有上游软件包版本和 Debian 打包修订编号。发行版部分被设置为 <span class="strong"><strong>UNRELEASED</strong></span> 以避免半成品不小心被上传进入 Debian 仓库。</p>
         <p>通常使用 <span class="strong"><strong>debchange</strong></span> 命令（它具有一个别名，即 <span class="strong"><strong>dch</strong></span>）对其进行编辑。</p>
         <div class="tip" style="margin-left: 0.5in; margin-right: 0.5in;">
           <table border="0" summary="Tip">
@@ -1525,10 +1525,10 @@ Export the build environment as “<span class="strong"><strong>LC_ALL=C.UTF-8</
             </tr>
           </table>
         </div>
-        <p>This is installed in the <span class="strong"><strong>/usr/share/doc/</strong></span><span class="emphasis"><em>binarypackage</em></span> directory as <span class="strong"><strong>changelog.Debian.gz</strong></span> by the <span class="strong"><strong>dh_installchangelogs</strong></span> command.</p>
+        <p>该文件将由 <span class="strong"><strong>dh_installchangelogs</strong></span> 命令安装到 <span class="strong"><strong>/usr/share/doc/</strong></span><span class="emphasis"><em>binarypackage</em></span> 目录，文件名为 <span class="strong"><strong>changelog.Debian.gz</strong></span>。</p>
         <p>上游的变更日志则会安装至 <span class="strong"><strong>/usr/share/doc/</strong></span><span class="emphasis"><em>binarypackage</em></span> 目录中，文件名为 <span class="strong"><strong>changelog.gz</strong></span>。</p>
-        <p>The upstream changelog is automatically found by the <span class="strong"><strong>dh_installchangelogs</strong></span> using the case insensitive match of its file name to <span class="strong"><strong>changelog</strong></span>, <span class="strong"><strong>changes</strong></span>, <span class="strong"><strong>changelog.txt</strong></span>, <span class="strong"><strong>changes.txt</strong></span>, <span class="strong"><strong>history</strong></span>, <span class="strong"><strong>history.txt</strong></span>, or <span class="strong"><strong>changelog.md</strong></span> and searched in the <span class="strong"><strong>./</strong></span> <span class="strong"><strong>doc/</strong></span> or <span class="strong"><strong>docs/</strong></span> directories.</p>
-        <p>当您完成了主要打包工作并验证了其质量之后，请考虑运行“<span class="strong"><strong>dch -r</strong></span>”命令并将最终完成的 <span class="strong"><strong>debian/changelog</strong></span> 文件中发行版（distribution）部分进行设置，通常该字段应当使用 <span class="strong"><strong>unstable</strong></span>。<a href="#ftn.idm2484" class="footnote" id="idm2484"><sup class="footnote">[13]</sup></a> 如果您的打包是一次向后移植（backports）、是安全更新或是对长期支持版的上传等等其它情况，请使用相应合适的发行版名称。</p>
+        <p>上游的变更日志是由 <span class="strong"><strong>dh_installchangelogs</strong></span> 程序自动进行搜索和处理的；它会使用大小写不敏感的搜索方式寻找上游代码中特定名称的文件，如 <span class="strong"><strong>changelog</strong></span>、<span class="strong"><strong>changes</strong></span>、<span class="strong"><strong>changelog.txt</strong></span>、<span class="strong"><strong>changes.txt</strong></span>、<span class="strong"><strong>history</strong></span>、<span class="strong"><strong>history.txt</strong></span> 或 <span class="strong"><strong>changelog.md</strong></span>。除了根目录，程序还会在 <span class="strong"><strong>doc/</strong></span> 目录和 <span class="strong"><strong>docs/</strong></span> 目录内进行搜索。</p>
+        <p>当您完成了主要打包工作并验证了其质量之后，请考虑运行“<span class="strong"><strong>dch -r</strong></span>”命令并将最终完成的 <span class="strong"><strong>debian/changelog</strong></span> 文件中发行版（distribution）部分进行设置，通常该字段应当使用 <span class="strong"><strong>unstable</strong></span>。<a href="#ftn.idm2486" class="footnote" id="idm2486"><sup class="footnote">[13]</sup></a> 如果您的打包是一次向后移植（backports）、是安全更新或是对长期支持版的上传等等其它情况，请使用相应合适的发行版名称。</p>
       </div>
       <div class="section">
         <div class="titlepage">
@@ -1538,7 +1538,7 @@ Export the build environment as “<span class="strong"><strong>LC_ALL=C.UTF-8</
             </div>
           </div>
         </div>
-        <p>Debian 以十分严肃的态度对待版权和许可证信息。“Debian 政策手册”强制规定软件包的 <span class="strong"><strong>debian/copyright</strong></span> 文件中需要提供相关信息的摘要。</p>
+        <p>Debian 以十分严肃的态度对待版权和许可证信息。《Debian 政策手册》强制规定软件包的 <span class="strong"><strong>debian/copyright</strong></span> 文件中需要提供相关信息的摘要。</p>
         <p>您应当按照 <a class="ulink" href="https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/">机器可解析的 debian/copyright 文件</a>（DEP-5）对其进行排版。</p>
         <div class="caution" style="margin-left: 0.5in; margin-right: 0.5in;">
           <table border="0" summary="Caution">
@@ -1555,7 +1555,7 @@ Export the build environment as “<span class="strong"><strong>LC_ALL=C.UTF-8</
             </tr>
           </table>
         </div>
-        <p><span class="strong"><strong>debmake</strong></span> 命令会以扫描整个源码树的方式创建初步的、兼容 DEP-5 的模板文件。它会内部调用许可证检查工具来对许可证文本进行分类。<a href="#ftn.idm2500" class="footnote" id="idm2500"><sup class="footnote">[14]</sup></a></p>
+        <p><span class="strong"><strong>debmake</strong></span> 命令会以扫描整个源码树的方式创建初步的、兼容 DEP-5 的模板文件。它会内部调用许可证检查工具来对许可证文本进行分类。<a href="#ftn.idm2502" class="footnote" id="idm2502"><sup class="footnote">[14]</sup></a></p>
         <p>除非明确指定（有些严格过头的） <span class="strong"><strong>-P</strong></span> 选项，<span class="strong"><strong>debmake</strong></span> 命令会为了实用性而跳过对自动生成的文件的检查与报告，默认它们采用宽松的许可证。</p>
         <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
           <table border="0" summary="Note">
@@ -1743,7 +1743,7 @@ Export the build environment as “<span class="strong"><strong>LC_ALL=C.UTF-8</
               </div>
             </div>
           </div>
-          <p>The <span class="strong"><strong>quilt</strong></span> command (or its wrapped <span class="strong"><strong>dquilt</strong></span> command) was needed to manage the <span class="strong"><strong>-p1</strong></span> patches in the <span class="strong"><strong>debian/patches/</strong></span> directory before the <span class="strong"><strong>--commit</strong></span> feature was added to the <span class="strong"><strong>dpkg-source</strong></span> command in 1.16.1.</p>
+          <p>在 <span class="strong"><strong>dpkg-source</strong></span> 工具 1.16.1 版本之前，该工具还未提供 <span class="strong"><strong>--commit</strong></span> 选项对应的功能，此时需要 <span class="strong"><strong>quilt</strong></span> 命令（或者对它的封装，<span class="strong"><strong>dquilt</strong></span> 命令）来管理 <span class="strong"><strong>debian/patches/</strong></span> 目录中的 <span class="strong"><strong>-p1</strong></span> 等级的补丁。</p>
           <p>在使用 <span class="strong"><strong>dpkg-source</strong></span> 命令时，补丁应当能够干净地进行应用。因此在补丁行数出现偏移或者其它情况出现时，您不能直接将旧补丁原封不动地复制到新版上游发布对应打包版本的目录中。</p>
           <p>与此相对的是 <span class="strong"><strong>dquilt</strong></span> 命令（参见 <a class="xref" href="ch03.zh-cn.html#quilt-setup" title="3.4. quilt">第 3.4 节 “quilt”</a>）对补丁的处理更加宽容。您可以调用 <span class="strong"><strong>dquilt</strong></span> 命令对补丁进行正常化。</p>
           <pre class="screen"> $ while dquilt push; do dquilt refresh ; done
@@ -2837,7 +2837,7 @@ extend-diff-ignore = "(^|/)(config\.sub|config\.guess|Makefile)$"</pre>
           <ul class="itemizedlist">
             <li class="listitem">
               <p class="simpara">
-<a class="ulink" href="https://debconf4.debconf.org/talks/dependency-hell/img1.html">逃离依赖地狱</a> <a href="#ftn.idm3833" class="footnote" id="idm3833"><sup class="footnote">[15]</sup></a>
+<a class="ulink" href="https://debconf4.debconf.org/talks/dependency-hell/img1.html">逃离依赖地狱</a> <a href="#ftn.idm3835" class="footnote" id="idm3835"><sup class="footnote">[15]</sup></a>
 </p>
               <div class="itemizedlist">
                 <ul class="itemizedlist">
@@ -2847,7 +2847,7 @@ extend-diff-ignore = "(^|/)(config\.sub|config\.guess|Makefile)$"</pre>
             </li>
             <li class="listitem">
               <p class="simpara">
-<a class="ulink" href="https://www.netfort.gr.jp/~dancer/column/libpkg-guide/libpkg-guide.html">Debian 库打包指南</a> <a href="#ftn.idm3842" class="footnote" id="idm3842"><sup class="footnote">[16]</sup></a>
+<a class="ulink" href="https://www.netfort.gr.jp/~dancer/column/libpkg-guide/libpkg-guide.html">Debian 库打包指南</a> <a href="#ftn.idm3844" class="footnote" id="idm3844"><sup class="footnote">[16]</sup></a>
 </p>
               <div class="itemizedlist">
                 <ul class="itemizedlist">
@@ -3174,7 +3174,7 @@ override_dh_install:
           <p>Debian 政策要求遵守<a class="ulink" href="https://www.debian.org/doc/packaging-manuals/fhs/fhs-2.3.html">文件系统层级标准</a>。其中 <a class="ulink" href="https://www.debian.org/doc/packaging-manuals/fhs/fhs-2.3.html#USRLIBLIBRARIESFORPROGRAMMINGANDPA">/usr/lib：程序和软件包的库</a> 声明“<span class="strong"><strong>/usr/lib</strong></span> 包含目标文件、库和其它不应由用户或 shell 脚本直接调用的内部二进制文件。”</p>
           <p>Debian 在<a class="ulink" href="https://www.debian.org/doc/packaging-manuals/fhs/fhs-2.3.html">文件系统层级标准</a>的基础上添加一项例外，即使用 <span class="strong"><strong>/usr/lib/&lt;triplet&gt;/</strong></span> 而非 <span class="strong"><strong>/usr/lib&lt;qual&gt;/</strong></span>（例如，<span class="strong"><strong>/lib32/</strong></span> 和 <span class="strong"><strong>/lib64/</strong></span>）以对多架构库提供支持。</p>
           <div class="table">
-            <a id="idm4101"/>
+            <a id="idm4103"/>
             <p class="title">
               <strong>表 5.1. 多架构库路径选项</strong>
             </p>
@@ -3282,7 +3282,7 @@ override_dh_install:
           <p>在支持多架构的 Debian 系统上，GCC 默认会同时包含、使用 <span class="strong"><strong>/usr/include/</strong></span> 和 <span class="strong"><strong>/usr/include/&lt;triplet&gt;/</strong></span> 下的头文件。</p>
           <p>如果头文件不在这些路径中，必须使用 <span class="strong"><strong>pkg-config</strong></span> 命令设置 GCC 的 <span class="strong"><strong>-I</strong></span> 参数以使得“<span class="strong"><strong>#include &lt;</strong></span><span class="emphasis"><em>foo.h</em></span><span class="strong"><strong>&gt;</strong></span>”正常工作。</p>
           <div class="table">
-            <a id="idm4186"/>
+            <a id="idm4188"/>
             <p class="title">
               <strong>表 5.2. 多架构头文件路径选项</strong>
             </p>
@@ -3401,7 +3401,7 @@ override_dh_install:
             </div>
           </div>
           <br class="table-break"/>
-          <p>为库文件使用 <span class="strong"><strong>/usr/lib/&lt;triplet&gt;/</strong></span><span class="emphasis"><em>软件包名</em></span><span class="strong"><strong>/</strong></span> 路径可帮助上游维护者对使用 <span class="strong"><strong>/usr/lib/&lt;triplet&gt;</strong></span> 的多架构系统和使用 <span class="strong"><strong>/usr/lib&lt;qual&gt;/</strong></span> 的双架构系统使用相同的安装脚本。<a href="#ftn.idm4243" class="footnote" id="idm4243"><sup class="footnote">[17]</sup></a></p>
+          <p>为库文件使用 <span class="strong"><strong>/usr/lib/&lt;triplet&gt;/</strong></span><span class="emphasis"><em>软件包名</em></span><span class="strong"><strong>/</strong></span> 路径可帮助上游维护者对使用 <span class="strong"><strong>/usr/lib/&lt;triplet&gt;</strong></span> 的多架构系统和使用 <span class="strong"><strong>/usr/lib&lt;qual&gt;/</strong></span> 的双架构系统使用相同的安装脚本。<a href="#ftn.idm4245" class="footnote" id="idm4245"><sup class="footnote">[17]</sup></a></p>
           <p>使用包含 <span class="emphasis"><em>packagename</em></span> 的文件路径也使得在同一系统上同时安装多个架构的开发库成为可能。</p>
         </div>
         <div class="section">
@@ -3414,7 +3414,7 @@ override_dh_install:
           </div>
           <p><span class="emphasis"><em>packagename</em></span> 用来获取系统上已安装库的信息。它在 <span class="strong"><strong>*.pc</strong></span> 文件中存储配置参数，用来设置 GCC 的 <span class="strong"><strong>-I</strong></span> 和 <span class="strong"><strong>-l</strong></span> 选项。</p>
           <div class="table">
-            <a id="idm4257"/>
+            <a id="idm4259"/>
             <p class="title">
               <strong>表 5.3. <span class="strong">*.pc</span> 文件路径选项</strong>
             </p>
@@ -3583,29 +3583,29 @@ override_dh_install:
       <div class="footnotes">
         <br/>
         <hr/>
-        <div id="ftn.idm1589" class="footnote">
-          <p><a href="#idm1589" class="simpara"><sup class="simpara">[10] </sup></a>对九成以上的软件包来说，软件包名称都不会超过 24 个字符；上游版本号通常不超过 10 个字符，而 Debian 修订版本号也通常不超过 3 个字符。</p>
+        <div id="ftn.idm1592" class="footnote">
+          <p><a href="#idm1592" class="simpara"><sup class="simpara">[10] </sup></a>对九成以上的软件包来说，软件包名称都不会超过 24 个字符；上游版本号通常不超过 10 个字符，而 Debian 修订版本号也通常不超过 3 个字符。</p>
         </div>
-        <div id="ftn.idm1762" class="footnote">
-          <p><a href="#idm1762" class="simpara"><sup class="simpara">[11] </sup></a>这个简化形式在 <span class="strong"><strong>debhelper</strong></span> 软件包第七版或更新的版本中可用。本指南内容假设您在使用 <span class="strong"><strong>debhelper</strong></span> 第九版或更新的版本。</p>
+        <div id="ftn.idm1765" class="footnote">
+          <p><a href="#idm1765" class="simpara"><sup class="simpara">[11] </sup></a>这个简化形式在 <span class="strong"><strong>debhelper</strong></span> 软件包第七版或更新的版本中可用。本指南内容假设您在使用 <span class="strong"><strong>debhelper</strong></span> 第九版或更新的版本。</p>
         </div>
-        <div id="ftn.idm1767" class="footnote">
-          <p><a href="#idm1767" class="simpara"><sup class="simpara">[12] </sup></a><span class="strong"><strong>debmake</strong></span> 命令会产生稍微复杂一些的 <span class="strong"><strong>debian/rules</strong></span> 文件。虽然如此，其核心结构没有什么变化。</p>
+        <div id="ftn.idm1770" class="footnote">
+          <p><a href="#idm1770" class="simpara"><sup class="simpara">[12] </sup></a><span class="strong"><strong>debmake</strong></span> 命令会产生稍微复杂一些的 <span class="strong"><strong>debian/rules</strong></span> 文件。虽然如此，其核心结构没有什么变化。</p>
         </div>
-        <div id="ftn.idm2484" class="footnote">
-          <p><a href="#idm2484" class="simpara"><sup class="simpara">[13] </sup></a>如果您在使用 <span class="strong"><strong>vim</strong></span> 编辑器，请确保使用“<span class="strong"><strong>:wq</strong></span>”命令对内容进行保存。</p>
+        <div id="ftn.idm2486" class="footnote">
+          <p><a href="#idm2486" class="simpara"><sup class="simpara">[13] </sup></a>如果您在使用 <span class="strong"><strong>vim</strong></span> 编辑器，请确保使用“<span class="strong"><strong>:wq</strong></span>”命令对内容进行保存。</p>
         </div>
-        <div id="ftn.idm2500" class="footnote">
-          <p><a href="#idm2500" class="simpara"><sup class="simpara">[14] </sup></a>程序以前会在内部调用来自 <span class="strong"><strong>devscripts</strong></span> 软件包的 <span class="strong"><strong>licensecheck</strong></span> 命令来进行检查。现在的 <span class="strong"><strong>licensecheck</strong></span> 命令由独立的 <span class="strong"><strong>licensecheck</strong></span> 软件包所提供，相较从前的实现也有了较大的改进。</p>
+        <div id="ftn.idm2502" class="footnote">
+          <p><a href="#idm2502" class="simpara"><sup class="simpara">[14] </sup></a>程序以前会在内部调用来自 <span class="strong"><strong>devscripts</strong></span> 软件包的 <span class="strong"><strong>licensecheck</strong></span> 命令来进行检查。现在的 <span class="strong"><strong>licensecheck</strong></span> 命令由独立的 <span class="strong"><strong>licensecheck</strong></span> 软件包所提供，相较从前的实现也有了较大的改进。</p>
         </div>
-        <div id="ftn.idm3833" class="footnote">
-          <p><a href="#idm3833" class="simpara"><sup class="simpara">[15] </sup></a>该文档是在 <span class="strong"><strong>symbols</strong></span> 文件被引入之前写成的。</p>
+        <div id="ftn.idm3835" class="footnote">
+          <p><a href="#idm3835" class="simpara"><sup class="simpara">[15] </sup></a>该文档是在 <span class="strong"><strong>symbols</strong></span> 文件被引入之前写成的。</p>
         </div>
-        <div id="ftn.idm3842" class="footnote">
-          <p><a href="#idm3842" class="simpara"><sup class="simpara">[16] </sup></a>在<a class="ulink" href="https://www.netfort.gr.jp/~dancer/column/libpkg-guide/libpkg-guide.html#devpkg">第六章 - 开发（-DEV）软件包</a>中，存在强烈的使用含有 SONAME 版本号的 <span class="strong"><strong>-dev</strong></span> 软件包名而非仅使用 <span class="strong"><strong>-dev</strong></span> 作为名称的偏好，但前 ftp-master 成员（Steve Langasek）对此有不同意见。请注意该文档在 <span class="strong"><strong>multiarch</strong></span> 系统和 <span class="strong"><strong>symbols</strong></span> 引入之前写成，可能有一定程度的过时。</p>
+        <div id="ftn.idm3844" class="footnote">
+          <p><a href="#idm3844" class="simpara"><sup class="simpara">[16] </sup></a>在<a class="ulink" href="https://www.netfort.gr.jp/~dancer/column/libpkg-guide/libpkg-guide.html#devpkg">第六章 - 开发（-DEV）软件包</a>中，存在强烈的使用含有 SONAME 版本号的 <span class="strong"><strong>-dev</strong></span> 软件包名而非仅使用 <span class="strong"><strong>-dev</strong></span> 作为名称的偏好，但前 ftp-master 成员（Steve Langasek）对此有不同意见。请注意该文档在 <span class="strong"><strong>multiarch</strong></span> 系统和 <span class="strong"><strong>symbols</strong></span> 引入之前写成，可能有一定程度的过时。</p>
         </div>
-        <div id="ftn.idm4243" class="footnote">
-          <p><a href="#idm4243" class="simpara"><sup class="simpara">[17] </sup></a>这个路径和 FHS 兼容。<a class="ulink" href="https://www.debian.org/doc/packaging-manuals/fhs/fhs-2.3.html#USRLIBLIBRARIESFORPROGRAMMINGANDPA">文件系统层级标准：/usr/lib：程序和软件包的库</a> 称“应用程序可以使用 <span class="strong"><strong>/usr/lib</strong></span> 下的一个子目录。如果一个应用程序使用一个子目录，所有由此程序所使用的架构相关数据均须放置于该子目录下。”</p>
+        <div id="ftn.idm4245" class="footnote">
+          <p><a href="#idm4245" class="simpara"><sup class="simpara">[17] </sup></a>这个路径和 FHS 兼容。<a class="ulink" href="https://www.debian.org/doc/packaging-manuals/fhs/fhs-2.3.html#USRLIBLIBRARIESFORPROGRAMMINGANDPA">文件系统层级标准：/usr/lib：程序和软件包的库</a> 称“应用程序可以使用 <span class="strong"><strong>/usr/lib</strong></span> 下的一个子目录。如果一个应用程序使用一个子目录，所有由此程序所使用的架构相关数据均须放置于该子目录下。”</p>
         </div>
       </div>
     </div>

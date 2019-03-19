@@ -428,10 +428,10 @@ I: single binary package
 I: debmake -x "1" ...
 I: creating =&gt; debian/control
 I: creating =&gt; debian/copyright
-I: substituting =&gt; /usr/share/debmake/extra0/rules
-I: creating =&gt; debian/rules
 I: substituting =&gt; /usr/share/debmake/extra0/changelog
 I: creating =&gt; debian/changelog
+I: substituting =&gt; /usr/share/debmake/extra0/rules
+I: creating =&gt; debian/rules
 I: substituting =&gt; /usr/share/debmake/extra1/README.Debian
 I: creating =&gt; debian/README.Debian
 I: substituting =&gt; /usr/share/debmake/extra1/compat
@@ -637,9 +637,9 @@ override_dh_auto_install:
         <p>
 </p>
         <p>如上在 <span class="strong"><strong>debian/rules</strong></span> 文件中导出=<span class="strong"><strong>DH_VERBOSE</strong></span> 环境变量可以强制 <span class="strong"><strong>debhelper</strong></span> 工具输出细粒度的构建报告。</p>
-        <p>如上导出 <span class="strong"><strong>DEB_BUILD_MAINT_OPTION</strong></span> 变量可以如 <span class="strong"><strong>dpkg-buildflags</strong></span>(1) 手册页中“FEATURE AREAS/ENVIRONMENT”部分所说，对加固选项进行设置。<a href="#ftn.idm1119" class="footnote" id="idm1119"><sup class="footnote">[8]</sup></a></p>
+        <p>如上导出 <span class="strong"><strong>DEB_BUILD_MAINT_OPTION</strong></span> 变量可以如 <span class="strong"><strong>dpkg-buildflags</strong></span>(1) 手册页中“FEATURE AREAS/ENVIRONMENT”部分所说，对加固选项进行设置。<a href="#ftn.idm1122" class="footnote" id="idm1122"><sup class="footnote">[8]</sup></a></p>
         <p>如上导出 <span class="strong"><strong>DEB_CFLAGS_MAINT_APPEND</strong></span> 可以强制 C 编译器给出所有类型的警告内容。</p>
-        <p>如上导出 <span class="strong"><strong>DEB_LDFLAGS_MAINT_APPEND</strong></span> 可以强制链接器只对真正需要的库进行链接。<a href="#ftn.idm1126" class="footnote" id="idm1126"><sup class="footnote">[9]</sup></a></p>
+        <p>如上导出 <span class="strong"><strong>DEB_LDFLAGS_MAINT_APPEND</strong></span> 可以强制链接器只对真正需要的库进行链接。<a href="#ftn.idm1129" class="footnote" id="idm1129"><sup class="footnote">[9]</sup></a></p>
         <p>对基于 Makefile 的构建系统来说，<span class="strong"><strong>dh_auto_install</strong></span> 命令所做的基本上就是“<span class="strong"><strong>$(MAKE) install DESTDIR=debian/debhello</strong></span>”。这里创建的 <span class="strong"><strong>override_dh_auto_install</strong></span> 目标将其行为修改为“<span class="strong"><strong>$(MAKE) install DESTDIR=debian/debhello prefix=/usr</strong></span>”。</p>
         <p>这里是维护者版本的 <span class="strong"><strong>debian/control</strong></span> 和 <span class="strong"><strong>debian/copyright</strong></span> 文件。</p>
         <p><strong><span class="strong"><strong>debian/control</strong></span>（维护者版本）：. </strong>
@@ -760,7 +760,7 @@ dh build
         make -j8 "INSTALL=install --strip-program=true"
 make[1]: Entering directory '/path/to/debhello-0.0'
 # CFLAGS=-g -O2
-# -fdebug-prefix-map=/build/debmake-doc-UII19c/debmake-doc-1.14=.
+# -fdebug-prefix-map=/home/hosiet/src/debian/debian/debmake-doc=.
 # -fstack-protector-strong -Wformat -Werror=format-security
  ...
  fakeroot debian/rules binary
@@ -812,9 +812,9 @@ Finished running lintian.
 </p>
         <pre class="screen"> $ tar -tzf debhello-0.0.tar.gz
 debhello-0.0/
-debhello-0.0/LICENSE
 debhello-0.0/src/
 debhello-0.0/src/hello.c
+debhello-0.0/LICENSE
 debhello-0.0/Makefile
  $ tar --xz -tf debhello_0.0-1.debian.tar.xz
 debian/
@@ -841,8 +841,8 @@ drwxr-xr-x root/root ...  ./usr/
 drwxr-xr-x root/root ...  ./usr/lib/
 drwxr-xr-x root/root ...  ./usr/lib/debug/
 drwxr-xr-x root/root ...  ./usr/lib/debug/.build-id/
-drwxr-xr-x root/root ...  ./usr/lib/debug/.build-id/b6/
--rw-r--r-- root/root ...  ./usr/lib/debug/.build-id/b6/612f70bb55fd992b95dce7...
+drwxr-xr-x root/root ...  ./usr/lib/debug/.build-id/8f/
+-rw-r--r-- root/root ...  ./usr/lib/debug/.build-id/8f/6eac00576c538d13e7aea9...
 drwxr-xr-x root/root ...  ./usr/share/
 drwxr-xr-x root/root ...  ./usr/share/doc/
 lrwxrwxrwx root/root ...  ./usr/share/doc/debhello-dbgsym -&gt; debhello
@@ -997,8 +997,8 @@ export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
  $ diff -Nru debhello-0.0.orig debhello-0.0 &gt;000-prefix-usr.patch
  $ cat 000-prefix-usr.patch
 diff -Nru debhello-0.0.orig/Makefile debhello-0.0/Makefile
---- debhello-0.0.orig/Makefile  2019-03-14 19:17:53.858176932 +0000
-+++ debhello-0.0/Makefile       2019-03-14 19:17:53.950177466 +0000
+--- debhello-0.0.orig/Makefile  2019-03-19 18:28:31.284335212 -0400
++++ debhello-0.0/Makefile       2019-03-19 18:28:31.384334956 -0400
 @@ -1,4 +1,4 @@
 -prefix = /usr/local
 +prefix = /usr
@@ -1179,11 +1179,11 @@ Index: debhello-0.0/Makefile
       <div class="footnotes">
         <br/>
         <hr/>
-        <div id="ftn.idm1119" class="footnote">
-          <p><a href="#idm1119" class="simpara"><sup class="simpara">[8] </sup></a>这里的做法是为了进行加固而强制启用只读重定位链接，以此避免 lintian 的警告“<span class="strong"><strong>W: debhello: hardening-no-relro usr/bin/hello</strong></span>”。其实它在本例中并不是必要的，但加上也没有什么坏处。对于没有外部链接库的本例来说，lintian 似乎给出了误报的警告。</p>
+        <div id="ftn.idm1122" class="footnote">
+          <p><a href="#idm1122" class="simpara"><sup class="simpara">[8] </sup></a>这里的做法是为了进行加固而强制启用只读重定位链接，以此避免 lintian 的警告“<span class="strong"><strong>W: debhello: hardening-no-relro usr/bin/hello</strong></span>”。其实它在本例中并不是必要的，但加上也没有什么坏处。对于没有外部链接库的本例来说，lintian 似乎给出了误报的警告。</p>
         </div>
-        <div id="ftn.idm1126" class="footnote">
-          <p><a href="#idm1126" class="simpara"><sup class="simpara">[9] </sup></a>这里的做法是为了避免在依赖库情况复杂的情况下过度链接，例如某些 GNOME 程序。这样做对这里的简单例子来说并不是必要的，但应当是无害的。</p>
+        <div id="ftn.idm1129" class="footnote">
+          <p><a href="#idm1129" class="simpara"><sup class="simpara">[9] </sup></a>这里的做法是为了避免在依赖库情况复杂的情况下过度链接，例如某些 GNOME 程序。这样做对这里的简单例子来说并不是必要的，但应当是无害的。</p>
         </div>
       </div>
     </div>

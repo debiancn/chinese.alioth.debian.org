@@ -271,7 +271,7 @@
             </div>
           </div>
         </div>
-        <p>上传软件包后，您将收到错误报告。 如 ”Debian 开发人员参考” <a class="ulink" href="https://www.debian.org/doc/manuals/developers-reference/pkgs.html#bug-handling">5.8. 处理缺陷</a> 中所述，正确地管理这些错误是软件包维护者的一项重要职责。</p>
+        <p>上传软件包后，您将收到错误报告。 如《Debian 开发者参考》<a class="ulink" href="https://www.debian.org/doc/manuals/developers-reference/pkgs.html#bug-handling">5.8. 处理缺陷</a> 中所述，正确地管理这些错误是软件包维护者的一项重要职责。</p>
         <p><span class="strong"><strong>bts</strong></span> 命令是一个用以处理 <a class="ulink" href="https://www.debian.org/Bugs/">Debian 缺陷追踪系统</a> 上的错误的便捷工具。</p>
         <pre class="screen">$ bts severity 123123 wishlist , tags -1 pending</pre>
       </div>
@@ -414,7 +414,7 @@
             </div>
           </div>
         </div>
-        <p>可以使用 <a class="xref" href="ch03.zh-cn.html" title="第 3 章 工具的配置">第 3 章 <em>工具的配置</em></a> 中描述的工具创建和管理干净包构建环境的 <a class="ulink" href="https://en.wikipedia.org/wiki/Chroot">chroot</a>。<a href="#ftn.idm4742" class="footnote" id="idm4742"><sup class="footnote">[18]</sup></a></p>
+        <p>可以使用 <a class="xref" href="ch03.zh-cn.html" title="第 3 章 工具的配置">第 3 章 <em>工具的配置</em></a> 中描述的工具创建和管理干净包构建环境的 <a class="ulink" href="https://en.wikipedia.org/wiki/Chroot">chroot</a>。<a href="#ftn.idm4744" class="footnote" id="idm4744"><sup class="footnote">[18]</sup></a></p>
         <p>以下是可用的软件包构建命令的快速总结。 有很多方法可以做同样的事情。</p>
         <div class="itemizedlist">
           <ul class="itemizedlist">
@@ -685,7 +685,7 @@
           </div>
         </div>
         <p>让我们假设有一个错误报告 <span class="strong"><strong>#</strong></span><span class="emphasis"><em>bug_number</em></span> 是针对您的软件包的。它描述了一个问题，您可以通过编辑上游源码中的错误文件来解决。以下是使用 <span class="strong"><strong>bugname.patch</strong></span> 文件创建软件包的新 Debian 软件包修订版所需的操作。</p>
-        <p><strong>使用 <span class="strong"><strong>dquilt</strong></span> 命令进行新的 Debian 修订. </strong>
+        <p><strong>使用 <span class="strong"><strong>dquilt</strong></span> 命令准备新的 Debian 软件包修订版本. </strong>
 </p>
         <pre class="screen"> $ dquilt push -a
  $ dquilt new bugname.patch
@@ -739,7 +739,7 @@
             </div>
           </div>
         </div>
-        <p>如果 <span class="strong"><strong>foo</strong></span> 包是以现代“<span class="strong"><strong>3.0 (native)</strong></span>”或“<span class="strong"><strong>3.0 (quilt)</strong></span>”格式正确打包的，则打包新的上游版本时需要将旧的 <span class="strong"><strong>debian/</strong></span> 目录移动到新的源码路径中。 这可以通过在新提取的源码路径中运行“<span class="strong"><strong>tar -xvzf</strong></span> <span class="emphasis"><em>/path/to/foo_oldversion</em></span><span class="strong"><strong>.debian.tar.gz</strong></span>”命令来完成。<a href="#ftn.idm4974" class="footnote" id="idm4974"><sup class="footnote">[19]</sup></a> 当然，你还需要做一些修改。</p>
+        <p>如果 <span class="strong"><strong>foo</strong></span> 包是以现代“<span class="strong"><strong>3.0 (native)</strong></span>”或“<span class="strong"><strong>3.0 (quilt)</strong></span>”格式正确打包的，则打包新的上游版本时需要将旧的 <span class="strong"><strong>debian/</strong></span> 目录移动到新的源码路径中。 这可以通过在新提取的源码路径中运行“<span class="strong"><strong>tar -xvzf</strong></span> <span class="emphasis"><em>/path/to/foo_oldversion</em></span><span class="strong"><strong>.debian.tar.gz</strong></span>”命令来完成。<a href="#ftn.idm4976" class="footnote" id="idm4976"><sup class="footnote">[19]</sup></a> 当然，你还需要做一些修改。</p>
         <p>有很多的工具可以用以处理这些情况。在使用这些软件来更新上游版本后，请在 <span class="strong"><strong>debian/changelog</strong></span> 文件中简要描述修复错误的上游修改，并添加 “<span class="strong"><strong>Closes: #</strong></span><span class="emphasis"><em>bug_number”</em></span> 来关闭错误。</p>
         <div class="section">
           <div class="titlepage">
@@ -864,7 +864,7 @@
           <ul class="itemizedlist">
             <li class="listitem">如果您因任何原因需要重新创建已删除的模板文件，您可以在同一个 Debian 软件包源码树中再次运行 <span class="strong"><strong>debmake</strong></span>。然后适当地编辑它们。</li>
             <li class="listitem">如果软件包还未更新到可为 <span class="strong"><strong>debian/rules</strong></span> 文件使用 <span class="strong"><strong>dh</strong></span> 命令，请升级它以便使用该命令（参见 <a class="xref" href="ch05.zh-cn.html#simplerules" title="5.4.2. 简单的 debian/rules">第 5.4.2 节 “简单的 debian/rules”</a>）。请根据具体情况更新 <span class="strong"><strong>debian/control</strong></span> 文件。</li>
-            <li class="listitem">如果你有一个带有 <span class="strong"><strong>foo.diff.gz</strong></span> 文件的 <span class="strong"><strong>1.0</strong></span> 格式的源码包，你可以通过创建带有“<span class="strong"><strong>3.0 (quilt)</strong></span>”的 <span class="strong"><strong>debian/source/format</strong></span> 文件来升级至新的 “<span class="strong"><strong>3.0 (quilt)</strong></span>”格式。剩下的 <span class="strong"><strong>debian/</strong></span>* 文件可以直接复制。如果需要的话，可以将“<span class="strong"><strong>filterdiff -z -x <span class="emphasis"><em><span class="strong"><strong>/debian/</strong></span></em></span> foo.diff.gz &gt; big.diff</strong></span>”命令生成的 <span class="strong"><strong>big.diff</strong></span> 文件导入到你的 quilt 系统中。<a href="#ftn.idm5046" class="footnote" id="idm5046"><sup class="footnote">[20]</sup></a></li>
+            <li class="listitem">如果你有一个带有 <span class="strong"><strong>foo.diff.gz</strong></span> 文件的 <span class="strong"><strong>1.0</strong></span> 格式的源码包，你可以通过创建带有“<span class="strong"><strong>3.0 (quilt)</strong></span>”的 <span class="strong"><strong>debian/source/format</strong></span> 文件来升级至新的 “<span class="strong"><strong>3.0 (quilt)</strong></span>”格式。剩下的 <span class="strong"><strong>debian/</strong></span>* 文件可以直接复制。如果需要的话，可以将“<span class="strong"><strong>filterdiff -z -x <span class="emphasis"><em><span class="strong"><strong>/debian/</strong></span></em></span> foo.diff.gz &gt; big.diff</strong></span>”命令生成的 <span class="strong"><strong>big.diff</strong></span> 文件导入到你的 quilt 系统中。<a href="#ftn.idm5048" class="footnote" id="idm5048"><sup class="footnote">[20]</sup></a></li>
             <li class="listitem">如果它使用了其他的补丁系统，例如 <span class="strong"><strong>dpatch</strong></span>、<span class="strong"><strong>dbs</strong></span> 或者是带有 <span class="strong"><strong>-p0</strong></span>、<span class="strong"><strong>-p1</strong></span>、<span class="strong"><strong>-p2</strong></span> 参数的 <span class="strong"><strong>cdbs</strong></span>。请使用 <span class="strong"><strong>quilt</strong></span> 包中的 <span class="strong"><strong>deb3</strong></span> 脚本来转换它。</li>
             <li class="listitem">如果它使用了带有 “<span class="strong"><strong>--with quilt</strong></span>” 选项的 <span class="strong"><strong>dh</strong></span> 命令或者使用了 <span class="strong"><strong>dh_quilt_patch</strong></span> 和 <span class="strong"><strong>dh_quilt_unpatch</strong></span> 命令，请移除这些并且使其使用新的 “<span class="strong"><strong>3.0 (quilt)</strong></span>” 格式。</li>
             <li class="listitem">如果您有一个不带 <span class="strong"><strong>foo.diff.gz</strong></span> 文件的 <span class="strong"><strong>1.0</strong></span> 格式的源码包，您可以通过创建包含“<span class="strong"><strong>3.0 (native)</strong></span>”的 <span class="strong"><strong>debian/source/format</strong></span> 文件，然后将其余的 <span class="strong"><strong>debian/</strong></span>* 文件直接复制的方式来更新至新的“<span class="strong"><strong>3.0 (native)</strong></span>”的源码格式。</li>
@@ -1320,14 +1320,14 @@ rpm2cpio ${FCSRPM} | cpio -dium</pre>
       <div class="footnotes">
         <br/>
         <hr/>
-        <div id="ftn.idm4742" class="footnote">
-          <p><a href="#idm4742" class="simpara"><sup class="simpara">[18] </sup></a><a class="ulink" href="https://wiki.debian.org/git-pbuilder">https://wiki.debian.org/git-pbuilder</a> 采用了 <span class="strong"><strong>git-pbuilder</strong></span> 风格管理。请小心，因为许多 HOWTO 使用了不同的组织。</p>
+        <div id="ftn.idm4744" class="footnote">
+          <p><a href="#idm4744" class="simpara"><sup class="simpara">[18] </sup></a><a class="ulink" href="https://wiki.debian.org/git-pbuilder">https://wiki.debian.org/git-pbuilder</a> 采用了 <span class="strong"><strong>git-pbuilder</strong></span> 风格管理。请小心，因为许多 HOWTO 使用了不同的组织。</p>
         </div>
-        <div id="ftn.idm4974" class="footnote">
-          <p><a href="#idm4974" class="simpara"><sup class="simpara">[19] </sup></a>如果 <span class="strong"><strong>foo</strong></span> 包是以旧的 <span class="strong"><strong>1.0</strong></span> 格式打包的，则相对的，只要在新的源代码路径中执行“<span class="strong"><strong>zcat</strong></span> <span class="emphasis"><em>/path/to/foo_oldversion</em></span><span class="strong"><strong>.diff.gz|patch -p1</strong></span>”命令。</p>
+        <div id="ftn.idm4976" class="footnote">
+          <p><a href="#idm4976" class="simpara"><sup class="simpara">[19] </sup></a>如果 <span class="strong"><strong>foo</strong></span> 包是以旧的 <span class="strong"><strong>1.0</strong></span> 格式打包的，则相对的，只要在新的源代码路径中执行“<span class="strong"><strong>zcat</strong></span> <span class="emphasis"><em>/path/to/foo_oldversion</em></span><span class="strong"><strong>.diff.gz|patch -p1</strong></span>”命令。</p>
         </div>
-        <div id="ftn.idm5046" class="footnote">
-          <p><a href="#idm5046" class="simpara"><sup class="simpara">[20] </sup></a>您可以使用 <span class="strong"><strong>splitdiff</strong></span> 命令来将 <span class="strong"><strong>big.diff</strong></span> 文件分割成多个小的增量更新补丁文件。</p>
+        <div id="ftn.idm5048" class="footnote">
+          <p><a href="#idm5048" class="simpara"><sup class="simpara">[20] </sup></a>您可以使用 <span class="strong"><strong>splitdiff</strong></span> 命令来将 <span class="strong"><strong>big.diff</strong></span> 文件分割成多个小的增量更新补丁文件。</p>
         </div>
       </div>
     </div>

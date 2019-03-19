@@ -603,7 +603,7 @@ using the <span class="strong"><strong>dh</strong></span> command to invoke many
         <p>See the exact definition in <a class="ulink" href="https://www.debian.org/doc/debian-policy/#document-ch-controlfields">Chapter 5 - Control files and their fields</a> in the “Debian Policy Manual”.</p>
         <p><span class="strong"><strong>debmake</strong></span> предполагает относительно простые случаи создания пакетов. Поэтому все программы, относящиеся е интерпретатору, считаются «<span class="strong"><strong>Architecture: all</strong></span>». Тем не менее, это не всегда так.</p>
         <p>Вам следует соответствующим образом изменить имя пакета и версию основной ветки разработки для создания пакета Debian.</p>
-        <p>Для того, чтобы информация об имени пакета и номере версии эффективно обрабатывались такими популярными инструментами как команда <span class="strong"><strong>aptitude</strong></span>, рекомендуется, чтобы длина имени пакета была равна 30 символам или была меньше; а общая длина версии и редакции была равна 14 символам или меньше. <a href="#ftn.idm1582" class="footnote" id="idm1582"><sup class="footnote">[10]</sup></a></p>
+        <p>Для того, чтобы информация об имени пакета и номере версии эффективно обрабатывались такими популярными инструментами как команда <span class="strong"><strong>aptitude</strong></span>, рекомендуется, чтобы длина имени пакета была равна 30 символам или была меньше; а общая длина версии и редакции была равна 14 символам или меньше. <a href="#ftn.idm1585" class="footnote" id="idm1585"><sup class="footnote">[10]</sup></a></p>
         <p>Для того, чтобы не возникали конфликты, видимое пользователю имя двоичного пакета не следует выбирать из числа распространённых слов.</p>
         <p>If upstream does not use a normal versioning scheme such as <span class="strong"><strong>2.30.32</strong></span> but uses some kind of date such as <span class="strong"><strong>11Apr29</strong></span>, a random codename string, or a VCS hash value as part of the version, make sure to remove them from the upstream version. Such information can be recorded in the <span class="strong"><strong>debian/changelog</strong></span> file. If you need to invent a version string, use the <span class="strong"><strong>YYYYMMDD</strong></span> format such as <span class="strong"><strong>20110429</strong></span> as upstream version. This ensures that the <span class="strong"><strong>dpkg</strong></span> command interprets later versions correctly as upgrades. If you need to ensure a smooth transition to a normal version scheme such as <span class="strong"><strong>0.1</strong></span> in the future, use the <span class="strong"><strong>0~YYMMDD</strong></span> format such as <span class="strong"><strong>0~110429</strong></span> as upstream version, instead.</p>
         <p>Строки версий можно сравнивать друг с другом с помощью команды <span class="strong"><strong>dpkg</strong></span> следующим образом.</p>
@@ -664,7 +664,7 @@ using the <span class="strong"><strong>dh</strong></span> command to invoke many
             </tr>
             <tr>
               <td align="left" valign="top">
-                <p>Some people promote packaging even programs that have been written only for Debian in the non-native package format.  The required tarball without <span class="strong"><strong>debian/</strong></span>* files needs to be manually generated in advance before the standard workflow in <a class="xref" href="ch05.ru.html#workflow" title="5.1. Работа по созданию пакета">Раздел 5.1, «Работа по созданию пакета»</a>. <a href="#ftn.idm1654" class="footnote" id="idm1654"><sup class="footnote">[11]</sup></a>  They claim that the use of non-native package format eases communication with the downstream distributions.</p>
+                <p>Some people promote packaging even programs that have been written only for Debian in the non-native package format.  The required tarball without <span class="strong"><strong>debian/</strong></span>* files needs to be manually generated in advance before the standard workflow in <a class="xref" href="ch05.ru.html#workflow" title="5.1. Работа по созданию пакета">Раздел 5.1, «Работа по созданию пакета»</a>. <a href="#ftn.idm1657" class="footnote" id="idm1657"><sup class="footnote">[11]</sup></a>  They claim that the use of non-native package format eases communication with the downstream distributions.</p>
               </td>
             </tr>
           </table>
@@ -763,7 +763,7 @@ using the <span class="strong"><strong>dh</strong></span> command to invoke many
               </div>
             </div>
           </div>
-          <p>Благодаря абстракциям команды <span class="strong"><strong>dh</strong></span> <a href="#ftn.idm1757" class="footnote" id="idm1757"><sup class="footnote">[12]</sup></a> соответствующий политике Debian файл <span class="strong"><strong>debian/rules</strong></span>, поддерживающий все требуемые цели, можно написать так же просто как <a href="#ftn.idm1762" class="footnote" id="idm1762"><sup class="footnote">[13]</sup></a>:</p>
+          <p>Благодаря абстракциям команды <span class="strong"><strong>dh</strong></span> <a href="#ftn.idm1760" class="footnote" id="idm1760"><sup class="footnote">[12]</sup></a> соответствующий политике Debian файл <span class="strong"><strong>debian/rules</strong></span>, поддерживающий все требуемые цели, можно написать так же просто как <a href="#ftn.idm1765" class="footnote" id="idm1765"><sup class="footnote">[13]</sup></a>:</p>
           <p><strong>Простой файл <span class="strong"><strong>debian/rules</strong></span>: </strong>
 </p>
           <pre class="screen">#!/usr/bin/make -f
@@ -1578,7 +1578,7 @@ The sponsor’s time is more valuable than yours.
         <p>Этот файл устанавливается командой <span class="strong"><strong>dh_installchangelogs</strong></span> в каталог <span class="strong"><strong>/usr/share/doc/</strong></span><span class="emphasis"><em>двоичныйпакет</em></span> под именем <span class="strong"><strong>changelog.Debian.gz</strong></span>.</p>
         <p>Журнал изменений основной ветки устанавливается в каталог <span class="strong"><strong>/usr/share/doc/</strong></span><span class="emphasis"><em>двоичныйпакет</em></span> под именем <span class="strong"><strong>changelog.gz</strong></span>.</p>
         <p>The upstream changelog is automatically found by the <span class="strong"><strong>dh_installchangelogs</strong></span> using the case insensitive match of its file name to <span class="strong"><strong>changelog</strong></span>, <span class="strong"><strong>changes</strong></span>, <span class="strong"><strong>changelog.txt</strong></span>, <span class="strong"><strong>changes.txt</strong></span>, <span class="strong"><strong>history</strong></span>, <span class="strong"><strong>history.txt</strong></span>, or <span class="strong"><strong>changelog.md</strong></span> and searched in the <span class="strong"><strong>./</strong></span> <span class="strong"><strong>doc/</strong></span> or <span class="strong"><strong>docs/</strong></span> directories.</p>
-        <p>After finishing your packaging and verifying its quality, please execute the “<span class="strong"><strong>dch -r</strong></span>” command and save the finalized <span class="strong"><strong>debian/changelog</strong></span> file with the distribution normally set to <span class="strong"><strong>unstable</strong></span>. <a href="#ftn.idm2475" class="footnote" id="idm2475"><sup class="footnote">[14]</sup></a>  If you are packaging for backports, security updates, LTS, etc., please use the appropriate distribution names instead.</p>
+        <p>After finishing your packaging and verifying its quality, please execute the “<span class="strong"><strong>dch -r</strong></span>” command and save the finalized <span class="strong"><strong>debian/changelog</strong></span> file with the distribution normally set to <span class="strong"><strong>unstable</strong></span>. <a href="#ftn.idm2478" class="footnote" id="idm2478"><sup class="footnote">[14]</sup></a>  If you are packaging for backports, security updates, LTS, etc., please use the appropriate distribution names instead.</p>
       </div>
       <div class="section">
         <div class="titlepage">
@@ -1605,7 +1605,7 @@ The sponsor’s time is more valuable than yours.
             </tr>
           </table>
         </div>
-        <p>Команда <span class="strong"><strong>debmake</strong></span> создаёт изначальный совместимый с DEP-5 шаблонный файл, сканируя все дерево исходного кода. Она использует специальную внутреннюю команду для проверки и классификации лицензий. <a href="#ftn.idm2491" class="footnote" id="idm2491"><sup class="footnote">[15]</sup></a></p>
+        <p>Команда <span class="strong"><strong>debmake</strong></span> создаёт изначальный совместимый с DEP-5 шаблонный файл, сканируя все дерево исходного кода. Она использует специальную внутреннюю команду для проверки и классификации лицензий. <a href="#ftn.idm2494" class="footnote" id="idm2494"><sup class="footnote">[15]</sup></a></p>
         <p>Если команде <span class="strong"><strong>debmake</strong></span> не была передана опция <span class="strong"><strong>-P</strong></span>, то команда пропускает создаваемые автоматически файлы под разрешительными лицензиями.</p>
         <div class="note" style="margin-left: 0.5in; margin-right: 0.5in;">
           <table border="0" summary="Note">
@@ -2939,7 +2939,7 @@ Debian discourages using and shipping <span class="strong"><strong>*.a</strong><
           <ul class="itemizedlist">
             <li class="listitem">
               <p class="simpara">
-<a class="ulink" href="https://debconf4.debconf.org/talks/dependency-hell/img1.html">Спасение из ада зависимостей</a> <a href="#ftn.idm3827" class="footnote" id="idm3827"><sup class="footnote">[16]</sup></a>
+<a class="ulink" href="https://debconf4.debconf.org/talks/dependency-hell/img1.html">Спасение из ада зависимостей</a> <a href="#ftn.idm3830" class="footnote" id="idm3830"><sup class="footnote">[16]</sup></a>
 </p>
               <div class="itemizedlist">
                 <ul class="itemizedlist">
@@ -2951,7 +2951,7 @@ This encourages having versioned symbols in the shared library.
             </li>
             <li class="listitem">
               <p class="simpara">
-<a class="ulink" href="https://www.netfort.gr.jp/~dancer/column/libpkg-guide/libpkg-guide.html">Руководство по созданию пакетов Debian с библиотеками</a> <a href="#ftn.idm3836" class="footnote" id="idm3836"><sup class="footnote">[17]</sup></a>
+<a class="ulink" href="https://www.netfort.gr.jp/~dancer/column/libpkg-guide/libpkg-guide.html">Руководство по созданию пакетов Debian с библиотеками</a> <a href="#ftn.idm3839" class="footnote" id="idm3839"><sup class="footnote">[17]</sup></a>
 </p>
               <div class="itemizedlist">
                 <ul class="itemizedlist">
@@ -3276,7 +3276,7 @@ override_dh_install:
           <p>Debian policy requires following <a class="ulink" href="https://www.debian.org/doc/packaging-manuals/fhs/fhs-2.3.html">Filesystem Hierarchy Standard</a>.  Its <a class="ulink" href="https://www.debian.org/doc/packaging-manuals/fhs/fhs-2.3.html#USRLIBLIBRARIESFORPROGRAMMINGANDPA">/usr/lib : Libraries for programming and packages</a> states "<span class="strong"><strong>/usr/lib</strong></span> includes object files, libraries, and internal binaries that are not intended to be executed directly by users or shell scripts."</p>
           <p>Debian policy makes an exception to the <a class="ulink" href="https://www.debian.org/doc/packaging-manuals/fhs/fhs-2.3.html">Filesystem Hierarchy Standard</a> to use <span class="strong"><strong>/usr/lib/&lt;triplet&gt;/</strong></span> instead of <span class="strong"><strong>/usr/lib&lt;qual&gt;/</strong></span> (e.g., <span class="strong"><strong>/lib32/</strong></span> and <span class="strong"><strong>/lib64/</strong></span>) to support a multiarch library.</p>
           <div class="table">
-            <a id="idm4095"/>
+            <a id="idm4098"/>
             <p class="title">
               <strong>Таблица 5.1. Опции путя мультиархитектурных библиотек</strong>
             </p>
@@ -3386,7 +3386,7 @@ If “<span class="strong"><strong>./configure</strong></span>” is used in the
           <p>В мультиархитектурной системе Debian GCC по умолчанию включает и <span class="strong"><strong>/usr/include/</strong></span>, и <span class="strong"><strong>/usr/include/&lt;тройка&gt;/</strong></span>.</p>
           <p>If the header file is not in those paths, the GCC option <span class="strong"><strong>-I</strong></span> must be set by the <span class="strong"><strong>pkg-config</strong></span> command to make "<span class="strong"><strong>#include &lt;</strong></span><span class="emphasis"><em>foo.h</em></span><span class="strong"><strong>&gt;</strong></span>" work properly.</p>
           <div class="table">
-            <a id="idm4180"/>
+            <a id="idm4183"/>
             <p class="title">
               <strong>Таблица 5.2. Опции пути мультиархитектурного заголовочного файла</strong>
             </p>
@@ -3505,7 +3505,7 @@ If “<span class="strong"><strong>./configure</strong></span>” is used in the
             </div>
           </div>
           <br class="table-break"/>
-          <p>The use of the <span class="strong"><strong>/usr/lib/&lt;triplet&gt;/</strong></span><span class="emphasis"><em>packagename</em></span><span class="strong"><strong>/</strong></span> path for the library files allows the upstream maintainer to use the same install script for the multiatch system with <span class="strong"><strong>/usr/lib/&lt;triplet&gt;</strong></span> and the biarch system with <span class="strong"><strong>/usr/lib&lt;qual&gt;/</strong></span>. <a href="#ftn.idm4237" class="footnote" id="idm4237"><sup class="footnote">[18]</sup></a></p>
+          <p>The use of the <span class="strong"><strong>/usr/lib/&lt;triplet&gt;/</strong></span><span class="emphasis"><em>packagename</em></span><span class="strong"><strong>/</strong></span> path for the library files allows the upstream maintainer to use the same install script for the multiatch system with <span class="strong"><strong>/usr/lib/&lt;triplet&gt;</strong></span> and the biarch system with <span class="strong"><strong>/usr/lib&lt;qual&gt;/</strong></span>. <a href="#ftn.idm4240" class="footnote" id="idm4240"><sup class="footnote">[18]</sup></a></p>
           <p>The use of the file path containing <span class="emphasis"><em>packagename</em></span> enables having more than 2 development libraries simultaneously installed on a system.</p>
         </div>
         <div class="section">
@@ -3518,7 +3518,7 @@ If “<span class="strong"><strong>./configure</strong></span>” is used in the
           </div>
           <p>Программа <span class="strong"><strong>pkg-config</strong></span> используется для получения информации об установленных в системе библиотеках. Она сохраняет свои параметры настройки в файле <span class="strong"><strong>*.pc</strong></span> и используется для установки опций <span class="strong"><strong>-I</strong></span> и <span class="strong"><strong>-l</strong></span> для GCC.</p>
           <div class="table">
-            <a id="idm4251"/>
+            <a id="idm4254"/>
             <p class="title">
               <strong>Таблица 5.3. Опции пути к файлу <span class="strong">*.pc</span></strong>
             </p>
@@ -3695,32 +3695,32 @@ situation, use these files to automate it.</p>
       <div class="footnotes">
         <br/>
         <hr/>
-        <div id="ftn.idm1582" class="footnote">
-          <p><a href="#idm1582" class="simpara"><sup class="simpara">[10] </sup></a>Для более чем 90% пакетов длина имени пакета равна 24 символам или меньше этого числа; длина версии основной ветки равна 10 символам или меньше, а длина номера редакции Debian равна 3 символам или меньше.</p>
+        <div id="ftn.idm1585" class="footnote">
+          <p><a href="#idm1585" class="simpara"><sup class="simpara">[10] </sup></a>Для более чем 90% пакетов длина имени пакета равна 24 символам или меньше этого числа; длина версии основной ветки равна 10 символам или меньше, а длина номера редакции Debian равна 3 символам или меньше.</p>
         </div>
-        <div id="ftn.idm1654" class="footnote">
-          <p><a href="#idm1654" class="simpara"><sup class="simpara">[11] </sup></a>Use of the “<span class="strong"><strong>debmake -t …</strong></span>” command can help this workflow.  See <a class="xref" href="ch06.ru.html#dt-option" title="6.2. Срезы основной ветки (-d, -t)">Раздел 6.2, «Срезы основной ветки (-d, -t)»</a>.</p>
+        <div id="ftn.idm1657" class="footnote">
+          <p><a href="#idm1657" class="simpara"><sup class="simpara">[11] </sup></a>Use of the “<span class="strong"><strong>debmake -t …</strong></span>” command can help this workflow.  See <a class="xref" href="ch06.ru.html#dt-option" title="6.2. Срезы основной ветки (-d, -t)">Раздел 6.2, «Срезы основной ветки (-d, -t)»</a>.</p>
         </div>
-        <div id="ftn.idm1757" class="footnote">
-          <p><a href="#idm1757" class="simpara"><sup class="simpara">[12] </sup></a>This simplicity is available since version 7 of the <span class="strong"><strong>debhelper</strong></span> package.  This guide assumes the use of <span class="strong"><strong>debhelper</strong></span> version 9 or newer.</p>
+        <div id="ftn.idm1760" class="footnote">
+          <p><a href="#idm1760" class="simpara"><sup class="simpara">[12] </sup></a>This simplicity is available since version 7 of the <span class="strong"><strong>debhelper</strong></span> package.  This guide assumes the use of <span class="strong"><strong>debhelper</strong></span> version 9 or newer.</p>
         </div>
-        <div id="ftn.idm1762" class="footnote">
-          <p><a href="#idm1762" class="simpara"><sup class="simpara">[13] </sup></a>Команда <span class="strong"><strong>debmake</strong></span> создаёт несколько более сложный файл <span class="strong"><strong>debian/rules</strong></span>. Тем не менее, это базовая часть.</p>
+        <div id="ftn.idm1765" class="footnote">
+          <p><a href="#idm1765" class="simpara"><sup class="simpara">[13] </sup></a>Команда <span class="strong"><strong>debmake</strong></span> создаёт несколько более сложный файл <span class="strong"><strong>debian/rules</strong></span>. Тем не менее, это базовая часть.</p>
         </div>
-        <div id="ftn.idm2475" class="footnote">
-          <p><a href="#idm2475" class="simpara"><sup class="simpara">[14] </sup></a>If you are using the <span class="strong"><strong>vim</strong></span> editor, make sure to save this with the “<span class="strong"><strong>:wq</strong></span>” command.</p>
+        <div id="ftn.idm2478" class="footnote">
+          <p><a href="#idm2478" class="simpara"><sup class="simpara">[14] </sup></a>If you are using the <span class="strong"><strong>vim</strong></span> editor, make sure to save this with the “<span class="strong"><strong>:wq</strong></span>” command.</p>
         </div>
-        <div id="ftn.idm2491" class="footnote">
-          <p><a href="#idm2491" class="simpara"><sup class="simpara">[15] </sup></a>Ранее для выполнения такой внутренней проверки использовалась команда <span class="strong"><strong>licensecheck</strong></span> из пакета <span class="strong"><strong>devscripts</strong></span>. Теперь же команда <span class="strong"><strong>licensecheck</strong></span> предоставляется в виде отдельного пакета <span class="strong"><strong>licensecheck</strong></span> и содержит множество улучшений.</p>
+        <div id="ftn.idm2494" class="footnote">
+          <p><a href="#idm2494" class="simpara"><sup class="simpara">[15] </sup></a>Ранее для выполнения такой внутренней проверки использовалась команда <span class="strong"><strong>licensecheck</strong></span> из пакета <span class="strong"><strong>devscripts</strong></span>. Теперь же команда <span class="strong"><strong>licensecheck</strong></span> предоставляется в виде отдельного пакета <span class="strong"><strong>licensecheck</strong></span> и содержит множество улучшений.</p>
         </div>
-        <div id="ftn.idm3827" class="footnote">
-          <p><a href="#idm3827" class="simpara"><sup class="simpara">[16] </sup></a>Этот документ был написан до появления файла <span class="strong"><strong>symbols</strong></span>.</p>
+        <div id="ftn.idm3830" class="footnote">
+          <p><a href="#idm3830" class="simpara"><sup class="simpara">[16] </sup></a>Этот документ был написан до появления файла <span class="strong"><strong>symbols</strong></span>.</p>
         </div>
-        <div id="ftn.idm3836" class="footnote">
-          <p><a href="#idm3836" class="simpara"><sup class="simpara">[17] </sup></a>The strong preference is to use the SONAME versioned <span class="strong"><strong>-dev</strong></span> package names over the single <span class="strong"><strong>-dev</strong></span> package name in <a class="ulink" href="https://www.netfort.gr.jp/~dancer/column/libpkg-guide/libpkg-guide.html#devpkg">Chapter 6. Development (-DEV) packages</a>, which does not seem to be shared by the former ftp-master (Steve Langasek). This document was written before the introduction of the <span class="strong"><strong>multiarch</strong></span> system and the <span class="strong"><strong>symbols</strong></span> file.</p>
+        <div id="ftn.idm3839" class="footnote">
+          <p><a href="#idm3839" class="simpara"><sup class="simpara">[17] </sup></a>The strong preference is to use the SONAME versioned <span class="strong"><strong>-dev</strong></span> package names over the single <span class="strong"><strong>-dev</strong></span> package name in <a class="ulink" href="https://www.netfort.gr.jp/~dancer/column/libpkg-guide/libpkg-guide.html#devpkg">Chapter 6. Development (-DEV) packages</a>, which does not seem to be shared by the former ftp-master (Steve Langasek). This document was written before the introduction of the <span class="strong"><strong>multiarch</strong></span> system and the <span class="strong"><strong>symbols</strong></span> file.</p>
         </div>
-        <div id="ftn.idm4237" class="footnote">
-          <p><a href="#idm4237" class="simpara"><sup class="simpara">[18] </sup></a>This path is compliant with the FHS.  <a class="ulink" href="https://www.debian.org/doc/packaging-manuals/fhs/fhs-2.3.html#USRLIBLIBRARIESFORPROGRAMMINGANDPA">Filesystem Hierarchy Standard: /usr/lib : Libraries for programming and packages</a> states "Applications may use a single subdirectory under <span class="strong"><strong>/usr/lib</strong></span>. If an application uses a subdirectory, all architecture-dependent data exclusively used by the application must be placed within that subdirectory."</p>
+        <div id="ftn.idm4240" class="footnote">
+          <p><a href="#idm4240" class="simpara"><sup class="simpara">[18] </sup></a>This path is compliant with the FHS.  <a class="ulink" href="https://www.debian.org/doc/packaging-manuals/fhs/fhs-2.3.html#USRLIBLIBRARIESFORPROGRAMMINGANDPA">Filesystem Hierarchy Standard: /usr/lib : Libraries for programming and packages</a> states "Applications may use a single subdirectory under <span class="strong"><strong>/usr/lib</strong></span>. If an application uses a subdirectory, all architecture-dependent data exclusively used by the application must be placed within that subdirectory."</p>
         </div>
       </div>
     </div>

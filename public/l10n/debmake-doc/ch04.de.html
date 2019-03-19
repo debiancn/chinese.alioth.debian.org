@@ -460,10 +460,10 @@ I: single binary package
 I: debmake -x "1" ...
 I: creating =&gt; debian/control
 I: creating =&gt; debian/copyright
-I: substituting =&gt; /usr/share/debmake/extra0/rules
-I: creating =&gt; debian/rules
 I: substituting =&gt; /usr/share/debmake/extra0/changelog
 I: creating =&gt; debian/changelog
+I: substituting =&gt; /usr/share/debmake/extra0/rules
+I: creating =&gt; debian/rules
 I: substituting =&gt; /usr/share/debmake/extra1/README.Debian
 I: creating =&gt; debian/README.Debian
 I: substituting =&gt; /usr/share/debmake/extra1/compat
@@ -481,24 +481,16 @@ I: $ wrap-and-sort</pre>
         <p>The <span class="strong"><strong>debmake</strong></span> command generates all these template files based on command line options.  Since no options are specified, the <span class="strong"><strong>debmake</strong></span> command chooses reasonable default values for you:</p>
         <div class="itemizedlist">
           <ul class="itemizedlist">
-            <li class="listitem">
-The source package name: <span class="strong"><strong>debhello</strong></span>
-</li>
-            <li class="listitem">
-The upstream version: <span class="strong"><strong>0.0</strong></span>
-</li>
-            <li class="listitem">
-The binary package name: <span class="strong"><strong>debhello</strong></span>
-</li>
+            <li class="listitem">Der Quellpaketname: <span class="strong"><strong>debhello</strong></span></li>
+            <li class="listitem">Die Version der Originalautoren: <span class="strong"><strong>0.0</strong></span></li>
+            <li class="listitem">Deb Binärpaketname: <span class="strong"><strong>debhello</strong></span></li>
             <li class="listitem">
 The Debian revision: <span class="strong"><strong>1</strong></span>
 </li>
             <li class="listitem">
 The package type: <span class="strong"><strong>bin</strong></span> (the ELF binary executable package)
 </li>
-            <li class="listitem">
-The <span class="strong"><strong>-x</strong></span> option: <span class="strong"><strong>-x1</strong></span> (default for the single binary package)
-</li>
+            <li class="listitem">Die Option <span class="strong"><strong>-x</strong></span>: <span class="strong"><strong>-x1</strong></span> (Vorgabe für das einzelne Binärpaket)</li>
           </ul>
         </div>
         <p>Lassen Sie uns die erstellten Vorlagendateien anschauen.</p>
@@ -681,9 +673,9 @@ override_dh_auto_install:
         <p>
 </p>
         <p>Exporting the <span class="strong"><strong>DH_VERBOSE</strong></span> environment variable in the <span class="strong"><strong>debian/rules</strong></span> file as above forces the <span class="strong"><strong>debhelper</strong></span> tool to make a fine grained build report.</p>
-        <p>Exporting <span class="strong"><strong>DEB_BUILD_MAINT_OPTION</strong></span> as above sets the hardening options as described in the “FEATURE AREAS/ENVIRONMENT” in <span class="strong"><strong>dpkg-buildflags</strong></span>(1).  <a href="#ftn.idm1110" class="footnote" id="idm1110"><sup class="footnote">[8]</sup></a></p>
+        <p>Exporting <span class="strong"><strong>DEB_BUILD_MAINT_OPTION</strong></span> as above sets the hardening options as described in the “FEATURE AREAS/ENVIRONMENT” in <span class="strong"><strong>dpkg-buildflags</strong></span>(1).  <a href="#ftn.idm1113" class="footnote" id="idm1113"><sup class="footnote">[8]</sup></a></p>
         <p>Exporting <span class="strong"><strong>DEB_CFLAGS_MAINT_APPEND</strong></span> as above forces the C compiler to emit all the warnings.</p>
-        <p>Exporting <span class="strong"><strong>DEB_LDFLAGS_MAINT_APPEND</strong></span> as above forces the linker to link only when the library is actually needed.  <a href="#ftn.idm1117" class="footnote" id="idm1117"><sup class="footnote">[9]</sup></a></p>
+        <p>Exporting <span class="strong"><strong>DEB_LDFLAGS_MAINT_APPEND</strong></span> as above forces the linker to link only when the library is actually needed.  <a href="#ftn.idm1120" class="footnote" id="idm1120"><sup class="footnote">[9]</sup></a></p>
         <p>The <span class="strong"><strong>dh_auto_install</strong></span> command for the Makefile based build system essentially runs “<span class="strong"><strong>$(MAKE) install DESTDIR=debian/debhello</strong></span>”.  The creation of this <span class="strong"><strong>override_dh_auto_install</strong></span> target changes its behavior to “<span class="strong"><strong>$(MAKE) install DESTDIR=debian/debhello prefix=/usr</strong></span>”.</p>
         <p>Here are the maintainer versions of the <span class="strong"><strong>debian/control</strong></span> and <span class="strong"><strong>debian/copyright</strong></span> files.</p>
         <p><strong><span class="strong"><strong>debian/control</strong></span> (maintainer version): </strong>
@@ -804,7 +796,7 @@ dh build
         make -j8 "INSTALL=install --strip-program=true"
 make[1]: Entering directory '/path/to/debhello-0.0'
 # CFLAGS=-g -O2
-# -fdebug-prefix-map=/build/debmake-doc-UII19c/debmake-doc-1.14=.
+# -fdebug-prefix-map=/home/hosiet/src/debian/debian/debmake-doc=.
 # -fstack-protector-strong -Wformat -Werror=format-security
  ...
  fakeroot debian/rules binary
@@ -870,9 +862,9 @@ The <span class="strong"><strong>debhello_0.0-1_amd64.changes</strong></span> is
 </p>
         <pre class="screen"> $ tar -tzf debhello-0.0.tar.gz
 debhello-0.0/
-debhello-0.0/LICENSE
 debhello-0.0/src/
 debhello-0.0/src/hello.c
+debhello-0.0/LICENSE
 debhello-0.0/Makefile
  $ tar --xz -tf debhello_0.0-1.debian.tar.xz
 debian/
@@ -899,8 +891,8 @@ drwxr-xr-x root/root ...  ./usr/
 drwxr-xr-x root/root ...  ./usr/lib/
 drwxr-xr-x root/root ...  ./usr/lib/debug/
 drwxr-xr-x root/root ...  ./usr/lib/debug/.build-id/
-drwxr-xr-x root/root ...  ./usr/lib/debug/.build-id/b6/
--rw-r--r-- root/root ...  ./usr/lib/debug/.build-id/b6/612f70bb55fd992b95dce7...
+drwxr-xr-x root/root ...  ./usr/lib/debug/.build-id/8f/
+-rw-r--r-- root/root ...  ./usr/lib/debug/.build-id/8f/6eac00576c538d13e7aea9...
 drwxr-xr-x root/root ...  ./usr/share/
 drwxr-xr-x root/root ...  ./usr/share/doc/
 lrwxrwxrwx root/root ...  ./usr/share/doc/debhello-dbgsym -&gt; debhello
@@ -1060,8 +1052,8 @@ export DEB_LDFLAGS_MAINT_APPEND = -Wl,--as-needed
  $ diff -Nru debhello-0.0.orig debhello-0.0 &gt;000-prefix-usr.patch
  $ cat 000-prefix-usr.patch
 diff -Nru debhello-0.0.orig/Makefile debhello-0.0/Makefile
---- debhello-0.0.orig/Makefile  2019-03-14 19:17:53.858176932 +0000
-+++ debhello-0.0/Makefile       2019-03-14 19:17:53.950177466 +0000
+--- debhello-0.0.orig/Makefile  2019-03-19 18:28:31.284335212 -0400
++++ debhello-0.0/Makefile       2019-03-19 18:28:31.384334956 -0400
 @@ -1,4 +1,4 @@
 -prefix = /usr/local
 +prefix = /usr
@@ -1242,11 +1234,11 @@ Index: debhello-0.0/Makefile
       <div class="footnotes">
         <br/>
         <hr/>
-        <div id="ftn.idm1110" class="footnote">
-          <p><a href="#idm1110" class="simpara"><sup class="simpara">[8] </sup></a>This is a cliché to force a read-only relocation link for the hardening and to prevent the lintian warning “<span class="strong"><strong>W: debhello: hardening-no-relro usr/bin/hello</strong></span>”.  This is not really needed for this example but should be harmless. The lintian tool seems to produce a false positive warning for this case which has no linked library.</p>
+        <div id="ftn.idm1113" class="footnote">
+          <p><a href="#idm1113" class="simpara"><sup class="simpara">[8] </sup></a>This is a cliché to force a read-only relocation link for the hardening and to prevent the lintian warning “<span class="strong"><strong>W: debhello: hardening-no-relro usr/bin/hello</strong></span>”.  This is not really needed for this example but should be harmless. The lintian tool seems to produce a false positive warning for this case which has no linked library.</p>
         </div>
-        <div id="ftn.idm1117" class="footnote">
-          <p><a href="#idm1117" class="simpara"><sup class="simpara">[9] </sup></a>This is a cliché to prevent overlinking for the complex library dependency case such as Gnome programs.  This is not really needed for this simple example but should be harmless.</p>
+        <div id="ftn.idm1120" class="footnote">
+          <p><a href="#idm1120" class="simpara"><sup class="simpara">[9] </sup></a>This is a cliché to prevent overlinking for the complex library dependency case such as Gnome programs.  This is not really needed for this simple example but should be harmless.</p>
         </div>
       </div>
     </div>

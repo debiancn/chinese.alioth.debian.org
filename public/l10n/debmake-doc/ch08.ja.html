@@ -203,13 +203,13 @@ I: set parameters
 I: debmake -x "4" ...
 I: creating =&gt; debian/control
 I: creating =&gt; debian/copyright
-I: substituting =&gt; /usr/share/debmake/extra0/rules
+I: substituting =&gt; /usr/share/debmake/extra0/changelog
  ...
-I: creating =&gt; debian/license-examples/LGPL-3.0+
-I: substituting =&gt; /usr/share/debmake/extra4/Artistic-1.0
-I: creating =&gt; debian/license-examples/Artistic-1.0
-I: substituting =&gt; /usr/share/debmake/extra4/GPL-3.0+
 I: creating =&gt; debian/license-examples/GPL-3.0+
+I: substituting =&gt; /usr/share/debmake/extra4/LGPL-2.1+
+I: creating =&gt; debian/license-examples/LGPL-2.1+
+I: substituting =&gt; /usr/share/debmake/extra4/LGPL-3.0+
+I: creating =&gt; debian/license-examples/LGPL-3.0+
 I: $ wrap-and-sort</pre>
         <p>Let’s inspect generated template files.</p>
         <pre class="screen"> $ cd ..
@@ -565,14 +565,14 @@ The <span class="strong"><strong>debhello_0.2-1_amd64.changes</strong></span> fi
 </p>
         <pre class="screen"> $ tar -tzf debhello-0.2.tar.gz
 debhello-0.2/
-debhello-0.2/scripts/
-debhello-0.2/scripts/hello
 debhello-0.2/data/
 debhello-0.2/data/hello.desktop
 debhello-0.2/data/hello.png
-debhello-0.2/LICENSE
 debhello-0.2/man/
 debhello-0.2/man/hello.1
+debhello-0.2/scripts/
+debhello-0.2/scripts/hello
+debhello-0.2/LICENSE
  $ tar --xz -tf debhello_0.2-1.debian.tar.xz
 debian/
 debian/README.Debian
@@ -2884,19 +2884,19 @@ Press Return to acknowledge the previous 6 paragraphs.
         <p><strong>files in <span class="strong"><strong>po</strong></span> (i18n): </strong>
 </p>
         <pre class="screen"> $ ls -l po
-/build/debmake-doc-UII19c/debmake-doc-1.14/debhello-2.0-pkg2/step151.cmd: 2: ...
+/home/hosiet/src/debian/debian/debmake-doc/debhello-2.0-pkg2/step151.cmd: 2: ...
 total 60
--rw-rw-r-- 1 hosiet hosiet   494 Sep  7 19:23 ChangeLog
--rw-r--r-- 1 hosiet hosiet 17577 Sep  7 19:23 Makefile.in.in
--rw-r--r-- 1 hosiet hosiet  3376 Sep  7 19:23 Makevars.template
--rw-rw-r-- 1 hosiet hosiet    59 Sep  7 19:23 POTFILES.in
--rw-r--r-- 1 hosiet hosiet  2203 Sep  7 19:23 Rules-quot
--rw-r--r-- 1 hosiet hosiet   217 Sep  7 19:23 boldquot.sed
--rw-r--r-- 1 hosiet hosiet  1337 Sep  7 19:23 en@boldquot.header
--rw-r--r-- 1 hosiet hosiet  1203 Sep  7 19:23 en@quot.header
--rw-r--r-- 1 hosiet hosiet   672 Sep  7 19:23 insert-header.sin
--rw-r--r-- 1 hosiet hosiet   153 Sep  7 19:23 quot.sed
--rw-r--r-- 1 hosiet hosiet   432 Sep  7 19:23 remove-potcdate.sin</pre>
+-rw-r--r-- 1 hosiet hosiet   494 Apr 14 00:25 ChangeLog
+-rw-r--r-- 1 hosiet hosiet 17577 Apr 14 00:25 Makefile.in.in
+-rw-r--r-- 1 hosiet hosiet  3376 Apr 14 00:25 Makevars.template
+-rw-r--r-- 1 hosiet hosiet    59 Apr 14 00:25 POTFILES.in
+-rw-r--r-- 1 hosiet hosiet  2203 Apr 14 00:25 Rules-quot
+-rw-r--r-- 1 hosiet hosiet   217 Apr 14 00:25 boldquot.sed
+-rw-r--r-- 1 hosiet hosiet  1337 Apr 14 00:25 en@boldquot.header
+-rw-r--r-- 1 hosiet hosiet  1203 Apr 14 00:25 en@quot.header
+-rw-r--r-- 1 hosiet hosiet   672 Apr 14 00:25 insert-header.sin
+-rw-r--r-- 1 hosiet hosiet   153 Apr 14 00:25 quot.sed
+-rw-r--r-- 1 hosiet hosiet   432 Apr 14 00:25 remove-potcdate.sin</pre>
         <p>
 </p>
         <p>Let’s update the <span class="strong"><strong>configure.ac</strong></span> by adding “<span class="strong"><strong>AM_GNU_GETTEXT([external])</strong></span>”, etc..</p>
@@ -2950,8 +2950,8 @@ AC_OUTPUT</pre>
 </p>
         <pre class="screen"> ... hack, hack, hack, ...
  $ diff -u po/Makevars.template po/Makevars
---- po/Makevars.template        2019-03-14 19:18:03.970235562 +0000
-+++ po/Makevars 2019-03-14 19:18:06.522250356 +0000
+--- po/Makevars.template        2019-03-19 18:28:42.132310486 -0400
++++ po/Makevars 2019-03-19 18:28:44.676305621 -0400
 @@ -18,14 +18,14 @@
  # or entity, or to disclaim their copyright.  The empty string stands for
  # the public domain; in this case the translators are expected to disclaim
@@ -3058,7 +3058,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-03-14 19:18+0000\n"
+"POT-Creation-Date: 2019-03-19 18:28-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME &lt;EMAIL@ADDRESS&gt;\n"
 "Language-Team: LANGUAGE &lt;LL@li.org&gt;\n"
